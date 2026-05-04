@@ -1,7 +1,7 @@
-import AgricultureImg from "@/assets/img/landing/agriculture.png";
-import ContractorImg from "@/assets/img/landing/contractor.png";
-import ContributorsImg from "@/assets/img/landing/contributors.png";
-import DiasporaImg from "@/assets/img/landing/diaspora.png";
+import AgricultureImg from "@/assets/img/landing/agriculture.webp";
+import ContractorImg from "@/assets/img/landing/contractor.webp";
+import ContributorsImg from "@/assets/img/landing/contributors.webp";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import BusinessArrow from "@/assets/svg/landing/arrow_business.svg";
 import { motion } from "framer-motion";
 

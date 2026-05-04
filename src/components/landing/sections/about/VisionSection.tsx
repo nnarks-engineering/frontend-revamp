@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import AboutUsImg from "@/assets/img/landing/about-us.jpg";
-import DiasporaImg from "@/assets/img/landing/diaspora.png";
-import ContractorImg from "@/assets/img/landing/contractor.png";
+import AboutUsImg from "@/assets/img/landing/about-us.webp";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+import ContractorImg from "@/assets/img/landing/contractor.webp";
 import { Section } from "../../Section";
 
 

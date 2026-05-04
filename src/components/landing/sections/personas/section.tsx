@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Section } from "../../Section";
-import DiasporaImg from "@/assets/img/landing/diaspora.png";
-import ContractorImg from "@/assets/img/landing/contractor.png";
-import ContributorsImg from "@/assets/img/landing/contributors.png";
-import AgricultureImg from "@/assets/img/landing/agriculture.png";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+import ContractorImg from "@/assets/img/landing/contractor.webp";
+import ContributorsImg from "@/assets/img/landing/contributors.webp";
+import AgricultureImg from "@/assets/img/landing/agriculture.webp";
 import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
 
 const PersonasSection = () => {
