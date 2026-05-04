@@ -5,7 +5,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import svgr from "vite-plugin-svgr";
 import path from "node:path";
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   const base = process.env.VITE_BASE_PATH || "/";
 
   return {
