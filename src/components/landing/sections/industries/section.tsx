@@ -1,4 +1,4 @@
-﻿import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import GhanaImage from "@/assets/landing/ghana.webp"
@@ -20,7 +20,6 @@ const IndustriesSection = () => {
   const [industryCenterIndex, setIndustryCenterIndex] = useState<number | null>(null);
   const [lastActiveCardIndex, setLastActiveCardIndex] = useState<number | null>(null);
   const [lastShownImageIndex, setLastShownImageIndex] = useState(0);
-  // Track the "real" active industry index (0–N) for the pill nav
   const [activeNavIndex, setActiveNavIndex] = useState(0);
 
   const industryPhaseRef = useRef<'auto' | 'centering' | 'scale_up' | 'holding' | 'scale_down'>(
@@ -36,6 +35,10 @@ const IndustriesSection = () => {
   const lastShownImageIndexRef = useRef(0);
   const manualScrollingRef = useRef(false);
   const manualScrollTimeoutRef = useRef<number | null>(null);
+  // Tracks whether the initial snap has been committed
+  const initializedRef = useRef(false);
+  // Expose centering trigger to external events (like pill clicks)
+  const triggerCenteringRef = useRef<(idx: number) => void>(null);
 
   const industries: Industry[] = [
     {
@@ -130,13 +133,14 @@ const IndustriesSection = () => {
     },
   ];
 
+  const duplicated = [...industries, ...industries];
+
   useEffect(() => {
     const container = industriesScrollRef.current;
     if (!container) return;
 
     let animationFrame = 0;
 
-    const scrollSpeed = 0.8;
     const centeringDuration = 350;
     const scaleUpDuration = 400;
     const holdDuration = 200;
@@ -144,13 +148,71 @@ const IndustriesSection = () => {
     const maxScale = 1.15;
     const centerThreshold = 15;
 
+    // ── Instantly jump scroll position (used only for initial load) ──
+    const jumpToCard = (idx: number) => {
+      const card = industryCardRefs.current[idx];
+      if (!card) return;
+      const target = card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
+      container.scrollLeft = target;
+    };
+
+    // ── Kick off the centering phase for a given card index ──
+    // fromCurrent: if true, always start from container.scrollLeft (smooth advance)
+    //              if false (init), also jump instantly first so the card is visible
+    const beginCentering = (idx: number, now: number, fromCurrent = false) => {
+      if (!fromCurrent && idx === lastCenteredIndexRef.current) return;
+      const card = industryCardRefs.current[idx];
+      if (!card) return;
+
+      industryPhaseRef.current = 'centering';
+      industryPhaseStartRef.current = now;
+      industryCenterIndexRef.current = idx;
+      setIndustryCenterIndex(idx);
+      lastActiveCardIndexRef.current = null;
+      setLastActiveCardIndex(null);
+      centeringStartScrollRef.current = container.scrollLeft;
+      centeringTargetScrollRef.current =
+        card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
+    };
+
+    // ── External trigger for pill clicks ──
+    triggerCenteringRef.current = (targetIndustryIndex: number) => {
+      // Clear any pending timers
+      if (imageTimerRef.current) {
+        window.clearTimeout(imageTimerRef.current);
+        imageTimerRef.current = null;
+      }
+
+      const currentScroll = container.scrollLeft;
+      const L = industries.length;
+
+      // Find which of the duplicated cards is closest to current scroll
+      const options = [targetIndustryIndex, targetIndustryIndex + L];
+      let bestIdx = options[0];
+      let minDelta = Number.POSITIVE_INFINITY;
+
+      for (const idx of options) {
+        const card = industryCardRefs.current[idx];
+        if (card) {
+          const target =
+            card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
+          const delta = Math.abs(target - currentScroll);
+          if (delta < minDelta) {
+            minDelta = delta;
+            bestIdx = idx;
+          }
+        }
+      }
+
+      beginCentering(bestIdx, performance.now(), /* fromCurrent */ true);
+    };
+
     const updateCardStyles = (now: number) => {
       const bounds = container.getBoundingClientRect();
       const centerX = bounds.left + bounds.width / 2;
       const maxDistance = bounds.width / 2;
       let closestIndex: number | null = null;
       let closestDistance = Number.POSITIVE_INFINITY;
-      let closestCard: HTMLDivElement | null = null;
       const phase = industryPhaseRef.current;
       const centeredIndex = industryCenterIndexRef.current;
 
@@ -163,7 +225,6 @@ const IndustriesSection = () => {
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
-          closestCard = card;
         }
 
         const normalized = Math.min(distance / maxDistance, 1);
@@ -188,35 +249,20 @@ const IndustriesSection = () => {
         card.style.transform = `scale(${scale})`;
       });
 
-      // Update the active nav pill based on closest card (mod industries.length)
       if (closestIndex !== null) {
         const realIndex = closestIndex % industries.length;
         setActiveNavIndex(realIndex);
       }
 
+      // In 'auto' phase: detect when a card is close enough to center and begin centering
       if (
         phase === 'auto' &&
         !manualScrollingRef.current &&
         closestIndex !== null &&
-        closestCard &&
-        closestDistance < centerThreshold
+        closestDistance < centerThreshold &&
+        closestIndex !== lastCenteredIndexRef.current
       ) {
-        if (closestIndex !== lastCenteredIndexRef.current) {
-          industryPhaseRef.current = 'centering';
-          industryPhaseStartRef.current = now;
-          industryCenterIndexRef.current = closestIndex;
-          setIndustryCenterIndex(closestIndex);
-          lastActiveCardIndexRef.current = null;
-          setLastActiveCardIndex(null);
-          centeringStartScrollRef.current = container.scrollLeft;
-          const cardEl = closestCard as HTMLDivElement;
-          const cardCenter = cardEl.offsetLeft + cardEl.offsetWidth / 2;
-          centeringTargetScrollRef.current = cardCenter - container.clientWidth / 2;
-        }
-      }
-
-      if (lastCenteredIndexRef.current !== null && closestIndex !== lastCenteredIndexRef.current) {
-        lastCenteredIndexRef.current = null;
+        beginCentering(closestIndex, now, /* fromCurrent */ false);
       }
     };
 
@@ -272,14 +318,26 @@ const IndustriesSection = () => {
       scheduleNextImage(0);
     };
 
+    const advanceToNextCard = () => {
+      const finished = industryCenterIndexRef.current;
+      const nextIdx =
+        finished !== null ? (finished + 1) % duplicated.length : 0;
+
+      // Record the finished card so the proximity guard doesn't re-trigger it
+      lastCenteredIndexRef.current = finished;
+
+      // Smooth-scroll to the next card via the centering animation —
+      // no jump, so the eased scroll gives the natural snap feel
+      const now = performance.now();
+      beginCentering(nextIdx, now, /* fromCurrent */ true);
+    };
+
     const step = () => {
       const now = performance.now();
       const phase = industryPhaseRef.current;
       const elapsed = now - industryPhaseStartRef.current;
 
-      if (phase === 'auto') {
-        if (!manualScrollingRef.current) container.scrollLeft += scrollSpeed;
-      } else if (phase === 'centering') {
+      if (phase === 'centering') {
         const progress = Math.min(elapsed / centeringDuration, 1);
         const eased = 1 - Math.pow(1 - progress, 4);
         container.scrollLeft =
@@ -299,85 +357,55 @@ const IndustriesSection = () => {
         }
       } else if (phase === 'scale_down') {
         if (elapsed >= scaleDownDuration) {
-          lastCenteredIndexRef.current = industryCenterIndexRef.current;
-          industryPhaseRef.current = 'auto';
-          industryCenterIndexRef.current = null;
-          setIndustryCenterIndex(null);
-          setImageTransition('idle');
+          advanceToNextCard();
         }
-      }
-
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0;
-        lastCenteredIndexRef.current = null;
       }
 
       updateCardStyles(now);
       animationFrame = requestAnimationFrame(step);
     };
 
-    step();
+    const onScroll = () => {
+      // If the user scrolls manually, pause the auto-animation briefly
+      if (industryPhaseRef.current !== "centering") {
+        manualScrollingRef.current = true;
+        if (manualScrollTimeoutRef.current)
+          window.clearTimeout(manualScrollTimeoutRef.current);
+        manualScrollTimeoutRef.current = window.setTimeout(() => {
+          manualScrollingRef.current = false;
+          manualScrollTimeoutRef.current = null;
+        }, 1500);
+      }
+    };
+    container.addEventListener("scroll", onScroll, { passive: true });
+
+    // ── Init: wait one rAF so the DOM has laid out, then jump+begin ──
+    animationFrame = requestAnimationFrame(() => {
+      if (!initializedRef.current) {
+        initializedRef.current = true;
+        jumpToCard(0);
+        // Give the scroll a single frame to settle, then start centering
+        animationFrame = requestAnimationFrame(() => {
+          beginCentering(0, performance.now(), /* fromCurrent */ false);
+          animationFrame = requestAnimationFrame(step);
+        });
+      }
+    });
+
     return () => {
       cancelAnimationFrame(animationFrame);
       if (imageTimerRef.current) window.clearTimeout(imageTimerRef.current);
+      container.removeEventListener("scroll", onScroll);
     };
   }, []);
 
-  const handleManualScroll = (direction: 'left' | 'right') => {
-    const container = industriesScrollRef.current;
-    if (!container) return;
-
-    if (manualScrollTimeoutRef.current) window.clearTimeout(manualScrollTimeoutRef.current);
-    manualScrollingRef.current = true;
-
-    if (imageTimerRef.current) {
-      window.clearTimeout(imageTimerRef.current);
-      imageTimerRef.current = null;
-    }
-    if (industryCenterIndexRef.current !== null) {
-      const idx = industryCenterIndexRef.current;
-      lastActiveCardIndexRef.current = idx;
-      setLastActiveCardIndex(idx);
-      lastShownImageIndexRef.current = activeImageIndex;
-      setLastShownImageIndex(activeImageIndex);
-    }
-
-    industryPhaseRef.current = 'auto';
-    industryCenterIndexRef.current = null;
-    setIndustryCenterIndex(null);
-    lastCenteredIndexRef.current = null;
-    setImageTransition('idle');
-
-    const scrollAmount = 350;
-    const halfWidth = container.scrollWidth / 2;
-
-    if (direction === 'left') {
-      if (container.scrollLeft < scrollAmount) {
-        container.scrollTo({
-          left: halfWidth + container.scrollLeft - scrollAmount,
-          behavior: 'smooth',
-        });
-      } else {
-        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      }
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-
-    manualScrollTimeoutRef.current = window.setTimeout(() => {
-      manualScrollingRef.current = false;
-      manualScrollTimeoutRef.current = null;
-    }, 600);
-  };
-
-  const duplicated = [...industries, ...industries];
 
   return (
     <section
       id="industries"
-      className="relative min-h-screen w-full bg-primary-950 overflow-hidden px-3 py-10 sm:px-4 sm:py-12 md:px-10 md:py-16 lg:px-16"
+      className="relative min-h-screen w-full bg-primary-950 overflow-hidden px-0 py-12 sm:px-4 md:px-10 lg:px-16"
     >
-        <div 
+      <div
         className="absolute inset-0 bg-fixed pointer-events-none opacity-20"
         style={{
           backgroundImage: `url(${GhanaImage})`,
@@ -398,87 +426,40 @@ const IndustriesSection = () => {
       <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col gap-8">
 
         {/* ── Header ── */}
-        <div className="text-center">
-          <p className="text-4xl font-clash-display font-semibold text-white">
+        <div className="text-center px-4">
+          <p className="text-3xl sm:text-4xl font-clash-display font-semibold text-white">
             {t('industriesServed.title')}
           </p>
         </div>
 
-        {/* ── Pill nav — one pill per real industry, no duplication ── */}
-        <div className="flex flex-wrap justify-center gap-2 px-2">
+        {/* ── Pill nav ── */}
+        <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {industries.map((industry, i) => (
-            <span
+            <button
               key={industry.id}
+              type="button"
+              onClick={() => triggerCenteringRef.current?.(i)}
               className={`
                 rounded-full px-3 py-1 text-xs font-medium tracking-wide transition-all duration-300
+                cursor-pointer hover:scale-105 active:scale-95
                 ${
                   activeNavIndex === i
-                    ? 'border-primary-500 bg-primary-500/10  text-primary scale-105'
-                    : 'border-white/30 bg-white/10 text-white/70'
+                    ? "border-primary-500 bg-primary-500/10 text-primary scale-105"
+                    : "border-white/30 bg-white/10 text-white/70 hover:bg-white/20"
                 }
               `}
             >
               {industry.name}
-            </span>
+            </button>
           ))}
         </div>
 
         {/* ── Carousel ── */}
-        {/*
-          Key overflow fix:
-          - The outer wrapper clips only on x (overflow-x: hidden) so left/right
-            edges are hidden, but overflow-y is visible so scaled cards aren't clipped.
-          - We add vertical padding inside the scroll track so the scaled card
-            (maxScale 1.15) has room to breathe without touching section edges.
-        */}
         <div className="relative">
-          {/* Left arrow */}
-          <button
-            type="button"
-            aria-label="Scroll industries left"
-            onClick={() => handleManualScroll('left')}
-            className="
-              absolute left-0 top-1/2 z-20 -translate-y-1/2 -translate-x-1/2
-              flex h-10 w-10 items-center justify-center
-              rounded-full border border-white/60 bg-white/10 text-white shadow-xl backdrop-blur-sm
-              transition-all duration-200 hover:scale-110 hover:border-white hover:bg-white/20 active:scale-95
-              sm:-translate-x-4
-            "
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          {/* Right arrow */}
-          <button
-            type="button"
-            aria-label="Scroll industries right"
-            onClick={() => handleManualScroll('right')}
-            className="
-              absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-1/2
-              flex h-10 w-10 items-center justify-center
-              rounded-full border border-white/60 bg-white/10 text-white shadow-xl backdrop-blur-sm
-              transition-all duration-200 hover:scale-110 hover:border-white hover:bg-white/20 active:scale-95
-              sm:translate-x-4
-            "
-          >
-            <ChevronRight size={18} />
-          </button>
-
-          {/*
-            Clip wrapper: hides the horizontal overflow from the scroll track
-            while letting vertical overflow (scaled card) show through.
-            overflow-x:hidden + overflow-y:visible only works on a block element
-            that is NOT the scroll container itself.
-          */}
           <div
-            style={{ overflowX: 'hidden', overflowY: 'visible' }}
-            className="mx-6 sm:mx-8"
+            style={{ overflowX: "hidden", overflowY: "visible" }}
+            className="mx-0 sm:mx-8"
           >
-            {/*
-              Scroll track: padding-y gives clearance so the scaled card
-              (up to 1.15×) doesn't get cut off top/bottom.
-              We do NOT set overflow-hidden here — the clip wrapper above handles that.
-            */}
             <div
               ref={industriesScrollRef}
               className="w-full overflow-x-auto py-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -501,11 +482,9 @@ const IndustriesSection = () => {
                         industryCardRefs.current[index] = el;
                       }}
                       className="
-                        w-54 overflow-hidden  border-white/60 bg-white/90 shadow-xl
+                        w-44 overflow-hidden border border-white/60 bg-white/90 shadow-xl
                         sm:w-52 md:w-60 lg:w-72
                       "
-                      // transition-transform is handled by the rAF loop via inline style;
-                      // keeping it here for non-animated state changes
                       style={{ willChange: 'transform, filter, opacity' }}
                     >
                       {/* Image area */}

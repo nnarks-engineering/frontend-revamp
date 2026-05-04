@@ -104,7 +104,7 @@ export function DesktopDropdown({ item, isLinkActive }: { item: NavMainItem, isL
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10, transition: { duration: 0.1 } }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-64 bg-background border border-t-2 !border-t-primary border-foreground/10 shadow-xl overflow-hidden py-2"
+                        className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-64 bg-background border border-t-2 !border-t-primary border-foreground/10  overflow-hidden py-2"
                     >
                         {item.items.map((sub, i) => {
                             const Icon = sub.icon
@@ -211,7 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                 animate={{ y: visible ? 0 : '-100%' }}
                 transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                 style={{ pointerEvents: visible ? 'auto' : 'none' }}
-                className="md:hidden fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-foreground/5 shadow-sm"
+                className="md:hidden fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-foreground/5"
             >
                 <MobileNav
                     signInText={signInText}
@@ -230,7 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                         exit={{ y: '-100%' }}
                         transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                         style={{ pointerEvents: visible ? 'auto' : 'none' }}
-                        className="hidden md:block fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-foreground/5 shadow-sm"
+                        className="hidden md:block fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-foreground/5 "
                     >
                         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-20 flex items-center justify-between">
                             <Link to="/" className="flex-shrink-0 flex items-center gap-2">
@@ -311,7 +311,7 @@ function MobileNav({
 
     return (
         <>
-            <div className="h-16 px-4 flex items-center justify-between">
+            <div className="h-14 px-4 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2">
                     <Logo className="h-8 w-auto text-foreground" />
                     <span className="font-bold text-foreground text-lg">{t('common:platform.name')}</span>
@@ -335,18 +335,18 @@ function MobileNav({
                         transition={{ duration: 0.18 }}
                         className="bg-background border-t border-foreground/5 px-4 pb-6 max-h-[85vh] overflow-y-auto"
                     >
-                        <div className="flex flex-col gap-2 pt-4">
+                        <div className="flex flex-col gap-2 pt-">
                             {navigationStructure.map((item, i) => {
                                 if (item.items) {
                                     const isGroupOpen = openGroup === item.labelKey
                                     return (
-                                        <div key={i} className="flex flex-col border-b border-foreground/5 pb-2 last:border-0">
+                                        <div key={i} className="flex flex-col border-b border-foreground/5 pb- last:border-0">
                                             <button 
                                                 onClick={() => setOpenGroup(isGroupOpen ? null : item.labelKey)}
-                                                className="flex items-center justify-between py-3 text-base font-semibold text-foreground/80"
+                                                className="flex items-center justify-between py-2 text-sm font-medium text-foreground/80"
                                             >
                                                 {(t as any)(`landing:navMenu.${item.labelKey}`)}
-                                                <ChevronDown className={cn("w-5 h-5 transition-transform duration-200", isGroupOpen && "rotate-180")} />
+                                                <ChevronDown className={cn("size-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
                                             </button>
                                             <AnimatePresence>
                                                 {isGroupOpen && (
@@ -354,7 +354,7 @@ function MobileNav({
                                                         initial={{ height: 0, opacity: 0 }}
                                                         animate={{ height: "auto", opacity: 1 }}
                                                         exit={{ height: 0, opacity: 0 }}
-                                                        className="flex flex-col gap-2 overflow-hidden"
+                                                        className="flex flex-col gap-2  overflow-hidden"
                                                     >
                                                         {item.items.map((sub, j) => {
                                                             const Icon = sub.icon
@@ -370,7 +370,7 @@ function MobileNav({
                                                                     )}
                                                                 >
                                                                     <Icon className="w-4 h-4" />
-                                                                    <span className="text-sm font-medium">{(t as any)(`landing:navMenu.${sub.labelKey}`)}</span>
+                                                                    <span className="text-xs font-medium">{(t as any)(`landing:navMenu.${sub.labelKey}`)}</span>
                                                                 </Link>
                                                             )
                                                         })}
@@ -387,7 +387,7 @@ function MobileNav({
                                         to={item.href as any}
                                         onClick={() => setIsOpen(false)}
                                         className={cn(
-                                            "py-3 text-base font-semibold transition-colors border-b border-foreground/5 last:border-0",
+                                            "py-2 text-sm font-semibold transition-colors border-b border-foreground/5 last:border-0",
                                             item.href && isLinkActive(item.href)
                                                 ? 'text-primary'
                                                 : 'text-foreground/80 hover:text-foreground'

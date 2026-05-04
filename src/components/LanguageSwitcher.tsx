@@ -52,7 +52,7 @@ export function LanguageSwitcher() {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[180px] p-0 bg-card border-border shadow-2xl">
+      <PopoverContent className="w-[180px] p-0 bg-card border-border rounded-none shadow-2xl">
         <Command className="bg-transparent">
           <CommandInput placeholder={t("actions.search") || "Search language..."} className="h-9 border-none focus:ring-0" />
           <CommandList>
