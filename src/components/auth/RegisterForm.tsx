@@ -191,7 +191,7 @@ export function RegisterForm() {
                 type="email"
                 placeholder="name@email.com"
                 autoComplete="email"
-                className="h-11"
+                className=""
                 autoFocus
               />
             )}
