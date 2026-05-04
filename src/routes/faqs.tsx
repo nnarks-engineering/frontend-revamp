@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import FaqImage from "@/assets/landing/faq.png";
+import FaqImage from "@/assets/landing/faq.webp";
 import GhanaImage from "@/assets/landing/ghana.webp"
 import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
 
