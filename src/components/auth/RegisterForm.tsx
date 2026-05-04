@@ -11,6 +11,7 @@ import { AuthHeader } from "./AuthHeader"
 import { OTPInput } from "./OTPInput"
 import { Label } from "@/components/ui/label"
 import { CountryDropdown } from "@/components/ui/country-select"
+import { Button } from "../ui/button"
 
 const detailsSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters" }),
