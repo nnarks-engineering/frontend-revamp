@@ -8,7 +8,6 @@ import LinkedInIcon from "@/assets/svg/linked-in.svg?react";
 import TiktokIcon from "@/assets/svg/tiktok.svg?react";
 import { LinkPreview } from "@/components/ui/link-preview";
 import LogoText from "@/assets/nnarks-logo.svg?react"
-import LogoTextSm from "@/assets/nnarks-logo-sm.svg?react"
 
 import realBuilding from "@/assets/landing/real-building.png"
 import RoundingLine from "@/assets/svg/rounding-line.svg?react"
