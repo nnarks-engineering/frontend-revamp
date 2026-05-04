@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   viewBox="0 0 710 300"
+   role="img"
+   style=""
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="next_ribbon_text.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.2485915"
+     inkscape:cx="431.68641"
+     inkscape:cy="222.25042"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="title1">Purple wavy ribbon with text</title>
+  <desc
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="desc1">A flowing purple ribbon that curves across the canvas with curved text along its path</desc>
+  <defs
+     id="defs1">
+    <path
+       id="ribbonPath"
+       d="M -20,260 C 60,240 80,180 120,140 C 160,100 180,60 220,40 C 280,10 340,30 400,80 C 460,130 520,180 700,160" />
+    <path
+       id="textPath"
+       d="M -20,248 C 60,228 80,168 120,128 C 160,88 180,48 220,28 C 280,-2 340,18 400,68 C 460,118 520,168 700,148" />
+  </defs>
+  <!-- Ribbon stroke -->
+  <use
+     href="#ribbonPath"
+     fill="none"
+     stroke="#b9e4f1"
+     stroke-width="36"
+     stroke-linecap="round"
+     opacity="0.88"
+     style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.88;fill:none;stroke:#b9e4f1;stroke-width:36px;stroke-linecap:round;stroke-linejoin:miter"
+     id="use1"
+     transform="matrix(0.92969897,0,0,0.9292333,44.073106,0.30547814)" />
+  <use
+     href="#ribbonPath"
+     fill="none"
+     stroke="#17CCEC"
+     stroke-width="30"
+     stroke-linecap="round"
+     opacity="0.5"
+     style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.5;fill:none;stroke:#17CCEC;stroke-width:30px;stroke-linecap:round;stroke-linejoin:miter"
+     id="use2"
+     transform="matrix(0.8919438,0,0,0.89870467,32.312521,-6.1499783)" />
+  <!-- Curved text along the ribbon -->
+  <text
+     font-size="10"
+     fill="white"
+     font-family="sans-serif"
+     letter-spacing="1.5"
+     style="color:#000000;font-weight:400;font-size:12px;font-family:sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+     id="text2"
+     transform="matrix(0.93816305,0,0,0.93816305,44.398927,15.240508)"><textPath
+       href="#textPath"
+       startOffset="0%"
+       style="color:#000000;font-weight:400;font-size:12px;font-family:sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="textPath2">Whether you are investing from abroad, executing on the ground, or collaborating in a group, Nnarks provides the infrastructure you need to build trust and ensure success.</textPath></text>
+  <metadata
+     id="metadata2">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Purple wavy ribbon with text</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

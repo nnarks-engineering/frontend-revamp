@@ -1,0 +1,376 @@
+{
+  "platform": {
+    "name": "Nnarks",
+    "tagline": "Infraestructura de Plataforma de Confianza",
+    "version": "Versión 1.0 | Abril 2026",
+    "confidential": "Confidencial"
+  },
+  "navMenu": {
+    "home": {
+      "label": "Inicio"
+    },
+    "modules": {
+      "label": "Módulos",
+      "items": {
+        "escrow": {
+          "label": "Custodia Inteligente",
+          "description": "Pagos seguros multidivisa"
+        },
+        "supervision": {
+          "label": "Supervisión",
+          "description": "Verificación física en el lugar"
+        },
+        "contributions": {
+          "label": "Aportes Grupales",
+          "description": "Gestionar Susu o Tontina"
+        }
+      }
+    },
+    "features": {
+      "label": "Características",
+      "items": {
+        "evidence": {
+          "label": "Sistema de Evidencia",
+          "description": "Registros a prueba de manipulaciones"
+        },
+        "identity": {
+          "label": "KYC e Identidad",
+          "description": "Niveles de verificación por niveles"
+        }
+      }
+    },
+    "company": {
+      "label": "Compañía",
+      "items": {
+        "about": {
+          "label": "Sobre Nosotros",
+          "description": "Nuestra misión y visión"
+        },
+        "contact": {
+          "label": "Contáctanos",
+          "description": "Ponte en contacto con ventas"
+        }
+      }
+    },
+    "faqs": {
+      "label": "Preguntas Frecuentes"
+    },
+    "pricing": {
+      "label": "Finanzas"
+    }
+  },
+  "hero": {
+    "headline": "Generando Confianza a través de la Ejecución Verificada",
+    "subheadline": "Infraestructura de Plataforma de Confianza",
+    "description": "Transacciones seguras basadas en hitos y supervisión remota de proyectos en mercados emergentes. Custodia, supervisión, contribuciones grupales y comercio verificado — todo en un sistema transparente.",
+    "ctaPrimary": "Iniciar un Proyecto",
+    "ctaSecondary": "Explorar Módulos",
+    "trustBadge": "Diseñado para Inversores de la Diáspora y Socios Transfronterizos"
+  },
+  "problemStatement": {
+    "title": "El Problema",
+    "description": "La inversión transfronteriza en mercados emergentes se ve obstaculizada por tres problemas sistémicos:",
+    "items": {
+      "remoteOversightGap": {
+        "title": "Brecha de Supervisión Remota",
+        "description": "Los inversores que financian proyectos en el extranjero no tienen una forma confiable de verificar la ejecución del trabajo, el uso de fondos o los hitos."
+      },
+      "trustDeficitInTransactions": {
+        "title": "Déficit de Confianza en las Transacciones",
+        "description": "Las transacciones de alto valor entre partes desconocidas o en diferentes jurisdicciones conllevan un riesgo significativo."
+      },
+      "informalFinancialCoordination": {
+        "title": "Coordinación Financiera Informal",
+        "description": "Los modelos de contribución grupal (Susu, Chama, Tontine) siguen siendo mayoritariamente informales y opacos."
+      }
+    },
+    "marketContext": {
+      "title": "Contexto del Mercado",
+      "description": "Solo la diáspora africana envía más de 95 mil millones de dólares anuales, principalmente hacia proyectos de desarrollo."
+    }
+  },
+  "features": {
+    "title": "Características de la Plataforma",
+    "items": {
+      "milestoneEngine": {
+        "title": "Motor de Hitos",
+        "description": "Hitos generados por IA + manuales con liberación condicional de fondos"
+      },
+      "smartEscrow": {
+        "title": "Custodia Inteligente",
+        "description": "Custodia multimoneda con reglas de liberación condicionales y pista de auditoría completa"
+      },
+      "onGroundSupervision": {
+        "title": "Supervisión en el Terreno",
+        "description": "Supervisores de Nnarks proporcionan verificación física con evidencia sellada en tiempo y ubicación"
+      },
+      "kycIdentity": {
+        "title": "KYC e Identidad",
+        "description": "Verificación por niveles con Puntuación de Confianza de Identidad y distintivos de Bronce/Plata/Oro"
+      },
+      "evidenceSystem": {
+        "title": "Sistema de Evidencia",
+        "description": "Carga de fotos, videos y documentos a prueba de manipulaciones con cadena de custodia"
+      },
+      "messagingNotifications": {
+        "title": "Mensajería y Notificaciones",
+        "description": "Chat en tiempo real, notas de voz y alertas contextuales dentro de cada proyecto"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona Nnarks",
+    "steps": {
+      "create": {
+        "title": "Crear un Proyecto",
+        "description": "Defina su proyecto, seleccione la industria y deje que la IA sugiera hitos y presupuesto"
+      },
+      "onboard": {
+        "title": "KYC e Inicio",
+        "description": "Complete la verificación e invite a sus socios o asigne un supervisor de Nnarks"
+      },
+      "supervise": {
+        "title": "Financiar y Supervisar",
+        "description": "Deposite fondos en custodia y siga el progreso en tiempo real con evidencia verificada"
+      },
+      "release": {
+        "title": "Verificar y Liberar",
+        "description": "Los hitos son revisados y aprobados -> los fondos se liberan automáticamente"
+      }
+    }
+  },
+  "productVision": {
+    "title": "Visión del Producto y Posicionamiento",
+    "statement": "Construyendo confianza mediante ejecución verificada. Empoderando a inversores, socios y empresas para gestionar capital y proyectos de forma remota.",
+    "valueProposition": "Nnarks proporciona la infraestructura para la responsabilidad remota.",
+    "positioning": "Nnarks es la capa de infraestructura de confianza que se sitúa entre las partes, asegurando compromisos antes de la transferencia de capital."
+  },
+  "industriesServed": {
+    "title": "Industrias Atendidas",
+    "description": "Sectores de alto valor donde la supervisión remota es crítica:",
+    "sectors": {
+      "realEstate": {
+        "industry": "Bienes Raíces y Construcción",
+        "useCase": "Supervisión de construcción remota, liberación de fondos por hitos"
+      },
+      "agriculture": {
+        "industry": "Agricultura",
+        "useCase": "Supervisión de proyectos agrícolas, seguimiento de hitos estacionales"
+      },
+      "energy": {
+        "industry": "Energía e Infraestructura",
+        "useCase": "Financiación de proyectos de gran escala con verificación de hitos"
+      },
+      "healthcare": {
+        "industry": "Salud y Educación",
+        "useCase": "Desarrollo de instalaciones y adquisición de equipos"
+      },
+      "logistics": {
+        "industry": "Logística y Fabricación",
+        "useCase": "Transacciones de cadena de suministro aseguradas mediante custodia"
+      },
+      "fintech": {
+        "industry": "Fintech y Comercio Minorista",
+        "useCase": "Comercio verificado con confirmación física de entrega"
+      }
+    }
+  },
+  "customers": {
+    "title": "Confianza de personas de todos los países",
+    "description": "Nnarks es el puente de confianza para inversores, contratistas y socios en todo el mundo. Nuestra infraestructura garantiza transparencia y seguridad en cada transacción, sin importar la distancia."
+  },
+  "userPersonas": {
+    "title": "Para Quién es Nnarks",
+    "description": "Ya sea que esté invirtiendo desde el extranjero, ejecutando en el terreno o colaborando en un grupo, Nnarks proporciona la infraestructura que necesita para generar confianza y asegurar el éxito.",
+    "roles": {
+      "diasporaInvestor": {
+        "role": "Inversor de la Diáspora",
+        "profile": "Profesionales que viven en el extranjero financiando proyectos en sus países de origen.",
+        "coreNeed": "Visibilidad, informes de progreso verificados y control de fondos."
+      },
+      "localPartner": {
+        "role": "Socio Local / Contratista",
+        "profile": "Empresas en el terreno responsables de la ejecución.",
+        "coreNeed": "Plataforma estructurada para enviar evidencia y recibir pagos."
+      },
+      "groupContributor": {
+        "role": "Contribuyente Grupal",
+        "profile": "Participantes en esquemas de contribución grupal (Susu, Chama, etc.).",
+        "coreNeed": "Seguimiento transparente y seguridad de los fondos."
+      },
+      "buyerSeller": {
+        "role": "Comprador / Vendedor (Comercio)",
+        "profile": "Partes en transacciones de alto valor con baja confianza.",
+        "coreNeed": "Tercero neutral para retener fondos hasta que se verifique la entrega."
+      }
+    }
+  },
+  "foundation": {
+    "title": "Bases de la Confianza",
+    "description": "Todos los módulos comparten estos sistemas fundamentales:",
+    "systems": {
+      "auth": {
+        "title": "Cuentas de Usuario y Autenticación",
+        "description": "Cuenta única, MFA, control de acceso"
+      },
+      "kyc": {
+        "title": "Verificación KYC e Identidad",
+        "description": "Niveles por niveles, puntuación de confianza, distintivos"
+      },
+      "wallet": {
+        "title": "Sistema de Cartera",
+        "description": "Multimoneda, bloqueo de custodia, subcuentas"
+      },
+      "milestone": {
+        "title": "Motor de Hitos",
+        "description": "Sugerencias de IA, liberaciones condicionales"
+      },
+      "messaging": {
+        "title": "Motor de Mensajería",
+        "description": "Chat en tiempo real, notas de voz"
+      },
+      "evidence": {
+        "title": "Evidencia y Verificación",
+        "description": "Medios sellados en tiempo y GPS"
+      }
+    }
+  },
+  "module1": {
+    "title": "Módulo 1: Iniciar un Proyecto",
+    "phase": "Fase 1 • Entrega Objetivo: 1 Mes",
+    "description": "Cree, financie y supervise proyectos remotos mediante la liberación de fondos por hitos.",
+    "cta": "Iniciar su Primer Proyecto"
+  },
+  "partners": {
+    "count": "100+",
+    "alreadyOn": "Ya en",
+    "brandName": "Nnarks"
+  },
+  "testimonials": {
+    "title": "Lo que Dicen Nuestros Clientes",
+    "description": "Descubra cómo inversores y socios en todos los mercados aprovechan Nnarks para generar confianza, gestionar proyectos remotos y asegurar sus transacciones.",
+    "bigCard": {
+      "quote": "Nnarks ha transformado nuestra gestión de inversiones transfronterizas. El seguimiento de hitos y el sistema de custodia nos brindan total tranquilidad.",
+      "company": "CalBank"
+    },
+    "items": [
+      {
+        "name": "Sarah Thompson",
+        "role": "Inversora de la Diáspora",
+        "company": "Global Ventures",
+        "quote": "Nnarks me ha dado visibilidad total de mi proyecto de construcción en casa. La liberación de fondos por hitos significa que solo pago cuando el trabajo está verificado."
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "Socio Local",
+        "company": "BuildRight Solutions",
+        "quote": "El sistema de custodia y la verificación de supervisores han facilitado enormemente generar confianza con mis clientes en el extranjero."
+      },
+      {
+        "name": "Jennifer Lee",
+        "role": "Contribuyente Grupal",
+        "company": "Community Circle",
+        "quote": "Nuestro grupo de contribución finalmente tiene un sistema transparente. Todos pueden ver las contribuciones, los pagos son automáticos y las disputas se gestionan justamente."
+      },
+      {
+        "name": "Abebe Mengistu",
+        "role": "Socio Agrícola",
+        "company": "GreenField Estates",
+        "quote": "Gestionar proyectos agrícolas a gran escala de forma remota era una pesadilla antes de Nnarks. Ahora, cada hito de la cosecha se verifica con GPS y fotos antes del pago."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Precios Transparentes",
+    "description": "Nuestros precios están diseñados para ser flexibles y transparentes, garantizando el mejor valor. Ofrecemos planes para proyectos de todos los tamaños, sin cargos ocultos.",
+    "cta": "Explorar Precios"
+  },
+  "modules": {
+    "title": "Construya su Solución de Confianza",
+    "description": "Elija entre nuestra suite completa de módulos de infraestructura de confianza. Comience con lo que necesita — custodia, supervisión, contribuciones — y escale a medida que crezca su cartera.",
+    "cta": "Ver Módulos"
+  },
+  "cta": {
+    "headline": "¿Listo para Generar Confianza más allá de las Fronteras?",
+    "subheadline": "¿Su Negocio?",
+    "description": "Únase a la plataforma que convierte la inversión remota en ejecución verificada. Comience su transformación hoy con nuestra prueba gratuita.",
+    "buttonPrimary": "Crear un Proyecto — Comenzar Gratis",
+    "buttonSecondary": "Contactar Ventas"
+  },
+  "ctaMarquee": {
+    "conversionRate": "Tasa de Conversión",
+    "projectsFunded": "Proyectos Financiados • +4 esta semana",
+    "inEscrow": "EN CUSTODIA",
+    "recentInvestors": "Inversores Recientes",
+    "perMonth": "por mes",
+    "teamFeature1": "Hasta 10 proyectos",
+    "teamFeature2": "Supervisión en tiempo real",
+    "teamFeature3": "Informes avanzados",
+    "recentReleases": "Liberaciones Recientes",
+    "evidenceUploaded": "Evidencia cargada y verificada",
+    "activityOverview": "Resumen de Actividad",
+    "signedInAs": "Conectado como"
+  },
+  "footer": {
+    "tagline": "Nnarks — Infraestructura de Confianza para Mercados Emergentes",
+    "description": "Transformando inversiones transfronterizas con infraestructura de confianza integral. Construido para el futuro de la inversión diasporiana.",
+    "copyright": "© {{year}} Plataforma Nnarks. Todos los derechos reservados.",
+    "systemOperational": "Sistema Operacional",
+    "sections": {
+      "product": "Producto",
+      "company": "Empresa",
+      "support": "Soporte"
+    },
+    "links": {
+      "features": "Características",
+      "modules": "Módulos",
+      "pricing": "Precios",
+      "liveDemo": "Demo en Vivo",
+      "about": "Nosotros",
+      "careers": "Carreras",
+      "blog": "Blog",
+      "contact": "Contacto",
+      "howItWorks": "Cómo Funciona",
+      "documentation": "Documentación",
+      "helpCenter": "Centro de Ayuda",
+      "tutorials": "Tutoriales",
+      "community": "Comunidad",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "cookies": "Cookies",
+      "security": "Seguridad"
+    },
+    "badges": {
+      "soc2": "Cumple SOC 2",
+      "gdpr": "Listo GDPR",
+      "iso": "ISO 27001",
+      "uptime": "99.9% Disponibilidad"
+    }
+  },
+  "faqsSection": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a preguntas comunes sobre Nnarks.",
+    "items": [
+      {
+        "question": "¿Qué es Nnarks?",
+        "answer": "Nnarks es una plataforma de infraestructura de confianza que ayuda a los inversores y socios de la diáspora a gestionar proyectos remotos de forma segura mediante custodia basada en hitos y ejecución verificada."
+      },
+      {
+        "question": "¿Cómo funciona el servicio de custodia (escrow)?",
+        "answer": "Los fondos se mantienen de forma segura en un depósito de garantía multidivisa. Solo se liberan al socio o contratista local cuando se cumplen y verifican hitos específicos predefinidos."
+      },
+      {
+        "question": "¿Quién verifica los hitos?",
+        "answer": "Los hitos se pueden verificar subiendo pruebas con etiquetas de GPS y marcas de tiempo (fotos, videos, documentos) o asignando a un supervisor local verificado por Nnarks."
+      },
+      {
+        "question": "¿Cómo funcionan las aportaciones grupales?",
+        "answer": "Las aportaciones grupales le permiten gestionar modelos como Susu, Chama o Tontine de forma eficiente con un seguimiento automatizado de las aportaciones y programación de pagos."
+      },
+      {
+        "question": "¿Están seguros mis fondos?",
+        "answer": "Sí, todos los fondos están bloqueados de forma segura en cuentas de custodia regidas por estrictas condiciones de liberación. Tienes visibilidad total sobre dónde y cuándo se mueve tu dinero."
+      }
+    ]
+  }
+}

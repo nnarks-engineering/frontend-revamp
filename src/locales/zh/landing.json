@@ -1,0 +1,392 @@
+{
+  "platform": {
+    "name": "Nnarks",
+    "tagline": "信任基础设施平台",
+    "version": "1.0 版 | 2026年4月",
+    "confidential": "机密"
+  },
+  "navMenu": {
+    "home": {
+      "label": "首页"
+    },
+    "modules": {
+      "label": "模块",
+      "items": {
+        "escrow": {
+          "label": "智能托管",
+          "description": "安全的多币种支付"
+        },
+        "supervision": {
+          "label": "监督",
+          "description": "实地物理验证"
+        },
+        "contributions": {
+          "label": "团体捐助",
+          "description": "管理 Susu 或 Tontine"
+        }
+      }
+    },
+    "features": {
+      "label": "功能",
+      "items": {
+        "evidence": {
+          "label": "证据系统",
+          "description": "防篡改跟踪日志"
+        },
+        "identity": {
+          "label": "KYC 与身份",
+          "description": "分级验证级别"
+        }
+      }
+    },
+    "company": {
+      "label": "公司",
+      "items": {
+        "about": {
+          "label": "关于我们",
+          "description": "我们的使命和愿景"
+        },
+        "contact": {
+          "label": "联系我们",
+          "description": "与销售部门取得联系"
+        }
+      }
+    },
+    "faqs": {
+      "label": "常见问题"
+    },
+    "pricing": {
+      "label": "财务"
+    }
+  },
+  "hero": {
+    "headline": "我们帮助侨民回乡投资",
+    "subheadline": "信任基础设施平台",
+    "description": "跨新兴市场的安全、基于里程碑的交易和远程项目监督。托管、监督、群组贡献和验证商务，尽在一个透明系统中。",
+    "ctaPrimary": "开始项目",
+    "ctaSecondary": "探索模块",
+    "trustBadge": "专为海外投资者和跨境合作伙伴打造"
+  },
+  "problemStatement": {
+    "title": "问题陈述",
+    "description": "在新兴市场的跨境投资受到三个系统性问题的阻碍：",
+    "items": {
+      "remoteOversightGap": {
+        "title": "远程监督鸿沟",
+        "description": "在非身处项目所在国的投资者，没有可靠的方法来验证工作是否正在进行、资金是否被正确使用或里程碑是否已达成。"
+      },
+      "trustDeficitInTransactions": {
+        "title": "交易中的信任赤字",
+        "description": "互不相识或跨司法管辖区的各方之间的高价值交易具有重大风险。买方在付款前无法验证货物。卖方在交货后无法保证收到付款。没有中立第三方来持有资金、验证交付或仲裁争议。"
+      },
+      "informalFinancialCoordination": {
+        "title": "非正式财务协调",
+        "description": "群组贡献模式（如 Susu、chama 和 tontine 系统）在很大程度上仍是非正式的。资金手动管理，贡献追踪不透明，支付计划不结构化，且在贡献者违约时没有争议解决或追责机制。"
+      }
+    },
+    "marketContext": {
+      "title": "市场背景",
+      "description": "仅非洲侨民每年的汇款就超过 950 亿美元，其中很大一部分用于房地产、建筑、农业和中小企业投资。这些资金中的大部分是通过缺乏监督的非正式渠道管理的。"
+    }
+  },
+  "features": {
+    "title": "平台功能",
+    "items": {
+      "milestoneEngine": {
+        "title": "里程碑引擎",
+        "description": "AI 生成 + 手动里程碑，具有有条件的资金释放和证据要求"
+      },
+      "smartEscrow": {
+        "title": "智能托管",
+        "description": "具有有条件释放规则和完整审计追踪的多货币托管"
+      },
+      "onGroundSupervision": {
+        "title": "现场监督",
+        "description": "Nnarks 主管通过带有 GPS 标记和时间戳的证据提供物理验证"
+      },
+      "kycIdentity": {
+        "title": "KYC 与身份",
+        "description": "分级验证，包含身份可信度评分和铜/银/金牌勋章"
+      },
+      "evidenceSystem": {
+        "title": "证据系统",
+        "description": "防篡改的照片、视频、文档和保管链追踪"
+      },
+      "messagingNotifications": {
+        "title": "消息与通知",
+        "description": "每个项目内的实时聊天、语音留言和上下文警报"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Nnarks 如何运作",
+    "steps": {
+      "create": {
+        "title": "创建项目",
+        "description": "定义您的项目，选择行业，让 AI 建议里程碑和预算"
+      },
+      "onboard": {
+        "title": "身份验证与加入",
+        "description": "完成验证并邀请合作伙伴或分配 Nnarks 主管"
+      },
+      "supervise": {
+        "title": "出资与监督",
+        "description": "存入托管账户，并通过经过验证的证据实时追踪进度"
+      },
+      "release": {
+        "title": "验证与释放",
+        "description": "里程碑经过审查和批准 → 资金自动释放"
+      }
+    }
+  },
+  "productVision": {
+    "title": "产品愿景与定位",
+    "statement": "通过验证执行建立信任。为投资者、合作伙伴和企业提供透明、安全和负责任的远程管理资金和项目的工具。",
+    "valueProposition": "Nnarks 为远程问责制提供基础设施：信任伙伴关系的透明系统，全球交易的安全框架，以及具有人类精度的数字监督。",
+    "positioning": "Nnarks 不是银行，不是项目管理工具，也不是市场。它是位于各方之间的信任基础设施层——在资金流动前确保承诺已履行。"
+  },
+  "industriesServed": {
+    "title": "服务行业",
+    "description": "远程监督至关重要的高价值、里程碑驱动型行业：",
+    "sectors": {
+      "realEstate": {
+        "industry": "房地产与建筑",
+        "useCase": "远程施工监督，基于里程碑的资金释放"
+      },
+      "agriculture": {
+        "industry": "农业",
+        "useCase": "农场项目监督，季节性里程碑追踪"
+      },
+      "energy": {
+        "industry": "能源与基础设施",
+        "useCase": "具有验证阶段完成情况的资本项目融资"
+      },
+      "healthcare": {
+        "industry": "医疗保健与教育",
+        "useCase": "设施开发和设备采购"
+      },
+      "logistics": {
+        "industry": "物流与制造",
+        "useCase": "由托管支持的供应链交易"
+      },
+      "fintech": {
+        "industry": "金融科技与零售",
+        "useCase": "具有物理交付确认的验证商务"
+      },
+      "tourism": {
+        "industry": "旅游与酒店业",
+        "useCase": "物业开发和服务采购"
+      },
+      "mining": {
+        "industry": "采矿与自然资源",
+        "useCase": "基于特许权的项目融资"
+      },
+      "telecom": {
+        "industry": "电信与交通",
+        "useCase": "分阶段付款的基础设施推广"
+      },
+      "water": {
+        "industry": "水务与卫生",
+        "useCase": "公共工程项目监督"
+      }
+    }
+  },
+  "customers": {
+    "title": "来自每个国家的人们的信任",
+    "description": "Nnarks 是全球投资者、承包商和合作伙伴之间的信任桥梁。无论距离多远，我们的基础设施都能确保每笔交易的透明度和安全性。"
+  },
+  "userPersonas": {
+    "title": "Nnarks 为谁打造",
+    "description": "无论您是从海外投资、在现场执行，还是在群组中协作，Nnarks 都能为您提供建立信任和确保成功所需的基础设施。",
+    "roles": {
+      "diasporaInvestor": {
+        "role": "海外投资者",
+        "profile": "居住在国外并资助家乡房地产的专业人士。",
+        "coreNeed": "对资金使用情况的可见性和经过验证的进度报告。"
+      },
+      "localPartner": {
+        "role": "当地合作伙伴/承包商",
+        "profile": "负责执行和交付的承包商。",
+        "coreNeed": "结构化平台以提交证据并接收付款。"
+      },
+      "groupContributor": {
+        "role": "群组贡献者",
+        "profile": "Susu、Chama 或 Tontine 计划的参与者。",
+        "coreNeed": "透明追踪和安全资金。"
+      },
+      "buyerSeller": {
+        "role": "买方/卖方（商务）",
+        "profile": "低信任度的高价值交易各方。",
+        "coreNeed": "中立第三方持有资金，直到交付被验证。"
+      }
+    }
+  },
+  "foundation": {
+    "title": "信任的基石",
+    "description": "所有模块共享这些核心系统：",
+    "systems": {
+      "auth": {
+        "title": "用户账户与身份验证",
+        "description": "单一账户、多重身份验证、基于角色的访问"
+      },
+      "kyc": {
+        "title": "KYC 与身份验证",
+        "description": "分级水平、身份可信度评分、勋章"
+      },
+      "wallet": {
+        "title": "钱包系统",
+        "description": "多货币、托管锁定、子账户"
+      },
+      "milestone": {
+        "title": "里程碑引擎",
+        "description": "AI 建议、有条件释放"
+      },
+      "messaging": {
+        "title": "消息引擎",
+        "description": "实时聊天、语音留言"
+      },
+      "evidence": {
+        "title": "证据与验证系统",
+        "description": "带有时间戳和 GPS 标记的日志"
+      }
+    }
+  },
+  "module1": {
+    "title": "模块 1：开始项目",
+    "phase": "第一阶段 • 交付目标：1 个月",
+    "description": "使用基于里程碑的释放方式远程创建、资助和监督项目。",
+    "cta": "开始您的第一个项目"
+  },
+  "partners": {
+    "count": "100+",
+    "alreadyOn": "已在",
+    "brandName": "Nnarks"
+  },
+  "testimonials": {
+    "title": "客户评价",
+    "description": "了解各市场投资者和合作伙伴如何利用 Nnarks 建立信任、远程管理项目并确保交易安全。",
+    "bigCard": {
+      "quote": "Nnarks 改变了我们管理跨境投资的方式。里程碑追踪和托管系统让我们完全放心。",
+      "company": "CalBank"
+    },
+    "items": [
+      {
+        "name": "Sarah Thompson",
+        "role": "海外投资者",
+        "company": "Global Ventures",
+        "quote": "Nnarks 让我能够完全看到家乡的建筑项目进度。基于里程碑的资金释放意味着我只在工作得到验证时付款。"
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "当地合作伙伴",
+        "company": "BuildRight Solutions",
+        "quote": "托管系统和主管验证让我更容易与海外客户建立信任。款项每次都按时到达。"
+      },
+      {
+        "name": "Jennifer Lee",
+        "role": "群组贡献者",
+        "company": "Community Circle",
+        "quote": "我们的贡献小组终于有了一个透明的系统。每个人都能看到贡献情况，支付是自动化的，争议处理也很公平。"
+      },
+      {
+        "name": "Abebe Mengistu",
+        "role": "农业合作伙伴",
+        "company": "GreenField Estates",
+        "quote": "在 Nnarks 之前，远程管理大型农场项目是一场噩梦。现在，每个收获里程碑在付款前都会通过 GPS 和照片进行验证。"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "透明价格",
+    "description": "我们的定价旨在灵活透明，确保您获得最佳价值。我们提供适合各种规模项目的方案，没有隐藏费用或惊喜。",
+    "cta": "探索定价"
+  },
+  "modules": {
+    "title": "构建完美的信任解决方案",
+    "description": "从我们全面的信任基础设施模块套件中进行选择。从您今天需要的开始——托管、监督、贡献——并随着您投资组合的增长而无缝扩展。",
+    "cta": "查看模块"
+  },
+  "cta": {
+    "headline": "准备好建立跨境信任了吗？",
+    "subheadline": "您的业务？",
+    "description": "加入将远程投资转化为验证执行的平台。立即开始您的免费试用转型之旅。",
+    "buttonPrimary": "创建项目 — 免费开始",
+    "buttonSecondary": "联系销售"
+  },
+  "ctaMarquee": {
+    "conversionRate": "转化率",
+    "projectsFunded": "项目已注资 • 本周 +4",
+    "inEscrow": "托管中",
+    "recentInvestors": "近期投资者",
+    "perMonth": "每月",
+    "teamFeature1": "最多 10 个项目",
+    "teamFeature2": "实时监督",
+    "teamFeature3": "高级报告",
+    "recentReleases": "近期释放",
+    "evidenceUploaded": "证据已上传并验证",
+    "activityOverview": "活动概览",
+    "signedInAs": "登录身份"
+  },
+  "footer": {
+    "tagline": "Nnarks — 新兴市场的信任基础设施",
+    "description": "通过全面的信任基础设施改变跨境投资。为海外投资的未来而打造。",
+    "copyright": "© {{year}} Nnarks 平台。保留所有权利。",
+    "systemOperational": "系统运行正常",
+    "sections": {
+      "product": "产品",
+      "company": "公司",
+      "support": "支持"
+    },
+    "links": {
+      "features": "功能",
+      "modules": "模块",
+      "pricing": "价格",
+      "liveDemo": "在线演示",
+      "about": "关于我们",
+      "careers": "职业生涯",
+      "blog": "博客",
+      "contact": "联系我们",
+      "howItWorks": "运作方式",
+      "documentation": "文档",
+      "helpCenter": "帮助中心",
+      "tutorials": "教程",
+      "community": "社区",
+      "privacy": "隐私政策",
+      "terms": "服务条款",
+      "cookies": "Cookie 政策",
+      "security": "安全"
+    },
+    "badges": {
+      "soc2": "符合 SOC 2",
+      "gdpr": "GDPR 就绪",
+      "iso": "ISO 27001",
+      "uptime": "99.9% 正常运行时间"
+    }
+  },
+  "faqsSection": {
+    "title": "常见问题",
+    "subtitle": "查找有关 Nnarks 的常见问题解答。",
+    "items": [
+      {
+        "question": "Nnarks 是什么？",
+        "answer": "Nnarks 是一个信任基础设施平台，帮助侨民投资者和合作伙伴使用基于里程碑的托管和经过验证的执行安全地管理远程项目。"
+      },
+      {
+        "question": "托管如何运作？",
+        "answer": "资金安全地保存在多币种托管账户中。只有在达到并验证了预先定义的特定里程碑后，资金才会释放给当地合作伙伴或承包商。"
+      },
+      {
+        "question": "谁来验证里程碑？",
+        "answer": "可以通过上传带有 GPS 标签和时间戳的证据（照片、视频、文件）或指派经过 Nnarks 认证的现场主管来验证里程碑。"
+      },
+      {
+        "question": "团体捐助是如何运作的？",
+        "answer": "团体捐助使您能够通过自动化的捐助跟踪和支付安排，高效管理 Susu、Chama 或 Tontine 模式。"
+      },
+      {
+        "question": "我的资金安全吗？",
+        "answer": "是的，所有资金都安全地锁定在受严格释放条件约束的托管账户中。您对资金的流动时间和去向拥有完全的可见性。"
+      }
+    ]
+  }
+}

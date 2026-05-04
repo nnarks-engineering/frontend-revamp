@@ -1,0 +1,392 @@
+{
+  "platform": {
+    "name": "Nnarks",
+    "tagline": "Trust Infrastructure Platform",
+    "version": "Version 1.0 | April 2026",
+    "confidential": "Confidential"
+  },
+  "navMenu": {
+    "home": {
+      "label": "Home"
+    },
+    "modules": {
+      "label": "Modules",
+      "items": {
+        "escrow": {
+          "label": "Smart Escrow",
+          "description": "Secure multi-currency payments"
+        },
+        "supervision": {
+          "label": "Supervision",
+          "description": "On-ground physical verification"
+        },
+        "contributions": {
+          "label": "Group Contributions",
+          "description": "Manage Susu or Tontine"
+        }
+      }
+    },
+    "features": {
+      "label": "Features",
+      "items": {
+        "evidence": {
+          "label": "Evidence System",
+          "description": "Tamper-proof tracking logs"
+        },
+        "identity": {
+          "label": "KYC & Identity",
+          "description": "Tiered verification levels"
+        }
+      }
+    },
+    "company": {
+      "label": "Company",
+      "items": {
+        "about": {
+          "label": "About Us",
+          "description": "Our mission and vision"
+        },
+        "contact": {
+          "label": "Contact Us",
+          "description": "Get in touch with sales"
+        }
+      }
+    },
+    "faqs": {
+      "label": "FAQs"
+    },
+    "pricing": {
+      "label": "Financials"
+    }
+  },
+  "hero": {
+    "headline": "We Help The Diaspora Invest Back Home",
+    "subheadline": "Trust Infrastructure Platform",
+    "description": "Secure, milestone-based transactions and remote project oversight across emerging markets. Escrow, supervision, group contributions, and verified commerce all in one transparent system.",
+    "ctaPrimary": "Start a Project",
+    "ctaSecondary": "Explore Modules",
+    "trustBadge": "Built for Diaspora Investors & Cross-Border Partners"
+  },
+  "problemStatement": {
+    "title": "Problem Statement",
+    "description": "Cross-border investment in emerging markets is hindered by three systemic problems:",
+    "items": {
+      "remoteOversightGap": {
+        "title": "Remote Oversight Gap",
+        "description": "Investors funding projects in countries where they are not physically present have no reliable way to verify that work is being done, that funds are being used correctly, or that milestones are being met."
+      },
+      "trustDeficitInTransactions": {
+        "title": "Trust Deficit in Transactions",
+        "description": "High-value transactions between parties who do not know each other, or who operate across jurisdictions, carry significant risk. Buyers cannot verify goods before payment. Sellers cannot guarantee payment after delivery. There is no neutral party to hold funds, verify delivery, or arbitrate disputes."
+      },
+      "informalFinancialCoordination": {
+        "title": "Informal Financial Coordination",
+        "description": "Group contribution models (such as Susu, chama, and tontine systems) remain largely informal. Funds are managed manually, contribution tracking is opaque, payout schedules are unstructured, and there is no mechanism for dispute resolution or accountability when contributors default."
+      }
+    },
+    "marketContext": {
+      "title": "Market Context",
+      "description": "The African diaspora alone remits over $95 billion annually, with a significant portion directed toward real estate, construction, agriculture, and small business ventures. A large share of these funds are managed through informal channels with limited oversight."
+    }
+  },
+  "features": {
+    "title": "Platform Features",
+    "items": {
+      "milestoneEngine": {
+        "title": "Milestone Engine",
+        "description": "AI-generated + manual milestones with conditional fund release and evidence requirements"
+      },
+      "smartEscrow": {
+        "title": "Smart Escrow",
+        "description": "Multi-currency escrow with conditional release rules and full audit trail"
+      },
+      "onGroundSupervision": {
+        "title": "On-Ground Supervision",
+        "description": "Nnarks supervisors provide physical verification with GPS-tagged, time-stamped evidence"
+      },
+      "kycIdentity": {
+        "title": "KYC & Identity",
+        "description": "Tiered verification with Identity Confidence Score and Bronze/Silver/Gold badges"
+      },
+      "evidenceSystem": {
+        "title": "Evidence System",
+        "description": "Tamper-proof photos, videos, documents, and chain-of-custody tracking"
+      },
+      "messagingNotifications": {
+        "title": "Messaging & Notifications",
+        "description": "Real-time chat, voice notes, and contextual alerts inside every project"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How Nnarks Works",
+    "steps": {
+      "create": {
+        "title": "Create a Project",
+        "description": "Define your project, select industry, and let AI suggest milestones and budget"
+      },
+      "onboard": {
+        "title": "KYC & Onboard",
+        "description": "Complete verification and invite partners or assign a Nnarks supervisor"
+      },
+      "supervise": {
+        "title": "Fund & Supervise",
+        "description": "Deposit into escrow and track real-time progress with verified evidence"
+      },
+      "release": {
+        "title": "Verify & Release",
+        "description": "Milestones are reviewed and approved → funds are released automatically"
+      }
+    }
+  },
+  "productVision": {
+    "title": "Product Vision & Positioning",
+    "statement": "Build trust through verified execution. Give investors, partners, and businesses the tools to manage capital and projects remotely with transparency, security, and accountability.",
+    "valueProposition": "Nnarks provides infrastructure for remote accountability: transparent systems for trusted partnerships, secure frameworks for global transactions, and digital oversight with human precision.",
+    "positioning": "Nnarks is not a bank, not a project management tool, and not a marketplace. It is the trust infrastructure layer that sits between parties — ensuring commitments are met before capital moves."
+  },
+  "industriesServed": {
+    "title": "Industries Served",
+    "description": "High-value, milestone driven sectors where remote oversight is critical:",
+    "sectors": {
+      "realEstate": {
+        "industry": "Real Estate & Construction",
+        "useCase": "Remote build supervision, milestone-based fund releases"
+      },
+      "agriculture": {
+        "industry": "Agriculture",
+        "useCase": "Farm project oversight, seasonal milestone tracking"
+      },
+      "energy": {
+        "industry": "Energy & Infrastructure",
+        "useCase": "Capital project funding with verified stage completion"
+      },
+      "healthcare": {
+        "industry": "Healthcare & Education",
+        "useCase": "Facility development and equipment procurement"
+      },
+      "logistics": {
+        "industry": "Logistics & Manufacturing",
+        "useCase": "Escrow-backed supply chain transactions"
+      },
+      "fintech": {
+        "industry": "Fintech & Retail",
+        "useCase": "Verified commerce with physical delivery confirmation"
+      },
+      "tourism": {
+        "industry": "Tourism & Hospitality",
+        "useCase": "Property development and service procurement"
+      },
+      "mining": {
+        "industry": "Mining & Natural Resources",
+        "useCase": "Concession-based project funding"
+      },
+      "telecom": {
+        "industry": "Telecom & Transportation",
+        "useCase": "Infrastructure rollout with staged payments"
+      },
+      "water": {
+        "industry": "Water & Sanitation",
+        "useCase": "Public works project supervision"
+      }
+    }
+  },
+  "customers": {
+    "title": "Trusted by People from Every Country",
+    "description": "Nnarks is the bridge of trust for investors, contractors, and partners worldwide. Our infrastructure ensures transparency and security in every transaction, no matter the distance."
+  },
+  "userPersonas": {
+    "title": "Who Nnarks is Built For",
+    "description": "Whether you are investing from abroad, executing on the ground, or collaborating in a group, Nnarks provides the infrastructure you need to build trust and ensure success.",
+    "roles": {
+      "diasporaInvestor": {
+        "role": "Diaspora Investor",
+        "profile": "Professionals living abroad funding real estate back home.",
+        "coreNeed": "Visibility into fund usage and verified progress reports."
+      },
+      "localPartner": {
+        "role": "Local Partner / Contractor",
+        "profile": "Contractors responsible for execution and delivery.",
+        "coreNeed": "Structured platform to submit evidence and receive payments."
+      },
+      "groupContributor": {
+        "role": "Group Contributor",
+        "profile": "Participants in Susu, Chama, or Tontine schemes.",
+        "coreNeed": "Transparent tracking and secure funds."
+      },
+      "buyerSeller": {
+        "role": "Buyer / Seller (Commerce)",
+        "profile": "Parties in high-value transactions with low trust.",
+        "coreNeed": "Neutral third party to hold funds until delivery is verified."
+      }
+    }
+  },
+  "foundation": {
+    "title": "Foundation of Trust",
+    "description": "All modules share these core systems:",
+    "systems": {
+      "auth": {
+        "title": "User Accounts & Authentication",
+        "description": "Single account, MFA, role-based access"
+      },
+      "kyc": {
+        "title": "KYC & Identity Verification",
+        "description": "Tiered levels, Identity Confidence Score, badges"
+      },
+      "wallet": {
+        "title": "Wallet System",
+        "description": "Multi-currency, escrow locking, sub-accounts"
+      },
+      "milestone": {
+        "title": "Milestone Engine",
+        "description": "AI suggestions, conditional releases"
+      },
+      "messaging": {
+        "title": "Messaging Engine",
+        "description": "Real-time chat, voice notes"
+      },
+      "evidence": {
+        "title": "Evidence & Verification System",
+        "description": "Time-stamped, GPS-tagged logs"
+      }
+    }
+  },
+  "module1": {
+    "title": "Module 1: Start a Project",
+    "phase": "Phase 1 • Delivery target: 1 month",
+    "description": "Create, fund, and supervise projects remotely using milestone-based releases.",
+    "cta": "Start Your First Project"
+  },
+  "partners": {
+    "count": "100+",
+    "alreadyOn": "Already on",
+    "brandName": "Nnarks"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "description": "Discover how investors and partners across markets are leveraging Nnarks to build trust, manage projects remotely, and secure their transactions.",
+    "bigCard": {
+      "quote": "Nnarks has transformed how we manage cross-border investments. The milestone tracking and escrow system give us complete peace of mind.",
+      "company": "CalBank"
+    },
+    "items": [
+      {
+        "name": "Sarah Thompson",
+        "role": "Diaspora Investor",
+        "company": "Global Ventures",
+        "quote": "Nnarks has given me complete visibility into my construction project back home. The milestone-based fund releases mean I only pay when work is verified."
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "Local Partner",
+        "company": "BuildRight Solutions",
+        "quote": "The escrow system and supervisor verification have made it so much easier to build trust with my overseas clients. Payments arrive on time, every time."
+      },
+      {
+        "name": "Jennifer Lee",
+        "role": "Group Contributor",
+        "company": "Community Circle",
+        "quote": "Our contribution group finally has a transparent system. Everyone can see contributions, payouts are automated, and disputes are handled fairly."
+      },
+      {
+        "name": "Abebe Mengistu",
+        "role": "Agriculture Partner",
+        "company": "GreenField Estates",
+        "quote": "Managing large scale farm projects remotely was a nightmare before Nnarks. Now, every harvest milestone is verified with GPS and photos before payment."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Transparent Pricing",
+    "description": "Our pricing is designed to be flexible and transparent, ensuring you get the best value. We offer plans to suit projects of all sizes, with no hidden fees or surprises.",
+    "cta": "Explore Pricing"
+  },
+  "faqsSection": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about Nnarks.",
+    "items": [
+      {
+        "question": "What is Nnarks?",
+        "answer": "Nnarks is a trust infrastructure platform that helps diaspora investors and partners manage remote projects securely using milestone-based escrow and verified execution."
+      },
+      {
+        "question": "How does the escrow work?",
+        "answer": "Funds are held securely in a multi-currency escrow. They are only released to the local partner or contractor when specific, pre-defined milestones are met and verified."
+      },
+      {
+        "question": "Who verifies the milestones?",
+        "answer": "Milestones can be verified by uploading GPS-tagged, time-stamped evidence (photos, videos, documents), or by assigning a verified Nnarks on-ground supervisor."
+      },
+      {
+        "question": "How do group contributions work?",
+        "answer": "Group contributions allow you to manage Susu, Chama, or Tontine models efficiently with automated contribution tracking and payout scheduling."
+      },
+      {
+        "question": "Are my funds secure?",
+        "answer": "Yes, all funds are securely locked in escrow accounts governed by strict release conditions. You have full visibility over where and when your money moves."
+      }
+    ]
+  },
+  "modules": {
+    "title": "Build Your Perfect Trust Solution",
+    "description": "Choose from our comprehensive suite of trust infrastructure modules. Start with what you need today — escrow, supervision, contributions — and seamlessly expand as your portfolio grows.",
+    "cta": "Check Modules"
+  },
+  "cta": {
+    "headline": "Ready to Build Trust Across Borders?",
+    "subheadline": "Your Business?",
+    "description": "Join the platform that turns remote investment into verified execution. Start your transformation today with our free trial.",
+    "buttonPrimary": "Create a Project — Free to Start",
+    "buttonSecondary": "Contact Sales"
+  },
+  "ctaMarquee": {
+    "conversionRate": "Conversion Rate",
+    "projectsFunded": "Projects Funded • +4 this week",
+    "inEscrow": "IN ESCROW",
+    "recentInvestors": "Recent Investors",
+    "perMonth": "per month",
+    "teamFeature1": "Up to 10 projects",
+    "teamFeature2": "Real-time supervision",
+    "teamFeature3": "Advanced reporting",
+    "recentReleases": "Recent Releases",
+    "evidenceUploaded": "Evidence uploaded and verified",
+    "activityOverview": "Activity Overview",
+    "signedInAs": "Signed in as"
+  },
+  "footer": {
+    "tagline": "Nnarks — Trust Infrastructure for Emerging Markets",
+    "description": "Transforming cross-border investments with comprehensive trust infrastructure. Built for the future of diaspora investing.",
+    "copyright": "© {{year}} Nnarks Platform. All Rights Reserved.",
+    "systemOperational": "System Operational",
+    "sections": {
+      "product": "Product",
+      "company": "Company",
+      "support": "Support"
+    },
+    "links": {
+      "features": "Features",
+      "modules": "Modules",
+      "pricing": "Pricing",
+      "liveDemo": "Live Demo",
+      "about": "About Us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "contact": "Contact",
+      "howItWorks": "How It Works",
+      "documentation": "Documentation",
+      "helpCenter": "Help Center",
+      "tutorials": "Tutorials",
+      "community": "Community",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookies",
+      "security": "Security"
+    },
+    "badges": {
+      "soc2": "SOC 2 Compliant",
+      "gdpr": "GDPR Ready",
+      "iso": "ISO 27001",
+      "uptime": "99.9% Uptime"
+    }
+  }
+}

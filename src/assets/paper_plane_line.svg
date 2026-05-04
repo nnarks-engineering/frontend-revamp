@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   viewBox="0 0 680 520"
+   role="img"
+   style=""
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="paper_plane_final.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.80096154"
+     inkscape:cx="706.65066"
+     inkscape:cy="300.26411"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <title
+     style="fill:currentColor;stroke:none;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="title1">Nnarks illustration</title>
+  <desc
+     style="fill:currentColor;stroke:none;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="desc1">nnarks-core illustration</desc>
+  <defs
+     id="defs1">
+    <marker
+       id="dot"
+       viewBox="0 0 4 4"
+       refX="2"
+       refY="2"
+       markerWidth="3"
+       markerHeight="3">
+      <circle
+         cx="2"
+         cy="2"
+         r="1.5"
+         fill="currentColor"
+         opacity="0.4"
+         id="circle1" />
+    </marker>
+  </defs>
+  <!-- ── Dotted trail ─────────────────────────────────────────────────────── -->
+  <!-- Originates bottom-right, lazy S-curve rightward, full clockwise loop,  -->
+  <!-- then long sweep up-left arriving at plane nose ~(118, 88)               -->
+  <path
+     d="m 628.01727,458.02057 c -17.64822,-22.20726 -42.15964,-48.27664 -68.63196,-67.5873 -27.45279,-20.27618 -56.86649,-31.86258 -74.5147,-46.34557 -21.57005,-17.37959 -33.33553,-38.62131 -31.37461,-59.86303 1.96091,-22.20725 15.6873,-38.62131 33.33552,-44.4145 19.60913,-6.75873 41.17918,0 50.98374,17.37959 11.76548,19.31065 5.88274,46.34557 -9.80456,61.79409 -17.64822,17.37959 -45.10101,23.17279 -68.63197,15.44853 -27.45278,-9.65533 -47.06191,-32.82812 -54.90556,-59.86303 -9.80457,-32.82812 -3.92183,-73.38049 11.76547,-104.27754 15.68731,-32.82811 39.21827,-54.06983 31.37462,-79.173686 C 437.80869,62.152142 400.55134,50.565749 357.41125,60.221076 308.38842,71.807469 251.52194,96.911321 200.5382,112.35984 c -29.4137,9.65533 -50.98375,7.72427 -72.55379,-11.58639"
+     style="color:currentColor;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.45;fill:none;stroke:currentColor;stroke-width:1.36215px;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:2.43242px, 8.75669px"
+     id="path1" />
+  <!-- ── Plane ──────────────────────────────────────────────────────────────  -->
+  <!-- Nose at (118,88), heading top-left ~-128deg                             -->
+  <g
+     transform="translate(118,88) rotate(-128)"
+     style="fill:currentColor;stroke:none;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g8">
+    <!-- Shadow/depth layer slightly offset -->
+    <g
+       opacity="0.06"
+       transform="translate(3,4)"
+       style="fill:currentColor;stroke:none;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.06;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g2">
+      <path
+         d="M 72 0 L -34 -26 L -18 0 L -34 26 Z"
+         style="fill:none;stroke:currentColor;color:currentColor;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="path2" />
+    </g>
+    <!-- Outer shell -->
+    <path
+       d="M 72 0 L -34 -26 L -18 0 L -34 26 Z"
+       style="fill:none;stroke:currentColor;color:currentColor;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="path3" />
+    <!-- Spine -->
+    <path
+       d="M 72 0 L -18 0"
+       style="fill:none;stroke:currentColor;color:currentColor;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;opacity:0.3;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="path4" />
+    <!-- Upper wing fold -->
+    <path
+       d="M -18,0 12.314376,-14.324465"
+       style="color:currentColor;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.3;fill:none;stroke:currentColor;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter"
+       id="path5"
+       sodipodi:nodetypes="cc" />
+    <!-- Lower wing fold -->
+    <path
+       d="M -18,0 13.252178,14.447304"
+       style="color:currentColor;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', BlinkMacSystemFont, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:0.3;fill:none;stroke:currentColor;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter"
+       id="path6"
+       sodipodi:nodetypes="cc" />
+    <!-- Rear upper crease -->
+    <path
+       d="M -34 -26 L -24 -12"
+       style="fill:none;stroke:currentColor;color:currentColor;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;opacity:0.3;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="path7" />
+    <!-- Rear lower crease -->
+    <path
+       d="M -34  26 L -24  12"
+       style="fill:none;stroke:currentColor;color:currentColor;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;opacity:0.3;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="path8" />
+  </g>
+  <!-- ── Motion dots ahead of nose ─────────────────────────────────────────  -->
+  <!-- ── Origin dot at trail start ─────────────────────────────────────────  -->
+  <circle
+     cx="628"
+     cy="458"
+     r="3.5"
+     opacity="0.2"
+     style="fill:currentColor;stroke:none;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.2;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="circle11" />
+  <circle
+     cx="628"
+     cy="458"
+     r="6"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="1"
+     opacity="0.12"
+     style="fill:none;stroke:currentColor;color:currentColor;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.12;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="circle12" />
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Paper plane illustration</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

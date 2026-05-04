@@ -1,0 +1,397 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Monoton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+US+Trad+Guides&family=Poppins:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  
+  /* Brand Colors Map */
+  --background: #FFF;
+  --foreground: #0D1F2D;
+  
+  --card: #FFFFFF;
+  --card-foreground: #0D1F2D;
+  
+  --popover: #FFFFFF;
+  --popover-foreground: #0D1F2D;
+  
+  --primary: #17CCEC;
+  --primary-50: #ecfeff;
+  --primary-100: #cff7fe;
+  --primary-200: #a5effd;
+  --primary-300: #67e1f9;
+  --primary-400: #22caea;
+  --primary-500: var(--primary);
+  --primary-600: #08a1c4;
+  --primary-700: #0b81a0;
+  --primary-800: #116b83;
+  --primary-900: #13586e;
+  --primary-950: #073a4b;
+  --primary-foreground: #0D1F2D;
+  
+  --secondary: #b9e4f1;
+  --secondary-50: #f0f9fd;
+  --secondary-100: #e0f2f9;
+  --secondary-200: var(--secondary);
+  --secondary-300: #7ccded;
+  --secondary-400: #36b1e6;
+  --secondary-500: #0ea1e0;
+  --secondary-600: #0a81ba;
+  --secondary-700: #0b6796;
+  --secondary-800: #0d577d;
+  --secondary-900: #104868;
+  --secondary-950: #0a2f45;
+  --secondary-foreground: #0D1F2D;
+  
+  --muted: #EBF8FD;
+  --muted-foreground: #5A7A8A;
+  
+  --accent: #EBF8FD;
+  --accent-foreground: #17CCEC;
+  
+  --destructive: #fc4a37;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: #ECECEC;
+  --input: #DDE6EA;
+  --ring: #17CCEC;
+
+  /* Status Colors */
+  --success: #2A9D6F;
+  --success-foreground: #FFFFFF;
+  --warning: #C98A2A;
+  --warning-foreground: #FFFFFF;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0D1F2D;
+  --sidebar-primary: #17CCEC;
+  --sidebar-primary-foreground: #0D1F2D;
+  --sidebar-accent: #EBF8FD;
+  --sidebar-accent-foreground: #17CCEC;
+  --sidebar-border: #DDE6EA;
+  --sidebar-ring: #17CCEC;
+}
+
+/* Dark mode overrides (optional, keeping minimal for now to respect brand palette) */
+.dar {
+  --background:var(--primary-950); /* Dark shell */
+  --foreground: #F4F9FB;
+  --card: #0D1F2D;
+  --card-foreground: #F4F9FB;
+  --popover: #0D1F2D;
+  --popover-foreground: #F4F9FB;
+  --primary: #17CCEC;
+  --primary-foreground: #0D1F2D;
+  --secondary: #3887B3;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #F4F9FB;
+  --destructive: #C0392B;
+  --destructive-foreground: #FFFFFF;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #17CCEC;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  /* Primary Palette */
+  --color-primary: var(--primary);
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* Secondary Palette */
+  --color-secondary: var(--secondary);
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-950: var(--secondary-950);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Fonts */
+  --font-outfit: "Outfit", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-geist: "Geist", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-bungee-spice: "Bungee Spice", cursive;
+  --font-playwrite-us-trad-guides: "Playwrite US Trad Guides", serif;
+  --font-monoton: "Monoton", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-clash-display: 'Clash Display', 'ClashDisplay-Variable', 'ClashDisplay', sans-serif;
+  --font-gravitas-one: "Gravitas One", cursive;
+}
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  border-color: var(--border);
+  outline-color: var(--ring);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes gradient-move {
+  0% {
+    transform: scale(1) rotate(0deg);
+    background-position: 50% 90%;
+  }
+  50% {
+    transform: scale(1.08) rotate(8deg);
+    background-position: 54% 92%;
+  }
+  100% {
+    transform: scale(1) rotate(-8deg);
+    background-position: 46% 88%;
+  }
+}
+
+.animate-gradient-move {
+  background: radial-gradient(
+    ellipse at 50% 90%,
+    rgba(23, 204, 236, 0.15) 0%,
+    rgba(23, 204, 236, 0.4) 40%,
+    rgba(23, 204, 236, 0.15) 70%,
+    transparent 100%
+  );
+  animation: gradient-move 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathing {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(23, 204, 236, 0.12);
+  }
+  50% {
+    transform: scale(1.045);
+    box-shadow: 0 0 0 8px rgba(23, 204, 236, 0.1);
+  }
+}
+
+.animate-breathing {
+  animation: breathing 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ── Marquee animations for CTA section ── */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Infinite horizontal scroll animation for InfiniteMovingCards */
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right linear infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
+.animate-scroll {
+  animation-name: scroll-x;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: var(--animation-direction, forwards);
+  animation-duration: var(--animation-duration, 40s);
+}
+
+
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Track (background of scrollbar) - Light mode */
+::-webkit-scrollbar-track {
+  background-color: rgb(241, 245, 249);
+  /* bg-slate-100 */
+  border-radius: 9999px;
+  /* rounded-full */
+}
+
+/* Track - Dark mode */
+.dark ::-webkit-scrollbar-track {
+  background-color: var(--bg-slate-400);
+  /* dark:bg-slate-900 */
+}
+
+/* Thumb (draggable part of the scrollbar) - Light mode */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(203, 213, 225);
+  /* bg-slate-300 */
+  border-radius: 9999px;
+  /* rounded-full */
+}
+
+/* Thumb - Dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(71, 85, 105);
+  /* dark:bg-slate-600 */
+}
+
+/* Thumb hover state - Light mode */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148, 163, 184);
+  /* hover:bg-slate-400 */
+}
+
+/* Thumb hover - Dark mode */
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(100, 116, 139);
+  /* dark:hover:bg-slate-500 */
+}
+
+@layer base {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Text selection styles - Light mode */
+::selection {
+  color: white;
+  /* text-white */
+  background-color: var(--color-primary);
+  /* bg-primary-600 */
+}
+
+/* Text selection - Dark mode */
+.dark ::selection {
+  color: white;
+  /* text-white */
+  background-color: var(--color-primary-700);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
