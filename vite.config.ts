@@ -6,7 +6,7 @@ import svgr from "vite-plugin-svgr";
 import path from "node:path";
 
 export default defineConfig({
-  base: "./",
+  base: "/frontend-revamp/",
   plugins: [
     TanStackRouterVite({
       routesDirectory: "./src/routes",

@@ -5,6 +5,7 @@ export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
   scrollRestoration: true,
+  basepath: "/frontend-revamp/",
 });
 
 declare module "@tanstack/react-router" {
