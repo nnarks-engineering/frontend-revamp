@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import LandingBigTrustedBusinessCard from "./big-card";
 import LandingSmallTrustedBusinessCard from "./small-card";
+import CalBankLogo from "@/assets/products/calbank.png";
+import HubtelLogo from "@/assets/products/hubtel.png";
+import EngineerImage1 from "@/assets/landing/nnarks-engineer1.webp";
 
 export default function TestimonialsSection() {
   const { t } = useTranslation("landing");
@@ -20,28 +23,28 @@ export default function TestimonialsSection() {
       ...(items?.[0] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50/0 to-primary-50",
       rating: 5,
-      logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
+      logo: CalBankLogo,
       videoUrl: "https://www.youtube.com/watch?v=6DDbLssMJRQ",
     },
     {
       ...(items?.[1] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50 to-primary-100",
       rating: 5,
-      logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
+      logo: HubtelLogo,
       videoUrl: "https://www.youtube.com/watch?v=1DKo86wPmQg",
     },
     {
       ...(items?.[2] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50 to-primary-100",
       rating: 5,
-      logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
-      featureImage: `${import.meta.env.BASE_URL}images/landing/nnarks-engineer1.webp`,
+      logo: CalBankLogo,
+      featureImage: EngineerImage1,
     },
     {
       ...(items?.[3] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50/0 to-primary-50",
       rating: 5,
-      logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
+      logo: HubtelLogo,
     },
   ];
 

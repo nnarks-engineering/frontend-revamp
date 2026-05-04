@@ -6,6 +6,7 @@ import { HeroHeader } from './HeroHeader'
 import HeroCharacters from "./Herocharacters"
 import WorldMap from "@/components/ui/world-map"
 import { LinkPreview } from '@/components/ui/link-preview'
+import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
 
 export function HeroSection() {
     const { t } = useTranslation(['landing', 'common'])
@@ -85,7 +86,7 @@ export function HeroSection() {
                             <p className="text-base sm:text-lg md:text-xl mb-4 md:mb-6 max-w-2xl mx-auto text-foreground/70">
                                 {t('landing:hero.description')}
                             </p>
-                            <LinkPreview url="/register" isStatic imageSrc={`${import.meta.env.BASE_URL}images/landing/nnarks-engineer.webp`}>
+                            <LinkPreview url="/register" isStatic imageSrc={EngineerImage}>
                                 <div
                                     className="bg-primary w-fit mx-auto hover:bg-primary/90 px-6 py-2.5  text-sm font-bold text-white transition-all active:scale-95"
                                 >

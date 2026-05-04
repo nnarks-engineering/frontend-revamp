@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import MarqueeSection from "./tilted-marquee";
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { LinkPreview } from "@/components/ui/link-preview";
+import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
 
 export default function CtaSection() {
   const { t } = useTranslation(["landing"]);
@@ -37,7 +38,7 @@ export default function CtaSection() {
             <LinkPreview 
               url="/register" 
               isStatic 
-              imageSrc={`${import.meta.env.BASE_URL}images/landing/nnarks-engineer.webp`}
+              imageSrc={EngineerImage}
               asChild
             >
               <Link to="/register">
