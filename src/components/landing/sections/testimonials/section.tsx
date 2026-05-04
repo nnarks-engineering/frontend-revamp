@@ -20,28 +20,28 @@ export default function TestimonialsSection() {
       ...(items?.[0] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50/0 to-primary-50",
       rating: 5,
-      logo: "/images/products/calbank.png",
+      logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
       videoUrl: "https://www.youtube.com/watch?v=6DDbLssMJRQ",
     },
     {
       ...(items?.[1] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50 to-primary-100",
       rating: 5,
-      logo: "/images/products/hubtel.png",
+      logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
       videoUrl: "https://www.youtube.com/watch?v=1DKo86wPmQg",
     },
     {
       ...(items?.[2] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50 to-primary-100",
       rating: 5,
-      logo: "/images/products/calbank.png",
-      featureImage: "/images/landing/nnarks-engineer1.webp",
+      logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
+      featureImage: `${import.meta.env.BASE_URL}images/landing/nnarks-engineer1.webp`,
     },
     {
       ...(items?.[3] || {}),
       gradientClass: "bg-gradient-to-br from-primary-50/0 to-primary-50",
       rating: 5,
-      logo: "/images/products/hubtel.png",
+      logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
     },
   ];
 

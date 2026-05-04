@@ -37,7 +37,7 @@ export default function CtaSection() {
             <LinkPreview 
               url="/register" 
               isStatic 
-              imageSrc="/images/landing/nnarks-engineer.webp"
+              imageSrc={`${import.meta.env.BASE_URL}images/landing/nnarks-engineer.webp`}
               asChild
             >
               <Link to="/register">

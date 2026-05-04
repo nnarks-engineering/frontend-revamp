@@ -25,7 +25,7 @@ const LandingBigTrustedBusinessCard = () => {
           alt="Trusted team"
           width={240}
           height={300}
-          src="/images/landing/family-man.webp"
+          src={`${import.meta.env.BASE_URL}images/landing/family-man.webp`}
           className="w-full h-auto max-w-[300px] object-cover"
         />
       </div>
@@ -34,7 +34,7 @@ const LandingBigTrustedBusinessCard = () => {
       <div className="absolute z-50 -bottom-1 -right-1 bg-white border-2 border-white backdrop-blur-sm">
         <div className="relative w-32 h-20">
           <img
-            src="/images/products/calbank.png"
+            src={`${import.meta.env.BASE_URL}images/products/calbank.png`}
             alt={t("landing:testimonials.bigCard.company")}
             className="object-contain w-full h-full"
           />

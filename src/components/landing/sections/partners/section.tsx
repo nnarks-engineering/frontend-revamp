@@ -4,22 +4,22 @@ import { useTranslation } from "react-i18next";
 const partners = [
   {
     name: "Hubtel",
-    logo: "/images/products/hubtel.png",
+    logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
     alt: "Hubtel Logo",
   },
   {
     name: "CalBank",
-    logo: "/images/products/calbank.png",
+    logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
     alt: "CalBank Logo",
   },
   {
     name: "Hubtel-2",
-    logo: "/images/products/hubtel.png",
+    logo: `${import.meta.env.BASE_URL}images/products/hubtel.png`,
     alt: "Hubtel Logo",
   },
   {
     name: "CalBank-2",
-    logo: "/images/products/calbank.png",
+    logo: `${import.meta.env.BASE_URL}images/products/calbank.png`,
     alt: "CalBank Logo",
   },
 ];
