@@ -75,7 +75,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
       </p>
 
       {/* Form panel */}
-      <div className="relative z-10 flex flex-col bg-white flex-1 rounded-t-[28px] sm:rounded-none shadow-[0_-8px_40px_rgba(0,0,0,0.15)] sm:shadow-none max-h-[92dvh] sm:max-h-none min-h-[78dvh] sm:min-h-0 overflow-hidden">
+      <div className="relative z-10 flex flex-col bg-background flex-1 rounded-t-[28px] sm:rounded-none shadow-[0_-8px_40px_rgba(0,0,0,0.15)] sm:shadow-none max-h-[92dvh] sm:max-h-none min-h-[78dvh] sm:min-h-0 overflow-hidden">
         <div className="flex-1 overflow-y-auto p-6 sm:flex sm:flex-col sm:items-center sm:justify-center">
 
 
