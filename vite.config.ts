@@ -5,23 +5,27 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import svgr from "vite-plugin-svgr";
 import path from "node:path";
 
-export default defineConfig({
-  base: "/frontend-revamp/",
-  plugins: [
-    TanStackRouterVite({
-      routesDirectory: "./src/routes",
-      generatedRouteTree: "./src/routeTree.gen.ts",
-    }),
-    react(),
-    tailwindcss(),
-    svgr(),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode }) => {
+  const base = process.env.VITE_BASE_PATH || "/";
+
+  return {
+    base,
+    plugins: [
+      TanStackRouterVite({
+        routesDirectory: "./src/routes",
+        generatedRouteTree: "./src/routeTree.gen.ts",
+      }),
+      react(),
+      tailwindcss(),
+      svgr(),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
-  server: {
-    port: 3000,
-  },
+    server: {
+      port: 3000,
+    },
+  };
 });
