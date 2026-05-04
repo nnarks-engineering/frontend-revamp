@@ -48,10 +48,10 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
       {/* Ghost background text — mobile only */}
       <p
-              style={{ backgroundImage: `url(${realBuilding})` }}
+        style={{ backgroundImage: `url(${realBuilding})` }}
 
         aria-hidden="true"
-        className="fixed top-6 inset-x-0 text-center select-none pointer-events-none z-0 sm:hidden"
+        className="fixed top-6 inset-x-0 text-center select-none z-0 sm:hidden"
       >
         <RoundingLine className="w-full h-full" />
         <div className=" absolute left-[calc(50%-24px)]  top-10  w-fit  flex-col items-start mb-6">

@@ -501,7 +501,7 @@ const IndustriesSection = () => {
                         industryCardRefs.current[index] = el;
                       }}
                       className="
-                        w-44 overflow-hidden border border-white/60 bg-white/90 shadow-xl
+                        w-54 overflow-hidden  border-white/60 bg-white/90 shadow-xl
                         sm:w-52 md:w-60 lg:w-72
                       "
                       // transition-transform is handled by the rAF loop via inline style;
