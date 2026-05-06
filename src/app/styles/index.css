@@ -1,5 +1,15 @@
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Monoton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+US+Trad+Guides&family=Poppins:wght@100..900&display=swap');
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap");
+
+/* Millik — self-hosted (Fontshare does not carry this font)
+   Download from https://github.com/collletttivo/Millik and place in /public/fonts/ */
+@font-face {
+  font-family: "Millik";
+  src: url("/fonts/Millik.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Monoton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+US+Trad+Guides&family=Poppins:wght@100..900&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -8,18 +18,18 @@
 
 :root {
   --radius: 0.625rem;
-  
+
   /* Brand Colors Map */
-  --background: #FFFFFF;
-  --foreground: #0D1F2D;
-  
-  --card: #FFFFFF;
-  --card-foreground: #0D1F2D;
-  
-  --popover: #FFFFFF;
-  --popover-foreground: #0D1F2D;
-  
-  --primary: #17CCEC;
+  --background: #ffffff;
+  --foreground: #0d1f2d;
+
+  --card: #ffffff;
+  --card-foreground: #0d1f2d;
+
+  --popover: #ffffff;
+  --popover-foreground: #0d1f2d;
+
+  --primary: #17ccec;
   --primary-50: #ecfeff;
   --primary-100: #cff7fe;
   --primary-200: #a5effd;
@@ -31,8 +41,8 @@
   --primary-800: #116b83;
   --primary-900: #13586e;
   --primary-950: #073a4b;
-  --primary-foreground: #0D1F2D;
-  
+  --primary-foreground: #0d1f2d;
+
   --secondary: #b9e4f1;
   --secondary-50: #f0f9fd;
   --secondary-100: #e0f2f9;
@@ -45,58 +55,58 @@
   --secondary-800: #0d577d;
   --secondary-900: #104868;
   --secondary-950: #0a2f45;
-  --secondary-foreground: #0D1F2D;
-  
-  --muted: #EBF8FD;
-  --muted-foreground: #5A7A8A;
-  
-  --accent: #EBF8FD;
-  --accent-foreground: #17CCEC;
-  
+  --secondary-foreground: #0d1f2d;
+
+  --muted: #ebf8fd;
+  --muted-foreground: #5a7a8a;
+
+  --accent: #ebf8fd;
+  --accent-foreground: #17ccec;
+
   --destructive: #fc4a37;
-  --destructive-foreground: #FFFFFF;
-  
-  --border: #ECECEC;
-  --input: #DDE6EA;
-  --ring: #17CCEC;
+  --destructive-foreground: #ffffff;
+
+  --border: #ececec;
+  --input: #dde6ea;
+  --ring: #17ccec;
 
   /* Status Colors */
-  --success: #2A9D6F;
-  --success-foreground: #FFFFFF;
-  --warning: #C98A2A;
-  --warning-foreground: #FFFFFF;
+  --success: #2a9d6f;
+  --success-foreground: #ffffff;
+  --warning: #c98a2a;
+  --warning-foreground: #ffffff;
 
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #0D1F2D;
-  --sidebar-primary: #17CCEC;
-  --sidebar-primary-foreground: #0D1F2D;
-  --sidebar-accent: #EBF8FD;
-  --sidebar-accent-foreground: #17CCEC;
-  --sidebar-border: #DDE6EA;
-  --sidebar-ring: #17CCEC;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0d1f2d;
+  --sidebar-primary: #17ccec;
+  --sidebar-primary-foreground: #0d1f2d;
+  --sidebar-accent: #ebf8fd;
+  --sidebar-accent-foreground: #17ccec;
+  --sidebar-border: #dde6ea;
+  --sidebar-ring: #17ccec;
 }
 
 /* Dark mode overrides (optional, keeping minimal for now to respect brand palette) */
 .dar {
-  --background:var(--primary-950); /* Dark shell */
-  --foreground: #F4F9FB;
-  --card: #0D1F2D;
-  --card-foreground: #F4F9FB;
-  --popover: #0D1F2D;
-  --popover-foreground: #F4F9FB;
-  --primary: #17CCEC;
-  --primary-foreground: #0D1F2D;
-  --secondary: #3887B3;
-  --secondary-foreground: #FFFFFF;
+  --background: var(--primary-950); /* Dark shell */
+  --foreground: #f4f9fb;
+  --card: #0d1f2d;
+  --card-foreground: #f4f9fb;
+  --popover: #0d1f2d;
+  --popover-foreground: #f4f9fb;
+  --primary: #17ccec;
+  --primary-foreground: #0d1f2d;
+  --secondary: #3887b3;
+  --secondary-foreground: #ffffff;
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
   --accent: #1e293b;
-  --accent-foreground: #F4F9FB;
-  --destructive: #C0392B;
-  --destructive-foreground: #FFFFFF;
+  --accent-foreground: #f4f9fb;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #17CCEC;
+  --ring: #17ccec;
 }
 
 @theme inline {
@@ -106,7 +116,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  
+
   /* Primary Palette */
   --color-primary: var(--primary);
   --color-primary-50: var(--primary-50);
@@ -173,7 +183,9 @@
   --font-playwrite-us-trad-guides: "Playwrite US Trad Guides", serif;
   --font-monoton: "Monoton", cursive;
   --font-poppins: "Poppins", sans-serif;
-  --font-clash-display: 'Clash Display', 'ClashDisplay-Variable', 'ClashDisplay', sans-serif;
+  --font-clash-display:
+    "Clash Display", "ClashDisplay-Variable", "ClashDisplay", sans-serif;
+  --font-millik: "Millik", serif;
   --font-gravitas-one: "Gravitas One", cursive;
 }
 
@@ -282,7 +294,8 @@ body {
 }
 
 @keyframes bounce-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(-5%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
@@ -304,8 +317,6 @@ body {
   animation-duration: var(--animation-duration, 40s);
 }
 
-
-
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
   width: 6px;
@@ -318,8 +329,6 @@ body {
     height: 3px;
   }
 }
-
-
 
 @media (min-width: 1024px) {
   ::-webkit-scrollbar {
@@ -369,7 +378,6 @@ body {
 }
 
 @layer base {
-
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -394,4 +402,3 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-

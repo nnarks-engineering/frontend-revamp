@@ -139,7 +139,7 @@ const CountryDropdownComponent = (
         side="bottom"
         className="w-[var(--radix-popover-trigger-width)] p-0"
       >
-        <Command 
+        <Command
           className="w-full"
           loop={false}
         >
