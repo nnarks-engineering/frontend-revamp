@@ -100,7 +100,7 @@ const SectionDescription = React.forwardRef<HTMLParagraphElement, SectionDescrip
 SectionDescription.displayName = "SectionDescription"
 
 /* ── SectionHeader (wrapper that composes all three) ── */
-export interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SectionHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   eyebrow?: string
   eyebrowVariant?: VariantProps<typeof eyebrowVariants>["variant"]
   title: React.ReactNode
