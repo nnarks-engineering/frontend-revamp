@@ -172,7 +172,7 @@ export default function IndustriesSection() {
         </div>
 
         <div
-          className="relative h-[700px] md:h-[600px] w-full flex items-center justify-center overflow-visible"
+          className="relative h-[700px] md:h-[600px] mt-20 md:mt-0 w-full flex items-center justify-center overflow-visible"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
