@@ -1,14 +1,15 @@
 "use client";
 import { cn } from "@/shared/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import React, {
-  ReactNode,
+import {
+ type ReactNode,
   createContext,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
+import { useOutsideClick } from "@/shared/hooks/use-outside-click";
 
 interface ModalContextType {
   open: boolean;
@@ -77,7 +78,7 @@ export const ModalBody = ({
     }
   }, [open]);
 
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const { setOpen } = useModal();
   useOutsideClick(modalRef, () => setOpen(false));
 
@@ -217,24 +218,4 @@ const CloseIcon = () => {
   );
 };
 
-export const useOutsideClick = (
-  ref: React.RefObject<HTMLDivElement>,
-  callback: Function
-) => {
-  useEffect(() => {
-    const listener = (event: any) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-      callback(event);
-    };
 
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [ref, callback]);
-};
