@@ -14,7 +14,7 @@ export function HeroSection() {
     return (
         <section
             id="hero"
-            className="relative font-sans text-foreground w-full overflow-hidden h-dvh max-h-[1000px] flex flex-col items-center"
+            className="relative font-sans text-foreground w-full overflow-hidden min-h-[600px] h-dvh max-h-[1000px] flex flex-col items-center"
         >
             {/* ── World Map background ── */}
 

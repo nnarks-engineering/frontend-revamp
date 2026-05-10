@@ -7,6 +7,7 @@ import CustomersSection from "@/components/landing/sections/customers/section";
 import TestimonialsSection from "@/components/landing/sections/testimonials/section";
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
+import ModulesTagSection from "@/components/landing/sections/modules/section";
 
 export const Route = createFileRoute("/")(
   {
@@ -18,11 +19,12 @@ function LandingPage() {
   return (
     <div className="min-h-screen font-poppins text-foreground selection:bg-primary/30">
       <Navbar />
-      <HeroSection />
-    
-        <PartnersSection />  
-        <IndustriesSection />
-        <CustomersSection />
+      <HeroSection />    
+      <PartnersSection />
+      <ModulesTagSection hideModuleButton={false} />
+  
+      <IndustriesSection />
+      <CustomersSection />
 
       <TestimonialsSection />
       <CtaSection />

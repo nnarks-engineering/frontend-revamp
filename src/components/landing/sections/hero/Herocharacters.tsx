@@ -10,7 +10,7 @@ const CARDS = [
     img: OldManImage,
     // Full Tailwind class strings — no dynamic interpolation so Tailwind keeps them.
     // Add responsive variants here directly, e.g. "translate-y-2 md:translate-y-10"
-    translate: "-translate-y-10 md:translate-y-0",
+    translate: "-translate-y-10 md:-translate-y-8 lg:-translate-y-10",
     rotate: "-rotate-[16deg]",
     color: "secondary",
     zIndex: "z-10",
@@ -20,7 +20,7 @@ const CARDS = [
     id: "engineer",
     name: "Engineer",
     img: NnarksEngineerImage,
-    translate: "-translate-y-32 sm:-translate-y-36 md:-translate-y-6",
+    translate: "-translate-y-32 sm:-translate-y-3 md:-translate-y-24 lg:-translate-y-36",
     rotate: "rotate-0",
     color: "primary",
     zIndex: "z-30",
@@ -30,7 +30,7 @@ const CARDS = [
     id: "partner",
     name: "Diaspora Partner",
     img: ClockImage,
-    translate: "translate-y-5 md:translate-y-0",
+    translate: "translate-y-5 md:-translate-y-8 lg:-translate-y-12",
     rotate: "rotate-[16deg]",
     color: "secondary",
     zIndex: "z-20",
@@ -50,7 +50,7 @@ export function HeroCharacters() {
       <div className="hidden bg-red-500 bg-yellow-500 bg-green-500" aria-hidden />
 
       {/* ── 3-card fan ── */}
-      <div className="grid grid-cols-3 relative z-10">
+      <div className="grid grid-cols-3 relative z-10 pointer-events-none">
         {CARDS.map((card, i) => (
           <motion.div
             key={card.id}
@@ -72,7 +72,7 @@ export function HeroCharacters() {
             style={{ transformOrigin: "bottom center" }}
           >
             <div
-              className="relative w-full overflow-hidden h-[200%] place-content-end"
+              className="relative  pointer-events-none w-full overflow-hidden h-[200%] place-content-end"
               style={{ borderRadius: BORDER_RADIUS }}
             >
               {/* Coloured card backing */}
@@ -84,14 +84,14 @@ export function HeroCharacters() {
                   shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_20px_60px_rgba(23,204,236,0.4)]
                   group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_20px_60px_rgba(23,204,236,0.6)]
                 `}
-                style={{ top: "22%", borderRadius: BORDER_RADIUS }}
+                style={{ top: i === 1 ? "30%" : '22%', borderRadius: BORDER_RADIUS }}
               />
 
               {/* Image — scale anchors at bottom, grows upward into pt-[8%] */}
               <motion.div
                 whileHover={{ scale: 1.05, filter: "brightness(1.08) hue-rotate(5deg)" }}
                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                className="cursor-pointer relative z-10 flex justify-center items-end pt-[8%]"
+                className="cursor-pointer relative z-10 pointer-events-auto flex justify-center items-end pt-[8%]"
                 style={{ transformOrigin: "bottom center" }}
               >
                 <img
