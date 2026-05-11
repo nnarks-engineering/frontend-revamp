@@ -30,12 +30,12 @@ export default function PillarsSection() {
         </motion.h2>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-x-10 gap-y-4 border-b border-neutral-200 pb-1 overflow-x-auto no-scrollbar scroll-smooth">
+        <div className="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-4 border-b border-neutral-200 pb-1 overflow-x-auto no-scrollbar scroll-smooth">
           {items.map((item, index) => (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className="relative py-4 text-lg md:text-xl font-bold transition-all duration-300 whitespace-nowrap group"
+              className="relative py-4 text-sm md:text-xl font-medium transition-all duration-300 whitespace-nowrap group"
             >
               <span className={`transition-colors duration-300 ${activeTab === index ? "text-neutral-900" : "text-neutral-300 group-hover:text-neutral-500"}`}>
                 {/* Extract short title if possible, otherwise use full */}
@@ -44,7 +44,7 @@ export default function PillarsSection() {
               {activeTab === index && (
                 <motion.div
                   layoutId="pillarActiveTab"
-                  className="absolute bottom-0 left-0 right-0 h-1.5 bg-neutral-950"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-950"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
@@ -61,7 +61,7 @@ export default function PillarsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden bg-[#f3f5f3] w-full"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden bg-primary-50 w-full"
             >
               {/* Left Side: Image with Badge Overlay */}
               <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[400px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function PillarsSection() {
               </div>
 
               {/* Right Side: Textual Description */}
-              <div className="p-6 md:p-12 flex flex-col justify-center space-y-8">
+              <div className="p-6 md:p-12 flex flex-col justify-center space-y-8 bg-amber-300">
                 <motion.h3 
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}

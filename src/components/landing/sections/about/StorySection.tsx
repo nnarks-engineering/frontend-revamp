@@ -35,9 +35,9 @@ export default function StorySection() {
     <div className="flex flex-col ">
       {/* 1. Hero Container: Constrained Section with Globe Card */}
       <Section className="py-10 md:py-20 overflow-visible" contentClassName="max-w-7xl mx-auto px-4">
-        <div className="relative pt-24 md:pt-40">
+        <div className="relative pt-48 md:pt-40">
           {/* Globe asset overlapping */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 md:w-80 z-30 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2  w-52 sm:w-64 md:w-80 z-30 pointer-events-none">
             <motion.img
               initial={{ y: 40, opacity: 0, scale: 0.8 }}
               whileInView={{ y: 0, opacity: 1, scale: 1 }}
