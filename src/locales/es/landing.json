@@ -140,10 +140,136 @@
     }
   },
   "productVision": {
-    "title": "Visión del Producto y Posicionamiento",
-    "statement": "Construyendo confianza mediante ejecución verificada. Empoderando a inversores, socios y empresas para gestionar capital y proyectos de forma remota.",
-    "valueProposition": "Nnarks proporciona la infraestructura para la responsabilidad remota.",
-    "positioning": "Nnarks es la capa de infraestructura de confianza que se sitúa entre las partes, asegurando compromisos antes de la transferencia de capital."
+    "title": "Estamos Construyendo el Puente que sus Inversiones Merecen",
+    "statement": "Nacido de promesas incumplidas y sueños abandonados, Nnarks existe para garantizar que ningún inversor de la diáspora tenga que elegir entre mantenerse conectado con su hogar y proteger su dinero duramente ganado.",
+    "valueProposition": "Nnarks se fundó con una promesa simple pero radical: las inversiones de la diáspora no deberían requerir fe ciega.",
+    "positioning": "Creemos que debería ser capaz de construir una casa, iniciar un negocio o apoyar a su familia en Ghana sin preguntarse si su dinero desaparecerá. No debería tener que elegir entre confiar en la gente y proteger su futuro."
+  },
+  "aboutStory": {
+    "title": "LA HISTORIA",
+    "subtitle": "Por qué Existe Nnarks",
+    "context": "Cada año, más de 3 millones de ghaneses que viven en el extranjero envían a casa más de 3.5 mil millones de dólares, prueba de una conexión inquebrantable con su hogar, familia y patrimonio. Pero detrás de esa cifra asombrosa hay miles de historias desgarradoras.",
+    "stories": [
+      {
+        "role": "La enfermera en Londres",
+        "description": "que envió 80.000 dólares para construir su casa de retiro, solo para regresar y encontrar un terreno vacío y un contratista que desapareció."
+      },
+      {
+        "role": "El ingeniero en Nueva York",
+        "description": "cuyo almacén comercial 'terminado' era solo cuatro paredes sin techo, sus ahorros despilfarrados por un familiar en quien confiaba."
+      },
+      {
+        "role": "La maestra en Toronto",
+        "description": "que pagó la totalidad del restaurante de su madre, solo para descubrir que el equipo nunca se compró y el contrato nunca se firmó."
+      }
+    ],
+    "conclusion": "Estos no son incidentes aislados. Son un patrón de confianza rota que le ha costado a la diáspora miles de millones y ha robado a Ghana un desarrollo económico transformador.",
+    "resolution": "Dijimos 'Basta'."
+  },
+  "aboutWhatWeDo": {
+    "title": "Qué Hacemos",
+    "headline": "Somos la capa de responsabilidad entre sus sueños y su culminación.",
+    "description": "Piense en nosotros como sus ojos, oídos y cumplimiento de contratos en el terreno en Ghana. Cuando invierte a través de Nnarks:",
+    "items": [
+      "Su dinero permanece protegido en su cuenta hasta que el trabajo se verifique como terminado",
+      "Nuestros oficiales de campo visitan físicamente sus proyectos con cámaras y documentación",
+      "Los contratistas solo cobran cuando se confirman los hitos finalizados",
+      "Usted aprueba todo desde su teléfono en Londres, Nueva York o cualquier lugar del mundo"
+    ],
+    "footer": "No somos un banco. No somos un servicio de transferencia de dinero. Somos la infraestructura de confianza que la diáspora siempre necesitó pero nunca tuvo."
+  },
+  "aboutMission": {
+    "title": "Nuestra Misión",
+    "statement": "Desbloquear miles de millones en inversión de la diáspora eliminando el fraude y restaurando la confianza entre los emigrantes y su tierra natal.",
+    "visionTitle": "Nuestra Visión",
+    "visionStatement": "Un futuro donde cada ghanés en el extranjero pueda invertir con confianza en el desarrollo de Ghana, sabiendo que su dinero construirá exactamente lo que debe construir."
+  },
+  "aboutImpact": {
+    "title": "El Impacto que Estamos Construyendo",
+    "subtitle": "Para 2029, nuestro objetivo es:",
+    "items": [
+      {
+        "value": "$100M+",
+        "label": "en inversiones de la diáspora verificadas"
+      },
+      {
+        "value": "2.000+",
+        "label": "empleos creados a través de proyectos financiados"
+      },
+      {
+        "value": "5.000+",
+        "label": "familias de emigrantes atendidas"
+      },
+      {
+        "value": "95%+",
+        "label": "tasa de finalización de proyectos"
+      }
+    ],
+    "footer": "Pero los números no capturan lo que realmente buscamos: confianza restaurada, sueños cumplidos y familias que finalmente ven los resultados tangibles de su sacrificio en el extranjero."
+  },
+  "aboutPillars": {
+    "title": "Pilares Clave",
+    "items": [
+      {
+        "title": "Confianza a través de la Transparencia",
+        "description": "Sin secretos ni sorpresas. Cada transacción se documenta, cada hito se verifica y cada pago se rastrea."
+      },
+      {
+        "title": "Responsabilidad Primero",
+        "description": "No liberamos fondos hasta que el trabajo está hecho. Punto. Su dinero trabaja para usted, no en su contra."
+      },
+      {
+        "title": "Ejecución Implacable",
+        "description": "Hablar es fácil; nosotros cumplimos. Desde el primer día, ejecutamos con urgencia porque sus sueños no pueden esperar."
+      },
+      {
+        "title": "Tecnología para el Bien",
+        "description": "Aprovechamos plataformas digitales y herramientas móviles para crear un impacto económico genuino."
+      },
+      {
+        "title": "Desarrollo de Ghana",
+        "description": "Cada proyecto exitoso es una victoria personal y colectiva: un empleo creado, un negocio abierto, una comunidad fortalecida."
+      }
+    ]
+  },
+  "aboutWhoWeServe": {
+    "title": "A Quién Servimos",
+    "headline": "Si alguna vez ha:",
+    "items": [
+      "Enviado dinero a casa y visto cómo desaparecía",
+      "Estado tan ocupado que no tuvo tiempo para iniciar un proyecto",
+      "Querido invertir en Ghana pero no sabía en quién confiar",
+      "Regresado a casa para encontrar su proyecto incompleto o abandonado",
+      "Pospuesto sus sueños por no poder monitorear desde el extranjero",
+      "Perdido relaciones familiares por fondos malversados"
+    ],
+    "footer": "Entonces Nnarks es para usted. Servimos a emigrantes trabajadores que merecen ver sus inversiones completadas. Servimos a contratistas honestos que quieren acceso a capital confiable."
+  },
+  "aboutTeam": {
+    "title": "El Equipo",
+    "founder": {
+      "name": "Nombre del Fundador",
+      "role": "Fundador y CEO",
+      "bio": "Bio breve de 2-3 oraciones que enfatiza la conexión personal con el problema, la experiencia relevante y la visión."
+    },
+    "note": "Estamos construyendo un equipo de clase mundial de contratistas con licencia, fabricantes, tecnólogos y líderes comunitarios de la diáspora.",
+    "backedBy": {
+      "title": "Respaldado por",
+      "partners": [
+        "Google for Startups"
+      ]
+    }
+  },
+  "aboutJoin": {
+    "title": "Únase al Movimiento",
+    "description": "Nnarks no es solo una empresa, es un movimiento para reclamar la inversión de la diáspora y reconstruir la confianza entre África y su familia global.",
+    "cta": "Iniciar un Proyecto Ahora",
+    "roles": {
+      "contractors": "Aplique para unirse a nuestra red verificada",
+      "partners": "Póngase en contacto para colaborar",
+      "investors": "Más información sobre nuestra misión"
+    },
+    "footer": "Juntos, estamos convirtiendo promesas rotas en proyectos terminados."
   },
   "industriesServed": {
     "title": "Industrias Atendidas",
@@ -310,6 +436,69 @@
     "evidenceUploaded": "Evidencia cargada y verificada",
     "activityOverview": "Resumen de Actividad",
     "signedInAs": "Conectado como"
+  },
+  "structure": {
+    "badge": "Infraestructura del Sistema",
+    "title": "Arquitectura de Confianza",
+    "description": "Nnarks le brinda custodia estructurada, gobernanza de hitos y supervisión respaldada por IA, de modo que los fondos se mueven solo cuando se verifica el trabajo.",
+    "items": {
+      "milestoneEscrow": {
+        "subtitle": "Custodia por Hitos",
+        "title": "Fináncialo. Supervísalo. Libéralo de forma segura.",
+        "description": "Inicie proyectos con fondos controlados por hitos. Custodia estructurada para la ejecución responsable de proyectos.",
+        "details": "Cada hito se verifica antes de que se muevan los fondos. Sin transferencias a ciegas, sin sorpresas: solo ejecución estructurada.",
+        "pillText": "Tarifas totales",
+        "pillValue": "Incluido 3,29 EUR",
+        "features": [
+          "Definir hitos",
+          "Invitar colaboradores",
+          "Liberar fondos previa verificación"
+        ]
+      },
+      "communityTrust": {
+        "subtitle": "Confianza Comunitaria",
+        "title": "Contribuya con confianza.",
+        "description": "Únase a proyectos sin enviar y esperar. Cada contribución es rastreada, puesta en custodia y liberada solo previa verificación.",
+        "details": "Sin transferencias a ciegas. Solo confianza estructurada.",
+        "pillText": "Verificado",
+        "pillValue": "100% Seguro",
+        "features": [
+          "Fondos asegurados en custodia",
+          "Seguimiento transparente de hitos",
+          "Liberación de fondos verificada",
+          "Actualizaciones en tiempo real"
+        ]
+      },
+      "aiPowered": {
+        "subtitle": "Potenciado por IA",
+        "title": "Decisiones más inteligentes, antes de gastar.",
+        "description": "Información impulsada por IA que guía la financiación, la evaluación de riesgos y la estructura del proyecto.",
+        "details": "Liderar con claridad. Ejecutar con inteligencia.",
+        "pillText": "IA Insights",
+        "pillValue": "Tiempo real",
+        "features": [
+          "Recomendaciones de estructura de proyecto",
+          "Análisis de riesgos e hitos",
+          "Información sobre optimización de presupuesto",
+          "Soporte de decisiones respaldado por datos"
+        ]
+      },
+      "marketIntelligence": {
+        "subtitle": "Inteligencia de Mercado",
+        "title": "Manténgase a la vanguardia del movimiento de capital.",
+        "description": "Información financiera y de inversión curada que da forma a la futura economía de África.",
+        "details": "El conocimiento se acumula. Manténgase informado.",
+        "pillText": "Alerta de tendencia",
+        "pillValue": "Activo",
+        "features": [
+          "Información de mercado curada",
+          "Análisis de tendencias de la industria",
+          "Actualizaciones tecnológicas y políticas",
+          "Conciencia de capital inteligente"
+        ]
+      }
+    },
+    "cta": "Explorar Solución"
   },
   "footer": {
     "tagline": "Nnarks — Infraestructura de Confianza para Mercados Emergentes",

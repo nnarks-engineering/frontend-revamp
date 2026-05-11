@@ -140,10 +140,136 @@
     }
   },
   "productVision": {
-    "title": "Vision du Produit & Positionnement",
-    "statement": "Construire la confiance grâce à une exécution vérifiée. Donner aux investisseurs, partenaires et entreprises les outils pour gérer capitaux et projets à distance.",
-    "valueProposition": "Nnarks fournit une infrastructure pour la responsabilité à distance.",
-    "positioning": "Nnarks est la couche d'infrastructure de confiance qui s'interpose entre les parties — garantissant le respect des engagements avant le transfert de capital."
+    "title": "Nous construisons le pont que vos investissements méritent",
+    "statement": "Née de promesses non tenues et de rêves abandonnés, Nnarks existe pour garantir qu'aucun investisseur de la diaspora n'ait plus jamais à choisir entre rester lié à son pays et protéger son argent durement gagné.",
+    "valueProposition": "Nnarks a été fondée sur une promesse simple mais radicale : les investissements de la diaspora ne devraient pas nécessiter une foi aveugle.",
+    "positioning": "Nous pensons que vous devriez être en mesure de construire une maison, de lancer une entreprise ou de soutenir votre famille au Ghana sans craindre que votre argent ne disparaisse. Vous ne devriez pas avoir à choisir entre faire confiance aux gens et protéger votre avenir."
+  },
+  "aboutStory": {
+    "title": "L'HISTOIRE",
+    "subtitle": "Pourquoi Nnarks Existe",
+    "context": "Chaque année, plus de 3 millions de Ghanéens vivant à l'étranger envoient plus de 3,5 milliards de dollars au pays, preuve d'un lien indéfectible avec leur foyer, leur famille et leur patrimoine. Mais derrière ce chiffre impressionnant se cachent des milliers d'histoires déchirantes.",
+    "stories": [
+      {
+        "role": "L'infirmière à Londres",
+        "description": "qui a envoyé 80 000 $ pour construire sa maison de retraite, pour finalement ne trouver qu'un terrain vide et un entrepreneur qui s'est volatilisé."
+      },
+      {
+        "role": "L'ingénieur à New York",
+        "description": "dont l'entrepôt commercial 'terminé' n'était que quatre murs sans toit, ses économies ayant été gaspillées par un membre de la famille en qui il avait confiance."
+      },
+      {
+        "role": "L'enseignante à Toronto",
+        "description": "qui a payé l'intégralité du restaurant de sa mère, pour découvrir que l'équipement n'avait jamais été acheté et que le bail n'avait jamais été signé."
+      }
+    ],
+    "conclusion": "Ce ne sont pas des incidents isolés. C'est un cycle de confiance brisée qui a coûté des milliards à la diaspora et privé le Ghana d'un développement économique transformateur.",
+    "resolution": "Nous avons dit 'Assez'."
+  },
+  "aboutWhatWeDo": {
+    "title": "Ce Que Nous Faisons",
+    "headline": "Nous sommes la couche de responsabilité entre vos rêves et leur réalisation.",
+    "description": "Considérez-nous comme vos yeux, vos oreilles et votre force d'exécution sur le terrain au Ghana. Lorsque vous investissez via Nnarks :",
+    "items": [
+      "Votre argent reste protégé sur votre compte jusqu'à ce que le travail soit vérifié",
+      "Nos agents de terrain visitent physiquement vos chantiers avec caméras et documentation",
+      "Les entrepreneurs ne sont payés que lorsque les étapes sont confirmées terminées",
+      "Vous approuvez tout depuis votre téléphone à Londres, New York ou partout dans le monde"
+    ],
+    "footer": "Nous ne sommes pas une banque. Nous ne sommes pas un service de transfert d'argent. Nous sommes l'infrastructure de confiance dont la diaspora a toujours eu besoin mais n'a jamais eue."
+  },
+  "aboutMission": {
+    "title": "Notre Mission",
+    "statement": "Débloquer des milliards d'investissements de la diaspora en éliminant la fraude et en restaurant la confiance entre les émigrés et leur patrie.",
+    "visionTitle": "Notre Vision",
+    "visionStatement": "Un avenir où chaque Ghanéen à l'étranger peut investir en toute confiance dans le développement du Ghana, sachant que son argent servira exactement à ce qu'il doit construire."
+  },
+  "aboutImpact": {
+    "title": "L'Impact que Nous Construisons",
+    "subtitle": "D'ici 2029, nous visons à :",
+    "items": [
+      {
+        "value": "100M$+",
+        "label": "d'investissements de la diaspora vérifiés"
+      },
+      {
+        "value": "2 000+",
+        "label": "emplois créés grâce aux projets financés"
+      },
+      {
+        "value": "5 000+",
+        "label": "familles d'émigrés servies"
+      },
+      {
+        "value": "95%+",
+        "label": "de taux de complétion des projets"
+      }
+    ],
+    "footer": "Mais les chiffres ne capturent pas ce que nous recherchons vraiment : restaurer la confiance, réaliser des rêves et voir les résultats tangibles de vos sacrifices à l'étranger."
+  },
+  "aboutPillars": {
+    "title": "Piliers Clés",
+    "items": [
+      {
+        "title": "La Confiance par la Transparence",
+        "description": "Pas de secrets, pas de surprises. Chaque transaction est documentée, chaque étape est vérifiée, chaque paiement est suivi."
+      },
+      {
+        "title": "La Responsabilité d'Abord",
+        "description": "Nous ne libérons pas de fonds tant que le travail n'est pas fait. Point final. Votre argent travaille pour vous."
+      },
+      {
+        "title": "Exécution Implacable",
+        "description": "Les paroles s'envolent, nous livrons. Dès le premier jour, nous exécutons avec urgence car vos rêves n'attendent pas."
+      },
+      {
+        "title": "La Technologie pour le Bien",
+        "description": "Nous utilisons les plateformes numériques et les outils mobiles pour créer un véritable impact économique."
+      },
+      {
+        "title": "Le Développement du Ghana",
+        "description": "Chaque projet réussi est une victoire collective : un emploi créé, une entreprise ouverte, une communauté renforcée."
+      }
+    ]
+  },
+  "aboutWhoWeServe": {
+    "title": "Qui Nous Servons",
+    "headline": "Si vous avez déjà :",
+    "items": [
+      "Envoyé de l'argent au pays pour le voir disparaître",
+      "Été trop occupé pour lancer un projet personnel",
+      "Voulu investir au Ghana sans savoir à qui faire confiance",
+      "Retrouvé votre projet incomplet ou abandonné à votre retour",
+      "Reporté vos rêves car vous ne pouviez pas surveiller à distance",
+      "Perdu des liens familiaux à cause de fonds détournés"
+    ],
+    "footer": "Alors Nnarks est pour vous. Nous servons les émigrés travailleurs qui méritent de voir leurs investissements se concrétiser. Nous servons les entrepreneurs honnêtes qui veulent accéder à des capitaux fiables."
+  },
+  "aboutTeam": {
+    "title": "L'Équipe",
+    "founder": {
+      "name": "Nom du Fondateur",
+      "role": "Fondateur & CEO",
+      "bio": "Bio de 2-3 phrases soulignant le lien personnel avec le problème, l'expérience pertinente et la vision."
+    },
+    "note": "Nous construisons une équipe de classe mondiale d'entrepreneurs agréés, de fabricants, de technologues et de leaders communautaires de la diaspora.",
+    "backedBy": {
+      "title": "Soutenu Par",
+      "partners": [
+        "Google for Startups"
+      ]
+    }
+  },
+  "aboutJoin": {
+    "title": "Rejoignez le Mouvement",
+    "description": "Nnarks n'est pas seulement une entreprise, c'est un mouvement pour reconquérir l'investissement de la diaspora et rebâtir la confiance entre l'Afrique et sa famille mondiale.",
+    "cta": "Lancer un Projet Maintenant",
+    "roles": {
+      "contractors": "Postulez pour rejoindre notre réseau de vendeurs vérifiés",
+      "partners": "Contactez-nous pour collaborer",
+      "investors": "En savoir plus sur notre mission"
+    },
+    "footer": "Ensemble, nous transformons les promesses brisées en projets terminés."
   },
   "industriesServed": {
     "title": "Secteurs Desservis",
@@ -310,6 +436,69 @@
     "evidenceUploaded": "Preuve téléchargée et vérifiée",
     "activityOverview": "Aperçu de l'Activité",
     "signedInAs": "Connecté en tant que"
+  },
+  "structure": {
+    "badge": "Infrastructure Système",
+    "title": "Architecture de Confiance",
+    "description": "Nnarks vous offre un séquestre structuré, une gouvernance par étapes et une supervision assistée par IA, afin que les fonds ne circulent que lorsque le travail est vérifié.",
+    "items": {
+      "milestoneEscrow": {
+        "subtitle": "Séquestre par Étapes",
+        "title": "Financez. Supervisez. Libérez en toute sécurité.",
+        "description": "Lancez des projets avec des fonds contrôlés par étapes. Séquestre structuré pour une exécution de projet responsable.",
+        "details": "Chaque jalon est vérifié avant le mouvement des fonds. Pas de transferts aveugles, pas de surprises—juste une exécution structurée.",
+        "pillText": "Protocole",
+        "pillValue": "Actif & Sécurisé",
+        "features": [
+          "Définir les étapes",
+          "Inviter des contributeurs",
+          "Libérer les fonds après vérification"
+        ]
+      },
+      "communityTrust": {
+        "subtitle": "Confiance Communautaire",
+        "title": "Contribuez en toute confiance.",
+        "description": "Rejoignez des projets sans envoyer et espérer. Chaque contribution est suivie, mise en séquestre et libérée uniquement après vérification.",
+        "details": "Rejoignez des projets sans incertitude. Chaque contribution est suivie, mise sous séquestre et libérée uniquement après vérification.",
+        "pillText": "Vérification",
+        "pillValue": "Noeuds Vérifiés",
+        "features": [
+          "Fonds sécurisés en séquestre",
+          "Suivi transparent des étapes",
+          "Libération des fonds vérifiée",
+          "Mises à jour en temps réel"
+        ]
+      },
+      "aiPowered": {
+        "subtitle": "Propulsé par l'IA",
+        "title": "Des décisions plus intelligentes, avant de dépenser.",
+        "description": "Des informations propulsées par l'IA qui guident le financement, l'évaluation des risques et la structure du projet.",
+        "details": "Dirigez avec clarté. Exécutez avec intelligence.",
+        "pillText": "IA Insights",
+        "pillValue": "Temps réel",
+        "features": [
+          "Recommandations de structure de projet",
+          "Analyse des risques et des étapes",
+          "Optimisation du budget",
+          "Aide à la décision basée sur les données"
+        ]
+      },
+      "marketIntelligence": {
+        "subtitle": "Intelligence du Marché",
+        "title": "Gardez une longueur d'avance sur les mouvements de capitaux.",
+        "description": "Des analyses financières et d'investissement curatées façonnant la future économie de l'Afrique.",
+        "details": "La connaissance se cumule. Restez informé grâce à des données de marché organisées.",
+        "pillText": "Veille",
+        "pillValue": "Série Quotidienne",
+        "features": [
+          "Analyses de marché curatées",
+          "Analyse des tendances de l'industrie",
+          "Mises à jour technologiques et politiques",
+          "Conscience du capital intelligent"
+        ]
+      }
+    },
+    "cta": "Explorer la Solution"
   },
   "footer": {
     "tagline": "Nnarks — Infrastructure de Confiance pour les Marchés Émergents",

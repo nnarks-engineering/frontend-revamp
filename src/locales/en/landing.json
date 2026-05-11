@@ -140,10 +140,134 @@
     }
   },
   "productVision": {
-    "title": "Product Vision & Positioning",
-    "statement": "Build trust through verified execution. Give investors, partners, and businesses the tools to manage capital and projects remotely with transparency, security, and accountability.",
-    "valueProposition": "Nnarks provides infrastructure for remote accountability: transparent systems for trusted partnerships, secure frameworks for global transactions, and digital oversight with human precision.",
-    "positioning": "Nnarks is not a bank, not a project management tool, and not a marketplace. It is the trust infrastructure layer that sits between parties — ensuring commitments are met before capital moves."
+    "title": "We're Building the Bridge Your Investments Deserve",
+    "statement": "Born from broken promises and abandoned dreams, Nnarks exists to ensure no diaspora investor ever has to choose between staying connected to home and protecting their hard-earned money.",
+    "valueProposition": "Nnarks was founded on a simple but radical promise: diaspora investments shouldn't require blind faith.",
+    "positioning": "We believe you should be able to build a home, start a business, or support your family in Ghana without wondering if your money will disappear. You shouldn't have to choose between trusting people and protecting your future."
+  },
+  "aboutStory": {
+    "title": "THE STORY",
+    "subtitle": "Why Nnarks Exists",
+    "context": "Every year, over 3 million Ghanaians living abroad send home more than $3.5 billion, proof of an unbreakable connection to home, family, and heritage. But behind that staggering number are thousands of heartbreaking stories.",
+    "stories": [
+      {
+        "role": "The nurse in London",
+        "description": "who sent $80,000 to build her retirement home, only to return and find an empty plot and a contractor who vanished."
+      },
+      {
+        "role": "The engineer in New York",
+        "description": "whose 'completed' business warehouse was just four walls with no roof, his savings squandered by a family member he trusted."
+      },
+      {
+        "role": "The teacher in Toronto",
+        "description": "who paid in full for her mother's restaurant, only to discover the equipment was never bought and the lease was never signed."
+      }
+    ],
+    "conclusion": "These aren't isolated incidents. They're a pattern of broken trust that has cost the diaspora billions and robbed Ghana of transformative economic development.",
+    "resolution": "We Said 'Enough.'"
+  },
+  "aboutWhatWeDo": {
+    "title": "What We Do",
+    "headline": "We're the accountability layer between your dreams and their completion.",
+    "description": "Think of us as your eyes, ears, and contract enforcement on the ground in Ghana. When you invest through Nnarks:",
+    "items": [
+      "Your money stays protected in your account until work is verified complete",
+      "Our field officers physically visit your project sites with cameras and documentation",
+      "Contractors only get paid when milestones are confirmed finished",
+      "You approve everything from your phone in London, New York, or anywhere in the world"
+    ],
+    "footer": "We're not a bank. We're not a money transfer service. We're the trust infrastructure the diaspora has always needed but never had."
+  },
+  "aboutMission": {
+    "title": "Our Mission",
+    "statement": "To unlock billions in diaspora investment by eliminating fraud and restoring trust between emigrants and their homeland.",
+    "visionTitle": "Our Vision",
+    "visionStatement": "A future where every Ghanaian abroad can confidently invest in Ghana's development, knowing their money will build exactly what it's meant to build—nothing more, nothing less."
+  },
+  "aboutImpact": {
+    "title": "The Impact We're Building Toward",
+    "subtitle": "By 2029, we aim to:",
+    "items": [
+      {
+        "value": "$100M+",
+        "label": "verified diaspora investments"
+      },
+      {
+        "value": "2,000+",
+        "label": "jobs created through funded projects"
+      },
+      {
+        "value": "5,000+",
+        "label": "emigrant families served"
+      },
+      {
+        "value": "95%+",
+        "label": "project completion rate"
+      }
+    ],
+    "footer": "But numbers don't capture what we're really after: restored confidence, completed dreams, and families who can finally see the tangible results of their sacrifice abroad."
+  },
+  "aboutPillars": {
+    "title": "Key Pillars",
+    "items": [
+      {
+        "title": "Trust Through Transparency",
+        "description": "No secrets, no surprises. Every transaction is documented, every milestone is verified, every payment is tracked."
+      },
+      {
+        "title": "Accountability First",
+        "description": "We don't release funds until work is done. Period. Your money works for you, not against you."
+      },
+      {
+        "title": "Relentless Execution",
+        "description": "Talk is cheap; we deliver. From day one to project completion, we execute with urgency because your dreams can't wait."
+      },
+      {
+        "title": "Technology for Good",
+        "description": "We leverage digital platforms, mobile tools, and data not for efficiency alone, but to create genuine economic impact."
+      },
+      {
+        "title": "Ghana's Development",
+        "description": "Every successful project we facilitate isn't just a personal win—it's a job created, a business opened, a community strengthened."
+      }
+    ]
+  },
+  "aboutWhoWeServe": {
+    "title": "Who We Serve",
+    "headline": "If you've ever:",
+    "items": [
+      "Sent money home and watched it disappear",
+      "Been too busy that you had no time to start any side project",
+      "Wanted to invest in Ghana but didn't know who to trust",
+      "Returned home to find your project incomplete or abandoned",
+      "Postponed your dreams because you couldn't monitor from abroad",
+      "Lost family relationships over misappropriated funds"
+    ],
+    "footer": "Then Nnarks is for you. We serve hardworking emigrants who deserve to see their investments actually completed. We serve honest contractors who want access to reliable diaspora capital. We serve Ghana's economy, which needs diaspora investment to thrive."
+  },
+  "aboutTeam": {
+    "title": "The Team",
+    "founder": {
+      "name": "Founder Name",
+      "role": "Founder & CEO",
+      "bio": "Brief 2-3 sentence bio emphasizing personal connection to problem, relevant experience, and vision."
+    },
+    "note": "We're building a world-class team of licensed contractors, manufacturers and fabricators, agric specialists, technologists, field operations specialists, and diaspora community leaders.",
+    "backedBy": {
+      "title": "Backed By",
+      "partners": ["Google for Startups"]
+    }
+  },
+  "aboutJoin": {
+    "title": "Join the Movement",
+    "description": "Nnarks isn't just a company, it's a movement to reclaim diaspora investment from fraudsters and rebuild trust between Africa and its global family.",
+    "cta": "Start A Project Now",
+    "roles": {
+      "contractors": "Apply to Join our verified network of vendors",
+      "partners": "Get in Touch to collaborate",
+      "investors": "Learn More about supporting our mission"
+    },
+    "footer": "Together, we're turning broken promises into completed projects."
   },
   "industriesServed": {
     "title": "Industries Served",
@@ -352,6 +476,69 @@
     "evidenceUploaded": "Evidence uploaded and verified",
     "activityOverview": "Activity Overview",
     "signedInAs": "Signed in as"
+  },
+  "structure": {
+    "badge": "System Infrastructure",
+    "title": "Trust Architecture",
+    "description": "Nnarks gives you structured escrow, milestone governance, and AI-backed oversight, so funds move only when work is verified.",
+    "items": {
+      "milestoneEscrow": {
+        "subtitle": "Milestone Escrow",
+        "title": "Fund It. Supervise It. Release It Safely.",
+        "description": "Start projects with milestone-controlled funds. Structured escrow for accountable project execution.",
+        "details": "Each milestone is verified before funds move. No blind transfers, no surprises—just structured execution.",
+        "pillText": "Protocol",
+        "pillValue": "Active & Secured",
+        "features": [
+          "Define milestones",
+          "Invite contributors",
+          "Release funds upon verification"
+        ]
+      },
+      "communityTrust": {
+        "subtitle": "Community Trust",
+        "title": "Contribute With Confidence.",
+        "description": "Join projects without sending and hoping. Every contribution is tracked, escrowed, and released only upon verification.",
+        "details": "No blind transfers. Just structured trust.",
+        "pillText": "Protocol",
+        "pillValue": "100% Secured",
+        "features": [
+          "Funds secured in escrow",
+          "Transparent milestone tracking",
+          "Verified fund release",
+          "Real-time updates"
+        ]
+      },
+      "aiPowered": {
+        "subtitle": "AI-Powered",
+        "title": "Smarter Decisions, Before You Spend.",
+        "description": "AI-powered insights that guide funding, risk assessment, and project structure.",
+        "details": "Lead with clarity. Execute with intelligence. Get data-backed decision support for every project structure.",
+        "pillText": "AI Engine",
+        "pillValue": "Deep Learning",
+        "features": [
+          "Project structure recommendations",
+          "Risk and milestone analysis",
+          "Budget optimization insights",
+          "Data-backed decision support"
+        ]
+      },
+      "marketIntelligence": {
+        "subtitle": "Market Intelligence",
+        "title": "Stay Ahead of Capital Movement.",
+        "description": "Curated financial and investment insights shaping Africa’s future economy.",
+        "details": "Knowledge compounds. Stay informed with curated market data.",
+        "pillText": "Insights",
+        "pillValue": "Daily Streak",
+        "features": [
+          "Curated market insights",
+          "Industry trend analysis",
+          "Tech & policy updates",
+          "Smart capital awareness"
+        ]
+      }
+    },
+    "cta": "Explore Solution"
   },
   "footer": {
     "tagline": "Nnarks — Trust Infrastructure for Emerging Markets",

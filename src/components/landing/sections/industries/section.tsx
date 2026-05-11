@@ -146,7 +146,7 @@ export default function IndustriesSection() {
   }, [isHovering]);
 
   return (
-    <section id="industries" className="relative w-full py-24 bg-white  dark:bg-neutral-950 overflow-hidden">
+    <section id="industries" className="relative w-full py-24 bg-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <LineJoinedDotSvg className="w-full h-full" />
       </div>
@@ -214,8 +214,8 @@ export default function IndustriesSection() {
                   }}
                   onClick={() => setActiveIndex(idx)}
                   className={cn(
-                    " bg-white  rounded-xl dark:bg-neutral-900  min-h-fit overflow-hidden group/card",
-                    isActive ? "w-[320px] md:w-[680px] md:border-x-4  !border-x-white  px-2 md:pl-0   bg-primary-50 h-[420px] md:h-[450px] min-h-fit" : "w-[180px] absolute cursor-pointer shadow-2xl p-2 md:w-[220px] h-[260px] md:h-[320px]"
+                    " bg-white  rounded-xl  min-h-fit overflow-hidden group/card",
+                    isActive ? "w-[320px] md:w-[680px] md:border-x-4  !border-x-white  px-2 md:pl-0   bg-primary h-[420px] md:h-[450px] min-h-fit" : "w-[180px] absolute cursor-pointer shadow-2xl p-2 md:w-[220px] h-[260px] md:h-[320px]"
                   )}
                 >
                   <div className="relative h-full  w-full flex flex-col md:flex-row items-center">
@@ -265,10 +265,10 @@ export default function IndustriesSection() {
                           transition={{ duration: 0.3, delay: 0.1 }}
                           className="flex flex-col p-2 md:p-10 flex-1 justify-center text-left"
                         >
-                          <h3 className="text-2xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4 font-clash-display">
+                          <h3 className="text-2xl md:text-4xl font-bold text-white  mb-4 font-clash-display">
                             {industry.name}
                           </h3>
-                          <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
+                          <p className="text-sm md:text-base text-white leading-relaxed mb-8">
                             {industry.desc}
                           </p>
                        
@@ -289,7 +289,7 @@ export default function IndustriesSection() {
               onClick={() => setActiveIndex(idx)}
               className={cn(
                 "h-2 transition-all duration-500 rounded-full",
-                activeIndex === idx ? "w-10 bg-primary" : "w-2 bg-primary-200 dark:bg-neutral-800"
+                activeIndex === idx ? "w-10 bg-primary" : "w-2 bg-primary-200"
               )}
               aria-label={`Go to industry ${idx + 1}`}
             />

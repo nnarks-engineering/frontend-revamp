@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/landing/sections/testimonials/sect
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import ModulesTagSection from "@/components/landing/sections/modules/section";
+import StructureSection from "@/components/landing/sections/structure/section";
 
 export const Route = createFileRoute("/")(
   {
@@ -22,6 +23,7 @@ function LandingPage() {
       <HeroSection />    
       <PartnersSection />
       <ModulesTagSection hideModuleButton={false} />
+      <StructureSection />
   
       <IndustriesSection />
       <CustomersSection />

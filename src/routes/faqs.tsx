@@ -60,7 +60,7 @@ function FAQsPage() {
           {/* FAQs Side */}
           <div className="w-full md:w-1/2">
             <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
-              {faqsItems && faqsItems.map((faq, i) => (
+              {Array.isArray(faqsItems) && faqsItems.map((faq, i) => (
                 <AccordionItem value={`item-${i}`} key={i} className="mb-4 border-0 border-l-4 !border-primary-200 px-6  data-[state=open]:bg-primary-50 transition-colors">
                   <AccordionTrigger className="text-left font-clash-display font-semibold text-lg hover:no-underline py-4">
                     {faq.question}
