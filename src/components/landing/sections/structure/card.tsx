@@ -28,12 +28,12 @@ export function StructureCard({
       layoutId={`card-${item.id}-${layoutIdPrefix}`}
       onClick={onClick}
       className={cn(
-        "group relative w-full flex flex-col md:flex-row items-stretch overflow-hidden bg-secondary/50 cursor-pointer transition-all duration-500 hover:shadow-xl",
+        "group relative w-full flex flex-col md:flex-row group items-stretch overflow-hidden bg-secondary/50 cursor-pointer transition-all duration-500",
         isReversed && "md:flex-row-reverse"
       )}
     >
       {/* Image Side */}
-      <div className="relative w-full md:w-1/2 rounded-b-3xl aspect-square md:aspect-auto min-h-[300px] overflow-hidden">
+      <div className="relative w-full md:w-1/2 rounded-b-3xl md:rounded-none md:group-even:rounded-bl-3xl md:group-odd:rounded-br-3xl aspect-square md:aspect-auto min-h-[300px] overflow-hidden">
         <motion.img
           layoutId={`image-${item.id}-${layoutIdPrefix}`}
           src={item.image}

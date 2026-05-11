@@ -46,10 +46,10 @@ export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
         className="max-w-2xl h-full text-center md:text-left "
       >
         <h2 className="text-4xl font-bold font-clash-display text-white mb-4">
-          {t("landing:modules.title")}
+            {t("userPersonas.title")}
         </h2>
         <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-          {t("landing:modules.description")}
+          {t("userPersonas.description")}
         </p>
 
         {!hideModuleButton &&<Link
