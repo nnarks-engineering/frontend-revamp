@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { type StructureItem } from "./locals";
 import { cn } from "@/shared/lib/utils";
 import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
 
 interface StructureCardProps {
   item: StructureItem;
@@ -44,18 +45,29 @@ export function StructureCard({
         {/* Floating Pill */}
         <motion.div 
           layoutId={`pill-${item.id}-${layoutIdPrefix}`}
-          className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white rounded-full p-1.5 pr-6 shadow-lg border border-white/20 backdrop-blur-sm"
+          className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white rounded-full p-1.5 pr-6 shadow-lg border border-white/20 backdrop-blur-sm overflow-hidden"
         >
-          <div className="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary">
-            <item.icon size={20} />
+          {/* Normal State: Icon + Text */}
+          <div className="flex items-center transition duration-500 group-hover:translate-x-40">
+            <div className="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary shrink-0">
+              <item.icon size={20} />
+            </div>
+            <div className="ml-3 whitespace-nowrap">
+              <p className="text-sm font-semibold text-foreground leading-none">
+               {t(`landing:structure.items.${item.key}.subtitle` as any)}
+              </p>
+              <p className="text-xs font-medium text-muted-foreground">
+                {t(`landing:structure.items.${item.key}.pillValue` as any)}
+              </p>
+            </div>
           </div>
-          <div className="ml-3">
-            <p className="text-sm font-semibold  text-foreground leading-none">
-             {t(`landing:structure.items.${item.key}.subtitle` as any)}
-            </p>
-            <p className="text-xs font-medium text-muted-foreground">
-              {t(`landing:structure.items.${item.key}.pillValue` as any)}
-            </p>
+
+          {/* Hover State: "More" + Arrow */}
+          <div className="absolute inset-0 flex items-center px-1.5 transition duration-500 -translate-x-40 group-hover:translate-x-0">
+            <div className="flex items-center justify-center size-10 rounded-full bg-primary text-white shrink-0">
+              <ArrowRight size={20} />
+            </div>
+            <span className="ml-3 font-bold text-foreground">More</span>
           </div>
         </motion.div>
       </div>
