@@ -43,21 +43,6 @@ const PersonasSection = () => {
   className="absolute inset-0 w-full h-full text-secondary pointer-events-none"
   preserveAspectRatio="xMidYMid slice"
 />
-   <div className="relative z-10 max-w-4xl mx-auto text-center mb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl md:text-4xl font-black mb-6 tracking-tight leading-none font-clash-display">
-            {t("userPersonas.title")}
-          </h2>
-          <p className=" max-w-2xl mx-auto leading-relaxed text-slate-600">
-            {t("userPersonas.description")}
-          </p>
-        </motion.div>
-      </div>
 
       <div className="flex flex-col gap-32 max-w-7xl mx-auto px-4">
         {personas.map((persona, index) => (

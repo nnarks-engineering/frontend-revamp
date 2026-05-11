@@ -10,7 +10,7 @@ export default function VisionSection() {
   const { t } = useTranslation(["landing"]);
 
   return (
-    <Section className="bg-background overflow-clip relative h-[calc(100dvh-80px)] min-h-fit" contentClassName=" w-full  py-10 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+    <Section className="bg-background overflow-clip relative h-[calc(100dvh-10rem)] min-h-fit" contentClassName=" w-full  py-10 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
 
       <motion.div
         className="flex-1 space-y-6 z-10 "
@@ -22,17 +22,9 @@ export default function VisionSection() {
         <h2 className="text-4xl md:text-5xl font-clash-display font-bold">
           {t("landing:productVision.title")}
         </h2>
-        <p className="text-xl leading-relaxed text-foreground/80 font-medium">
+        <p className="text-sm md:text-base text-foreground/80">
           {t("landing:productVision.statement")}
         </p>
-        <div className="space-y-4 pt-4">
-          <p className="leading-relaxed text-foreground/70">
-            {t("landing:productVision.valueProposition")}
-          </p>
-          <p className="leading-relaxed text-foreground/70 ">
-            {t("landing:productVision.positioning")}
-          </p>
-        </div>
       </motion.div>
 
       <motion.div
@@ -53,7 +45,7 @@ export default function VisionSection() {
           </motion.div>
 
           <motion.div
-            className="absolute bottom-10 left-0 w-[55%] h-[60%]  overflow-hidden  border-4 !border-background z-10"
+            className="absolute bottom-10 left-0 w-[55%] h-[60%] rounded-r-3xl  overflow-hidden  border-4 !border-background z-10"
             whileHover={{ rotate: 0, scale: 1.05 }}
             style={{ rotate: -6 }}
           >
@@ -61,11 +53,11 @@ export default function VisionSection() {
           </motion.div>
 
           <motion.div
-            className="absolute bottom-0 right-[0%] w-[45%] h-[45%]  overflow-hidden border-4 !border-background z-20 shadow-primary/20"
+            className="absolute bottom-0 right-[0%] w-[45%] h-[45%] rounded-l-3xl  overflow-hidden border-4 !border-background z-20 shadow-primary/20"
             whileHover={{ rotate: 0, scale: 1.1, zIndex: 30 }}
             style={{ rotate: 8, translateY: "-30%" }}
           >
-            <img src={ContractorImg} alt="On-ground Execution" className="w-full h-full object-cover" />
+            <img src={ContractorImg} alt="On-ground Execution" className="w-full  h-full object-cover" />
             <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
           </motion.div>
         </div>

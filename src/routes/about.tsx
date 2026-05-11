@@ -10,6 +10,7 @@ import TeamSection from "@/components/landing/sections/about/TeamSection";
 import JoinSection from "@/components/landing/sections/about/JoinSection";
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
+import TickerSection from "@/components/landing/sections/ticker/section";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -21,6 +22,7 @@ function AboutPage() {
       <Navbar />
       <div className="flex flex-col w-full mt-20 overflow-hidden">
         <VisionSection />
+        <TickerSection/>
         <StorySection />
         <WhatWeDoSection />
         {/* <ImpactSection /> */}
