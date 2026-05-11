@@ -73,13 +73,13 @@ export default function StructureSection() {
                   {/* Close Button */}
                   <button
                     onClick={() => setActive(null)}
-                    className="absolute top-6 right-6 z-10 size-12 flex items-center justify-center bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full text-white transition-all border border-white/20"
+                    className="absolute top-6 right-6 z-10 size-12 flex items-center justify-center text-foreground  transition-all"
                   >
                     <X size={24} />
                   </button>
 
                   {/* Left: Image */}
-                  <div className="w-full md:w-5/12 h-64 md:h-auto relative overflow-hidden">
+                  <div className="w-full rounded-b-3xl md:rounded-none md:rounded-tr-4xl md:w-5/12 h-64 md:h-auto relative overflow-hidden">
                     <motion.img
                       layoutId={`image-${active.id}-${id}`}
                       src={active.image}
@@ -107,7 +107,7 @@ export default function StructureSection() {
                   </div>
 
                   {/* Right: Content */}
-                  <div className="w-full md:w-7/12 p-8 md:p-12 overflow-y-auto">
+                  <div className="w-full md:w-7/12 p-8 md:p-12 md:pb-0 overflow-y-auto">
                     <motion.span 
                       layoutId={`subtitle-${active.id}-${id}`}
                       className="inline-block text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4"
@@ -117,21 +117,20 @@ export default function StructureSection() {
                     
                     <motion.h3 
                       layoutId={`title-${active.id}-${id}`}
-                      className="text-3xl md:text-5xl font-millik leading-tight text-foreground mb-6"
+                      className="text-3xl md:text-4xl font-millik leading-tight text-foreground mb-6"
                     >
                       {t(`landing:structure.items.${active.key}.title` as any)}
                     </motion.h3>
                     
                     <motion.p 
                       layoutId={`description-${active.id}-${id}`}
-                      className="text-muted-foreground text-lg mb-8 leading-relaxed"
+                      className="text-muted-foreground  mb-8 leading-relaxed"
                     >
                       {t(`landing:structure.items.${active.key}.description` as any)}
                     </motion.p>
 
                     <div className="space-y-6 mb-10">
-                      <h4 className="text-sm font-bold uppercase tracking-widest text-foreground/40">Core Capabilities</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 bg-primary/5 border divide-y md:divide-y-0 !border-primary/50 ">
                         {(() => {
                           const features = (t as any)(`landing:structure.items.${active.key}.features`, { returnObjects: true });
                           return Array.isArray(features) ? features.map((feature, i) => (
@@ -140,7 +139,7 @@ export default function StructureSection() {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.3 + i * 0.1 }}
                               key={i} 
-                              className="flex items-start gap-3 p-4 rounded-2xl bg-primary/5 border border-primary/10"
+                              className="flex items-start  gap-3 p-4 0 md:odd:border-r md:nth-[1]:border-b md:nth-[2]:border-b border-dashed !border-primary/50"
                             >
                               <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" />
                               <span className="text-[15px] font-medium text-foreground leading-tight">{feature}</span>
@@ -154,12 +153,12 @@ export default function StructureSection() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.6 }}
-                      className="p-6 rounded-3xl bg-foreground text-white"
+                      className="p-6  -mx-8 md:-mx-12 bg-amber-500/10 border-l-4 !border-amber-500 text-white"
                     >
-                      <p className="text-white/70 text-sm mb-4 leading-relaxed italic">
+                      <p className="text-amber-900 text-sm mb-4 leading-relaxed italic">
                         "{t(`landing:structure.items.${active.key}.details` as any)}"
                       </p>
-                      <button className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all">
+                      <button className="flex items-center gap-2 text-amber-900 font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all">
                         {t("landing:structure.cta")} <ArrowRight size={16} />
                       </button>
                     </motion.div>
