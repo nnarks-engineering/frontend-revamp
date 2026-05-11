@@ -2,9 +2,15 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Section } from "../../Section";
-import { Shield, Target, Zap, Cpu, Map } from "lucide-react";
 
-const icons = [Shield, Target, Zap, Cpu, Map];
+// Import project images
+import AboutUs from "@/assets/img/landing/about-us.webp";
+import Agriculture from "@/assets/img/landing/agriculture.webp";
+import Contractor from "@/assets/img/landing/contractor.webp";
+import Contributors from "@/assets/img/landing/contributors.webp";
+import Diaspora from "@/assets/img/landing/diaspora.webp";
+
+const images = [AboutUs, Contractor, Diaspora, Contributors, Agriculture];
 
 export default function PillarsSection() {
   const { t } = useTranslation(["landing"]);
@@ -12,66 +18,110 @@ export default function PillarsSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Section className="bg-white py-32" contentClassName="max-w-7xl mx-auto px-4">
-      <div className="space-y-16">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold font-clash-display">
-            {t("landing:aboutPillars.title")}
-          </h2>
+    <Section className="bg-white py-24 md:py-32" contentClassName="max-w-7xl mx-auto px-4">
+      <div className="space-y-12">
+        {/* Header Section */}
+        <motion.h2 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="text-5xl md:text-7xl font-black font-millik uppercase tracking-tight text-neutral-900"
+        >
+          OUR PILLARS
+        </motion.h2>
+
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap gap-x-10 gap-y-4 border-b border-neutral-200 pb-1 overflow-x-auto no-scrollbar scroll-smooth">
+          {items.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className="relative py-4 text-lg md:text-xl font-bold transition-all duration-300 whitespace-nowrap group"
+            >
+              <span className={`transition-colors duration-300 ${activeTab === index ? "text-neutral-900" : "text-neutral-300 group-hover:text-neutral-500"}`}>
+                {/* Extract short title if possible, otherwise use full */}
+                {item.title.split(' ').pop()}
+              </span>
+              {activeTab === index && (
+                <motion.div
+                  layoutId="pillarActiveTab"
+                  className="absolute bottom-0 left-0 right-0 h-1.5 bg-neutral-950"
+                  transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                />
+              )}
+            </button>
+          ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-          {items.map((item, index) => {
-            const Icon = icons[index % icons.length];
-            const isActive = activeTab === index;
-            return (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={`
-                  flex items-center gap-2 px-6 py-4 rounded-full transition-all duration-300 font-bold text-lg
-                  ${isActive 
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105" 
-                    : "bg-neutral-50 text-neutral-400 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800"
-                  }
-                `}
-              >
-                <Icon className={`w-5 h-5 ${isActive ? "text-primary-foreground" : "text-neutral-400"}`} />
-                {item.title}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="relative min-h-[400px] bg-neutral-50 dark:bg-neutral-900/50 rounded-[3rem] p-8 md:p-16 overflow-hidden">
-          <AnimatePresence mode="wait">
+        {/* Content Card Area */}
+        <div className="relative">
+          <AnimatePresence mode="popLayout">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden bg-[#f3f5f3] w-full"
             >
-              <div className="space-y-8">
-                <h3 className="text-4xl md:text-6xl font-bold font-clash-display leading-tight">
-                  {items[activeTab].title}
-                </h3>
-                <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed font-medium">
-                  {items[activeTab].description}
-                </p>
-                <div className="pt-4">
-                   <div className="w-20 h-2 bg-primary rounded-full" />
-                </div>
+              {/* Left Side: Image with Badge Overlay */}
+              <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[400px] overflow-hidden">
+                <motion.div 
+                  initial={{ scale: 1.1, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full h-full md:rounded-tr-3xl overflow-hidden relative"
+                >
+                  <img 
+                    src={images[activeTab % images.length]} 
+                    alt={items[activeTab].title}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Floating Badge (Decorative like the Wise image) */}
+                  <div className="absolute bottom-10 left-10 right-10">
+                    <motion.div 
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="bg-white/90 backdrop-blur-md rounded-3xl p-6 flex items-center gap-4 shadow-2xl border border-white/20 max-w-sm"
+                    >
+                      <div className="size-12 rounded-full bg-primary flex items-center justify-center">
+                         <div className="size-6 border-2 border-white rounded-full opacity-50" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Protocol Active</span>
+                        <span className="text-lg font-bold text-neutral-900 leading-none">Nnarks Verified</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
               </div>
 
-              <div className="aspect-video bg-white dark:bg-neutral-800 rounded-3xl shadow-inner flex items-center justify-center p-8 relative">
-                 {/* Visual placeholder for the pillar's concept */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-3xl" />
-                 {(() => {
-                    const Icon = icons[activeTab % icons.length];
-                    return <Icon className="w-32 h-32 text-primary opacity-20" />;
-                 })()}
+              {/* Right Side: Textual Description */}
+              <div className="p-6 md:p-12 flex flex-col justify-center space-y-8">
+                <motion.h3 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold font-millik text-neutral-900 leading-tight"
+                >
+                  {items[activeTab].title}
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl font-poppins"
+                >
+                  {items[activeTab].description}
+                </motion.p>
+                
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="w-24 h-2 bg-neutral-900 rounded-full origin-left"
+                />
               </div>
             </motion.div>
           </AnimatePresence>
