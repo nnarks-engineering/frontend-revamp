@@ -500,6 +500,11 @@
     },
     "cta": "Explorer la Solution"
   },
+  "ticker": {
+    "title": "Déplacements Fluides à Travers le Monde",
+    "description": "Envoyez, dépensez et recevez de l'argent dans le monde entier avec le taux de change réel. Utilisé par des millions de personnes pour sa transparence et sa rapidité.",
+    "cta": "Explorer Nos Tarifs"
+  },
   "footer": {
     "tagline": "Nnarks — Infrastructure de Confiance pour les Marchés Émergents",
     "description": "Transformer les investissements transfrontaliers avec une infrastructure de confiance complète. Conçu pour l'avenir de l'investissement diasporique.",

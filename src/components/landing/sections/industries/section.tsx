@@ -151,7 +151,7 @@ export default function IndustriesSection() {
         <LineJoinedDotSvg className="w-full h-full" />
       </div>
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        <div className="flex z-10 relative flex-col items-center text-center">
+        <div className="flex relative flex-col items-center text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -204,7 +204,7 @@ export default function IndustriesSection() {
                     y: yOffset,
                     rotate: rotation,
                     scale: isActive ? 1.05 : (isMobile ? 0.7 : Math.max(0.6, 0.85 - absDistance * 0.05)),
-                    zIndex: isActive ? 100 : 50 - absDistance,
+                    zIndex: isActive ? 30 : 10 - absDistance,
                     opacity: isMobile ? (absDistance > 4 ? 0 : 1) : (absDistance > 6 ? 0 : 1),
                   }}
                   transition={{

@@ -73,7 +73,7 @@ export default function StructureSection() {
                   {/* Close Button */}
                   <button
                     onClick={() => setActive(null)}
-                    className="absolute top-6 right-6 z-10 size-12 flex items-center justify-center text-foreground  transition-all"
+                    className="absolute top-6 right-6 z-10 size-12 flex items-center justify-center text-background md:text-foreground  transition-all"
                   >
                     <X size={24} />
                   </button>
@@ -107,7 +107,7 @@ export default function StructureSection() {
                   </div>
 
                   {/* Right: Content */}
-                  <div className="w-full md:w-7/12 p-8 md:p-12 md:pb-0 overflow-y-auto">
+                  <div className="w-full md:w-7/12 p-8 md:p-12 pb-0 md:pb-0 overflow-y-auto">
                     <motion.span 
                       layoutId={`subtitle-${active.id}-${id}`}
                       className="inline-block text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4"
@@ -141,7 +141,7 @@ export default function StructureSection() {
                               key={i} 
                               className="flex items-start  gap-3 p-4 0 md:odd:border-r md:nth-[1]:border-b md:nth-[2]:border-b border-dashed !border-primary/50"
                             >
-                              <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" />
+                              {/* <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" /> */}
                               <span className="text-[15px] font-medium text-foreground leading-tight">{feature}</span>
                             </motion.div>
                           )) : null;
