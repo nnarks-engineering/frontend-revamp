@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/shared/hooks/use-outside-click";
 import { structureData, type StructureItem } from "./locals";
 import { StructureCard } from "./card";
-import { X, CheckCircle2, ArrowRight } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import { Section } from "../../Section";
 import { useTranslation } from "react-i18next";
 import { SectionHeader } from "@/components/ui/section-header";

@@ -33,7 +33,7 @@ export function StructureCard({
       )}
     >
       {/* Image Side */}
-      <div className="relative w-full md:w-1/2 aspect-square md:aspect-auto min-h-[300px] overflow-hidden">
+      <div className="relative w-full md:w-1/2 rounded-b-3xl aspect-square md:aspect-auto min-h-[300px] overflow-hidden">
         <motion.img
           layoutId={`image-${item.id}-${layoutIdPrefix}`}
           src={item.image}
@@ -50,10 +50,10 @@ export function StructureCard({
             <item.icon size={20} />
           </div>
           <div className="ml-3">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground leading-none">
-              {t(`landing:structure.items.${item.key}.pillText` as any)}
+            <p className="text-sm font-semibold  text-foreground leading-none">
+             {t(`landing:structure.items.${item.key}.subtitle` as any)}
             </p>
-            <p className="text-sm font-bold text-foreground">
+            <p className="text-xs font-medium text-muted-foreground">
               {t(`landing:structure.items.${item.key}.pillValue` as any)}
             </p>
           </div>
@@ -68,12 +68,6 @@ export function StructureCard({
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <motion.span 
-            layoutId={`subtitle-${item.id}-${layoutIdPrefix}`}
-            className="inline-block text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4"
-          >
-            {t(`landing:structure.items.${item.key}.subtitle` as any)}
-          </motion.span>
           
           <motion.h3 
             layoutId={`title-${item.id}-${layoutIdPrefix}`}

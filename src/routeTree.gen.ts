@@ -14,6 +14,7 @@ import { Route as FinancialsRouteImport } from './routes/financials'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BuiltForRouteImport } from './routes/built-for'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
@@ -53,6 +54,11 @@ const FaqsRoute = FaqsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuiltForRoute = BuiltForRouteImport.update({
+  id: '/built-for',
+  path: '/built-for',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -132,6 +138,7 @@ const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/built-for': typeof BuiltForRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/features': typeof FeaturesRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/built-for': typeof BuiltForRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/features': typeof FeaturesRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
   '/about': typeof AboutRoute
+  '/built-for': typeof BuiltForRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/features': typeof FeaturesRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/built-for'
     | '/contact'
     | '/faqs'
     | '/features'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/built-for'
     | '/contact'
     | '/faqs'
     | '/features'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_auth'
     | '/about'
+    | '/built-for'
     | '/contact'
     | '/faqs'
     | '/features'
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
   AboutRoute: typeof AboutRoute
+  BuiltForRoute: typeof BuiltForRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
   FeaturesRoute: typeof FeaturesRoute
@@ -304,6 +317,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/built-for': {
+      id: '/built-for'
+      path: '/built-for'
+      fullPath: '/built-for'
+      preLoaderRoute: typeof BuiltForRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -457,6 +477,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
   AboutRoute: AboutRoute,
+  BuiltForRoute: BuiltForRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
   FeaturesRoute: FeaturesRoute,

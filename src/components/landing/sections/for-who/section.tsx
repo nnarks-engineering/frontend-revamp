@@ -13,6 +13,7 @@ import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import ContractorImg from "@/assets/img/landing/contractor.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";
 import AgricultureImg from "@/assets/img/landing/agriculture.webp";
+import { Link } from "@tanstack/react-router";
 
 interface ParallaxProps {
   children: React.ReactNode;
@@ -79,7 +80,7 @@ const personas = [
   { key: "buyerSeller", image: AgricultureImg },
 ];
 
-export default function ForWhoSection() {
+export default function ForWhoSectionTag() {
   const { t } = useTranslation(["landing"]);
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -138,7 +139,7 @@ export default function ForWhoSection() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-32 bg-primary-700 overflow-hidden select-none"
+      className="relative py-20 bg-secondary overflow-hidden select-none"
     >
       {/* Background Decoration */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary-100/50 rounded-full blur-[150px] -translate-y-1/2" />
@@ -146,23 +147,23 @@ export default function ForWhoSection() {
 
       <div className="max-w-[1400px] mx-auto px-4 mb-20 relative z-10 flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1 text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-none font-clash-display">
+          <h2 className="text-4xl md:text-6xl font-black text-foreground mb-6 font-millik">
             {t("userPersonas.title")}
           </h2>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto md:mx-0">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto md:mx-0">
             {t("userPersonas.description")}
           </p>
         </div>
 
         <div className="flex items-center">
-          <div className="h-16 md:h-20 px-8 md:px-10 rounded-full bg-primary flex items-center gap-4 md:gap-6 group cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary-500/20">
-            <div className="size-10 md:size-12 rounded-full bg-white flex items-center justify-center text-primary">
+          <Link to="/built-for" className="h-16 md:h-20 px-8 md:px-10 rounded-full bg-primary flex items-center gap-4 md:gap-6 group cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary-500/20">
+            <div className="size-10 md:size-12 rounded-full bg-secondary flex items-center justify-center text-primary">
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </div>
-            <span className="font-bold text-white text-lg md:text-xl whitespace-nowrap">
+            <span className="font-bold text-foreground text-lg md:text-xl whitespace-nowrap">
                Start Project
             </span>
-          </div>
+          </Link>
         </div>
       </div>
 

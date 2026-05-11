@@ -6,7 +6,6 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/shared/lib/utils";
 
 const flags = [
   { name: "Euro", code: "eu" },
