@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { type StructureItem } from "./locals";
 import { cn } from "@/shared/lib/utils";
-import { CheckCircle2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface StructureCardProps {
@@ -21,8 +20,8 @@ export function StructureCard({
   const isReversed = index % 2 !== 0;
 
   // Type-safe access to features array from translation
-  const featuresRaw = (t as any)(`landing:structure.items.${item.key}.features`, { returnObjects: true });
-  const features = Array.isArray(featuresRaw) ? featuresRaw : [];
+  // const featuresRaw = (t as any)(`landing:structure.items.${item.key}.features`, { returnObjects: true });
+  // const features = Array.isArray(featuresRaw) ? featuresRaw : [];
 
   return (
     <motion.div
