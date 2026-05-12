@@ -60,7 +60,7 @@ export default function WhatWeDoSection() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className="space-y-6 p-6 md:py-0 flex md:block gap-4  transition-colors"
             >
-              <div className="w-14 h-14 aspect-square rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-900">
+              <div className="w-14 h-14 aspect-square bg-primary-50 flex items-center justify-center text-primary-600">
                 <Icon className="w-7 h-7 stroke-[1.5]" />
               </div>
               <p className="text-sm md:text-base font-normal text-foreground">

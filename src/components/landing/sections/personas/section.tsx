@@ -1,97 +1,91 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Section } from "../../Section";
+import { FeatureCard } from "../../FeatureCard";
+
+// Import images for the pain points / personas
+import NurseImg from "@/assets/img/landing/nurse-london.png";
+import EngineerImg from "@/assets/img/landing/engineer-ny.png";
+import TeacherImg from "@/assets/img/landing/teacher-toronto.png";
 import DiasporaImg from "@/assets/img/landing/diaspora.webp";
-import ContractorImg from "@/assets/img/landing/contractor.webp";
-import ContributorsImg from "@/assets/img/landing/contributors.webp";
 import AgricultureImg from "@/assets/img/landing/agriculture.webp";
+import ContractorImg from "@/assets/img/landing/contractor.webp";
 import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
 
 const PersonasSection = () => {
-  const { t } = useTranslation("landing");
+  const { t } = useTranslation(["landing"]);
+  const items = t("landing:aboutWhoWeServe.items", { returnObjects: true }) as string[];
 
-  const personas = [
-    {
-      key: "diasporaInvestor",
-      image: DiasporaImg,
-      color: "bg-secondary/10",
-      accent: "text-primary-700",
-    },
-    {
-      key: "localPartner",
-      image: ContractorImg,
-      color: "bg-secondary/10",
-      accent: "text-primary-700",
-    },
-    {
-      key: "groupContributor",
-      image: ContributorsImg,
-      color: "bg-secondary/10",
-      accent: "text-primary-700",
-    },
-    {
-      key: "buyerSeller",
-      image: AgricultureImg,
-      color: "bg-secondary/10",
-      accent: "text-primary-700",
-    },
+  const images = [
+    NurseImg,
+    EngineerImg,
+    TeacherImg,
+    DiasporaImg,
+    AgricultureImg,
+    ContractorImg,
   ];
 
   return (
- <Section id="personas" className="py-24 relative overflow-hidden bg-white dark:bg-background">
- <DrawingCoilsSvg
-  className="absolute inset-0 w-full h-full text-secondary pointer-events-none"
-  preserveAspectRatio="xMidYMid slice"
-/>
+    <Section id="personas" className="py-24 relative overflow-hidden bg-white dark:bg-background" maxWidth="8xl">
+      <DrawingCoilsSvg
+        className="absolute inset-0 w-full h-full text-secondary/30 pointer-events-none"
+        preserveAspectRatio="xMidYMid slice"
+      />
 
-      <div className="flex flex-col gap-32 max-w-7xl mx-auto px-4">
-        {personas.map((persona, index) => (
-          <motion.div
-            key={persona.key}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`flex flex-col ${
-              index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
-            } items-center gap-8 lg:gap-24`}
-          >
-            {/* Image side with premium frame */}
-            <div className="w-full lg:w-3/5 relative group">
-              {/* Dynamic Background Glow */}
-              <div className={`absolute -inset-10 ${persona.color}  blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-1000 -z-10`} />
-              
-              {/* Main Image Container */}
-              <div className="relative aspect-video sm:aspect-video lg:aspect-video overflow-hidden  bg-secondary/5 lg:p-3 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-slate-100/50">
-                <img
-                  src={persona.image}
-                  alt={t(`userPersonas.roles.${persona.key}.role` as any)}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-in-out"
-                />
-              </div>
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-24 text-center space-y-4">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-primary font-bold tracking-widest uppercase text-sm"
+        >
+          {t("landing:aboutWhoWeServe.title")}
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-4xl md:text-7xl font-bold font-clash-display text-slate-900"
+        >
+          {t("landing:aboutWhoWeServe.headline")}
+        </motion.h2>
+      </div>
 
-            {/* Text content side */}
-            <div className="w-full lg:w-2/5 space-y-6">
-              <div className="space-y-2 md:space-y-4">
-                <span className={`text-sm font-bold tracking-[0.2em] uppercase ${persona.accent}`}>
-                  {t(`userPersonas.roles.${persona.key}.role` as any)}
-                </span>
-                
-                <h3 className="text-2xl md:text-3xl font-medium font-clash-display text-slate-900 ">
-                  {t(`userPersonas.roles.${persona.key}.profile` as any)}
-                </h3>
-              </div>
-              
-              <div className="relative">
-                <p className=" text-slate-600 leading-relaxed max-w-xl">
-                  {t(`userPersonas.roles.${persona.key}.coreNeed` as any)}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+      <div className="flex flex-col gap-12 max-w-[1400px] mx-auto px-4">
+        {items.map((item, index) => (
+          <FeatureCard
+            key={index}
+            id={`case-study-${index}`}
+            title={`Case Study 0${index + 1}`}
+            description={item}
+            image={images[index % images.length]}
+            index={index}
+            pill={{
+              customContent: (
+                <div className="flex items-center gap-4 text-primary font-bold cursor-pointer group/link p-2 pr-4">
+                  <span>How we solve this</span>
+                  <div className="w-8 h-px bg-primary/30 group-hover/link:w-12 transition-all" />
+                </div>
+              )
+            }}
+          />
         ))}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mt-32 max-w-5xl mx-auto text-center px-4"
+      >
+        <div className="p-12 md:p-20 bg-primary rounded-[4rem] text-white shadow-2xl shadow-primary/20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <h4 className="text-2xl md:text-4xl font-bold font-clash-display leading-tight relative z-10">
+            {t("landing:aboutWhoWeServe.footer")}
+          </h4>
+        </div>
+      </motion.div>
     </Section>
   );
 };

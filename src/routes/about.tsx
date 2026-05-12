@@ -23,13 +23,14 @@ function AboutPage() {
       <div className="flex flex-col w-full mt-20 overflow-hidden">
         <VisionSection />
         <TickerSection/>
+          <PillarsSection />
         <StorySection />
         <WhatWeDoSection />
         {/* <ImpactSection /> */}
-        <PillarsSection />
+      
         <WhoWeServeSection />
-        <TeamSection />
-        <JoinSection />
+        {/* <TeamSection /> */}
+        {/* <JoinSection /> */}
       </div>
       <CtaSection />
       <LandingFooter />

@@ -1,15 +1,15 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
+import BrickPattern from "@/assets/brick-pattern.svg?react";
+import GhanaImage from "@/assets/landing/ghana.webp";
+import PapaerPlaneSvg from "@/assets/paper_plane_line.svg?react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import GhanaImage from "@/assets/landing/ghana.webp"
-import PapaerPlaneSvg from "@/assets/paper_plane_line.svg?react"
-import BrickPattern from "@/assets/brick-pattern.svg?react"
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Section } from "../../Section";
 
-export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
+export default function ModulesTagSection(props: { hideModuleButton?: boolean }) {
   const { t } = useTranslation(["landing"]);
-  const {hideModuleButton = true} = props;
+  const { hideModuleButton = true } = props;
   return (
     <Section
       id="modules"
@@ -17,7 +17,7 @@ export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
       contentClassName="flex flex-col-reverse lg:flex-row-reverse items-stretch  justify-center gap-12 flex-1 pt-16 h-full"
     >
       {/* Background Image Layer with Opacity */}
-      <div 
+      <div
         className="absolute inset-0 bg-fixed pointer-events-none opacity-20"
         style={{
           backgroundImage: `url(${GhanaImage})`,
@@ -46,13 +46,13 @@ export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
         className="max-w-2xl h-full text-center md:text-left "
       >
         <h2 className="text-4xl font-bold font-clash-display text-white mb-4">
-            {t("userPersonas.title")}
+          {t("userPersonas.title")}
         </h2>
         <p className="text-slate-300 mb-8 text-lg leading-relaxed">
           {t("userPersonas.description")}
         </p>
 
-        {!hideModuleButton &&<Link
+        {!hideModuleButton && <Link
           to="/modules"
           className="group relative mb-10 overflow-hidden w-44 inline-flex items-center justify-center whitespace-nowrap text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground h-12 px-6 py-2 shadow-lg shadow-primary/20 hover:shadow-primary/40"
         >
