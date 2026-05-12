@@ -10,7 +10,7 @@ export default function AboutHeroSection() {
   const { t } = useTranslation(["landing"]);
 
   return (
-    <Section className="bg-background overflow-clip relative h-[calc(100dvh-10rem)] min-h-fit" contentClassName=" w-full  py-10 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+    <Section className="bg-background overflow-clip relative h-[calc(100dvh-10rem)] max-h-fit min-h-fit" contentClassName=" w-full  py-10 px-4 sm:px-8 md:px-16 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
 
       <motion.div
         className="flex-1 space-y-6 z-10 "

@@ -29,6 +29,10 @@ function AboutPage() {
         <StorySection />
 
 
+       
+        <PillarsSection />
+        <WhoWeServeSection /> 
+        
         <CallToAction
           title={t("landing:aboutWhatWeDo.footer").split(".")[0]}
           description={t("landing:aboutWhatWeDo.footer").split(".").slice(1).join(".")}
@@ -43,8 +47,6 @@ function AboutPage() {
             href: "/r",
           }}
         />
-        <PillarsSection />
-        <WhoWeServeSection />
         <MissionVisionSection />
 
 

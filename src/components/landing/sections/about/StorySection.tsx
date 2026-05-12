@@ -109,14 +109,14 @@ export default function StorySection() {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
         
         {/* Constrained Content Wrapper */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 relative z-10">
+        <div className="max-w-[90rem] mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 relative z-10">
             {/* Left Side: Headline and Buttons */}
             <div className="lg:w-1/3 space-y-10 lg:sticky lg:top-40">
               <motion.h3 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl md:text-5xl font-black text-white font-millik leading-tight uppercase"
+                className="text-3xl md:text-5xl font-black text-white font-millik leading-tight"
               >
                 {t("landing:aboutStory.resolution")}
               </motion.h3>
