@@ -3,10 +3,10 @@ import ContractorImg from "@/assets/img/landing/contractor.webp";
 import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Section } from "../../Section";
+import { Section } from "../../../Section";
 
 
-export default function VisionSection() {
+export default function AboutHeroSection() {
   const { t } = useTranslation(["landing"]);
 
   return (

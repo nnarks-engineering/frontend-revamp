@@ -45,7 +45,7 @@ export function FeatureCard({
     >
       {/* Image Side */}
       <div className={cn(
-        "relative w-full md:w-1/2 aspect-square md:aspect-auto min-h-[300px] md:min-h-[450px] overflow-hidden rounded-b-3xl md:rounded-none",
+        "relative w-full md:w-1/2 md:aspect-auto min-h-[300px] md:min-h-[450px] overflow-hidden rounded-b-3xl md:rounded-none",
         isReversed ? "md:rounded-bl-3xl" : "md:rounded-br-3xl"
       )}>
         <motion.img
@@ -109,7 +109,7 @@ export function FeatureCard({
         >
           <motion.h3 
             layoutId={layoutIdPrefix ? `title-${id}-${layoutIdPrefix}` : undefined}
-            className="text-3xl md:text-5xl font-millik leading-[1.1] text-foreground mb-6"
+            className="text-3xl md:text-5xl font-millik leading-[1.1] text-foreground"
           >
             {title}
           </motion.h3>
