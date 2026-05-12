@@ -160,8 +160,8 @@ export default function ForWhoSectionTag() {
             <div className="size-10 md:size-12 rounded-full bg-secondary flex items-center justify-center text-primary">
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </div>
-            <span className="font-medium text-primary-900 text-base md:text-xl whitespace-nowrap">
-               Start Project
+            <span className="font-bold text-foreground text-lg md:text-xl whitespace-nowrap">
+               {t("landing:aboutWhoWeServe.exploreDetails")}
             </span>
           </Link>
         </div>

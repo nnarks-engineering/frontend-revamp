@@ -35,37 +35,37 @@ const ModulesRoute = ModulesRouteImport.update({
   id: '/modules',
   path: '/modules',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/modules.lazy').then((d) => d.Route))
 const FinancialsRoute = FinancialsRouteImport.update({
   id: '/financials',
   path: '/financials',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/financials.lazy').then((d) => d.Route))
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/features.lazy').then((d) => d.Route))
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/faqs.lazy').then((d) => d.Route))
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/contact.lazy').then((d) => d.Route))
 const BuiltForRoute = BuiltForRouteImport.update({
   id: '/built-for',
   path: '/built-for',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/built-for.lazy').then((d) => d.Route))
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
