@@ -8,7 +8,7 @@ import illustration from "@/assets/img/landing/illustration.webp";
 export default function WhatWeDoSection() {
   const { t } = useTranslation(["landing"]);
   const items = t("landing:aboutWhatWeDo.items", { returnObjects: true }) as string[];
-  const footerText = t("landing:aboutWhatWeDo.footer");
+  // const footerText = t("landing:aboutWhatWeDo.footer");
 
   const icons = [ShieldCheck, Eye, CheckCircle2, Smartphone];
 
@@ -71,20 +71,7 @@ export default function WhatWeDoSection() {
         })}
       </div>
 
-      {footerText && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <div className="p-8 md:p-12 bg-primary-950 text-white rounded-[2.5rem] shadow-xl">
-            <p className="text-xl md:text-2xl font-medium leading-relaxed opacity-90">
-              {footerText}
-            </p>
-          </div>
-        </motion.div>
-      )}
     </Section>
   );
 }
+

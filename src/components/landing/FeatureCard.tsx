@@ -59,7 +59,7 @@ export function FeatureCard({
         {pill && (
           <motion.div 
             layoutId={layoutIdPrefix ? `pill-${id}-${layoutIdPrefix}` : undefined}
-            className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white rounded-full p-1.5 pr-6 shadow-lg border border-white/20 backdrop-blur-sm overflow-hidden z-20"
+            className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white rounded-full p-1.5 pr-6 border border-white/20 backdrop-blur-sm overflow-hidden z-20"
           >
             {pill.customContent ? (
               pill.customContent

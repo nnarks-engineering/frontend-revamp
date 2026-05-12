@@ -10,9 +10,9 @@ interface CtaAction {
 }
 
 interface CallToActionProps {
-  title: string;
+  title?: string;
   description?: string;
-  primaryCta: CtaAction;
+  primaryCta?: CtaAction;
   secondaryCta?: CtaAction;
   background?: {
     type: "image" | "video";
@@ -85,12 +85,12 @@ export function CallToAction({
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "circOut" }}
-          className="bg-white rounded-tr-4xl p-12 md:p-24 shadow-2xl flex flex-col items-center text-center space-y-10"
+          className="bg-white rounded-tr-4xl p-12 md:p-16 shadow-2xl flex flex-col items-center text-center space-y-10"
         >
           <div className="space-y-6 max-w-4xl">
-            <h2 className="text-4xl md:text-7xl font-black font-clash-display text-black tracking-tight leading-[0.9]">
+            {title && <h2 className="text-4xl md:text-7xl font-black font-millik text-black tracking-tight leading-[0.9]">
               {title}
-            </h2>
+            </h2>}
             {description && (
               <p className="text-sm md:text-base text-muted-foreground">
                 {description}
@@ -99,7 +99,7 @@ export function CallToAction({
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            <CtaButton action={primaryCta} variant="default" />
+            {primaryCta && <CtaButton action={primaryCta} variant="default" />}
             {secondaryCta && (
               <CtaButton action={secondaryCta} variant="outline" />
             )}

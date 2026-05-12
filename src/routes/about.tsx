@@ -7,7 +7,9 @@ import { createFileRoute } from "@tanstack/react-router";
 // import ImpactSection from "@/components/landing/sections/about/ImpactSection";
 import PillarsSection from "@/components/landing/sections/about/PillarsSection";
 import WhoWeServeSection from "@/components/landing/sections/about/WhoWeServeSection";
-import CtaSection from "@/components/landing/sections/cta/section";
+import { CallToAction } from "@/components/landing/CallToAction";
+import { useTranslation } from "react-i18next";
+import CtaBg from "@/assets/img/landing/vibrant_abstract_cta_bg.png";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import TickerSection from "@/components/landing/sections/ticker/section";
 
@@ -16,16 +18,34 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { t } = useTranslation(["landing", "common"]);
   return (
     <div className="min-h-screen font-poppins text-foreground selection:bg-primary/30 ">
       <Navbar />
       <div className="flex flex-col w-full mt-20 overflow-hidden">
         <AboutHeroSection />
         <TickerSection />
-        <MissionVisionSection />
+
         <StorySection />
+
+
+        <CallToAction
+          title={t("landing:aboutWhatWeDo.footer").split(".")[0]}
+          description={t("landing:aboutWhatWeDo.footer").split(".").slice(1).join(".")}
+          className="mt-20"
+          background={{
+            type: "image",
+            src: CtaBg  
+          }}
+
+          primaryCta={{
+            text: t("landing:aboutJoin.cta"),
+            href: "/r",
+          }}
+        />
         <PillarsSection />
         <WhoWeServeSection />
+        <MissionVisionSection />
 
 
         <WhatWeDoSection />
@@ -34,7 +54,7 @@ function AboutPage() {
         {/* <TeamSection /> */}
         {/* <JoinSection /> */}
       </div>
-      <CtaSection />
+
       <LandingFooter />
     </div>
   );

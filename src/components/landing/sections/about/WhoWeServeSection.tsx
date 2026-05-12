@@ -136,7 +136,7 @@ export default function WhoWeServeSection() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 bg-white overflow-hidden select-none"
+      className="relative py-24 bg-primary-50 overflow-hidden select-none"
     >
       <div className="max-w-7xl mx-auto px-4 mb-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
         <div className="flex-1 text-center md:text-left space-y-6">
