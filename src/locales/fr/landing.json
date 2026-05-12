@@ -176,7 +176,9 @@
       "Les entrepreneurs ne sont payés que lorsque les étapes sont confirmées terminées",
       "Vous approuvez tout depuis votre téléphone à Londres, New York ou partout dans le monde"
     ],
-    "footer": "Nous ne sommes pas une banque. Nous ne sommes pas un service de transfert d'argent. Nous sommes l'infrastructure de confiance dont la diaspora a toujours eu besoin mais n'a jamais eue."
+    "footer": "Nous ne sommes pas une banque. Nous ne sommes pas un service de transfert d'argent. Nous sommes l'infrastructure de confiance dont la diaspora a toujours eu besoin mais n'a jamais eue.",
+    "ctaTitle": "Nous ne sommes pas une banque",
+    "ctaDescription": "Nous ne sommes pas un service de transfert d'argent. Nous sommes l'infrastructure de confiance dont la diaspora a toujours eu besoin mais n'a jamais eue."
   },
   "aboutMission": {
     "title": "Notre Mission",
@@ -234,6 +236,7 @@
   },
   "aboutWhoWeServe": {
     "title": "Qui Nous Servons",
+    "exploreDetails": "Explorer les détails",
     "headline": "Si vous avez déjà :",
     "items": [
       "Envoyé de l'argent au pays pour le voir disparaître",
@@ -501,6 +504,7 @@
     "cta": "Explorer la Solution"
   },
   "ticker": {
+    "forAll": "Pour tous",
     "title": "Déplacements Fluides à Travers le Monde",
     "description": "Envoyez, dépensez et recevez de l'argent dans le monde entier avec le taux de change réel. Utilisé par des millions de personnes pour sa transparence et sa rapidité.",
     "cta": "Explorer Nos Tarifs"

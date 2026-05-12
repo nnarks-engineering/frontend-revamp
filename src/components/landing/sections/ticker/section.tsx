@@ -6,6 +6,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const flags = [
   { name: "Euro", code: "eu" },
@@ -27,6 +28,7 @@ const flags = [
 ];
 
 export default function TickerSection() {
+  const { t } = useTranslation(["landing"]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Track scroll progress of the section
@@ -58,7 +60,7 @@ export default function TickerSection() {
         >
           {/* THE "PUSHER" - The Lead Item */}
           <div className="flex-shrink-0 h-20 md:h-24 px-8 md:px-10 rounded-full bg-primary w-[30rem] flex justify-end  items-center gap-4 md:gap-6 group cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20">
-            <span className="font-bold text-primary-950 text-xl md:text-2xl">For All</span>
+            <span className="font-bold text-primary-950 text-xl md:text-2xl">{t("landing:ticker.forAll")}</span>
             <div className="size-12 md:size-14 rounded-full bg-primary-950 flex items-center justify-center text-primary">
               <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
             </div>

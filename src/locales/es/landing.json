@@ -176,7 +176,9 @@
       "Los contratistas solo cobran cuando se confirman los hitos finalizados",
       "Usted aprueba todo desde su teléfono en Londres, Nueva York o cualquier lugar del mundo"
     ],
-    "footer": "No somos un banco. No somos un servicio de transferencia de dinero. Somos la infraestructura de confianza que la diáspora siempre necesitó pero nunca tuvo."
+    "footer": "No somos un banco. No somos un servicio de transferencia de dinero. Somos la infraestructura de confianza que la diáspora siempre necesitó pero nunca tuvo.",
+    "ctaTitle": "No somos un banco",
+    "ctaDescription": "No somos un servicio de transferencia de dinero. Somos la infraestructura de confianza que la diáspora siempre necesitó pero nunca tuvo."
   },
   "aboutMission": {
     "title": "Nuestra Misión",
@@ -234,6 +236,7 @@
   },
   "aboutWhoWeServe": {
     "title": "A Quién Servimos",
+    "exploreDetails": "Explorar detalles",
     "headline": "Si alguna vez ha:",
     "items": [
       "Enviado dinero a casa y visto cómo desaparecía",
@@ -501,6 +504,7 @@
     "cta": "Explorar Solución"
   },
   "ticker": {
+    "forAll": "Para todos",
     "title": "Movimiento Fluido Alrededor del Mundo",
     "description": "Envíe, gaste y reciba dinero globalmente con el tipo de cambio real. Confiado por millones por su transparencia y velocidad.",
     "cta": "Explora Nuestras Tarifas"

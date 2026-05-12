@@ -34,8 +34,8 @@ function AboutPage() {
         <WhoWeServeSection /> 
         
         <CallToAction
-          title={t("landing:aboutWhatWeDo.footer").split(".")[0]}
-          description={t("landing:aboutWhatWeDo.footer").split(".").slice(1).join(".")}
+          title={t("landing:aboutWhatWeDo.ctaTitle")}
+          description={t("landing:aboutWhatWeDo.ctaDescription")}
           className="mt-20"
           background={{
             type: "image",

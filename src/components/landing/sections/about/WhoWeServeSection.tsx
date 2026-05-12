@@ -161,7 +161,7 @@ export default function WhoWeServeSection() {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </div>
             <span className="font-bold text-foreground text-lg md:text-xl whitespace-nowrap">
-               Explore Details
+               {t("landing:aboutWhoWeServe.exploreDetails")}
             </span>
           </Link>
         </div>

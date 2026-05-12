@@ -26,7 +26,7 @@ export default function PillarsSection() {
           whileInView={{ opacity: 1, x: 0 }}
           className="text-5xl md:text-7xl font-black font-millik uppercase tracking-tight text-neutral-900"
         >
-          OUR PILLARS
+          {t("landing:aboutPillars.title")}
         </motion.h2>
 
         {/* Tab Navigation */}
@@ -89,8 +89,8 @@ export default function PillarsSection() {
                          <div className="size-5 border-2 !border-primary-600 rounded-full opacity-50" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium text-foreground">Protocol Active</span>
-                        <span className="text-xs text-muted-foreground">Nnarks Verified</span>
+                        <span className="text-sm font-medium text-foreground">{t("landing:aboutPillars.protocolActive")}</span>
+                        <span className="text-xs text-muted-foreground">{t("landing:aboutPillars.verified")}</span>
                       </div>
                     </motion.div>
                   </div>

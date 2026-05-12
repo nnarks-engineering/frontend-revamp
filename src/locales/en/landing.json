@@ -176,7 +176,9 @@
       "Contractors only get paid when milestones are confirmed finished",
       "You approve everything from your phone in London, New York, or anywhere in the world"
     ],
-    "footer": "We're not a bank. We're not a money transfer service. We're the trust infrastructure the diaspora has always needed but never had."
+    "footer": "We're not a bank. We're not a money transfer service. We're the trust infrastructure the diaspora has always needed but never had.",
+    "ctaTitle": "We're not a bank.",
+    "ctaDescription": "We're not a money transfer service. We're the trust infrastructure the diaspora has always needed but never had."
   },
   "aboutMission": {
     "title": "Our Mission",
@@ -211,6 +213,8 @@
   },
   "aboutPillars": {
     "title": "Key Pillars",
+    "protocolActive": "Protocol Active",
+    "verified": "Nnarks Verified",
     "items": [
       {
         "title": "Trust Through Transparency",
@@ -236,6 +240,7 @@
   },
   "aboutWhoWeServe": {
     "title": "Who We Serve",
+    "exploreDetails": "Explore Details",
     "headline": "If you've ever:",
     "items": [
       "Sent money home and watched it disappear",
@@ -543,6 +548,7 @@
     "cta": "Explore Solution"
   },
   "ticker": {
+    "forAll": "For All",
     "title": "Seamlessly Moving Across the Globe",
     "description": "Send, spend, and receive money globally with the real exchange rate. Trusted by millions for transparency and speed.",
     "cta": "Explore Our Rates"
