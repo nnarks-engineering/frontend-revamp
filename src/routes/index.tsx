@@ -11,6 +11,7 @@ import ModulesTagSection from "@/components/landing/sections/modules/section";
 import StructureSection from "@/components/landing/sections/structure/section";
 // import TickerSection from "@/components/landing/sections/ticker/section";
 import ForWhoSectionTag from "@/components/landing/sections/for-who/section";
+// import WhyNnarksSection from "@/components/landing/sections/why-nnarks/section";
 
 export const Route = createFileRoute("/")(
   {
@@ -27,6 +28,7 @@ function LandingPage() {
       <ModulesTagSection hideModuleButton={false} />
       <StructureSection />
       <IndustriesSection />
+      {/* <WhyNnarksSection /> */}
       {/* <CustomersSection /> */}
       <ForWhoSectionTag />
       <TestimonialsSection />

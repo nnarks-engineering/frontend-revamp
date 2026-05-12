@@ -135,6 +135,7 @@ export default function WhoWeServeSection() {
 
   return (
     <section 
+      id="who-we-serve"
       ref={sectionRef}
       className="relative py-24 bg-primary-50 overflow-hidden select-none"
     >

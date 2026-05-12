@@ -140,8 +140,8 @@
     }
   },
   "productVision": {
-    "title": "We're Building the Bridge Your Investments Deserve",
-    "statement": "Born from broken promises and abandoned dreams, Nnarks exists to ensure no diaspora investor ever has to choose between staying connected to home and protecting their hard-earned money.",
+    "title": "Building Trust, Ensuring Execution",
+    "statement": "The accountability layer between your dreams and their completion. Secure, verified, and transparent.",
     "valueProposition": "Nnarks was founded on a simple but radical promise: diaspora investments shouldn't require blind faith.",
     "positioning": "We believe you should be able to build a home, start a business, or support your family in Ghana without wondering if your money will disappear. You shouldn't have to choose between trusting people and protecting your future."
   },
@@ -269,6 +269,7 @@
     "title": "Join the Movement",
     "description": "Nnarks isn't just a company, it's a movement to reclaim diaspora investment from fraudsters and rebuild trust between Africa and its global family.",
     "cta": "Start A Project Now",
+    "learnMore": "More about nnarks",
     "roles": {
       "contractors": "Apply to Join our verified network of vendors",
       "partners": "Get in Touch to collaborate",

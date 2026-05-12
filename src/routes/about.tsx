@@ -25,7 +25,6 @@ function AboutPage() {
       <div className="flex flex-col w-full mt-20 overflow-hidden">
         <AboutHeroSection />
         <TickerSection />
-
         <StorySection />
 
 

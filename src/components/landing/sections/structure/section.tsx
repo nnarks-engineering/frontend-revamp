@@ -7,6 +7,7 @@ import { X, ArrowRight } from "lucide-react";
 import { Section } from "../../Section";
 import { useTranslation } from "react-i18next";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Link } from "@tanstack/react-router";
 
 export default function StructureSection() {
   const { t } = useTranslation(["landing"]);
@@ -35,7 +36,14 @@ export default function StructureSection() {
         <SectionHeader
           eyebrow={t("landing:structure.badge")}
           title={t("landing:structure.title")}
-          description={t("landing:structure.description")}
+          description={
+            <>
+              {t("landing:structure.description")}{" "}
+              <Link to="/about" hash="pillars" className="text-primary-600 italic hover:underline inline-flex items-center gap-1 group/link">
+                Learn more about our pillars
+              </Link>
+            </>
+          }
           titleSize="lg"
           className="mb-20 text-left backdrop-blur-3xl"
           align='left'

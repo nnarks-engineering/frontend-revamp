@@ -7,6 +7,7 @@ import HeroIllustration from './hero-illustration'
 import HeroCharacters from "./Herocharacters"
 import { HeroHeader } from './HeroHeader'
 import { Link } from "@tanstack/react-router"
+import { ArrowRight } from "lucide-react"
 
 export function HeroSection() {
     const { t } = useTranslation(['landing', 'common'])
@@ -83,12 +84,16 @@ export function HeroSection() {
                                 )}
                             </h1>
 
-                            <p className="text-base sm:text-lg md:text-xl mb-4 md:mb-6 max-w-2xl mx-auto text-foreground/70">
-                                {t('landing:hero.description')}
+                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-foreground/70">
+                                {t('landing:hero.description')}{" "}
+                                <Link to="/about" hash="story" className="text-primary-700  hover:underline inline-flex items-center gap-1 group/link cursor-pointer">
+                                    why we care
+                                    <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+                                </Link>
                             </p>
                             <Link to="/register">
                                 <div
-                                    className="bg-primary w-fit mx-auto hover:bg-primary/90 px-6 py-2.5  text-sm font-bold text-white transition-all active:scale-95"
+                                    className="bg-primary w-56 mx-auto hover:bg-primary/90 px-6 py-3.5 text-sm font-bold text-white transition-all active:scale-95 shadow-lg shadow-primary/20"
                                 >
                                     {t('common:auth.getStarted')}
                                 </div>

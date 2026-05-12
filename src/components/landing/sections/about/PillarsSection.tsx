@@ -18,7 +18,7 @@ export default function PillarsSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Section className="bg-white py-24 md:py-32" contentClassName="max-w-7xl mx-auto px-4">
+    <Section id="pillars" className="bg-white py-24 md:py-32" contentClassName="max-w-7xl mx-auto px-4">
       <div className="space-y-4">
         {/* Header Section */}
         <motion.h2 

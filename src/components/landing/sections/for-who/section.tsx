@@ -156,11 +156,11 @@ export default function ForWhoSectionTag() {
         </div>
 
         <div className="flex items-center">
-          <Link to="/built-for" className="h-16 md:h-20 px-8 md:px-10 rounded-full bg-primary flex items-center gap-4 md:gap-6 group cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary-500/20">
+          <Link to="/built-for" className="h-16 md:h-20 px-8 md:px-10 rounded-full bg-primary flex items-center gap-4 md:gap-6 group cursor-pointer transition-all active:scale-95">
             <div className="size-10 md:size-12 rounded-full bg-secondary flex items-center justify-center text-primary">
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </div>
-            <span className="font-bold text-foreground text-lg md:text-xl whitespace-nowrap">
+            <span className="font-medium text-primary-900 text-base md:text-xl whitespace-nowrap">
                Start Project
             </span>
           </Link>

@@ -8,7 +8,7 @@ import PapaerPlaneSvg from "@/assets/paper_plane_line.svg?react"
 import BrickPattern from "@/assets/brick-pattern.svg?react"
 
 export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
-  const { t } = useTranslation(["landing"]);
+  const { t } = useTranslation(["landing", "common"]);
   const {hideModuleButton = true} = props;
   return (
     <Section
@@ -54,10 +54,19 @@ export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
 
         {!hideModuleButton &&<Link
           to="/modules"
-          className="group relative mb-10 overflow-hidden w-44 inline-flex items-center justify-center whitespace-nowrap text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground h-12 px-6 py-2 shadow-lg shadow-primary/20 hover:shadow-primary/40"
+          className="group relative mb-10 overflow-hidden w-44 inline-flex items-center justify-center whitespace-nowrap text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border-2 !border-primary text-primary h-12 px-6 py-2 shadow-lg shadow-primary/10 hover:bg-primary/5 hover:shadow-primary/20"
         >
-          <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-full">
+          <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-full uppercase tracking-wider">
             {t("landing:modules.cta")}
+          </span>
+          <ArrowRight className="absolute inset-0 m-auto transition-transform duration-300 -translate-x-30 group-hover:translate-x-0 w-5 h-5" />
+        </Link>}
+        {!hideModuleButton &&<Link
+          to="/about"
+          className="group relative mb-10 ml-4 overflow-hidden w-56 inline-flex items-center justify-center whitespace-nowrap text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground h-12 px-6 py-2 shadow-lg shadow-primary/20 hover:shadow-primary/40"
+        >
+          <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-full uppercase tracking-wider">
+            {t("landing:aboutJoin.learnMore")}
           </span>
           <ArrowRight className="absolute inset-0 m-auto transition-transform duration-300 -translate-x-30 group-hover:translate-x-0 w-5 h-5" />
         </Link>}

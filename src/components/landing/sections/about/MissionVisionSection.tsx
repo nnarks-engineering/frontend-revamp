@@ -14,6 +14,7 @@ export default function MissionVisionSection() {
 
   return (
     <Section
+      id="mission-vision"
       className=" py-20 md:py-32 "
       contentClassName="max-w-7xl mx-auto px-6"
     >

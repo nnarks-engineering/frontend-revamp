@@ -140,8 +140,8 @@
     }
   },
   "productVision": {
-    "title": "Nous construisons le pont que vos investissements méritent",
-    "statement": "Née de promesses non tenues et de rêves abandonnés, Nnarks existe pour garantir qu'aucun investisseur de la diaspora n'ait plus jamais à choisir entre rester lié à son pays et protéger son argent durement gagné.",
+    "title": "Bâtir la Confiance, Garantir l'Exécution",
+    "statement": "La couche de responsabilité entre vos rêves et leur réalisation. Sécurisée, vérifiée et transparente.",
     "valueProposition": "Nnarks a été fondée sur une promesse simple mais radicale : les investissements de la diaspora ne devraient pas nécessiter une foi aveugle.",
     "positioning": "Nous pensons que vous devriez être en mesure de construire une maison, de lancer une entreprise ou de soutenir votre famille au Ghana sans craindre que votre argent ne disparaisse. Vous ne devriez pas avoir à choisir entre faire confiance aux gens et protéger votre avenir."
   },
@@ -267,6 +267,7 @@
     "title": "Rejoignez le Mouvement",
     "description": "Nnarks n'est pas seulement une entreprise, c'est un mouvement pour reconquérir l'investissement de la diaspora et rebâtir la confiance entre l'Afrique et sa famille mondiale.",
     "cta": "Lancer un Projet Maintenant",
+    "learnMore": "En savoir plus sur Nnarks",
     "roles": {
       "contractors": "Postulez pour rejoindre notre réseau de vendeurs vérifiés",
       "partners": "Contactez-nous pour collaborer",

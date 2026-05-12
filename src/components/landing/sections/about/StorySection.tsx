@@ -32,7 +32,7 @@ export default function StorySection() {
   }, [emblaApi]);
 
   return (
-    <div className="flex flex-col ">
+    <div id="story" className="flex flex-col ">
       {/* 1. Hero Container: Constrained Section with Globe Card */}
       <Section className="py-10 md:py-20 overflow-visible" contentClassName="max-w-7xl mx-auto px-4">
         <div className="relative pt-48 md:pt-40">
