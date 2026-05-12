@@ -1,54 +1,90 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Section } from "../../Section";
-import { CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Eye, CheckCircle2, Smartphone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import illustration from "@/assets/img/landing/illustration.webp";
 
 export default function WhatWeDoSection() {
   const { t } = useTranslation(["landing"]);
   const items = t("landing:aboutWhatWeDo.items", { returnObjects: true }) as string[];
+  const footerText = t("landing:aboutWhatWeDo.footer");
+
+  const icons = [ShieldCheck, Eye, CheckCircle2, Smartphone];
 
   return (
-    <Section className="bg-neutral-50 py-32" contentClassName="max-w-7xl mx-auto px-4">
-      <div className="flex flex-col gap-24">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h2 className="text-4xl md:text-6xl font-bold font-clash-display leading-tight">
+    <Section className="bg-white py-24 md:py-32" contentClassName="max-w-7xl mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24 md:mb-32">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="space-y-10"
+        >
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 leading-[1.1] font-clash-display">
             {t("landing:aboutWhatWeDo.headline")}
           </h2>
-          <p className="text-xl md:text-2xl text-foreground/60 leading-relaxed">
+          <p className="text-sm md:text-base text-neutral-500 max-w-xl leading-relaxed font-medium">
             {t("landing:aboutWhatWeDo.description")}
           </p>
-        </div>
+          <Button className="rounded-full px-8 text-primary-50 py-7 text-lg font-bold transition-all hover:scale-105 active:scale-95 border-none shadow-none">
+            {t("landing:aboutJoin.cta")}
+          </Button>
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "circOut" }}
+          className="flex justify-center lg:justify-end"
+        >
+          <img 
+            src={illustration} 
+            alt="Accountability Illustration" 
+            className="w-full max-w-[500px] h-auto object-contain"
+          />
+        </motion.div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {items.map((item, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x !divide-primary divide-dashed lg:grid-cols-4 mb-20">
+        {items.map((item, index) => {
+          const Icon = icons[index] || ShieldCheck;
+          return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex gap-6 items-start p-8 bg-white rounded-3xl shadow-sm border border-neutral-100"
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="space-y-6 p-6 md:py-0 flex md:block gap-4  transition-colors"
             >
-              <CheckCircle2 className="w-8 h-8 text-primary shrink-0 mt-1" />
-              <p className="text-xl md:text-2xl font-bold leading-tight">
+              <div className="w-14 h-14 aspect-square rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-900">
+                <Icon className="w-7 h-7 stroke-[1.5]" />
+              </div>
+              <p className="text-sm md:text-base font-normal text-foreground">
                 {item}
               </p>
             </motion.div>
-          ))}
-        </div>
-
-        <div className="max-w-5xl mx-auto w-full">
-            <div className="relative group">
-                <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative bg-primary-950 text-white rounded-[3rem] p-12 md:p-20 text-center space-y-8">
-                    <p className="text-2xl md:text-4xl font-medium leading-relaxed max-w-4xl mx-auto">
-                        {t("landing:aboutWhatWeDo.footer")}
-                    </p>
-                    <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
-                </div>
-            </div>
-        </div>
+          );
+        })}
       </div>
+
+      {footerText && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <div className="p-8 md:p-12 bg-primary-950 text-white rounded-[2.5rem] shadow-xl">
+            <p className="text-xl md:text-2xl font-medium leading-relaxed opacity-90">
+              {footerText}
+            </p>
+          </div>
+        </motion.div>
+      )}
     </Section>
   );
 }

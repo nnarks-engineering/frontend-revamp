@@ -19,7 +19,7 @@ export default function VisionSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl md:text-5xl font-clash-display font-bold">
+        <h2 className="text-4xl md:text-6xl md:-mr-12 font-millik font-bold">
           {t("landing:productVision.title")}
         </h2>
         <p className="text-sm md:text-base text-foreground/80">
