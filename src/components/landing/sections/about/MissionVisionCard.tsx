@@ -43,19 +43,19 @@ export function MissionVisionCard({
 
         {/* Right: Content */}
         <div className="flex flex-col items-center sm:items-start sm:text-left space-y-4 flex-1">
-          <div className={cn(
+          {/* <div className={cn(
             "w-12 h-12 flex items-center justify-center border-2 shrink-0 rounded-2xl",
             color === "warning" ? "border-primary-600/20 bg-primary-600/5" : "border-primary-600/20 bg-primary-600/5"
           )}>
             <Icon className="w-6 h-6 text-primary-700" strokeWidth={1.5} />
-          </div>
+          </div> */}
 
 
           <div className="space-y-2">
-            <h3 className="text-xl md:text-2xl font-black font-clash-display tracking-wider text-neutral-900 uppercase">
+            <h3 className={cn(color === "warning" ? "text-primary-950" : "text-gray-900", "text-xl md:text-2xl font-black font-clash-display tracking-wider uppercase")}>
               {title}
             </h3>
-            <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-medium line-clamp-4">
+            <p className={cn(color === "warning" ? "text-primary-900" : "text-gray-600", "text-sm md:text-base leading-relaxed font-medium line-clamp-4")}>
               {description}
             </p>
           </div>

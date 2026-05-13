@@ -38,7 +38,7 @@ function AboutPage() {
 
           primaryCta={{
             text: t("landing:aboutJoin.cta"),
-            href: "/r",
+            href: "/register",
           }}
         />
         <MissionVisionSection />

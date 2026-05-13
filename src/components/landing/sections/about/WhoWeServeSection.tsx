@@ -144,14 +144,14 @@ export default function WhoWeServeSection() {
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase"
+            className="inline-block px-4 py-1.5 rounded-tr-full bg-primary/10 text-primary text-sm font-medium uppercase"
           >
             {t("landing:aboutWhoWeServe.title")}
           </motion.span>
-          <h2 className="text-4xl md:text-7xl font-bold font-clash-display text-foreground leading-tight">
+          <h2 className="text-4xl md:text-7xl font-bold font-millik text-primary-950">
             {t("userPersonas.title")}
           </h2>
-          <p className="text-muted-foreground text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed">
+          <p className="text-primary-800 text-base md:text-lg max-w-2xl mx-auto md:mx-0 leading-relaxed">
             {t("userPersonas.description")}
           </p>
         </div>
