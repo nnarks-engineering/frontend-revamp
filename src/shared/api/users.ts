@@ -7,14 +7,14 @@
 import { api } from "@/shared/lib/api-client";
 import { USER_ENDPOINTS } from "@/shared/lib/constants";
 import type {
-  UserRead,
   ProfileRead,
   ProfileUpdate,
+  UserRead,
   UserUpdate,
   UsernameAvailability,
 } from "@/types/users";
 
-export type { UserRead, ProfileRead, ProfileUpdate, UserUpdate, UsernameAvailability };
+export type { ProfileRead, ProfileUpdate, UserRead, UserUpdate, UsernameAvailability };
 
 // ── API calls ────────────────────────────────────────────────────────
 

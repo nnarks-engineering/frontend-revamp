@@ -34,13 +34,13 @@ import {
     updateMilestone,
     updateProject,
 } from "@/shared/api/projects";
+import { QUERY_KEYS } from "@/shared/lib/constants";
 import type {
     EvidenceRead,
     EvidenceSubmit,
     PageParams,
     PaginatedResponse,
 } from "@/types/common";
-import { QUERY_KEYS } from "@/shared/lib/constants";
 
 import type {
     InviteMemberPayload,

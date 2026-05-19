@@ -12,6 +12,13 @@
 import { api } from "@/shared/lib/api-client";
 import { PROJECT_ENDPOINTS } from "@/shared/lib/constants";
 import type {
+  AIPlanTaskResponse,
+  EvidenceRead,
+  EvidenceSubmit,
+  PageParams,
+  PaginatedResponse,
+} from "@/types/common";
+import type {
   InviteMemberPayload,
   Milestone,
   MilestoneCreatePayload,
@@ -21,15 +28,8 @@ import type {
   ProjectDashboard,
   ProjectUpdatePayload,
 } from "@/types/projects";
-import type {
-  PaginatedResponse,
-  PageParams,
-  EvidenceRead,
-  EvidenceSubmit,
-  AIPlanTaskResponse,
-} from "@/types/common";
 
-export type { PaginatedResponse, PageParams, EvidenceRead, EvidenceSubmit, AIPlanTaskResponse };
+export type { AIPlanTaskResponse, EvidenceRead, EvidenceSubmit, PageParams, PaginatedResponse };
 
 // ── Project CRUD ──────────────────────────────────────────────────────
 

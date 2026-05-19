@@ -6,8 +6,8 @@
  * interceptor in `api-client.ts`.
  */
 
-import { STORAGE_KEYS } from "./constants";
 import type { TokenPair } from "@/types/auth";
+import { STORAGE_KEYS } from "./constants";
 
 export type { TokenPair };
 

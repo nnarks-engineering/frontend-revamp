@@ -14,26 +14,26 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
-import { QUERY_KEYS } from "@/shared/lib/constants";
 import { isAuthenticated } from "@/shared/lib/auth";
+import { QUERY_KEYS } from "@/shared/lib/constants";
 
 import {
-  sendMagicLink,
-  verifyMagicLink,
-  requestPasswordSignup,
-  verifyPasswordSignup,
   loginWithPassword,
   logout,
+  requestPasswordSignup,
+  sendMagicLink,
+  verifyMagicLink,
+  verifyPasswordSignup,
 } from "@/shared/api/auth";
 
 import { getMe, getMyProfile } from "@/shared/api/users";
-import type { UserRead, ProfileRead } from "@/types/users";
 import type {
   MagicLinkRequest,
   MagicVerifyRequest,
   PasswordSignupRequest,
   PasswordSignupVerifyRequest,
 } from "@/types/auth";
+import type { ProfileRead, UserRead } from "@/types/users";
 
 // ═══════════════════════════════════════════════════════════════════
 // Queries

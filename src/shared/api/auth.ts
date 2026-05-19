@@ -6,26 +6,23 @@
  * AxiosResponse, so consumers stay decoupled from HTTP details.
  */
 
-import axios from "axios";
 import { api } from "@/shared/lib/api-client";
+import { clearTokens, getAccessToken, storeTokens } from "@/shared/lib/auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "@/shared/lib/constants";
-import { storeTokens, clearTokens, getAccessToken } from "@/shared/lib/auth";
 import type {
-  TokenPair,
   MagicLinkRequest,
+  MagicLoginResponse,
   MagicVerifyRequest,
   PasswordSignupRequest,
   PasswordSignupVerifyRequest,
-  MagicLoginResponse,
+  TokenPair,
 } from "@/types/auth";
+import axios from "axios";
 
 export type {
-  TokenPair,
-  MagicLinkRequest,
-  MagicVerifyRequest,
+  MagicLinkRequest, MagicLoginResponse, MagicVerifyRequest,
   PasswordSignupRequest,
-  PasswordSignupVerifyRequest,
-  MagicLoginResponse,
+  PasswordSignupVerifyRequest, TokenPair
 };
 
 // ── Magic link flow ──────────────────────────────────────────────────

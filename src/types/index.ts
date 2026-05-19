@@ -5,8 +5,9 @@
 export * from "./auth";
 export * from "./common";
 export * from "./enums";
-export * from "./projects";
-export * from "./wallet";
 export * from "./messaging";
+export * from "./projects";
 export * from "./proposals";
 export * from "./users";
+export * from "./wallet";
+
