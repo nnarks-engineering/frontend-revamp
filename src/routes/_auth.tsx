@@ -9,9 +9,9 @@ function AuthLayoutWrapper() {
   return (
     <div className="auth-layout-container">
       <AuthLayout>
- <Outlet />
+        <Outlet />
       </AuthLayout>
-     
+
     </div>
   )
 }

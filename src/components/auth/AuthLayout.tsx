@@ -114,7 +114,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
       <div
         style={{ backgroundImage: `url(${realBuilding})` }}
         className="hidden lg:flex lg:w-1/2 bg-secondary relative overflow-hidden items-center justify-center  border-border">
-        <RoundingLine className="w-full h-full" />
+        <RoundingLine className="w-full h-full text-secondary" />
         <div className=" absolute mx-auto top-10  flex-col items-start mb-6">
           <Link to="/" className="flex items-center gap-2 group">
             <LogoText className="h-10 w-auto text-primary group-hover:scale-105 transition-transform" />

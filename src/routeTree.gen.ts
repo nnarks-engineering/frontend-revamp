@@ -16,6 +16,7 @@ import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BuiltForRouteImport } from './routes/built-for'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as OnboardingRouteImport } from './routes/_onboarding'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,6 +28,7 @@ import { Route as AppInboxRouteImport } from './routes/_app/inbox'
 import { Route as AppEscrowRouteImport } from './routes/_app/escrow'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
+import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/_onboarding/account-type/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
 import { Route as AppCirclesIndexRouteImport } from './routes/_app/circles/index'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
@@ -66,6 +68,10 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/_onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -119,6 +125,14 @@ const AppAdvisoryRoute = AppAdvisoryRouteImport.update({
   path: '/advisory',
   getParentRoute: () => AppRoute,
 } as any)
+const OnboardingAccountTypeIndexRoute =
+  OnboardingAccountTypeIndexRouteImport.update({
+    id: '/account-type/',
+    path: '/account-type/',
+    getParentRoute: () => OnboardingRoute,
+  } as any).lazy(() =>
+    import('./routes/_onboarding/account-type/index.lazy').then((d) => d.Route),
+  )
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -155,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/circles/': typeof AppCirclesIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
+  '/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -176,12 +191,14 @@ export interface FileRoutesByTo {
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/circles': typeof AppCirclesIndexRoute
   '/projects': typeof AppProjectsIndexRoute
+  '/account-type': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
+  '/_onboarding': typeof OnboardingRouteWithChildren
   '/about': typeof AboutRoute
   '/built-for': typeof BuiltForRoute
   '/contact': typeof ContactRoute
@@ -200,6 +217,7 @@ export interface FileRoutesById {
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/_app/circles/': typeof AppCirclesIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
+  '/_onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -223,6 +241,7 @@ export interface FileRouteTypes {
     | '/projects/$projectId'
     | '/circles/'
     | '/projects/'
+    | '/account-type/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -244,11 +263,13 @@ export interface FileRouteTypes {
     | '/projects/$projectId'
     | '/circles'
     | '/projects'
+    | '/account-type'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_auth'
+    | '/_onboarding'
     | '/about'
     | '/built-for'
     | '/contact'
@@ -267,12 +288,14 @@ export interface FileRouteTypes {
     | '/_app/projects/$projectId'
     | '/_app/circles/'
     | '/_app/projects/'
+    | '/_onboarding/account-type/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
+  OnboardingRoute: typeof OnboardingRouteWithChildren
   AboutRoute: typeof AboutRoute
   BuiltForRoute: typeof BuiltForRoute
   ContactRoute: typeof ContactRoute
@@ -331,6 +354,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_onboarding': {
+      id: '/_onboarding'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
@@ -410,6 +440,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdvisoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_onboarding/account-type/': {
+      id: '/_onboarding/account-type/'
+      path: '/account-type'
+      fullPath: '/account-type/'
+      preLoaderRoute: typeof OnboardingAccountTypeIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
     '/_app/projects/': {
       id: '/_app/projects/'
       path: '/projects'
@@ -472,10 +509,23 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
+interface OnboardingRouteChildren {
+  OnboardingAccountTypeIndexRoute: typeof OnboardingAccountTypeIndexRoute
+}
+
+const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingAccountTypeIndexRoute: OnboardingAccountTypeIndexRoute,
+}
+
+const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
+  OnboardingRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
+  OnboardingRoute: OnboardingRouteWithChildren,
   AboutRoute: AboutRoute,
   BuiltForRoute: BuiltForRoute,
   ContactRoute: ContactRoute,
