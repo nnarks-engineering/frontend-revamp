@@ -6,41 +6,15 @@
 
 import { api } from "@/shared/lib/api-client";
 import { USER_ENDPOINTS } from "@/shared/lib/constants";
+import type {
+  UserRead,
+  ProfileRead,
+  ProfileUpdate,
+  UserUpdate,
+  UsernameAvailability,
+} from "@/types/users";
 
-// ── Types (mirror backend UserRead / ProfileRead) ────────────────────
-
-export interface UserRead {
-  id: string;
-  email: string;
-  username: string | null;
-  is_active: boolean;
-  is_superuser: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface ProfileRead {
-  id: string;
-  user_id: string;
-  display_name: string | null;
-  bio: string | null;
-  avatar_url: string | null;
-  updated_at: string;
-}
-
-export interface ProfileUpdate {
-  display_name?: string;
-  bio?: string;
-  avatar_url?: string;
-}
-
-export interface UserUpdate {
-  username?: string;
-}
-
-export interface UsernameAvailability {
-  available: boolean;
-}
+export type { UserRead, ProfileRead, ProfileUpdate, UserUpdate, UsernameAvailability };
 
 // ── API calls ────────────────────────────────────────────────────────
 

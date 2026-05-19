@@ -26,3 +26,16 @@ export interface ProfileUpdatePayload {
   bio?: string;
   avatar_url?: string;
 }
+
+// ── API-aligned aliases ───────────────────────────────────────────────
+export type UserRead = User;
+export type ProfileRead = Profile;
+export type ProfileUpdate = ProfileUpdatePayload;
+
+export interface UserUpdate {
+  username?: string;
+}
+
+export interface UsernameAvailability {
+  available: boolean;
+}

@@ -24,13 +24,16 @@ import {
   verifyPasswordSignup,
   loginWithPassword,
   logout,
-  type MagicLinkRequest,
-  type MagicVerifyRequest,
-  type PasswordSignupRequest,
-  type PasswordSignupVerifyRequest,
 } from "@/shared/api/auth";
 
-import { getMe, getMyProfile, type UserRead, type ProfileRead } from "@/shared/api/users";
+import { getMe, getMyProfile } from "@/shared/api/users";
+import type { UserRead, ProfileRead } from "@/types/users";
+import type {
+  MagicLinkRequest,
+  MagicVerifyRequest,
+  PasswordSignupRequest,
+  PasswordSignupVerifyRequest,
+} from "@/types/auth";
 
 // ═══════════════════════════════════════════════════════════════════
 // Queries

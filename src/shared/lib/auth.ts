@@ -7,15 +7,9 @@
  */
 
 import { STORAGE_KEYS } from "./constants";
+import type { TokenPair } from "@/types/auth";
 
-// ── Types ────────────────────────────────────────────────────────────
-export interface TokenPair {
-  access_token: string;
-  refresh_token: string;
-  token_type: "bearer";
-  access_token_expires_at: string;
-  refresh_token_expires_at: string;
-}
+export type { TokenPair };
 
 // ── Read ─────────────────────────────────────────────────────────────
 export function getAccessToken(): string | null {

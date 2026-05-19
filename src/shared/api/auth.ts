@@ -9,31 +9,24 @@
 import axios from "axios";
 import { api } from "@/shared/lib/api-client";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "@/shared/lib/constants";
-import { storeTokens, clearTokens, getAccessToken, type TokenPair } from "@/shared/lib/auth";
+import { storeTokens, clearTokens, getAccessToken } from "@/shared/lib/auth";
+import type {
+  TokenPair,
+  MagicLinkRequest,
+  MagicVerifyRequest,
+  PasswordSignupRequest,
+  PasswordSignupVerifyRequest,
+  MagicLoginResponse,
+} from "@/types/auth";
 
-// ── Request / Response types (mirror backend schemas) ────────────────
-
-export interface MagicLinkRequest {
-  email: string;
-}
-
-export interface MagicVerifyRequest {
-  token?: string;
-  code?: string;
-}
-
-export interface PasswordSignupRequest {
-  email: string;
-  password: string;
-}
-
-export interface PasswordSignupVerifyRequest {
-  code: string;
-}
-
-export interface MagicLoginResponse {
-  message: string;
-}
+export type {
+  TokenPair,
+  MagicLinkRequest,
+  MagicVerifyRequest,
+  PasswordSignupRequest,
+  PasswordSignupVerifyRequest,
+  MagicLoginResponse,
+};
 
 // ── Magic link flow ──────────────────────────────────────────────────
 
