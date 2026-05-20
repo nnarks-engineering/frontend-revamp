@@ -15,7 +15,7 @@ interface MissionVisionCardProps {
 export function MissionVisionCard({
   title,
   description,
-  icon: Icon,
+  icon: _Icon,
   illustration,
   color,
 }: MissionVisionCardProps) {

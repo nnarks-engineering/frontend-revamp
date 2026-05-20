@@ -20,6 +20,7 @@ import { Route as OnboardingRouteImport } from './routes/_onboarding'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingVendorRouteImport } from './routes/_onboarding/vendor'
 import { Route as AuthVerifyRouteImport } from './routes/_auth/verify'
 import { Route as AuthSuccessRouteImport } from './routes/_auth/success'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
@@ -31,6 +32,9 @@ import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
 import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/_onboarding/account-type/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
 import { Route as AppCirclesIndexRouteImport } from './routes/_app/circles/index'
+import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/verify'
+import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
+import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
 
 const ModulesRoute = ModulesRouteImport.update({
@@ -84,6 +88,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingVendorRoute = OnboardingVendorRouteImport.update({
+  id: '/vendor',
+  path: '/vendor',
+  getParentRoute: () => OnboardingRoute,
 } as any)
 const AuthVerifyRoute = AuthVerifyRouteImport.update({
   id: '/verify',
@@ -143,6 +152,21 @@ const AppCirclesIndexRoute = AppCirclesIndexRouteImport.update({
   path: '/circles/',
   getParentRoute: () => AppRoute,
 } as any)
+const AuthVendorVerifyRoute = AuthVendorVerifyRouteImport.update({
+  id: '/vendor/verify',
+  path: '/vendor/verify',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthVendorRegisterRoute = AuthVendorRegisterRouteImport.update({
+  id: '/vendor/register',
+  path: '/vendor/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthVendorLoginRoute = AuthVendorLoginRouteImport.update({
+  id: '/vendor/login',
+  path: '/vendor/login',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   id: '/projects/$projectId',
   path: '/projects/$projectId',
@@ -166,7 +190,11 @@ export interface FileRoutesByFullPath {
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
+  '/vendor': typeof OnboardingVendorRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/vendor/login': typeof AuthVendorLoginRoute
+  '/vendor/register': typeof AuthVendorRegisterRoute
+  '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles/': typeof AppCirclesIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
   '/account-type/': typeof OnboardingAccountTypeIndexRoute
@@ -188,7 +216,11 @@ export interface FileRoutesByTo {
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
+  '/vendor': typeof OnboardingVendorRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/vendor/login': typeof AuthVendorLoginRoute
+  '/vendor/register': typeof AuthVendorRegisterRoute
+  '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles': typeof AppCirclesIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/account-type': typeof OnboardingAccountTypeIndexRoute
@@ -214,7 +246,11 @@ export interface FileRoutesById {
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/success': typeof AuthSuccessRoute
   '/_auth/verify': typeof AuthVerifyRoute
+  '/_onboarding/vendor': typeof OnboardingVendorRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/_auth/vendor/login': typeof AuthVendorLoginRoute
+  '/_auth/vendor/register': typeof AuthVendorRegisterRoute
+  '/_auth/vendor/verify': typeof AuthVendorVerifyRoute
   '/_app/circles/': typeof AppCirclesIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/_onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
@@ -238,7 +274,11 @@ export interface FileRouteTypes {
     | '/register'
     | '/success'
     | '/verify'
+    | '/vendor'
     | '/projects/$projectId'
+    | '/vendor/login'
+    | '/vendor/register'
+    | '/vendor/verify'
     | '/circles/'
     | '/projects/'
     | '/account-type/'
@@ -260,7 +300,11 @@ export interface FileRouteTypes {
     | '/register'
     | '/success'
     | '/verify'
+    | '/vendor'
     | '/projects/$projectId'
+    | '/vendor/login'
+    | '/vendor/register'
+    | '/vendor/verify'
     | '/circles'
     | '/projects'
     | '/account-type'
@@ -285,7 +329,11 @@ export interface FileRouteTypes {
     | '/_auth/register'
     | '/_auth/success'
     | '/_auth/verify'
+    | '/_onboarding/vendor'
     | '/_app/projects/$projectId'
+    | '/_auth/vendor/login'
+    | '/_auth/vendor/register'
+    | '/_auth/vendor/verify'
     | '/_app/circles/'
     | '/_app/projects/'
     | '/_onboarding/account-type/'
@@ -384,6 +432,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_onboarding/vendor': {
+      id: '/_onboarding/vendor'
+      path: '/vendor'
+      fullPath: '/vendor'
+      preLoaderRoute: typeof OnboardingVendorRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
     '/_auth/verify': {
       id: '/_auth/verify'
       path: '/verify'
@@ -461,6 +516,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCirclesIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_auth/vendor/verify': {
+      id: '/_auth/vendor/verify'
+      path: '/vendor/verify'
+      fullPath: '/vendor/verify'
+      preLoaderRoute: typeof AuthVendorVerifyRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/vendor/register': {
+      id: '/_auth/vendor/register'
+      path: '/vendor/register'
+      fullPath: '/vendor/register'
+      preLoaderRoute: typeof AuthVendorRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/vendor/login': {
+      id: '/_auth/vendor/login'
+      path: '/vendor/login'
+      fullPath: '/vendor/login'
+      preLoaderRoute: typeof AuthVendorLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_app/projects/$projectId': {
       id: '/_app/projects/$projectId'
       path: '/projects/$projectId'
@@ -498,6 +574,9 @@ interface AuthRouteChildren {
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthSuccessRoute: typeof AuthSuccessRoute
   AuthVerifyRoute: typeof AuthVerifyRoute
+  AuthVendorLoginRoute: typeof AuthVendorLoginRoute
+  AuthVendorRegisterRoute: typeof AuthVendorRegisterRoute
+  AuthVendorVerifyRoute: typeof AuthVendorVerifyRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -505,15 +584,20 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthRegisterRoute: AuthRegisterRoute,
   AuthSuccessRoute: AuthSuccessRoute,
   AuthVerifyRoute: AuthVerifyRoute,
+  AuthVendorLoginRoute: AuthVendorLoginRoute,
+  AuthVendorRegisterRoute: AuthVendorRegisterRoute,
+  AuthVendorVerifyRoute: AuthVendorVerifyRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface OnboardingRouteChildren {
+  OnboardingVendorRoute: typeof OnboardingVendorRoute
   OnboardingAccountTypeIndexRoute: typeof OnboardingAccountTypeIndexRoute
 }
 
 const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingVendorRoute: OnboardingVendorRoute,
   OnboardingAccountTypeIndexRoute: OnboardingAccountTypeIndexRoute,
 }
 
