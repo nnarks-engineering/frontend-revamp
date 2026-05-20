@@ -1,6 +1,7 @@
 /**
  * User & Profile types — mirrors backend UserRead, ProfileRead schemas.
  */
+import type { SessionType } from "./enums";
 
 export interface User {
   id: string;
@@ -8,6 +9,7 @@ export interface User {
   username: string | null;
   is_active: boolean;
   is_superuser: boolean;
+  is_llm: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -15,16 +17,16 @@ export interface User {
 export interface Profile {
   id: string;
   user_id: string;
-  display_name: string | null;
-  bio: string | null;
-  avatar_url: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  other_names: string | null;
   updated_at: string;
 }
 
 export interface ProfileUpdatePayload {
-  display_name?: string;
-  bio?: string;
-  avatar_url?: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  other_names?: string | null;
 }
 
 // ── API-aligned aliases ───────────────────────────────────────────────
@@ -38,4 +40,24 @@ export interface UserUpdate {
 
 export interface UsernameAvailability {
   available: boolean;
+}
+
+// ── Agent settings ────────────────────────────────────────────────────
+
+export interface ToolSettings {
+  dm: string[];
+  ai_dm: string[];
+  group: string[];
+  project: string[];
+  proposal: string[];
+}
+
+export interface AgentSettingsRead {
+  id: string;
+  user_id: string;
+  tools: ToolSettings;
+}
+
+export interface AgentSettingsUpdate {
+  tools?: Partial<Record<Lowercase<SessionType>, string[]>>;
 }

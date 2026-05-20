@@ -52,6 +52,7 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
       { code: otp.join("") },
       {
         onError: () => {
+          toast.error("Invalid or expired code. Please check and try again.")
           setOtp(["", "", "", "", "", ""])
         },
       },

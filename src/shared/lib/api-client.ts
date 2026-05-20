@@ -75,11 +75,16 @@ api.interceptors.response.use(
       _retry?: boolean;
     };
 
-    // Only intercept 401s that are NOT the refresh endpoint itself
-    const isRefreshEndpoint =
-      originalRequest.url === AUTH_ENDPOINTS.REFRESH;
+    // Only intercept 401s that are NOT unauthenticated auth endpoints.
+    // Verify/login endpoints return 401 for wrong credentials — that is NOT
+    // a session-expiry and must NOT trigger a refresh/redirect to /login.
+    const isUnauthenticatedEndpoint =
+      originalRequest.url === AUTH_ENDPOINTS.REFRESH ||
+      originalRequest.url === AUTH_ENDPOINTS.MAGIC_VERIFY ||
+      originalRequest.url === AUTH_ENDPOINTS.PASSWORD_SIGNUP_VERIFY ||
+      originalRequest.url === AUTH_ENDPOINTS.PASSWORD_LOGIN;
 
-    if (error.response?.status !== 401 || originalRequest._retry || isRefreshEndpoint) {
+    if (error.response?.status !== 401 || originalRequest._retry || isUnauthenticatedEndpoint) {
       return Promise.reject(error);
     }
 

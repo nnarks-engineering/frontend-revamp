@@ -27,6 +27,7 @@ import type {
   ProjectCreatePayload,
   ProjectDashboard,
   ProjectUpdatePayload,
+  AcceptProjectInvitationPayload,
 } from "@/types/projects";
 
 export type { AIPlanTaskResponse, EvidenceRead, EvidenceSubmit, PageParams, PaginatedResponse };
@@ -75,10 +76,10 @@ export async function inviteMember(
 }
 
 /** POST /projects/invitations/accept — accept a project invitation */
-export async function acceptInvitation(inviteToken: string): Promise<void> {
-  await api.post(PROJECT_ENDPOINTS.ACCEPT_INVITATION, {
-    invite_token: inviteToken,
-  });
+export async function acceptInvitation(
+  data: AcceptProjectInvitationPayload,
+): Promise<void> {
+  await api.post(PROJECT_ENDPOINTS.ACCEPT_INVITATION, data);
 }
 
 // ── Milestones ────────────────────────────────────────────────────────

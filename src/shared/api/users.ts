@@ -7,6 +7,8 @@
 import { api } from "@/shared/lib/api-client";
 import { USER_ENDPOINTS } from "@/shared/lib/constants";
 import type {
+  AgentSettingsRead,
+  AgentSettingsUpdate,
   ProfileRead,
   ProfileUpdate,
   UserRead,
@@ -14,7 +16,7 @@ import type {
   UsernameAvailability,
 } from "@/types/users";
 
-export type { ProfileRead, ProfileUpdate, UserRead, UserUpdate, UsernameAvailability };
+export type { AgentSettingsRead, AgentSettingsUpdate, ProfileRead, ProfileUpdate, UserRead, UserUpdate, UsernameAvailability };
 
 // ── API calls ────────────────────────────────────────────────────────
 
@@ -28,6 +30,11 @@ export async function getMe(): Promise<UserRead> {
 export async function updateMe(data: UserUpdate): Promise<UserRead> {
   const res = await api.patch<UserRead>(USER_ENDPOINTS.ME, data);
   return res.data;
+}
+
+/** DELETE /users/me — soft-deletes the current user account */
+export async function deleteMe(): Promise<void> {
+  await api.delete(USER_ENDPOINTS.ME);
 }
 
 /** GET /users/me/profile — requires auth */
@@ -51,3 +58,18 @@ export async function checkUsernameAvailable(
   );
   return res.data;
 }
+
+/** GET /users/me/agent-settings */
+export async function getAgentSettings(): Promise<AgentSettingsRead> {
+  const res = await api.get<AgentSettingsRead>(USER_ENDPOINTS.AGENT_SETTINGS);
+  return res.data;
+}
+
+/** PATCH /users/me/agent-settings */
+export async function updateAgentSettings(
+  data: AgentSettingsUpdate,
+): Promise<AgentSettingsRead> {
+  const res = await api.patch<AgentSettingsRead>(USER_ENDPOINTS.AGENT_SETTINGS, data);
+  return res.data;
+}
+

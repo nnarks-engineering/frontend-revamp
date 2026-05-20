@@ -94,5 +94,13 @@
     "vite-plugin-svgr": "^5.2.0",
     "vitest": "^4.1.4",
     "web-vitals": "^5.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@tailwindcss/oxide",
+      "lightningcss",
+      "rollup"
+    ]
   }
 }

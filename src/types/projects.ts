@@ -16,7 +16,7 @@ import type {
 export interface ProjectMember {
   id: string;
   project_id: string;
-  user_id: string | null;
+  company_id: string | null;
   email: string;
   role: MemberRole;
   status: MemberStatus;
@@ -28,7 +28,7 @@ export interface Milestone {
   project_id: string;
   title: string;
   description: string;
-  order: number;
+  position: number;
   status: MilestoneStatus;
   budget_amount: number; // Decimal → number on the frontend
   start_date: string;    // ISO date string
@@ -36,12 +36,13 @@ export interface Milestone {
   estimated_duration: number | null;
   required_evidence_types: EvidenceType[];
   created_by: MilestoneCreatedBy;
+  created_by_company_id: string;
 }
 
 /* ── ProjectRead ── */
 export interface Project {
   id: string;
-  owner_id: string;
+  owner_company_id: string;
   title: string;
   description: string;
   industry: Industry;
@@ -78,6 +79,7 @@ export interface WalletRead {
 /* ── Create / Update DTOs ── */
 
 export interface ProjectCreatePayload {
+  owner_company_id: string;
   title: string;
   description: string;
   industry: Industry;
@@ -100,9 +102,10 @@ export interface ProjectUpdatePayload {
 }
 
 export interface MilestoneCreatePayload {
+  company_id: string;
   title: string;
   description: string;
-  order: number;
+  position: number;
   budget_amount: number;
   start_date: string;
   end_date: string;
@@ -122,4 +125,16 @@ export interface MilestoneUpdatePayload {
 export interface InviteMemberPayload {
   email: string;
   role?: MemberRole;
+}
+
+export interface AcceptProjectInvitationPayload {
+  invite_token: string;
+  company_id: string;
+}
+
+export interface ReviewSubmitPayload {
+  company_id: string;
+  reviewer_role: string;
+  status: string;
+  comment?: string | null;
 }

@@ -6,6 +6,15 @@
  */
 
 export * from "./auth";
+export * from "./companies";
+export * from "./kyc";
+export * from "./messaging";
+export * from "./notifications";
+export * from "./onboarding";
 export * from "./projects";
+export * from "./proposals";
+export * from "./schedules";
+export * from "./services";
 export * from "./users";
+export * from "./wallet";
 
