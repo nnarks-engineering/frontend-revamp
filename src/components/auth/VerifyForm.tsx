@@ -1,11 +1,11 @@
-import * as React from "react"
-import { useTranslation } from "react-i18next"
 import { Link } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
-import { SubmitButton } from "./SubmitButton"
-import { OTPInput } from "./OTPInput"
-import { SuccessView } from "./SuccessView"
+import * as React from "react"
+import { useTranslation } from "react-i18next"
 import { AuthHeader } from "./AuthHeader"
+import { OTPInput } from "./OTPInput"
+import { SubmitButton } from "./SubmitButton"
+import { SuccessView } from "./SuccessView"
 
 interface VerifyFormProps {
   email?: string
@@ -31,12 +31,12 @@ export function VerifyForm({ email }: VerifyFormProps) {
     if (!isOtpComplete) return
 
     setIsSubmitting(true)
-    
+
     try {
       // Mock API call
       console.log("Verifying code:", otp.join(""), "for email:", email)
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      
+
       setIsSuccess(true)
     } catch (error) {
       console.error("Verification failed:", error)
@@ -51,7 +51,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
 
   return (
     <div className="space-y-6">
-      <AuthHeader 
+      <AuthHeader
         title={t("common:auth.verifyEmail")}
         description={t("common:auth.enter6DigitCode", { email: email || "your email" })}
       />
@@ -67,7 +67,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
         </div>
 
         <div className="space-y-4">
-          <SubmitButton 
+          <SubmitButton
             loading={isSubmitting}
             disabled={!isOtpComplete}
           >
@@ -89,8 +89,8 @@ export function VerifyForm({ email }: VerifyFormProps) {
       </form>
 
       <div className="text-center">
-        <Link 
-          to="/login" 
+        <Link
+          to="/login"
           className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
         >
           {t("common:auth.backToLogin")}

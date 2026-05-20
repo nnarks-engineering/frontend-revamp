@@ -19,14 +19,14 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from "axios";
 
-import { API_BASE_URL, AUTH_ENDPOINTS } from "./constants";
 import {
+  clearTokens,
   getAccessToken,
   getRefreshToken,
   storeTokens,
-  clearTokens,
   type TokenPair,
 } from "./auth";
+import { API_BASE_URL, AUTH_ENDPOINTS } from "./constants";
 
 // ── Axios instance ───────────────────────────────────────────────────
 export const api = axios.create({
