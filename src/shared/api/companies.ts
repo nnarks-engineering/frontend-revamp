@@ -29,7 +29,7 @@ export type {
   CompanyMember,
   CompanyMemberInvite,
   CompanyMemberUpdate,
-  CompanyUpdate,
+  CompanyUpdate
 };
 
 // ── Company CRUD ──────────────────────────────────────────────────────

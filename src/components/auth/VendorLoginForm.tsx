@@ -1,11 +1,12 @@
+import * as React from "react"
 import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
-import * as React from "react"
 import { z } from "zod"
 
 import {
   useSendMagicLink,
+  useLoginWithPassword,
 } from "@/shared/hooks/use-auth"
 import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"
@@ -14,11 +15,11 @@ import { SubmitButton } from "./SubmitButton"
 // ─── Schemas ────────────────────────────────────────────────────────────────
 
 const magicSchema = z.object({
-  email: z.string().email({ message: "Enter a valid email address" }),
+  email: z.email({ message: "Enter a valid email address" }),
 })
 
 const passwordSchema = z.object({
-  email: z.string().email({ message: "Enter a valid email address" }),
+  email: z.email({ message: "Enter a valid email address" }),
   password: z.string().min(1, { message: "Password is required" }),
 })
 
@@ -27,8 +28,8 @@ const passwordSchema = z.object({
 type Mode = "magic" | "password"
 
 interface ModeToggleProps {
-  mode: Mode
-  onChange: (m: Mode) => void
+  readonly mode: Mode
+  readonly onChange: (m: Mode) => void
 }
 
 function ModeToggle({ mode, onChange }: ModeToggleProps) {
@@ -95,9 +96,8 @@ function MagicLinkForm() {
       }}
       className="space-y-5 animate-in slide-in-from-right-4 duration-300"
     >
-      <form.Field
-        name="email"
-        children={(field) => (
+      <form.Field name="email">
+        {(field) => (
           <FormField
             label="Work email"
             field={field}
@@ -107,11 +107,10 @@ function MagicLinkForm() {
             autoFocus
           />
         )}
-      />
+      </form.Field>
 
-      <form.Subscribe
-        selector={(s) => [s.canSubmit, s.isSubmitting] as const}
-        children={([canSubmit, isSubmitting]) => (
+      <form.Subscribe selector={(s) => [s.canSubmit, s.isSubmitting] as const}>
+        {([canSubmit, isSubmitting]) => (
           <SubmitButton
             loading={isSubmitting || sendMagicLink.isPending}
             disabled={!canSubmit}
@@ -122,7 +121,7 @@ function MagicLinkForm() {
             <ArrowRight className="ml-auto h-4 w-4" />
           </SubmitButton>
         )}
-      />
+      </form.Subscribe>
     </form>
   )
 }
@@ -130,17 +129,17 @@ function MagicLinkForm() {
 // ─── Password sub-form ───────────────────────────────────────────────────────
 
 function PasswordForm() {
-  // const login = useVendorLoginWithPassword()
+  const login = useLoginWithPassword()
 
   const form = useForm({
     defaultValues: { email: "", password: "" },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: passwordSchema as any },
     onSubmit: async ({ value }) => {
-      // await login.mutateAsync({
-      //   email: value.email,
-      //   password: value.password,
-      // })
+      await login.mutateAsync({
+        email: value.email,
+        password: value.password,
+      })
     },
   })
 
@@ -153,9 +152,8 @@ function PasswordForm() {
       }}
       className="space-y-5 animate-in slide-in-from-right-4 duration-300"
     >
-      <form.Field
-        name="email"
-        children={(field) => (
+      <form.Field name="email">
+        {(field) => (
           <FormField
             label="Work email"
             field={field}
@@ -165,11 +163,10 @@ function PasswordForm() {
             autoFocus
           />
         )}
-      />
+      </form.Field>
 
-      <form.Field
-        name="password"
-        children={(field) => (
+      <form.Field name="password">
+        {(field) => (
           <FormField
             label="Password"
             field={field}
@@ -178,11 +175,10 @@ function PasswordForm() {
             autoComplete="current-password"
           />
         )}
-      />
+      </form.Field>
 
-      <form.Subscribe
-        selector={(s) => [s.canSubmit, s.isSubmitting] as const}
-        children={([canSubmit, isSubmitting]) => (
+      <form.Subscribe selector={(s) => [s.canSubmit, s.isSubmitting] as const}>
+        {([canSubmit, isSubmitting]) => (
           <SubmitButton
             loading={isSubmitting || login.isPending}
             disabled={!canSubmit}
@@ -192,7 +188,7 @@ function PasswordForm() {
             <ArrowRight className="ml-auto h-4 w-4" />
           </SubmitButton>
         )}
-      />
+      </form.Subscribe>
     </form>
   )
 }

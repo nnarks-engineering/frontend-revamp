@@ -19,6 +19,7 @@ import type {
   PaginatedResponse,
 } from "@/types/common";
 import type {
+  AcceptProjectInvitationPayload,
   InviteMemberPayload,
   Milestone,
   MilestoneCreatePayload,
@@ -27,7 +28,6 @@ import type {
   ProjectCreatePayload,
   ProjectDashboard,
   ProjectUpdatePayload,
-  AcceptProjectInvitationPayload,
 } from "@/types/projects";
 
 export type { AIPlanTaskResponse, EvidenceRead, EvidenceSubmit, PageParams, PaginatedResponse };

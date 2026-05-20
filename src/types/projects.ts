@@ -2,14 +2,14 @@
  * Project types — mirrors backend ProjectRead / ProjectDashboardRead schemas.
  */
 import type {
+  EvidenceType,
   Industry,
-  ProjectType,
-  ProjectStatus,
   MemberRole,
   MemberStatus,
-  MilestoneStatus,
   MilestoneCreatedBy,
-  EvidenceType,
+  MilestoneStatus,
+  ProjectStatus,
+  ProjectType,
 } from "./enums";
 
 /* ── MemberRead ── */
