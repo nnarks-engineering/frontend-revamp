@@ -4,14 +4,38 @@ import { toast } from "sonner";
 
 import {
   skipVendorProfile,
+  submitPersonalInfo,
   submitVendorProfile,
+  type PersonalInfoPayload,
   type VendorProfilePayload,
 } from "@/shared/api/onboarding";
-import { QUERY_KEYS } from "@/shared/lib/constants";
+import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 
-const DASHBOARD = "/dashboard" as const;
+const VENDOR_HOME = "/dashboard" as const;
+// const ONBOARDING_ROUTE = "/vendor" as const;
 
-/** Submit vendor profile (company name + description), then go to dashboard. */
+// ── Personal info ─────────────────────────────────────────────────────
+
+/** PATCH /users/me/profile — save first & last name, then advance step. */
+export function useSubmitPersonalInfo() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: PersonalInfoPayload) => submitPersonalInfo(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
+    },
+    onError: (err: Error) => {
+      toast.error("Couldn't save your name", {
+        description: err.message ?? "Please try again.",
+      });
+    },
+  });
+}
+
+// ── Company setup ─────────────────────────────────────────────────────
+
+/** POST /companies — create the vendor's company, then go to dashboard. */
 export function useSubmitVendorProfile() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -19,11 +43,12 @@ export function useSubmitVendorProfile() {
   return useMutation({
     mutationFn: (data: VendorProfilePayload) => submitVendorProfile(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
-      navigate({ to: DASHBOARD });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
+      localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
+      navigate({ to: VENDOR_HOME });
     },
     onError: (err: Error) => {
-      toast.error("Couldn't save company profile", {
+      toast.error("Couldn't create company", {
         description: err.message ?? "Please try again.",
       });
     },
@@ -31,8 +56,8 @@ export function useSubmitVendorProfile() {
 }
 
 /**
- * Skip vendor onboarding — auto-creates a minimal profile from the
- * user's email prefix and routes to the dashboard.
+ * POST /companies — auto-create a minimal company from the user's email
+ * prefix when they skip the company-setup step, then go to dashboard.
  */
 export function useSkipOnboarding() {
   const queryClient = useQueryClient();
@@ -41,11 +66,11 @@ export function useSkipOnboarding() {
   return useMutation({
     mutationFn: (emailPrefix: string) => skipVendorProfile(emailPrefix),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
     },
     onSettled: () => {
-      // Always navigate — even if the PATCH fails the user can still use the app
-      navigate({ to: DASHBOARD });
+      localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
+      navigate({ to: VENDOR_HOME });
     },
   });
 }

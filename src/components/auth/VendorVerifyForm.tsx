@@ -3,36 +3,50 @@ import { ArrowRight, RefreshCw } from "lucide-react"
 import * as React from "react"
 import { toast } from "sonner"
 
-import { useSendMagicLink, useVerifyMagicLink } from "@/shared/hooks/use-auth"
+import {
+  useSendMagicLink,
+  useVerifyMagicLink,
+  useVerifyPasswordSignup,
+} from "@/shared/hooks/use-auth"
 import { AuthHeader } from "./AuthHeader"
 import { OTPInput } from "./OTPInput"
 import { SubmitButton } from "./SubmitButton"
 
 interface VendorVerifyFormProps {
   /** Destination email — shown in the description */
-  email?: string
+  readonly email?: string
   /** Present when the user clicks the magic link in the email */
-  token?: string
+  readonly token?: string
+  /**
+   * "signup"  — user registered with password; verify the OTP with password endpoint.
+   * "magic"   — magic-link OTP (default when omitted).
+   */
+  readonly flow?: "magic" | "signup"
 }
 
-export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
+export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) {
   const verifyMagicLink = useVerifyMagicLink()
+  const verifyPasswordSignup = useVerifyPasswordSignup()
   const sendMagicLink = useSendMagicLink()
+
+  const isSignupFlow = flow === "signup"
+  const activeVerify = isSignupFlow ? verifyPasswordSignup : verifyMagicLink
 
   const [otp, setOtp] = React.useState(["", "", "", "", "", ""])
   const isOtpComplete = otp.every((d) => d !== "")
 
   // ── Auto-verify when a magic-link token arrives in the URL ──────────
+  // Only applies to the pure magic-link flow (no explicit flow param).
   React.useEffect(() => {
-    if (token && !verifyMagicLink.isPending && !verifyMagicLink.isSuccess) {
+    if (!isSignupFlow && token && !verifyMagicLink.isPending && !verifyMagicLink.isSuccess) {
       verifyMagicLink.mutate({ token })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
-  // ── Resend ──────────────────────────────────────────────────────────
+  // ── Resend (magic link only) ─────────────────────────────────────────
   function handleResend() {
-    if (!email) return
+    if (!email || isSignupFlow) return
     sendMagicLink.mutate(
       { email },
       {
@@ -48,7 +62,7 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!isOtpComplete) return
-    verifyMagicLink.mutate(
+    activeVerify.mutate(
       { code: otp.join("") },
       {
         onError: () => {
@@ -59,8 +73,8 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
     )
   }
 
-  // ── Auto-verify loader / error state ───────────────────────────────
-  if (token) {
+  // ── Auto-verify loader / error state (magic-link token click) ───────
+  if (!isSignupFlow && token) {
     return (
       <div className="flex flex-col items-center gap-6 text-center py-16 animate-in fade-in-0 duration-500">
         {verifyMagicLink.isError ? (
@@ -90,7 +104,17 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
       <AuthHeader
         title="Check your inbox"
         description={
-          email ? (
+          isSignupFlow ? (
+            email ? (
+              <>
+                We sent a 6-character verification code to{" "}
+                <span className="font-medium text-foreground">{email}</span>.
+                Enter it below to activate your account.
+              </>
+            ) : (
+              "Enter the 6-character verification code we sent to your email."
+            )
+          ) : email ? (
             <>
               We sent a 6-character code and a magic link to{" "}
               <span className="font-medium text-foreground">{email}</span>.
@@ -115,12 +139,12 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
           }}
           onPasteAll={(chars) => setOtp(chars)}
           onKeyDown={() => {}}
-          disabled={verifyMagicLink.isPending}
+          disabled={activeVerify.isPending}
         />
 
         <div className="space-y-3">
           <SubmitButton
-            loading={verifyMagicLink.isPending}
+            loading={activeVerify.isPending}
             disabled={!isOtpComplete}
             loadingText="Verifying…"
           >
@@ -128,17 +152,19 @@ export function VendorVerifyForm({ email, token }: VendorVerifyFormProps) {
             <ArrowRight className="ml-2 h-4 w-4" />
           </SubmitButton>
 
-          <button
-            type="button"
-            disabled={sendMagicLink.isPending || !email}
-            onClick={handleResend}
-            className="flex items-center justify-center gap-1.5 w-full text-sm text-muted-foreground hover:text-primary disabled:opacity-50 transition-colors"
-          >
-            <RefreshCw
-              className={`h-3.5 w-3.5 ${sendMagicLink.isPending ? "animate-spin" : ""}`}
-            />
-            {sendMagicLink.isPending ? "Sending…" : "Resend code"}
-          </button>
+          {!isSignupFlow && (
+            <button
+              type="button"
+              disabled={sendMagicLink.isPending || !email}
+              onClick={handleResend}
+              className="flex items-center justify-center gap-1.5 w-full text-sm text-muted-foreground hover:text-primary disabled:opacity-50 transition-colors"
+            >
+              <RefreshCw
+                className={`h-3.5 w-3.5 ${sendMagicLink.isPending ? "animate-spin" : ""}`}
+              />
+              {sendMagicLink.isPending ? "Sending…" : "Resend code"}
+            </button>
+          )}
         </div>
       </form>
 

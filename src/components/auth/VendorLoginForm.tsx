@@ -1,12 +1,12 @@
-import * as React from "react"
 import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
+import * as React from "react"
 import { z } from "zod"
 
 import {
-  useSendMagicLink,
   useLoginWithPassword,
+  useSendMagicLink,
 } from "@/shared/hooks/use-auth"
 import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"

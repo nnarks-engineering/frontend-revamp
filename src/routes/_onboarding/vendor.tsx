@@ -1,17 +1,21 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import * as React from "react";
-import { toast } from "sonner";
 
 import { useCurrentUser } from "@/shared/hooks/use-auth";
 import {
-    useSkipOnboarding,
-    useSubmitVendorProfile,
+  useSkipOnboarding,
+  useSubmitPersonalInfo,
+  useSubmitVendorProfile,
 } from "@/shared/hooks/use-onboarding";
 import { isAuthenticated } from "@/shared/lib/auth";
 import { STORAGE_KEYS } from "@/shared/lib/constants";
-import type { VendorProfileFormValues } from "@/types/onboarding";
+import type {
+  PersonalInfoFormValues,
+  VendorProfileFormValues,
+} from "@/types/onboarding";
 import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types/onboarding";
 
+import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { OnboardingNav } from "@/components/onboarding/OnboardingNav";
 import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
 import { VendorProfileStep } from "@/components/onboarding/VendorProfileStep";
@@ -36,13 +40,17 @@ function VendorOnboardingPage() {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const { data: user } = useCurrentUser();
+  const submitPersonalInfo = useSubmitPersonalInfo();
   const submitProfile = useSubmitVendorProfile();
   const skipOnboarding = useSkipOnboarding();
 
   // Ref to imperatively trigger form submission from the nav button
   const stepFormRef = React.useRef<{ submit: () => void }>(null);
 
-  const isSubmitting = submitProfile.isPending || skipOnboarding.isPending;
+  const isSubmitting =
+    submitPersonalInfo.isPending ||
+    submitProfile.isPending ||
+    skipOnboarding.isPending;
 
   const currentStepConfig = VENDOR_ONBOARDING_STEPS.find(
     (s) => s.step === currentStep,
@@ -66,22 +74,27 @@ function VendorOnboardingPage() {
     stepFormRef.current?.submit();
   }
 
+  async function handlePersonalInfoSubmit(values: PersonalInfoFormValues) {
+    await submitPersonalInfo.mutateAsync({
+      firstName: values.firstName.trim(),
+      lastName: values.lastName.trim(),
+    });
+    setCurrentStep(2);
+  }
+
   async function handleVendorProfileSubmit(values: VendorProfileFormValues) {
-    if (!values.companyName.trim()) {
-      toast.error("Company name is required");
-      return;
-    }
     await submitProfile.mutateAsync({
       companyName: values.companyName.trim(),
       description: values.description.trim() || undefined,
     });
-    localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
+    // Navigation to /dashboard is handled inside useSubmitVendorProfile
   }
 
   function handleSkip() {
+    // Skip is only available on the company-setup step (step 2)
     const emailPrefix = user?.email.split("@")[0] ?? "user";
     skipOnboarding.mutate(emailPrefix);
-    localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
+    // Navigation to /dashboard + ONBOARDING_COMPLETE flag handled inside hook
   }
 
   // ── Render ───────────────────────────────────────────────────────────
@@ -108,15 +121,19 @@ function VendorOnboardingPage() {
       {/* Step content */}
       {currentStep === 0 && (
         <WelcomeStep
-          userName={
-            user?.username ??
-            user?.email.split("@")[0]
-          }
+          userName={user?.username ?? user?.email.split("@")[0]}
           onStart={handleStart}
         />
       )}
 
       {currentStep === 1 && (
+        <PersonalInfoStep
+          ref={stepFormRef}
+          onSubmit={handlePersonalInfoSubmit}
+        />
+      )}
+
+      {currentStep === 2 && (
         <VendorProfileStep
           ref={stepFormRef}
           onSubmit={handleVendorProfileSubmit}
@@ -130,7 +147,7 @@ function VendorOnboardingPage() {
           totalSteps={VENDOR_TOTAL_STEPS}
           isLastStep={currentStep === VENDOR_TOTAL_STEPS}
           isSubmitting={isSubmitting}
-          canGoBack={false}
+          canGoBack={currentStep > 1}
           canSkip={currentStepConfig.skippable}
           onBack={handleBack}
           onNext={handleNext}

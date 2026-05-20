@@ -47,7 +47,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
     <div className="h-dvh w-full overflow-clip flex bg-primary-400 sm:bg-white dark:sm:bg-background items-end sm:items-stretch">
 
       {/* Ghost background text — mobile only */}
-      <p
+      <div
         style={{ backgroundImage: `url(${realBuilding})` }}
 
         aria-hidden="true"
@@ -71,7 +71,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
             </LinkPreview>
           ))}
         </div>
-      </p>
+      </div>
 
       {/* Form panel */}
       <div className="relative z-10 flex flex-col bg-background flex-1 rounded-t-[28px] sm:rounded-none shadow-[0_-8px_40px_rgba(0,0,0,0.15)] sm:shadow-none max-h-[92dvh] sm:max-h-none min-h-[78dvh] sm:min-h-0 overflow-hidden">

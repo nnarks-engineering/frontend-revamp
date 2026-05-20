@@ -15,7 +15,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
 import { isAuthenticated } from "@/shared/lib/auth";
-import { QUERY_KEYS } from "@/shared/lib/constants";
+import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 
 import {
   loginWithPassword,
@@ -77,7 +77,7 @@ export function useSendMagicLink() {
   });
 }
 
-/** Verify magic link token or OTP code → auto-fetches user. */
+/** Verify magic link token or OTP code → sends new user to onboarding. */
 export function useVerifyMagicLink() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ export function useVerifyMagicLink() {
     mutationFn: (data: MagicVerifyRequest) => verifyMagicLink(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      navigate({ to: "/dashboard" });
+      navigate({ to: "/vendor" });
     },
   });
 }
@@ -98,7 +98,7 @@ export function useRequestPasswordSignup() {
   });
 }
 
-/** Verify password signup code → auto-fetches user. */
+/** Verify password signup code → sends new user to onboarding. */
 export function useVerifyPasswordSignup() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -107,12 +107,12 @@ export function useVerifyPasswordSignup() {
     mutationFn: (data: PasswordSignupVerifyRequest) => verifyPasswordSignup(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      navigate({ to: "/dashboard" });
+      navigate({ to: "/vendor" });
     },
   });
 }
 
-/** Login with email + password → auto-fetches user. */
+/** Login with email + password → routes based on onboarding status. */
 export function useLoginWithPassword() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -122,7 +122,9 @@ export function useLoginWithPassword() {
       loginWithPassword(email, password),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      navigate({ to: "/dashboard" });
+      const onboarded =
+        localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
+      navigate({ to: onboarded ? "/dashboard" : "/vendor" });
     },
   });
 }

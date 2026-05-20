@@ -15,11 +15,11 @@ import { SubmitButton } from "./SubmitButton"
 // ─── Schemas ────────────────────────────────────────────────────────────────
 
 const magicSchema = z.object({
-  email: z.string().email({ message: "Enter a valid email address" }),
+  email: z.email({ message: "Enter a valid email address" }),
 })
 
 const passwordSchema = z.object({
-  email: z.string().email({ message: "Enter a valid email address" }),
+  email: z.email({ message: "Enter a valid email address" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters" }),
@@ -134,16 +134,23 @@ function MagicLinkForm() {
 
 function PasswordForm() {
   const requestSignup = useRequestPasswordSignup()
+  const navigate = useNavigate()
 
   const form = useForm({
     defaultValues: { email: "", password: "" },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: passwordSchema as any },
     onSubmit: async ({ value }) => {
-      await requestSignup.mutateAsync({
-        email: value.email,
-        password: value.password,
-      })
+      await requestSignup.mutateAsync(
+        { email: value.email, password: value.password },
+        {
+          onSuccess: () =>
+            navigate({
+              to: "/vendor/verify",
+              search: { email: value.email, flow: "signup" },
+            }),
+        },
+      )
     },
   })
 
