@@ -4,10 +4,11 @@ import * as React from "react"
 import { toast } from "sonner"
 
 import {
-  useSendMagicLink,
-  useVerifyMagicLink,
-  useVerifyPasswordSignup,
+    useSendMagicLink,
+    useVerifyMagicLink,
+    useVerifyPasswordSignup,
 } from "@/shared/hooks/use-auth"
+import { getApiError } from "@/shared/lib/api-error"
 import { AuthHeader } from "./AuthHeader"
 import { OTPInput } from "./OTPInput"
 import { SubmitButton } from "./SubmitButton"
@@ -44,16 +45,16 @@ export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
-  // ── Resend (magic link only) ─────────────────────────────────────────
+  // ── Resend ────────────────────────────────────────────────────────────
   function handleResend() {
-    if (!email || isSignupFlow) return
+    if (!email) return
     sendMagicLink.mutate(
       { email },
       {
         onSuccess: () =>
           toast.success("A new link and code have been sent to your inbox."),
-        onError: () =>
-          toast.error("Couldn't resend. Please try again in a moment."),
+        onError: (error) =>
+          toast.error(getApiError(error, "Couldn't resend. Please try again in a moment.")),
       },
     )
   }
@@ -65,8 +66,8 @@ export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) 
     activeVerify.mutate(
       { code: otp.join("") },
       {
-        onError: () => {
-          toast.error("Invalid or expired code. Please check and try again.")
+        onError: (error) => {
+          toast.error(getApiError(error, "Invalid or expired code. Please check and try again."))
           setOtp(["", "", "", "", "", ""])
         },
       },
@@ -80,7 +81,7 @@ export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) 
         {verifyMagicLink.isError ? (
           <>
             <p className="text-sm text-destructive font-medium">
-              This link has expired or is invalid.
+              {getApiError(verifyMagicLink.error, "This link has expired or is invalid.")}
             </p>
             <Link
               to="/vendor/register"
@@ -152,19 +153,17 @@ export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) 
             <ArrowRight className="ml-2 h-4 w-4" />
           </SubmitButton>
 
-          {!isSignupFlow && (
-            <button
-              type="button"
-              disabled={sendMagicLink.isPending || !email}
-              onClick={handleResend}
-              className="flex items-center justify-center gap-1.5 w-full text-sm text-muted-foreground hover:text-primary disabled:opacity-50 transition-colors"
-            >
-              <RefreshCw
-                className={`h-3.5 w-3.5 ${sendMagicLink.isPending ? "animate-spin" : ""}`}
-              />
-              {sendMagicLink.isPending ? "Sending…" : "Resend code"}
-            </button>
-          )}
+          <button
+            type="button"
+            disabled={sendMagicLink.isPending || !email}
+            onClick={handleResend}
+            className="flex items-center justify-center gap-1.5 w-full text-sm text-muted-foreground hover:text-primary disabled:opacity-50 transition-colors"
+          >
+            <RefreshCw
+              className={`h-3.5 w-3.5 ${sendMagicLink.isPending ? "animate-spin" : ""}`}
+            />
+            {sendMagicLink.isPending ? "Sending…" : "Resend code"}
+          </button>
         </div>
       </form>
 

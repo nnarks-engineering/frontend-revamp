@@ -2,12 +2,14 @@ import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
 import * as React from "react"
+import { toast } from "sonner"
 import { z } from "zod"
 
 import {
   useRequestPasswordSignup,
   useSendMagicLink,
 } from "@/shared/hooks/use-auth"
+import { getApiError } from "@/shared/lib/api-error"
 import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"
 import { SubmitButton } from "./SubmitButton"
@@ -18,12 +20,18 @@ const magicSchema = z.object({
   email: z.email({ message: "Enter a valid email address" }),
 })
 
-const passwordSchema = z.object({
-  email: z.email({ message: "Enter a valid email address" }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters" }),
-})
+const passwordSchema = z
+  .object({
+    email: z.email({ message: "Enter a valid email address" }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })
 
 // ─── Mode toggle ─────────────────────────────────────────────────────────────
 
@@ -76,16 +84,12 @@ function MagicLinkForm() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: magicSchema as any },
     onSubmit: async ({ value }) => {
-      await sendMagicLink.mutateAsync(
-        { email: value.email },
-        {
-          onSuccess: () =>
-            navigate({
-              to: "/vendor/verify",
-              search: { email: value.email },
-            }),
-        },
-      )
+      try {
+        await sendMagicLink.mutateAsync({ email: value.email })
+        navigate({ to: "/vendor/verify", search: { email: value.email } })
+      } catch (error) {
+        toast.error(getApiError(error))
+      }
     },
   })
 
@@ -137,20 +141,16 @@ function PasswordForm() {
   const navigate = useNavigate()
 
   const form = useForm({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", confirmPassword: "" },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: passwordSchema as any },
     onSubmit: async ({ value }) => {
-      await requestSignup.mutateAsync(
-        { email: value.email, password: value.password },
-        {
-          onSuccess: () =>
-            navigate({
-              to: "/vendor/verify",
-              search: { email: value.email, flow: "signup" },
-            }),
-        },
-      )
+      try {
+        await requestSignup.mutateAsync({ email: value.email, password: value.password })
+        navigate({ to: "/vendor/verify", search: { email: value.email, flow: "signup" } })
+      } catch (error) {
+        toast.error(getApiError(error))
+      }
     },
   })
 
@@ -182,6 +182,19 @@ function PasswordForm() {
         children={(field) => (
           <FormField
             label="Password"
+            field={field}
+            type="password"
+            placeholder="••••••••"
+            autoComplete="new-password"
+          />
+        )}
+      />
+
+      <form.Field
+        name="confirmPassword"
+        children={(field) => (
+          <FormField
+            label="Confirm password"
             field={field}
             type="password"
             placeholder="••••••••"

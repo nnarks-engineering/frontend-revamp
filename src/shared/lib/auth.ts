@@ -42,6 +42,11 @@ export function isAuthenticated(): boolean {
   return getAccessToken() !== null;
 }
 
+/** True when the user has completed the onboarding flow. */
+export function isOnboardingComplete(): boolean {
+  return localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
+}
+
 /**
  * True when the access token has expired (or is about to within
  * `bufferSeconds`). Callers can use this to decide whether to

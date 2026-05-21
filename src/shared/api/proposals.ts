@@ -1,9 +1,3 @@
-/**
- * Proposals API functions.
- *
- * Maps to the backend `/proposals/` endpoints.
- */
-
 import { api } from "@/shared/lib/api-client";
 import { PROPOSAL_ENDPOINTS } from "@/shared/lib/constants";
 import type {
@@ -24,9 +18,7 @@ interface CreateProposalPayload {
     expires_at?: string | null;
 }
 
-// ── Proposals ─────────────────────────────────────────────────────────
 
-/** POST /proposals — submit a new proposal */
 export async function createProposal(
     data: CreateProposalPayload,
 ): Promise<Proposal> {
@@ -34,7 +26,6 @@ export async function createProposal(
     return res.data;
 }
 
-/** GET /proposals — list proposals with optional filters */
 export async function listProposals(
     subject_type?: ProposalSubjectType,
     subject_id?: string,
@@ -50,13 +41,11 @@ export async function listProposals(
     return res.data;
 }
 
-/** GET /proposals/:id */
 export async function getProposal(id: string): Promise<Proposal> {
     const res = await api.get<Proposal>(PROPOSAL_ENDPOINTS.DETAIL(id));
     return res.data;
 }
 
-/** GET /proposals/:id/votes/history?company_id= */
 export async function getVoteHistory(
     proposalId: string,
     company_id: string,
@@ -68,7 +57,6 @@ export async function getVoteHistory(
     return res.data;
 }
 
-/** POST /proposals/:id/votes — cast or update a vote */
 export async function castVote(
     proposalId: string,
     company_id: string,

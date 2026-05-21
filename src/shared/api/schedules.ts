@@ -1,9 +1,3 @@
-/**
- * Schedules API functions.
- *
- * Maps to the backend `/schedules/` endpoints.
- */
-
 import { api } from "@/shared/lib/api-client";
 import { SCHEDULE_ENDPOINTS } from "@/shared/lib/constants";
 import type { PageParams, PaginatedResponse } from "@/types/common";
@@ -11,9 +5,7 @@ import type { Schedule, ScheduleRun, ScheduleRunEvent } from "@/types/schedules"
 
 export type { Schedule, ScheduleRun, ScheduleRunEvent };
 
-// ── Schedules ─────────────────────────────────────────────────────────
 
-/** GET /schedules — list all schedules */
 export async function listSchedules(
     params?: PageParams,
 ): Promise<PaginatedResponse<Schedule>> {
@@ -24,15 +16,12 @@ export async function listSchedules(
     return res.data;
 }
 
-/** GET /schedules/:id */
 export async function getSchedule(id: string): Promise<Schedule> {
     const res = await api.get<Schedule>(SCHEDULE_ENDPOINTS.DETAIL(id));
     return res.data;
 }
 
-// ── Schedule Runs ─────────────────────────────────────────────────────
 
-/** GET /schedules/:id/runs — list runs for a schedule */
 export async function listScheduleRuns(
     id: string,
     params?: PageParams,
@@ -44,7 +33,6 @@ export async function listScheduleRuns(
     return res.data;
 }
 
-/** GET /schedules/run/:runId/events — list events for a run */
 export async function getScheduleRunEvents(
     runId: string,
     params?: PageParams,

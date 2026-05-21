@@ -1,0 +1,205 @@
+import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
+import { cn } from "@/shared/lib/utils";
+import { ChevronsUpDown, LogOut, Moon, Settings, Sun, SunMoon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useState } from "react";
+
+function getInitials(
+  firstName?: string | null,
+  lastName?: string | null,
+  email?: string
+): string {
+  if (firstName && lastName) return `${firstName[0]}${lastName[0]}`.toUpperCase();
+  if (firstName) return firstName.slice(0, 2).toUpperCase();
+  if (email) return email.slice(0, 2).toUpperCase();
+  return "?";
+}
+
+interface Props {
+  readonly isCollapsed: boolean;
+}
+
+export function SidebarUserMenu({ isCollapsed }: Props) {
+  const { data: user } = useCurrentUser();
+  const { data: profile } = useCurrentProfile();
+  const logout = useLogout();
+  const { setTheme, theme } = useTheme();
+
+  const [fontSize, setFontSize] = useState<string>(() => {
+    return typeof window !== "undefined"
+      ? (localStorage.getItem("font-size") ?? "16")
+      : "16";
+  });
+
+  const updateFontSize = (size: string) => {
+    setFontSize(size);
+    document.documentElement.style.fontSize = `${size}px`;
+    localStorage.setItem("font-size", size);
+  };
+
+  const displayName =
+    profile?.first_name && profile?.last_name
+      ? `${profile.first_name} ${profile.last_name}`
+      : (user?.username ?? user?.email ?? "User");
+
+  const initials = getInitials(profile?.first_name, profile?.last_name, user?.email);
+  const email = user?.email ?? "";
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className={cn(
+            "w-full flex items-center gap-3 rounded-xl px-2.5 py-2 text-[13.5px] font-medium",
+            "bg-muted/40 hover:bg-muted/70 transition-all duration-150 outline-none focus:outline-none",
+            isCollapsed && "justify-center px-0 py-2.5"
+          )}
+        >
+          <div
+            className={cn(
+              "shrink-0 rounded-full bg-linear-to-br from-primary via-primary/80 to-secondary flex items-center justify-center text-white text-xs font-bold",
+              isCollapsed ? "w-8 h-8" : "w-7 h-7"
+            )}
+          >
+            {initials}
+          </div>
+          {!isCollapsed && (
+            <>
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] font-semibold text-foreground truncate">
+                  {displayName}
+                </p>
+                <p className="text-[11px] text-muted-foreground truncate">{email}</p>
+              </div>
+              <ChevronsUpDown className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+            </>
+          )}
+        </button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent
+        className="min-w-56 rounded-lg"
+        side="right"
+        align="end"
+        sideOffset={8}
+      >
+        {/* User info header */}
+        <DropdownMenuLabel className="p-0 font-normal">
+          <div className="flex items-center gap-2 px-2 py-2">
+            <div className="w-8 h-8 rounded-full bg-linear-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold shrink-0">
+              {initials}
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium truncate">{displayName}</p>
+              <p className="text-xs text-muted-foreground truncate">{email}</p>
+            </div>
+          </div>
+        </DropdownMenuLabel>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuGroup>
+          {/* Settings link */}
+          <DropdownMenuItem className="gap-2 cursor-pointer">
+            <Settings className="size-4" />
+            Settings
+          </DropdownMenuItem>
+
+          {/* Appearance submenu */}
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className="gap-2 cursor-pointer">
+              <SunMoon className="size-4" />
+              Appearance
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent className="min-w-48">
+                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                  Theme
+                </DropdownMenuLabel>
+                <DropdownMenuItem
+                  onClick={() => setTheme("light")}
+                  className={cn(
+                    "gap-2 cursor-pointer",
+                    theme === "light" && "bg-accent text-accent-foreground"
+                  )}
+                >
+                  <Sun className="size-4" />
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme("dark")}
+                  className={cn(
+                    "gap-2 cursor-pointer",
+                    theme === "dark" && "bg-accent text-accent-foreground"
+                  )}
+                >
+                  <Moon className="size-4" />
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme("system")}
+                  className={cn(
+                    "gap-2 cursor-pointer",
+                    theme === "system" && "bg-accent text-accent-foreground"
+                  )}
+                >
+                  <SunMoon className="size-4" />
+                  System
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                  Font Size
+                </DropdownMenuLabel>
+                <div className="px-2 py-1.5 flex items-center justify-between gap-1">
+                  {(["14", "16", "18", "20"] as const).map((size) => (
+                    <Button
+                      key={size}
+                      variant="ghost"
+                      size="sm"
+                      className={cn(
+                        "h-8 w-8 p-0 text-xs",
+                        fontSize === size
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                          : "hover:bg-accent"
+                      )}
+                      onClick={() => updateFontSize(size)}
+                    >
+                      {size === "14" ? "S" : size === "16" ? "M" : size === "18" ? "L" : "XL"}
+                    </Button>
+                  ))}
+                </div>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          onClick={() => logout.mutate()}
+          disabled={logout.isPending}
+          className="gap-2 cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10"
+        >
+          <LogOut className="size-4" />
+          {logout.isPending ? "Signing out…" : "Log out"}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

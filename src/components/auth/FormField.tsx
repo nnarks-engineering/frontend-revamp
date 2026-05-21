@@ -1,5 +1,6 @@
 import * as React from "react"
 import { type AnyFieldApi } from "@tanstack/react-form"
+import { Eye, EyeOff } from "lucide-react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/shared/lib/utils"
@@ -9,23 +10,41 @@ interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   field: AnyFieldApi
 }
 
-export function FormField({ label, field, className, ...props }: FormFieldProps) {
+export function FormField({ label, field, className, type, ...props }: FormFieldProps) {
+  const isPassword = type === "password"
+  const [showPassword, setShowPassword] = React.useState(false)
+
   return (
     <div className={cn("space-y-2.5", className)}>
       <Label htmlFor={field.name}>{label}</Label>
-      <Input
-        id={field.name}
-        name={field.name}
-        value={field.state.value}
-        onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(e.target.value)}
-        className={cn(
-          field.state.meta.errors.length > 0 && "border-destructive focus-visible:ring-destructive"
+      <div className={cn("relative", isPassword && "flex items-center")}>
+        <Input
+          id={field.name}
+          name={field.name}
+          value={field.state.value}
+          onBlur={field.handleBlur}
+          onChange={(e) => field.handleChange(e.target.value)}
+          type={isPassword ? (showPassword ? "text" : "password") : type}
+          className={cn(
+            field.state.meta.errors.length > 0 && "border-destructive focus-visible:ring-destructive",
+            isPassword && "pr-10"
+          )}
+          {...props}
+        />
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            className="absolute right-3 text-muted-foreground hover:text-foreground transition-colors"
+            tabIndex={-1}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
         )}
-        {...props}
-      />
+      </div>
       {field.state.meta.errors.length > 0 && (
-        <p className="text-[0.8rem]  -mt-1 text-destructive">
+        <p className="text-[0.8rem] -mt-1 text-destructive">
           {field.state.meta.errors[0]?.message}
         </p>
       )}

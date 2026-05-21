@@ -1,37 +1,27 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 
 import { useCurrentUser } from "@/shared/hooks/use-auth";
 import {
-  useSkipOnboarding,
-  useSubmitPersonalInfo,
-  useSubmitVendorProfile,
+    useSkipOnboarding,
+    useSubmitPersonalInfo,
+    useSubmitVendorProfile,
 } from "@/shared/hooks/use-onboarding";
-import { isAuthenticated } from "@/shared/lib/auth";
-import { STORAGE_KEYS } from "@/shared/lib/constants";
 import type {
-  PersonalInfoFormValues,
-  VendorProfileFormValues,
+    PersonalInfoFormValues,
+    VendorProfileFormValues,
 } from "@/types/onboarding";
 import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types/onboarding";
 
-import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { OnboardingNav } from "@/components/onboarding/OnboardingNav";
 import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
+import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { VendorProfileStep } from "@/components/onboarding/VendorProfileStep";
 import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
 
 // ── Route definition ──────────────────────────────────────────────────
+// Auth + onboarding guards are handled by the parent _onboarding layout.
 export const Route = createFileRoute("/_onboarding/vendor")({
-  beforeLoad: () => {
-    if (!isAuthenticated()) {
-      throw redirect({ to: "/login" });
-    }
-    // If onboarding already completed, skip straight to the app
-    if (localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true") {
-      throw redirect({ to: "/dashboard" });
-    }
-  },
   component: VendorOnboardingPage,
 });
 

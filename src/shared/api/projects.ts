@@ -1,14 +1,3 @@
-/**
- * Projects API functions — thin wrappers around the Axios instance.
- *
- * Maps 1:1 to the backend `/projects/` router.
- * Every function returns the parsed response data, never the raw
- * AxiosResponse, so consumers stay decoupled from HTTP details.
- *
- * Usage:
- *   import { listProjects, getProjectDashboard } from "@/shared/api/projects";
- */
-
 import { api } from "@/shared/lib/api-client";
 import { PROJECT_ENDPOINTS } from "@/shared/lib/constants";
 import type {
@@ -32,9 +21,6 @@ import type {
 
 export type { AIPlanTaskResponse, EvidenceRead, EvidenceSubmit, PageParams, PaginatedResponse };
 
-// ── Project CRUD ──────────────────────────────────────────────────────
-
-/** GET /projects — paginated list of the current user's projects */
 export async function listProjects(
   params: PageParams = {},
 ): Promise<PaginatedResponse<Project>> {
@@ -44,19 +30,16 @@ export async function listProjects(
   return res.data;
 }
 
-/** GET /projects/:id — full dashboard view (members + milestones + wallet) */
 export async function getProjectDashboard(id: string): Promise<ProjectDashboard> {
   const res = await api.get<ProjectDashboard>(PROJECT_ENDPOINTS.DETAIL(id));
   return res.data;
 }
 
-/** POST /projects — create a new project */
 export async function createProject(data: ProjectCreatePayload): Promise<Project> {
   const res = await api.post<Project>(PROJECT_ENDPOINTS.LIST, data);
   return res.data;
 }
 
-/** PATCH /projects/:id — update a project */
 export async function updateProject(
   id: string,
   data: ProjectUpdatePayload,
@@ -65,9 +48,7 @@ export async function updateProject(
   return res.data;
 }
 
-// ── Members ───────────────────────────────────────────────────────────
 
-/** POST /projects/:id/members/invite — invite a member by email */
 export async function inviteMember(
   projectId: string,
   data: InviteMemberPayload,
@@ -75,7 +56,6 @@ export async function inviteMember(
   await api.post(PROJECT_ENDPOINTS.INVITE_MEMBER(projectId), data);
 }
 
-/** POST /projects/invitations/accept — accept a project invitation */
 export async function acceptInvitation(
   data: AcceptProjectInvitationPayload,
 ): Promise<void> {
@@ -90,7 +70,6 @@ export async function listMilestones(projectId: string): Promise<Milestone[]> {
   return res.data;
 }
 
-/** POST /projects/:id/milestones — create a milestone */
 export async function createMilestone(
   projectId: string,
   data: MilestoneCreatePayload,
@@ -102,7 +81,6 @@ export async function createMilestone(
   return res.data;
 }
 
-/** PATCH /projects/:projectId/milestones/:milestoneId — update a milestone */
 export async function updateMilestone(
   projectId: string,
   milestoneId: string,
@@ -115,9 +93,7 @@ export async function updateMilestone(
   return res.data;
 }
 
-// ── Evidence ──────────────────────────────────────────────────────────
 
-/** GET /projects/:projectId/milestones/:milestoneId/evidence */
 export async function listMilestoneEvidence(
   projectId: string,
   milestoneId: string,
@@ -128,7 +104,6 @@ export async function listMilestoneEvidence(
   return res.data;
 }
 
-/** POST /projects/:projectId/milestones/:milestoneId/evidence */
 export async function submitMilestoneEvidence(
   projectId: string,
   milestoneId: string,

@@ -1,34 +1,34 @@
+import { useRightPanelContext } from "@/shared/contexts/right-panel-context";
 import { cn } from "@/shared/lib/utils";
 import {
-  Search,
-  PanelLeftClose,
-  PanelLeftOpen,
-  PanelRightClose,
-  PanelRightOpen,
-  Sparkles,
-  Moon,
-  Sun,
-  ChevronDown,
+    ChevronDown,
+    Moon,
+    PanelLeftClose,
+    PanelLeftOpen,
+    PanelRightClose,
+    PanelRightOpen,
+    Search,
+    Sparkles,
+    Sun,
 } from "lucide-react";
 import { useState } from "react";
 
 interface AppHeaderProps {
   isSidebarOpen: boolean;
-  isAiPanelOpen: boolean;
   onToggleSidebar: () => void;
-  onToggleAiPanel: () => void;
   pageTitle?: string;
 }
 
 export function AppHeader({
   isSidebarOpen,
-  isAiPanelOpen,
   onToggleSidebar,
-  onToggleAiPanel,
   pageTitle = "Dashboard",
 }: AppHeaderProps) {
   const [searchFocused, setSearchFocused] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  const { isOpen: isRightPanelOpen, toggle: toggleRightPanel } =
+    useRightPanelContext();
 
   return (
     <header className="h-14 shrink-0 flex items-center justify-between gap-3 px-4 border-b border-border/40 bg-white/80 backdrop-blur-sm font-outfit">
@@ -94,25 +94,25 @@ export function AppHeader({
           {isDark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
         </button>
 
-        {/* AI Panel Toggle */}
+        {/* Right Panel Toggle (AI Panel / page-registered panel) */}
         <button
-          onClick={onToggleAiPanel}
+          onClick={toggleRightPanel}
           className={cn(
             "p-2 rounded-lg transition-all duration-150 flex items-center gap-1.5",
-            isAiPanelOpen
+            isRightPanelOpen
               ? "bg-primary/10 text-primary"
               : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
           )}
-          aria-label="Toggle AI panel"
+          aria-label="Toggle right panel"
         >
           <Sparkles className="w-[18px] h-[18px]" />
           <span className="text-xs font-medium hidden sm:inline">
-            {isAiPanelOpen ? "Close" : "AI"}
+            {isRightPanelOpen ? "Close" : "AI"}
           </span>
-          {!isAiPanelOpen && (
+          {!isRightPanelOpen && (
             <PanelRightOpen className="w-3.5 h-3.5 hidden sm:inline" />
           )}
-          {isAiPanelOpen && (
+          {isRightPanelOpen && (
             <PanelRightClose className="w-3.5 h-3.5 hidden sm:inline" />
           )}
         </button>

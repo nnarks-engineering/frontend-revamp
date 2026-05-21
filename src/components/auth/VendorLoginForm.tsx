@@ -2,12 +2,14 @@ import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
 import * as React from "react"
+import { toast } from "sonner"
 import { z } from "zod"
 
 import {
   useLoginWithPassword,
   useSendMagicLink,
 } from "@/shared/hooks/use-auth"
+import { getApiError } from "@/shared/lib/api-error"
 import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"
 import { SubmitButton } from "./SubmitButton"
@@ -74,16 +76,12 @@ function MagicLinkForm() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: magicSchema as any },
     onSubmit: async ({ value }) => {
-      await sendMagicLink.mutateAsync(
-        { email: value.email },
-        {
-          onSuccess: () =>
-            navigate({
-              to: "/vendor/verify",
-              search: { email: value.email },
-            }),
-        },
-      )
+      try {
+        await sendMagicLink.mutateAsync({ email: value.email })
+        navigate({ to: "/vendor/verify", search: { email: value.email } })
+      } catch (error) {
+        toast.error(getApiError(error))
+      }
     },
   })
 
@@ -136,10 +134,15 @@ function PasswordForm() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validators: { onChange: passwordSchema as any },
     onSubmit: async ({ value }) => {
-      await login.mutateAsync({
-        email: value.email,
-        password: value.password,
-      })
+      try {
+        await login.mutateAsync({
+          email: value.email,
+          password: value.password,
+          userType: "vendor",
+        })
+      } catch (error) {
+        toast.error(getApiError(error))
+      }
     },
   })
 

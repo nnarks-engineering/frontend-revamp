@@ -85,6 +85,7 @@ export function useVerifyMagicLink() {
   return useMutation({
     mutationFn: (data: MagicVerifyRequest) => verifyMagicLink(data),
     onSuccess: () => {
+      localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       navigate({ to: "/vendor" });
     },
@@ -106,6 +107,7 @@ export function useVerifyPasswordSignup() {
   return useMutation({
     mutationFn: (data: PasswordSignupVerifyRequest) => verifyPasswordSignup(data),
     onSuccess: () => {
+      localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       navigate({ to: "/vendor" });
     },
@@ -118,9 +120,16 @@ export function useLoginWithPassword() {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
-      loginWithPassword(email, password),
-    onSuccess: () => {
+    mutationFn: ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+      userType?: "vendor" | "client";
+    }) => loginWithPassword(email, password),
+    onSuccess: (_data, variables) => {
+      localStorage.setItem(STORAGE_KEYS.USER_TYPE, variables.userType ?? "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       const onboarded =
         localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
@@ -129,7 +138,7 @@ export function useLoginWithPassword() {
   });
 }
 
-/** Logout — clears cache, clears tokens, redirects to login. */
+/** Logout — clears cache, clears tokens, redirects to the correct login page. */
 export function useLogout() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -137,9 +146,9 @@ export function useLogout() {
   return useMutation({
     mutationFn: () => logout(),
     onSettled: () => {
-      // Always clear everything, even if the server call failed
+      const userType = localStorage.getItem(STORAGE_KEYS.USER_TYPE);
       queryClient.clear();
-      navigate({ to: "/login" });
+      navigate({ to: userType === "client" ? "/login" : "/vendor/login" });
     },
   });
 }

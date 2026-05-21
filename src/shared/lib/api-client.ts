@@ -36,9 +36,12 @@ export const api = axios.create({
 });
 
 // ── Request interceptor — attach token ───────────────────────────────
+const AUTH_ENDPOINT_PATHS = new Set(Object.values(AUTH_ENDPOINTS));
+
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getAccessToken();
-  if (token && config.headers) {
+  const isAuthEndpoint = config.url != null && AUTH_ENDPOINT_PATHS.has(config.url as typeof AUTH_ENDPOINTS[keyof typeof AUTH_ENDPOINTS]);
+  if (token && config.headers && !isAuthEndpoint) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;

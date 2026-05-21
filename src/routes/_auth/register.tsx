@@ -1,13 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router"
 import { RegisterForm } from "@/components/auth/RegisterForm"
+import { requireGuest } from "@/shared/middleware"
+import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/_auth/register")({
-  component: RegisterPage,
+  beforeLoad: ({ context }) => requireGuest({ context }),
+  component: RegisterForm,
 })
 
-function RegisterPage() {
-
-  return (
-      <RegisterForm />
-  )
-}
