@@ -53,7 +53,7 @@ export function SidebarCompanySwitcher({ isCollapsed }: Props) {
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            "w-full flex items-center gap-2.5 rounded-xl px-2.5 py-2.5 text-sm font-medium",
+            "w-full flex items-center border-r gap-2.5 px-2.5 py-1.5 text-sm font-medium",
             "hover:bg-muted/60 transition-all duration-150 outline-none focus:outline-none",
             isCollapsed && "justify-center px-0"
           )}
@@ -88,7 +88,7 @@ export function SidebarCompanySwitcher({ isCollapsed }: Props) {
 
       <DropdownMenuContent
         className="min-w-56"
-        side="right"
+        side="bottom"
         align="start"
         sideOffset={8}
       >

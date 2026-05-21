@@ -1,39 +1,23 @@
-import { useRightPanelContext } from "@/shared/contexts/right-panel-context";
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
+import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { cn } from "@/shared/lib/utils";
-import {
-    ChevronDown,
-    Moon,
-    PanelLeftClose,
-    PanelLeftOpen,
-    PanelRightClose,
-    PanelRightOpen,
-    Search,
-    Sparkles,
-    Sun,
-} from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 import { useState } from "react";
 
 interface AppHeaderProps {
   isSidebarOpen: boolean;
   onToggleSidebar: () => void;
-  pageTitle?: string;
 }
 
-export function AppHeader({
-  isSidebarOpen,
-  onToggleSidebar,
-  pageTitle = "Dashboard",
-}: AppHeaderProps) {
+export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
   const [searchFocused, setSearchFocused] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
-  const { isOpen: isRightPanelOpen, toggle: toggleRightPanel } =
-    useRightPanelContext();
 
   return (
-    <header className="h-14 shrink-0 flex items-center justify-between gap-3 px-4 border-b border-border/40 bg-white/80 backdrop-blur-sm font-outfit">
-      {/* Left — Sidebar Toggle + Page Title */}
-      <div className="flex items-center gap-3 min-w-0">
+    <header className="h-14 shrink-0 flex items-center justify-between gap-3 px-4 border-b border-border/40 bg-white/80 backdrop-blur-sm font-outfit z-50 relative">
+      {/* Left — Mobile Toggle + Logo + Separator + Company Switcher */}
+      <div className="flex items-center gap-2 min-w-0">
+        {/* Mobile-only sidebar toggle */}
         <button
           onClick={onToggleSidebar}
           className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 lg:hidden"
@@ -46,22 +30,27 @@ export function AppHeader({
           )}
         </button>
 
-        {/* Breadcrumb-style title */}
-        <div className="flex items-center gap-1.5 min-w-0">
-          <span className="text-xs text-muted-foreground/60 hidden sm:inline">Nnarks</span>
-          <ChevronDown className="w-3 h-3 -rotate-90 text-muted-foreground/40 hidden sm:inline" />
-          <h1 className="text-sm font-semibold text-foreground truncate">{pageTitle}</h1>
-        </div>
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 group shrink-0">
+          <NnarksLogo className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-200" />
+          <span className="text-[15px] font-semibold tracking-tight text-foreground hidden sm:block">
+            Nnarks
+          </span>
+        </Link>
+
+        {/* Divider */}
+        <div className="w-px h-5 bg-border/60 mx-1 hidden sm:block" />
+
       </div>
 
-      {/* Center — Search Bar */}
+      {/* Center — Search */}
       <div className="flex-1 max-w-md mx-4 hidden md:block">
         <div
           className={cn(
             "relative flex items-center rounded-xl border transition-all duration-200",
             searchFocused
               ? "border-primary/50 bg-white shadow-[0_0_0_3px_rgba(23,204,236,0.08)]"
-              : "border-border/50 bg-muted/30 hover:bg-muted/50"
+              : "border-border/50 bg-muted/30 hover:bg-muted/50",
           )}
         >
           <Search className="w-4 h-4 text-muted-foreground/60 absolute left-3 pointer-events-none" />
@@ -78,44 +67,24 @@ export function AppHeader({
         </div>
       </div>
 
-      {/* Right — Actions */}
+      {/* Right — Mobile Search + Notifications + User */}
       <div className="flex items-center gap-1">
-        {/* Search icon (mobile) */}
+        {/* Mobile search icon */}
         <button className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 md:hidden">
           <Search className="w-[18px] h-[18px]" />
         </button>
 
-        {/* Dark mode toggle */}
+        {/* Notifications */}
         <button
-          onClick={() => setIsDark(!isDark)}
-          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
-          aria-label="Toggle theme"
+          className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
+          aria-label="Notifications"
         >
-          {isDark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
+          <Bell className="w-[18px] h-[18px]" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full ring-2 ring-white" />
         </button>
 
-        {/* Right Panel Toggle (AI Panel / page-registered panel) */}
-        <button
-          onClick={toggleRightPanel}
-          className={cn(
-            "p-2 rounded-lg transition-all duration-150 flex items-center gap-1.5",
-            isRightPanelOpen
-              ? "bg-primary/10 text-primary"
-              : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
-          )}
-          aria-label="Toggle right panel"
-        >
-          <Sparkles className="w-[18px] h-[18px]" />
-          <span className="text-xs font-medium hidden sm:inline">
-            {isRightPanelOpen ? "Close" : "AI"}
-          </span>
-          {!isRightPanelOpen && (
-            <PanelRightOpen className="w-3.5 h-3.5 hidden sm:inline" />
-          )}
-          {isRightPanelOpen && (
-            <PanelRightClose className="w-3.5 h-3.5 hidden sm:inline" />
-          )}
-        </button>
+        {/* User profile menu */}
+        <SidebarUserMenu />
       </div>
     </header>
   );

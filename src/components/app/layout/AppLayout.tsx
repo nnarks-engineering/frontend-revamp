@@ -1,7 +1,6 @@
-import { resolvePageTitle } from "@/app/nav-config";
-import { AiPanel } from "@/components/app/ai-panel/AiPanel";
+import { resolveVerticalSidebarItems } from "@/app/nav-config";
 import { AppHeader } from "@/components/app/header/AppHeader";
-import { SubNavBar } from "@/components/app/navigation/SubNavBar";
+import { TopNavBar } from "@/components/app/navigation/TopNavBar";
 import { LocationBanner } from "@/components/app/shared";
 import { SidebarNav } from "@/components/app/sidebar/SidebarNav";
 import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/right-panel-context";
@@ -22,39 +21,29 @@ export function AppLayout() {
 // ─── Inner layout — consumes the right-panel context ─────────────────────────
 
 function AppLayoutInner() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const { isOpen: isRightPanelOpen, close: closeRightPanel, content: rightPanelContent } =
     useRightPanelContext();
 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const pageTitle = resolvePageTitle(pathname);
+  const hasSubItems = !!resolveVerticalSidebarItems(pathname)?.length;
 
   // Detect screen size
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
-      if (mobile) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
+      if (!mobile) setIsSidebarOpen(false);
     };
-
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const toggleSidebar = useCallback(() => {
-    if (isMobile) {
-      setIsSidebarOpen((prev) => !prev);
-    } else {
-      setIsSidebarCollapsed((prev) => !prev);
-    }
+    if (isMobile) setIsSidebarOpen((prev) => !prev);
   }, [isMobile]);
 
   const closeSidebarOnMobile = useCallback(() => {
@@ -69,68 +58,58 @@ function AppLayoutInner() {
   }, [isMobile, closeRightPanel]);
 
   return (
-    <div className="h-dvh fixed inset-0 flex bg-background font-outfit">
-      {/* Left Sidebar — Desktop: inline, Mobile: fixed overlay */}
-      <div
-        className={cn(
-          "shrink-0 transition-all duration-300 ease-in-out overflow-hidden z-40",
-          "max-lg:fixed max-lg:left-0 max-lg:top-0 max-lg:h-full",
-          isMobile
-            ? isSidebarOpen
-              ? "max-lg:w-[252px]"
-              : "max-lg:w-0"
-            : "", // Desktop width managed by SidebarNav itself
-        )}
-      >
-        <SidebarNav
-          isCollapsed={!isMobile && isSidebarCollapsed}
-          onToggle={toggleSidebar}
-          onClose={isMobile ? closeSidebarOnMobile : undefined}
-        />
-      </div>
+    <div className="h-dvh fixed inset-0 flex flex-col bg-background font-outfit">
+      {/* Full-width header */}
+      <AppHeader isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
 
-      {/* Main content column */}
-      <div className="flex-1 flex flex-col overflow-hidden min-w-0 transition-all duration-300 ease-in-out">
-        {/* Header */}
-        <AppHeader
-          isSidebarOpen={isSidebarOpen}
-          onToggleSidebar={toggleSidebar}
-          pageTitle={pageTitle}
-        />
+      {/* Content row: sidebar + main column + right panel */}
+      <div className="flex-1 flex overflow-hidden min-h-0">
+        {/* Left Sidebar — desktop: in-flow (hidden when no sub-items); mobile: fixed overlay */}
 
-        {/* Horizontal sub-navigation tabs (auto-hides when not applicable) */}
-        <SubNavBar />
 
-        {/* Page content */}
-        <main
-          className="flex-1 overflow-auto bg-background"
-          onClick={closeAllOverlaysOnMobile}
+        {/* Main column */}
+        <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+          {/* Main navigation — all top-level sections as horizontal tabs */}
+          <TopNavBar />
+
+          {/* Page content */}
+          <main
+            className="flex-1 flex "
+            onClick={closeAllOverlaysOnMobile}
+          > <div
+          className={cn(
+            "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+            "max-lg:fixed max-lg:left-0 max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
+            isMobile
+              ? isSidebarOpen ? "w-[220px]" : "w-0"
+              : hasSubItems ? "w-[220px]" : "w-0",
+          )}
         >
-          <div className="p-4 md:p-6 min-h-full">
-            <LocationBanner />
-            <Outlet />
-          </div>
-        </main>
+          <SidebarNav onClose={isMobile ? closeSidebarOnMobile : undefined} />
+        </div>
+            <div className="p-4 md:p-6 min-h-full flex-1 overflow-auto bg-background">
+              <LocationBanner />
+              <Outlet />
+            </div>
+          </main>
+        </div>
+
+        {/* Right panel — page-registered content only */}
+        <div
+          className={cn(
+            "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+            "max-lg:fixed max-lg:right-0 max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
+            isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
+          )}
+        >
+          {rightPanelContent}
+        </div>
       </div>
 
-      {/* Right panel — AI Panel (default) or page-registered content */}
-      <div
-        className={cn(
-          "shrink-0 transition-all duration-300 ease-in-out overflow-hidden z-40",
-          "max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:h-full",
-          isRightPanelOpen ? "w-80" : "w-0",
-        )}
-      >
-        {/* Fall back to AI Panel when no page has registered custom content */}
-        {rightPanelContent ?? (
-          <AiPanel isOpen={isRightPanelOpen} onClose={closeRightPanel} />
-        )}
-      </div>
-
-      {/* Mobile overlay backdrop */}
+      {/* Mobile overlay backdrop — sits below the header */}
       {isMobile && (isSidebarOpen || isRightPanelOpen) && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-30 lg:hidden animate-in fade-in duration-200"
+          className="fixed inset-x-0 top-14 bottom-0 bg-black/40 backdrop-blur-[2px] z-30 lg:hidden animate-in fade-in duration-200"
           onClick={closeAllOverlaysOnMobile}
         />
       )}

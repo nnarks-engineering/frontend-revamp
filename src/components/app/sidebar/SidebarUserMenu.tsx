@@ -29,11 +29,7 @@ function getInitials(
   return "?";
 }
 
-interface Props {
-  readonly isCollapsed: boolean;
-}
-
-export function SidebarUserMenu({ isCollapsed }: Props) {
+export function SidebarUserMenu() {
   const { data: user } = useCurrentUser();
   const { data: profile } = useCurrentProfile();
   const logout = useLogout();
@@ -63,37 +59,24 @@ export function SidebarUserMenu({ isCollapsed }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className={cn(
-            "w-full flex items-center gap-3 rounded-xl px-2.5 py-2 text-[13.5px] font-medium",
-            "bg-muted/40 hover:bg-muted/70 transition-all duration-150 outline-none focus:outline-none",
-            isCollapsed && "justify-center px-0 py-2.5"
-          )}
+          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-[13.5px] font-medium hover:bg-muted/60 transition-all duration-150 outline-none focus:outline-none"
         >
-          <div
-            className={cn(
-              "shrink-0 rounded-full bg-linear-to-br from-primary via-primary/80 to-secondary flex items-center justify-center text-white text-xs font-bold",
-              isCollapsed ? "w-8 h-8" : "w-7 h-7"
-            )}
-          >
+          <div className="w-7 h-7 shrink-0 rounded-full bg-linear-to-br from-primary via-primary/80 to-secondary flex items-center justify-center text-white text-xs font-bold">
             {initials}
           </div>
-          {!isCollapsed && (
-            <>
-              <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-semibold text-foreground truncate">
-                  {displayName}
-                </p>
-                <p className="text-[11px] text-muted-foreground truncate">{email}</p>
-              </div>
-              <ChevronsUpDown className="w-4 h-4 text-muted-foreground/50 shrink-0" />
-            </>
-          )}
+          <div className="flex-1 min-w-0 text-left hidden lg:block">
+            <p className="text-[13px] font-semibold text-foreground truncate">
+              {displayName}
+            </p>
+            <p className="text-[11px] text-muted-foreground truncate">{email}</p>
+          </div>
+          <ChevronsUpDown className="w-4 h-4 text-muted-foreground/50 shrink-0 hidden lg:block" />
         </button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         className="min-w-56 rounded-lg"
-        side="right"
+        side="bottom"
         align="end"
         sideOffset={8}
       >

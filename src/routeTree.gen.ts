@@ -25,6 +25,7 @@ import { Route as AuthVerifyRouteImport } from './routes/_auth/verify'
 import { Route as AuthSuccessRouteImport } from './routes/_auth/success'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as AppOrganizationRouteImport } from './routes/_app/organization'
 import { Route as AppInboxRouteImport } from './routes/_app/inbox'
 import { Route as AppEscrowRouteImport } from './routes/_app/escrow'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -114,6 +115,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppOrganizationRoute = AppOrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppInboxRoute = AppInboxRouteImport.update({
   id: '/inbox',
   path: '/inbox',
@@ -186,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
   '/inbox': typeof AppInboxRoute
+  '/organization': typeof AppOrganizationRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
@@ -212,6 +219,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
   '/inbox': typeof AppInboxRoute
+  '/organization': typeof AppOrganizationRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
@@ -242,6 +250,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/escrow': typeof AppEscrowRoute
   '/_app/inbox': typeof AppInboxRoute
+  '/_app/organization': typeof AppOrganizationRoute
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/success': typeof AuthSuccessRoute
@@ -270,6 +279,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/escrow'
     | '/inbox'
+    | '/organization'
     | '/login'
     | '/register'
     | '/success'
@@ -296,6 +306,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/escrow'
     | '/inbox'
+    | '/organization'
     | '/login'
     | '/register'
     | '/success'
@@ -325,6 +336,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/escrow'
     | '/_app/inbox'
+    | '/_app/organization'
     | '/_auth/login'
     | '/_auth/register'
     | '/_auth/success'
@@ -467,6 +479,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_app/organization': {
+      id: '/_app/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof AppOrganizationRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/inbox': {
       id: '/_app/inbox'
       path: '/inbox'
@@ -552,6 +571,7 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppEscrowRoute: typeof AppEscrowRoute
   AppInboxRoute: typeof AppInboxRoute
+  AppOrganizationRoute: typeof AppOrganizationRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
@@ -562,6 +582,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppEscrowRoute: AppEscrowRoute,
   AppInboxRoute: AppInboxRoute,
+  AppOrganizationRoute: AppOrganizationRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
