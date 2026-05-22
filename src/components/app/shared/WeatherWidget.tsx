@@ -11,16 +11,16 @@ import { Droplets, MapPin, Wind } from "lucide-react";
 // ─── Meteocons static imports ─────────────────────────────────────────────────
 // All 10 condition icons imported at build time — no dynamic imports, no effects.
 // Swap "fill" → "flat" | "line" | "monochrome" to change the icon style.
-import clearDaySvg           from "@meteocons/svg/fill/clear-day.svg";
-import clearNightSvg         from "@meteocons/svg/fill/clear-night.svg";
-import partlyCloudyDaySvg   from "@meteocons/svg/fill/partly-cloudy-day.svg";
+import clearDaySvg from "@meteocons/svg/fill/clear-day.svg";
+import clearNightSvg from "@meteocons/svg/fill/clear-night.svg";
+import drizzleSvg from "@meteocons/svg/fill/drizzle.svg";
+import fogSvg from "@meteocons/svg/fill/fog.svg";
+import overcastSvg from "@meteocons/svg/fill/overcast.svg";
+import partlyCloudyDaySvg from "@meteocons/svg/fill/partly-cloudy-day.svg";
 import partlyCloudyNightSvg from "@meteocons/svg/fill/partly-cloudy-night.svg";
-import overcastSvg           from "@meteocons/svg/fill/overcast.svg";
-import fogSvg                from "@meteocons/svg/fill/fog.svg";
-import drizzleSvg            from "@meteocons/svg/fill/drizzle.svg";
-import rainSvg               from "@meteocons/svg/fill/rain.svg";
-import snowSvg               from "@meteocons/svg/fill/snow.svg";
-import thunderstormsSvg      from "@meteocons/svg/fill/thunderstorms-rain.svg";
+import rainSvg from "@meteocons/svg/fill/rain.svg";
+import snowSvg from "@meteocons/svg/fill/snow.svg";
+import thunderstormsSvg from "@meteocons/svg/fill/thunderstorms-rain.svg";
 
 import { useLocationPreference } from "@/shared/hooks/use-location-preference";
 import { useWeather, type WeatherCondition } from "@/shared/hooks/use-weather";
