@@ -5,6 +5,9 @@ import {
   LayoutDashboard,
   LineChart,
   MessagesSquare,
+  Folder, Play, AlertCircle, CheckCircle, ScrollText, Users,
+  MessageSquare, Mail, Bell, Sparkles,
+  PieChart, Users2, ShieldCheck, Bot, FileText, CreditCard, Settings, FolderKanban, FileSearch, Wallet
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -18,6 +21,10 @@ export interface NavItem {
   to: string;
   /** Optional badge (e.g. unread count). */
   badge?: string | number;
+  /** Searchable description for the global search. */
+  description?: string;
+  /** Allowed user types to see this nav item. */
+  userTypes?: ("vendor" | "client")[];
   /**
    * "vertical-sidebar" → sub-items appear in the left sidebar when this
    * top-level item is active.  Only meaningful on top-level items.
@@ -25,6 +32,11 @@ export interface NavItem {
    */
   childrenLayout?: "vertical-sidebar";
   children?: NavItem[];
+}
+
+export interface SearchableItem extends NavItem {
+  breadcrumbLabel: string;
+  breadcrumbPath: string[];
 }
 
 export interface NavGroup {
@@ -39,10 +51,20 @@ export const NAV_GROUPS: NavGroup[] = [
     title: "Overview",
     items: [
       {
+        id: "vendor-dashboard",
+        label: "Home",
+        description: "Overview of your business, activity, and key metrics.",
+        icon: LayoutDashboard,
+        to: "/org",
+        userTypes: ["vendor"],
+      },
+      {
         id: "dashboard",
         label: "Dashboard",
+        description: "Your main dashboard and daily overview.",
         icon: LayoutDashboard,
         to: "/dashboard",
+        userTypes: ["client"],
       },
     ],
   },
@@ -56,28 +78,10 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/projects",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "projects-all", label: "All Projects", to: "/projects" },
-          {
-            id: "projects-active",
-            label: "Active",
-            to: "/projects/active",
-            children: [
-              { id: "projects-active-progress", label: "In Progress", to: "/projects/active" },
-              { id: "projects-active-pending", label: "Pending Review", to: "/projects/active/pending" },
-            ],
-          },
-          {
-            id: "projects-disputes",
-            label: "Disputes",
-            to: "/projects/disputes",
-            children: [
-              { id: "projects-disputes-open", label: "Open", to: "/projects/disputes" },
-              { id: "projects-disputes-review", label: "In Review", to: "/projects/disputes/review" },
-            ],
-          },
-          { id: "projects-completed", label: "Completed", to: "/projects/completed" },
-          { id: "projects-ledger", label: "Escrow Ledger", to: "/escrow" },
-          { id: "projects-circles", label: "Trust Circles", to: "/circles" },
+          { id: "projects-list", label: "All Projects", icon: Folder, to: "/projects" },
+          { id: "projects-disputes", label: "Disputes", icon: AlertCircle, to: "/projects/disputes" },
+          { id: "projects-ledger", label: "Escrow Ledger", icon: ScrollText, to: "/escrow" },
+          { id: "projects-circles", label: "Trust Circles", icon: Users, to: "/circles" },
         ],
       },
     ],
@@ -93,17 +97,18 @@ export const NAV_GROUPS: NavGroup[] = [
         childrenLayout: "vertical-sidebar",
         children: [
           {
-            id: "inbox-messages",
-            label: "Messages",
+            id: "inbox-chats",
+            label: "Chats",
+            icon: MessageSquare,
             to: "/inbox",
             children: [
-              { id: "inbox-messages-all", label: "All Chats", to: "/inbox" },
-              { id: "inbox-messages-direct", label: "Direct", to: "/inbox/direct" },
-              { id: "inbox-messages-groups", label: "Group Chats", to: "/inbox/groups" },
+              { id: "inbox-chats-direct", label: "Direct Messages", to: "/inbox/direct" },
+              { id: "inbox-chats-org", label: "Organizational", to: "/inbox/org" },
             ],
           },
-          { id: "inbox-email", label: "Email", to: "/inbox/email" },
-          { id: "inbox-notifications", label: "Notifications", to: "/inbox/notifications" },
+          { id: "inbox-email", label: "Email", icon: Mail, to: "/inbox/email" },
+          { id: "inbox-notifications", label: "Notifications", icon: Bell, to: "/inbox/notifications" },
+          { id: "inbox-ai", label: "Nnarks AI", description: "Chat with your intelligent assistant.", icon: Sparkles, to: "/inbox/ai" },
         ],
       },
     ],
@@ -118,50 +123,17 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/organization",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "org-overview", label: "Overview", to: "/organization" },
-          {
-            id: "org-members",
-            label: "Members",
-            to: "/organization/members",
-            children: [
-              { id: "org-members-all", label: "All Members", to: "/organization/members" },
-              { id: "org-members-invitations", label: "Invitations", to: "/organization/members/invitations" },
-              { id: "org-members-roles", label: "Roles & Access", to: "/organization/members/roles" },
-            ],
-          },
-          { id: "org-teams", label: "Teams", to: "/organization/teams" },
-          {
-            id: "org-kyc",
-            label: "KYC & Compliance",
-            to: "/organization/kyc",
-            children: [
-              { id: "org-kyc-queue", label: "Verification Queue", to: "/organization/kyc" },
-              { id: "org-kyc-approved", label: "Approved", to: "/organization/kyc/approved" },
-              { id: "org-kyc-rejected", label: "Rejected", to: "/organization/kyc/rejected" },
-            ],
-          },
-          {
-            id: "org-agents",
-            label: "Agents",
-            to: "/organization/agents",
-            children: [
-              { id: "org-agents-active", label: "Active Agents", to: "/organization/agents" },
-              { id: "org-agents-logs", label: "Activity Logs", to: "/organization/agents/logs" },
-              { id: "org-agents-config", label: "Configuration", to: "/organization/agents/config" },
-            ],
-          },
-          {
-            id: "org-evidence",
-            label: "Evidence",
-            to: "/organization/evidence",
-            children: [
-              { id: "org-evidence-cases", label: "Cases", to: "/organization/evidence" },
-              { id: "org-evidence-docs", label: "Documents", to: "/organization/evidence/documents" },
-            ],
-          },
+          { id: "org-overview", label: "Overview", icon: PieChart, to: "/organization" },
+          { id: "org-members", label: "Members", icon: Users2, to: "/organization/members" },
+          { id: "org-teams", label: "Teams", icon: FolderKanban, to: "/organization/teams" },
+          { id: "org-kyc", label: "KYC & Compliance", icon: ShieldCheck, to: "/organization/kyc" },
+          { id: "org-wallet", label: "Wallet", icon: Wallet, to: "/organization/wallet" },
+          { id: "org-agents", label: "Agents", icon: Bot, to: "/organization/agents" },
+          { id: "org-evidence", label: "Evidence", icon: FileSearch, to: "/organization/evidence" },
           {
             id: "org-billing",
             label: "Billing & Plan",
+            icon: CreditCard,
             to: "/organization/billing",
             children: [
               { id: "org-billing-plan", label: "Current Plan", to: "/organization/billing" },
@@ -172,6 +144,7 @@ export const NAV_GROUPS: NavGroup[] = [
           {
             id: "org-settings",
             label: "Settings",
+            icon: Settings,
             to: "/organization/settings",
             children: [
               { id: "org-settings-general", label: "General", to: "/organization/settings" },
@@ -194,9 +167,9 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/advisory",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "advisory-overview", label: "Overview", to: "/advisory" },
-          { id: "advisory-insights", label: "Insights", to: "/advisory/insights" },
-          { id: "advisory-reports", label: "Reports", to: "/advisory/reports" },
+          { id: "advisory-overview", label: "Overview", icon: PieChart, to: "/advisory" },
+          { id: "advisory-insights", label: "Insights", icon: LineChart, to: "/advisory/insights" },
+          { id: "advisory-reports", label: "Reports", icon: FileText, to: "/advisory/reports" },
         ],
       },
     ],
@@ -255,9 +228,38 @@ export function resolvePageTitle(pathname: string): string {
   return "Dashboard";
 }
 
-/** All top-level nav items across every group (used by TopNavBar). */
+/** All top-level nav items across every group (used by AppHeader). */
 export function getAllTopLevelItems(): NavItem[] {
-  return NAV_GROUPS.flatMap((g) => g.items);
+  // For now, statically filter out client-only items. Later, use active user type.
+  return NAV_GROUPS.flatMap((g) => g.items).filter(
+    (item) => !item.userTypes || item.userTypes.includes("vendor")
+  );
+}
+
+/** Flatten all nav items for global search, enriching them with breadcrumbs. */
+export function getAllSearchableItems(): SearchableItem[] {
+  const result: SearchableItem[] = [];
+  function traverse(items: NavItem[], parentPath: string[]) {
+    for (const item of items) {
+      if (!item.userTypes || item.userTypes.includes("vendor")) {
+        const currentPath = parentPath.length > 0 && parentPath[parentPath.length - 1] === item.label 
+          ? [...parentPath] 
+          : [...parentPath, item.label];
+          
+        result.push({
+          ...item,
+          breadcrumbLabel: currentPath.join(" > "),
+          breadcrumbPath: currentPath,
+        });
+        if (item.children) traverse(item.children, currentPath);
+      }
+    }
+  }
+  
+  for (const group of NAV_GROUPS) {
+    traverse(group.items, group.title ? [group.title] : []);
+  }
+  return result;
 }
 
 /**

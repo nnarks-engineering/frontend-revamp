@@ -74,12 +74,12 @@ function AppLayoutInner() {
 
           {/* Page content */}
           <main
-            className="flex-1 flex "
+            className="flex-1 flex  bg-slate-100 "
             onClick={closeAllOverlaysOnMobile}
           > <div
           className={cn(
-            "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
-            "max-lg:fixed max-lg:left-0 max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
+            "shrink-0 overflow-hidden text-sm pt-3 text-black font-med transition-all duration-300 ease-in-out",
+            "max-lg:fixed max-lg:left-0 text-sm max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
             isMobile
               ? isSidebarOpen ? "w-[220px]" : "w-0"
               : hasSubItems ? "w-[220px]" : "w-0",
@@ -87,15 +87,10 @@ function AppLayoutInner() {
         >
           <SidebarNav onClose={isMobile ? closeSidebarOnMobile : undefined} />
         </div>
-            <div className="p-4 md:p-6 min-h-full flex-1 overflow-auto bg-background">
+            <div className="p-3 md:p-4 min-h-full flex-1 overflow-auto ">
               <LocationBanner />
               <Outlet />
-            </div>
-          </main>
-        </div>
-
-        {/* Right panel — page-registered content only */}
-        <div
+            </div> <div
           className={cn(
             "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
             "max-lg:fixed max-lg:right-0 max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
@@ -104,6 +99,11 @@ function AppLayoutInner() {
         >
           {rightPanelContent}
         </div>
+          </main>
+        </div>
+
+        {/* Right panel — page-registered content only */}
+
       </div>
 
       {/* Mobile overlay backdrop — sits below the header */}

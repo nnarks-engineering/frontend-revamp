@@ -11,8 +11,8 @@ import {
 } from "@/shared/api/onboarding";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 
-const VENDOR_HOME = "/dashboard" as const;
-// const ONBOARDING_ROUTE = "/vendor" as const;
+const VENDOR_HOME = "/org" as const;
+// const ONBOARDING_ROUTE = "/onboarding/org" as const;
 
 // ── Personal info ─────────────────────────────────────────────────────
 

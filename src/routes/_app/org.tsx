@@ -1,8 +1,8 @@
 import { WeatherWidget } from "@/components/app/shared";
-import { useCurrentProfile } from "@/shared/hooks/use-auth";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
 import { cn } from "@/shared/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
+import { useCurrentProfile } from "@/shared/hooks/use-auth";
 
 import {
   ArrowUpRight,
@@ -15,22 +15,23 @@ import {
   XCircle,
 } from "lucide-react";
 
-export const Route = createFileRoute("/_app/dashboard")({
+export const Route = createFileRoute("/_app/org")({
   component: DashboardPage,
 });
 
 function DashboardPage() {
-  // const { data: user } = useCurrentUser();
-  const { data: profile } = useCurrentProfile();
+
+
+    const { data: profile } = useCurrentProfile();
 
   useRightPanel(<DashboardActivityPanel />, { openOnMount: true });
 
   return (
     <div className="space-y-6 max-w-[1400px] mx-auto font-outfit">
       {/* Welcome Section */}
-      <div className="flex items-start justify-between flex-wrap gap-4">
-        <div>
-          <h2 className="text-xl font-millik md:text-2xl font-bold text-foreground tracking-tight">
+      <div className="flex  items-start h-fit justify-between flex-wrap gap-4">
+        <div className="bg-background flex-1 h-full rounded-lg border border-border/50 p-6">
+          <h2 className="text-xl md:text-2xl font-bold font-millik text-foreground tracking-tight">
             Welcome back, {profile?.first_name ?? "There"} 👋
           </h2>
           <p className="text-sm text-muted-foreground mt-1">

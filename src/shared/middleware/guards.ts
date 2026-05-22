@@ -17,7 +17,7 @@ export function requireAuth({ context }: ContextArgs): void {
 export function requireGuest({ context }: ContextArgs): void {
   if (context.auth.isAuthenticated()) {
     throw redirect({
-      to: context.auth.isOnboardingComplete() ? "/dashboard" : "/vendor",
+      to: context.auth.isOnboardingComplete() ? "/org" : "/onboarding/org",
     });
   }
 }
@@ -29,6 +29,6 @@ export function requireOnboarding({ context }: ContextArgs): void {
     throw redirect({ to: "/vendor/login" });
   }
   if (context.auth.isOnboardingComplete()) {
-    throw redirect({ to: "/dashboard" });
+    throw redirect({ to: "/org" });
   }
 }

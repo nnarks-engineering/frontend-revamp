@@ -9,25 +9,14 @@ interface SidebarNavProps {
   onClose?: () => void;
 }
 
-/**
- * Left sidebar — renders only the vertical sub-navigation for the currently
- * active top-level section.  AppLayout completely hides this panel (w-0) when
- * there are no sub-items, so this component does not need to handle the empty
- * state itself.
- *
- * Items with `children` render as collapsible accordions directly in the
- * sidebar, replacing the old horizontal SubNavBar tabs.
- */
 export function SidebarNav({ onClose }: SidebarNavProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const sidebarItems = resolveVerticalSidebarItems(pathname);
-  // Among the top-level sidebar items, only the most specific path match
-  // gets the active highlight (prevents Overview at /foo from staying lit
-  // while you navigate to /foo/bar).
+
   const activeSidebarId = findBestMatchId(sidebarItems ?? [], pathname);
 
   return (
-    <aside className="h-full w-[220px] flex flex-col bg-white border-r border-border/60 font-outfit select-none">
+    <aside className="h-full w-[220px] flex flex-col md:bg-background rounded-r-2xl font-poppins select-none">
       <nav className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-2.5 scrollbar-hide">
         {sidebarItems?.length ? (
           <div className="space-y-0.5">
@@ -74,16 +63,17 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
         to={item.to as any}
         onClick={onClose}
         className={cn(
-          "relative flex items-center rounded-xl px-3 py-2 text-[13px] font-medium",
+          "relative flex items-center px-3 py-2  rounded-r-md",
           "transition-all duration-150",
           isDirectlyActive
-            ? "bg-primary/10 text-primary"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+            ? "bg-primary/10  border-l-2 border-l-primary!"
+            : "text-black hover:text-foreground hover:bg-muted/50",
         )}
       >
-        {isDirectlyActive && (
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r-full bg-primary" />
-        )}
+        {/* {isDirectlyActive && (
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 bg-primary" />
+        )} */}
+        {item.icon && <item.icon className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary" : "text-muted-foreground/70")} />}
         <span className="truncate">{item.label}</span>
       </Link>
     );
@@ -98,27 +88,28 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
       {/* Parent row: Link navigates, chevron button toggles */}
       <div
         className={cn(
-          "relative flex items-center rounded-xl text-[13px] font-medium",
-          "transition-all duration-150 group",
+          "relative flex items-center ",
+          "transition-all duration-150 group rounded-r-md",
           isDirectlyActive
-            ? "bg-primary/10 text-primary"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+            ? "bg-primary/10  border-l-2 border-l-primary!"
+            : " hover:text-foreground hover:bg-muted/50",
         )}
       >
-        {isDirectlyActive && (
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r-full bg-primary" />
-        )}
+        {/* {isDirectlyActive && (
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 bg-primary" />
+        )} */}
         <Link
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           to={item.to as any}
           onClick={onClose}
-          className="flex-1 px-3 py-2 truncate"
+          className="flex-1 flex items-center px-3 py-2 truncate"
         >
-          {item.label}
+          {item.icon && <item.icon className="w-4 h-4 shrink-0 mr-3 text-muted-foreground/70" />}
+          <span className="truncate">{item.label}</span>
         </Link>
         <button
           onClick={() => setManualOpen((o) => !o)}
-          className="p-2 shrink-0 rounded-r-xl"
+          className="p-2 shrink-0 "
           aria-label={isOpen ? "Collapse" : "Expand"}
         >
           <ChevronRight
@@ -126,8 +117,8 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
               "w-3.5 h-3.5 transition-transform duration-200",
               isOpen ? "rotate-90" : "",
               isDirectlyActive
-                ? "text-primary/70"
-                : "text-muted-foreground/40 group-hover:text-muted-foreground/70",
+                ? " group-hover:"
+                : " group-hover:text-muted-foreground/70",
             )}
           />
         </button>
@@ -153,16 +144,15 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
                     to={child.to as any}
                     onClick={onClose}
                     className={cn(
-                      "relative flex items-center rounded-lg px-3 py-1.5 text-[12.5px] font-medium",
+                      "relative flex items-center px-3 py-1.5 rounded-r-md ",
                       "transition-all duration-150",
                       childActive
-                        ? "bg-primary/8 text-primary"
-                        : "text-muted-foreground/80 hover:text-foreground hover:bg-muted/40",
+                        ? "bg-primary/8 "
+                        : " hover:text-foreground hover:bg-muted/40",
                     )}
                   >
-                    {childActive && (
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2.5px] h-3 rounded-r-full bg-primary/70" />
-                    )}
+
+                    {child.icon && <child.icon className={cn("w-3.5 h-3.5 shrink-0 mr-2", childActive ? "text-primary" : "text-muted-foreground/60")} />}
                     <span className="truncate">{child.label}</span>
                   </Link>
                 );

@@ -6,19 +6,6 @@ import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 
-/**
- * Horizontal sub-navigation bar rendered just below the app header.
- *
- * - Automatically resolves the correct set of tabs for the current pathname
- *   from the central `NAV_GROUPS` config.
- * - Shows an animated underline indicator on the active tab.
- * - Renders nothing (zero height) when the current route has no sub-tabs.
- *
- * Layout rules (defined in `nav-config.ts`):
- *  • Top-level item with `childrenLayout: "horizontal-tabs"` (e.g. Dashboard)
- *  • Vertical-sidebar item → child with `childrenLayout: "horizontal-tabs"`
- *    (e.g. Organization → Members / Settings)
- */
 export function SubNavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const tabs = resolveHorizontalTabs(pathname);

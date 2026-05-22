@@ -24,7 +24,10 @@ export function SuccessView() {
       </div>
       <SubmitButton 
         type="button"
-        onClick={() => navigate({ to: "/dashboard" })}
+        onClick={() => {
+          const userType = localStorage.getItem("userType") ?? "vendor";
+          navigate({ to: userType === "client" ? "/dashboard" : "/org" });
+        }}
       >
         {t("common:navigation.dashboard")}
       </SubmitButton>

@@ -4,19 +4,17 @@ import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
-
 export function TopNavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const items = getAllTopLevelItems();
 
   return (
-    <nav className="shrink-0 bg-white flex border-b border-border/40 pr-4 font-outfit">
-      <div className="w-[220px] h-11 shrink-0">
+    <nav className="shrink-0  flex  pr-4 font-outfit">
+      <div className="w-[220px] shrink-0  border-b border-background!">
         <SidebarCompanySwitcher isCollapsed={false} />
       </div>
 
-      <div className="flex flex-1 items-end gap-0 h-11 overflow-x-auto scrollbar-hide">
-
+      <div className="flex flex-1 items-end gap-0  overflow-x-auto scrollbar-hide border-b">
         {items.map((item) => {
           const isActive = isOwnedBy(pathname, item);
           const Icon = item.icon;
@@ -27,18 +25,18 @@ export function TopNavBar() {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               to={item.to as any}
               className={cn(
-                "relative h-full flex items-center gap-1.5 px-3.5 text-[13px] font-medium",
+                "relative h-full flex items-center gap-1.5 px-3.5 text-sm font-medium",
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
                   ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground",
+                  : "text-primary-950 hover:text-foreground",
               )}
             >
               {Icon && (
                 <Icon
                   className={cn(
                     "w-[15px] h-[15px] shrink-0 transition-colors duration-150",
-                    isActive ? "text-primary" : "text-muted-foreground",
+                    isActive ? "text-primary" : "text-primary-950",
                   )}
                 />
               )}

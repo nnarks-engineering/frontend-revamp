@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as ModulesRouteImport } from './routes/modules'
 import { Route as FinancialsRouteImport } from './routes/financials'
 import { Route as FeaturesRouteImport } from './routes/features'
@@ -16,28 +17,35 @@ import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BuiltForRouteImport } from './routes/built-for'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as OnboardingRouteImport } from './routes/_onboarding'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as OnboardingVendorRouteImport } from './routes/_onboarding/vendor'
+import { Route as OnboardingOrgRouteImport } from './routes/onboarding/org'
 import { Route as AuthVerifyRouteImport } from './routes/_auth/verify'
 import { Route as AuthSuccessRouteImport } from './routes/_auth/success'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AppOrganizationRouteImport } from './routes/_app/organization'
+import { Route as AppOrgRouteImport } from './routes/_app/org'
 import { Route as AppInboxRouteImport } from './routes/_app/inbox'
 import { Route as AppEscrowRouteImport } from './routes/_app/escrow'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
-import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/_onboarding/account-type/index'
+import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/onboarding/account-type/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
+import { Route as AppInboxIndexRouteImport } from './routes/_app/inbox/index'
 import { Route as AppCirclesIndexRouteImport } from './routes/_app/circles/index'
 import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/verify'
 import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
 import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
+import { Route as AppInboxAiRouteImport } from './routes/_app/inbox/ai'
 
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ModulesRoute = ModulesRouteImport.update({
   id: '/modules',
   path: '/modules',
@@ -73,10 +81,6 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/_onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -90,9 +94,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OnboardingVendorRoute = OnboardingVendorRouteImport.update({
-  id: '/vendor',
-  path: '/vendor',
+const OnboardingOrgRoute = OnboardingOrgRouteImport.update({
+  id: '/org',
+  path: '/org',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const AuthVerifyRoute = AuthVerifyRouteImport.update({
@@ -118,6 +122,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
 const AppOrganizationRoute = AppOrganizationRouteImport.update({
   id: '/organization',
   path: '/organization',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOrgRoute = AppOrgRouteImport.update({
+  id: '/org',
+  path: '/org',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInboxRoute = AppInboxRouteImport.update({
@@ -146,12 +155,17 @@ const OnboardingAccountTypeIndexRoute =
     path: '/account-type/',
     getParentRoute: () => OnboardingRoute,
   } as any).lazy(() =>
-    import('./routes/_onboarding/account-type/index.lazy').then((d) => d.Route),
+    import('./routes/onboarding/account-type/index.lazy').then((d) => d.Route),
   )
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
   getParentRoute: () => AppRoute,
+} as any)
+const AppInboxIndexRoute = AppInboxIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppInboxRoute,
 } as any)
 const AppCirclesIndexRoute = AppCirclesIndexRouteImport.update({
   id: '/circles/',
@@ -178,6 +192,11 @@ const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   path: '/projects/$projectId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppInboxAiRoute = AppInboxAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => AppInboxRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -188,23 +207,27 @@ export interface FileRoutesByFullPath {
   '/features': typeof FeaturesRoute
   '/financials': typeof FinancialsRoute
   '/modules': typeof ModulesRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
-  '/inbox': typeof AppInboxRoute
+  '/inbox': typeof AppInboxRouteWithChildren
+  '/org': typeof AppOrgRoute
   '/organization': typeof AppOrganizationRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
-  '/vendor': typeof OnboardingVendorRoute
+  '/onboarding/org': typeof OnboardingOrgRoute
+  '/inbox/ai': typeof AppInboxAiRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles/': typeof AppCirclesIndexRoute
+  '/inbox/': typeof AppInboxIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
-  '/account-type/': typeof OnboardingAccountTypeIndexRoute
+  '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -215,30 +238,32 @@ export interface FileRoutesByTo {
   '/features': typeof FeaturesRoute
   '/financials': typeof FinancialsRoute
   '/modules': typeof ModulesRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
-  '/inbox': typeof AppInboxRoute
+  '/org': typeof AppOrgRoute
   '/organization': typeof AppOrganizationRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
-  '/vendor': typeof OnboardingVendorRoute
+  '/onboarding/org': typeof OnboardingOrgRoute
+  '/inbox/ai': typeof AppInboxAiRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles': typeof AppCirclesIndexRoute
+  '/inbox': typeof AppInboxIndexRoute
   '/projects': typeof AppProjectsIndexRoute
-  '/account-type': typeof OnboardingAccountTypeIndexRoute
+  '/onboarding/account-type': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
-  '/_onboarding': typeof OnboardingRouteWithChildren
   '/about': typeof AboutRoute
   '/built-for': typeof BuiltForRoute
   '/contact': typeof ContactRoute
@@ -246,23 +271,27 @@ export interface FileRoutesById {
   '/features': typeof FeaturesRoute
   '/financials': typeof FinancialsRoute
   '/modules': typeof ModulesRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/_app/advisory': typeof AppAdvisoryRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/escrow': typeof AppEscrowRoute
-  '/_app/inbox': typeof AppInboxRoute
+  '/_app/inbox': typeof AppInboxRouteWithChildren
+  '/_app/org': typeof AppOrgRoute
   '/_app/organization': typeof AppOrganizationRoute
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/success': typeof AuthSuccessRoute
   '/_auth/verify': typeof AuthVerifyRoute
-  '/_onboarding/vendor': typeof OnboardingVendorRoute
+  '/onboarding/org': typeof OnboardingOrgRoute
+  '/_app/inbox/ai': typeof AppInboxAiRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/_auth/vendor/login': typeof AuthVendorLoginRoute
   '/_auth/vendor/register': typeof AuthVendorRegisterRoute
   '/_auth/vendor/verify': typeof AuthVendorVerifyRoute
   '/_app/circles/': typeof AppCirclesIndexRoute
+  '/_app/inbox/': typeof AppInboxIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
-  '/_onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
+  '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -275,23 +304,27 @@ export interface FileRouteTypes {
     | '/features'
     | '/financials'
     | '/modules'
+    | '/onboarding'
     | '/advisory'
     | '/dashboard'
     | '/escrow'
     | '/inbox'
+    | '/org'
     | '/organization'
     | '/login'
     | '/register'
     | '/success'
     | '/verify'
-    | '/vendor'
+    | '/onboarding/org'
+    | '/inbox/ai'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
     | '/circles/'
+    | '/inbox/'
     | '/projects/'
-    | '/account-type/'
+    | '/onboarding/account-type/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -302,29 +335,31 @@ export interface FileRouteTypes {
     | '/features'
     | '/financials'
     | '/modules'
+    | '/onboarding'
     | '/advisory'
     | '/dashboard'
     | '/escrow'
-    | '/inbox'
+    | '/org'
     | '/organization'
     | '/login'
     | '/register'
     | '/success'
     | '/verify'
-    | '/vendor'
+    | '/onboarding/org'
+    | '/inbox/ai'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
     | '/circles'
+    | '/inbox'
     | '/projects'
-    | '/account-type'
+    | '/onboarding/account-type'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_auth'
-    | '/_onboarding'
     | '/about'
     | '/built-for'
     | '/contact'
@@ -332,30 +367,33 @@ export interface FileRouteTypes {
     | '/features'
     | '/financials'
     | '/modules'
+    | '/onboarding'
     | '/_app/advisory'
     | '/_app/dashboard'
     | '/_app/escrow'
     | '/_app/inbox'
+    | '/_app/org'
     | '/_app/organization'
     | '/_auth/login'
     | '/_auth/register'
     | '/_auth/success'
     | '/_auth/verify'
-    | '/_onboarding/vendor'
+    | '/onboarding/org'
+    | '/_app/inbox/ai'
     | '/_app/projects/$projectId'
     | '/_auth/vendor/login'
     | '/_auth/vendor/register'
     | '/_auth/vendor/verify'
     | '/_app/circles/'
+    | '/_app/inbox/'
     | '/_app/projects/'
-    | '/_onboarding/account-type/'
+    | '/onboarding/account-type/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
-  OnboardingRoute: typeof OnboardingRouteWithChildren
   AboutRoute: typeof AboutRoute
   BuiltForRoute: typeof BuiltForRoute
   ContactRoute: typeof ContactRoute
@@ -363,10 +401,18 @@ export interface RootRouteChildren {
   FeaturesRoute: typeof FeaturesRoute
   FinancialsRoute: typeof FinancialsRoute
   ModulesRoute: typeof ModulesRoute
+  OnboardingRoute: typeof OnboardingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/modules': {
       id: '/modules'
       path: '/modules'
@@ -416,13 +462,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_onboarding': {
-      id: '/_onboarding'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_auth': {
       id: '/_auth'
       path: ''
@@ -444,11 +483,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_onboarding/vendor': {
-      id: '/_onboarding/vendor'
-      path: '/vendor'
-      fullPath: '/vendor'
-      preLoaderRoute: typeof OnboardingVendorRouteImport
+    '/onboarding/org': {
+      id: '/onboarding/org'
+      path: '/org'
+      fullPath: '/onboarding/org'
+      preLoaderRoute: typeof OnboardingOrgRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/_auth/verify': {
@@ -486,6 +525,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganizationRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/org': {
+      id: '/_app/org'
+      path: '/org'
+      fullPath: '/org'
+      preLoaderRoute: typeof AppOrgRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/inbox': {
       id: '/_app/inbox'
       path: '/inbox'
@@ -514,10 +560,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdvisoryRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_onboarding/account-type/': {
-      id: '/_onboarding/account-type/'
+    '/onboarding/account-type/': {
+      id: '/onboarding/account-type/'
       path: '/account-type'
-      fullPath: '/account-type/'
+      fullPath: '/onboarding/account-type/'
       preLoaderRoute: typeof OnboardingAccountTypeIndexRouteImport
       parentRoute: typeof OnboardingRoute
     }
@@ -527,6 +573,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/projects/'
       preLoaderRoute: typeof AppProjectsIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/_app/inbox/': {
+      id: '/_app/inbox/'
+      path: '/'
+      fullPath: '/inbox/'
+      preLoaderRoute: typeof AppInboxIndexRouteImport
+      parentRoute: typeof AppInboxRoute
     }
     '/_app/circles/': {
       id: '/_app/circles/'
@@ -563,14 +616,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsProjectIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/inbox/ai': {
+      id: '/_app/inbox/ai'
+      path: '/ai'
+      fullPath: '/inbox/ai'
+      preLoaderRoute: typeof AppInboxAiRouteImport
+      parentRoute: typeof AppInboxRoute
+    }
   }
 }
+
+interface AppInboxRouteChildren {
+  AppInboxAiRoute: typeof AppInboxAiRoute
+  AppInboxIndexRoute: typeof AppInboxIndexRoute
+}
+
+const AppInboxRouteChildren: AppInboxRouteChildren = {
+  AppInboxAiRoute: AppInboxAiRoute,
+  AppInboxIndexRoute: AppInboxIndexRoute,
+}
+
+const AppInboxRouteWithChildren = AppInboxRoute._addFileChildren(
+  AppInboxRouteChildren,
+)
 
 interface AppRouteChildren {
   AppAdvisoryRoute: typeof AppAdvisoryRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppEscrowRoute: typeof AppEscrowRoute
-  AppInboxRoute: typeof AppInboxRoute
+  AppInboxRoute: typeof AppInboxRouteWithChildren
+  AppOrgRoute: typeof AppOrgRoute
   AppOrganizationRoute: typeof AppOrganizationRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
@@ -581,7 +656,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppAdvisoryRoute: AppAdvisoryRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppEscrowRoute: AppEscrowRoute,
-  AppInboxRoute: AppInboxRoute,
+  AppInboxRoute: AppInboxRouteWithChildren,
+  AppOrgRoute: AppOrgRoute,
   AppOrganizationRoute: AppOrganizationRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
@@ -613,12 +689,12 @@ const AuthRouteChildren: AuthRouteChildren = {
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface OnboardingRouteChildren {
-  OnboardingVendorRoute: typeof OnboardingVendorRoute
+  OnboardingOrgRoute: typeof OnboardingOrgRoute
   OnboardingAccountTypeIndexRoute: typeof OnboardingAccountTypeIndexRoute
 }
 
 const OnboardingRouteChildren: OnboardingRouteChildren = {
-  OnboardingVendorRoute: OnboardingVendorRoute,
+  OnboardingOrgRoute: OnboardingOrgRoute,
   OnboardingAccountTypeIndexRoute: OnboardingAccountTypeIndexRoute,
 }
 
@@ -630,7 +706,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
-  OnboardingRoute: OnboardingRouteWithChildren,
   AboutRoute: AboutRoute,
   BuiltForRoute: BuiltForRoute,
   ContactRoute: ContactRoute,
@@ -638,6 +713,7 @@ const rootRouteChildren: RootRouteChildren = {
   FeaturesRoute: FeaturesRoute,
   FinancialsRoute: FinancialsRoute,
   ModulesRoute: ModulesRoute,
+  OnboardingRoute: OnboardingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

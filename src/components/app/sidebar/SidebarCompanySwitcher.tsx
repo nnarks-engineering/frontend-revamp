@@ -10,8 +10,9 @@ import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { cn } from "@/shared/lib/utils";
 import type { Company } from "@/types/companies";
 import { useNavigate } from "@tanstack/react-router";
-import { Building2, ChevronsUpDown, Plus } from "lucide-react";
+import { ChevronsUpDown, Plus } from "lucide-react";
 import { useState } from "react";
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 
 const ACTIVE_COMPANY_KEY = "nnarks_active_company_id";
 
@@ -53,14 +54,14 @@ export function SidebarCompanySwitcher({ isCollapsed }: Props) {
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            "w-full flex items-center border-r gap-2.5 px-2.5 py-1.5 text-sm font-medium",
-            "hover:bg-muted/60 transition-all duration-150 outline-none focus:outline-none",
+            "w-full flex items-center border-r border-background! gap-2.5 px-2.5 py-1.5 text-sm font-medium",
+            "bg-primary-50 hover:bg-primary-100 transition-all duration-150 outline-none focus:outline-none",
             isCollapsed && "justify-center px-0"
           )}
         >
           <div
             className={cn(
-              "shrink-0 rounded-lg flex items-center justify-center text-[11px] font-bold text-primary-foreground",
+              "shrink-0 flex items-center justify-center text-[11px] font-bold text-primary-foreground",
               "bg-linear-to-br from-primary to-primary/70",
               isCollapsed ? "w-8 h-8" : "w-7 h-7"
             )}
@@ -68,7 +69,7 @@ export function SidebarCompanySwitcher({ isCollapsed }: Props) {
             {activeCompany ? (
               getInitials(activeCompany.name)
             ) : (
-              <Building2 className="w-4 h-4" />
+              <NnarksLogo className="w-4 h-4 text-primary-foreground" />
             )}
           </div>
 

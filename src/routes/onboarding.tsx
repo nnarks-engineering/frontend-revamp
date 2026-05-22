@@ -3,7 +3,7 @@ import RoundingLine from "@/assets/svg/rounding-line.svg?react"
 import { requireOnboarding } from '@/shared/middleware'
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_onboarding')({
+export const Route = createFileRoute('/onboarding')({
   beforeLoad: ({ context }) => requireOnboarding({ context }),
   component: OnboardingLayoutWrapper,
 })

@@ -21,7 +21,7 @@ import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
 
 // ── Route definition ──────────────────────────────────────────────────
 // Auth + onboarding guards are handled by the parent _onboarding layout.
-export const Route = createFileRoute("/_onboarding/vendor")({
+export const Route = createFileRoute("/onboarding/org")({
   component: VendorOnboardingPage,
 });
 

@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import type { WeatherLocation } from "./use-weather";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -15,6 +15,7 @@ interface StoredPreference {
 // ─── Storage key ──────────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "nnarks_location_pref";
+const CHANGE_EVENT = "nnarks_location_changed";
 
 function readStorage(): StoredPreference {
   try {
@@ -29,25 +30,44 @@ function readStorage(): StoredPreference {
 function writeStorage(pref: StoredPreference) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(pref));
+    // Dispatch a custom event so other hook instances in the same tab react
+    window.dispatchEvent(new Event(CHANGE_EVENT));
   } catch {
     // ignore storage quota / private-mode errors
   }
 }
 
+// ─── Shared snapshot for useSyncExternalStore ─────────────────────────────────
+
+let cachedSnapshot = readStorage();
+
+function getSnapshot(): StoredPreference {
+  return cachedSnapshot;
+}
+
+function subscribe(onStoreChange: () => void): () => void {
+  const handler = () => {
+    cachedSnapshot = readStorage();
+    onStoreChange();
+  };
+  // Listen for same-tab custom event and cross-tab storage event
+  window.addEventListener(CHANGE_EVENT, handler);
+  window.addEventListener("storage", handler);
+  return () => {
+    window.removeEventListener(CHANGE_EVENT, handler);
+    window.removeEventListener("storage", handler);
+  };
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
 export function useLocationPreference() {
-  const [pref, setPref] = useState<StoredPreference>(readStorage);
-
-  const save = useCallback((next: StoredPreference) => {
-    setPref(next);
-    writeStorage(next);
-  }, []);
+  const pref = useSyncExternalStore(subscribe, getSnapshot);
 
   /** Ask the browser for location and store the result. */
   const grant = useCallback(async () => {
     if (!navigator.geolocation) {
-      save({ status: "denied" });
+      writeStorage({ status: "denied" });
       return;
     }
 
@@ -57,7 +77,7 @@ export function useLocationPreference() {
       try {
         const perm = await navigator.permissions.query({ name: "geolocation" });
         if (perm.state === "denied") {
-          save({ status: "browser-blocked" });
+          writeStorage({ status: "browser-blocked" });
           return;
         }
       } catch {
@@ -67,21 +87,21 @@ export function useLocationPreference() {
 
     navigator.geolocation.getCurrentPosition(
       (pos) =>
-        save({
+        writeStorage({
           status: "granted",
           lat: pos.coords.latitude,
           lon: pos.coords.longitude,
         }),
-      () => save({ status: "browser-blocked" }), // silently failed → browser blocked
+      () => writeStorage({ status: "browser-blocked" }), // silently failed → browser blocked
       { timeout: 10_000, maximumAge: 5 * 60 * 1000 },
     );
-  }, [save]);
+  }, []);
 
   /** Decline location access — weather will use the default fallback. */
-  const deny = useCallback(() => save({ status: "denied" }), [save]);
+  const deny = useCallback(() => writeStorage({ status: "denied" }), []);
 
   /** Reset to "pending" so the banner appears again and the user can re-decide. */
-  const reset = useCallback(() => save({ status: "pending" }), [save]);
+  const reset = useCallback(() => writeStorage({ status: "pending" }), []);
 
   const location: WeatherLocation | undefined =
     pref.status === "granted" && pref.lat != null && pref.lon != null
