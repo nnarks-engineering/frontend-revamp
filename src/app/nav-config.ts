@@ -5,7 +5,7 @@ import {
   LayoutDashboard,
   LineChart,
   MessagesSquare,
-  Folder, Play, AlertCircle, CheckCircle, ScrollText, Users,
+  Folder, AlertCircle, ScrollText, Users,
   MessageSquare, Mail, Bell, Sparkles,
   PieChart, Users2, ShieldCheck, Bot, FileText, CreditCard, Settings, FolderKanban, FileSearch, Wallet
 } from "lucide-react";
@@ -78,7 +78,7 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/projects",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "projects-list", label: "All Projects", icon: Folder, to: "/projects" },
+          { id: "projects-list", label: "List", icon: Folder, to: "/projects" },
           { id: "projects-disputes", label: "Disputes", icon: AlertCircle, to: "/projects/disputes" },
           { id: "projects-ledger", label: "Escrow Ledger", icon: ScrollText, to: "/escrow" },
           { id: "projects-circles", label: "Trust Circles", icon: Users, to: "/circles" },
@@ -93,7 +93,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "inbox",
         label: "Inbox",
         icon: MessagesSquare,
-        to: "/inbox",
+        to: "/inbox/direct",
         childrenLayout: "vertical-sidebar",
         children: [
           {
@@ -242,10 +242,10 @@ export function getAllSearchableItems(): SearchableItem[] {
   function traverse(items: NavItem[], parentPath: string[]) {
     for (const item of items) {
       if (!item.userTypes || item.userTypes.includes("vendor")) {
-        const currentPath = parentPath.length > 0 && parentPath[parentPath.length - 1] === item.label 
-          ? [...parentPath] 
+        const currentPath = parentPath.length > 0 && parentPath[parentPath.length - 1] === item.label
+          ? [...parentPath]
           : [...parentPath, item.label];
-          
+
         result.push({
           ...item,
           breadcrumbLabel: currentPath.join(" > "),
@@ -255,7 +255,7 @@ export function getAllSearchableItems(): SearchableItem[] {
       }
     }
   }
-  
+
   for (const group of NAV_GROUPS) {
     traverse(group.items, group.title ? [group.title] : []);
   }

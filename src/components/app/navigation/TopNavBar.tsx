@@ -10,7 +10,7 @@ export function TopNavBar() {
 
   return (
     <nav className="shrink-0  flex  pr-4 font-outfit">
-      <div className="w-[220px] shrink-0  border-b border-background!">
+      <div className="w-[220px] shrink-0  ">
         <SidebarCompanySwitcher isCollapsed={false} />
       </div>
 
