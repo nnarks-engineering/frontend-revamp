@@ -5,6 +5,5 @@ export interface RouterContext {
   queryClient: QueryClient;
   auth: {
     isAuthenticated: () => boolean;
-    isOnboardingComplete: () => boolean;
   };
 }

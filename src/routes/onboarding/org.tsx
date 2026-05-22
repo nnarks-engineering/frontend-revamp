@@ -18,10 +18,13 @@ import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
 import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { VendorProfileStep } from "@/components/onboarding/VendorProfileStep";
 import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
+import { requireOnboarding } from "@/shared/middleware"
+
 
 // ── Route definition ──────────────────────────────────────────────────
 // Auth + onboarding guards are handled by the parent _onboarding layout.
 export const Route = createFileRoute("/onboarding/org")({
+    beforeLoad: ({ context }) => requireOnboarding({ context }),
   component: VendorOnboardingPage,
 });
 

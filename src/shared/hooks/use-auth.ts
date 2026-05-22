@@ -14,7 +14,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
-import { isAuthenticated } from "@/shared/lib/auth";
+import { isAuthenticated, checkOnboardingComplete } from "@/shared/lib/auth";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 
 import {
@@ -27,7 +27,6 @@ import {
 } from "@/shared/api/auth";
 
 import { getMe, getMyProfile } from "@/shared/api/users";
-import { listMyCompanies } from "@/shared/api/companies";
 import type {
   MagicLinkRequest,
   MagicVerifyRequest,
@@ -88,19 +87,7 @@ export function useVerifyMagicLink() {
     onSuccess: async () => {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      let onboarded = localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
-      
-      if (!onboarded) {
-        try {
-          const [profile, companies] = await Promise.all([getMyProfile(), listMyCompanies()]);
-          if (profile.first_name && profile.last_name && companies.length > 0) {
-            onboarded = true;
-            localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
-          }
-        } catch (e) {
-          // Ignore
-        }
-      }
+      const onboarded = await checkOnboardingComplete(queryClient);
       navigate({ to: onboarded ? "/org" : "/onboarding/org" });
     },
   });
@@ -123,19 +110,7 @@ export function useVerifyPasswordSignup() {
     onSuccess: async () => {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      let onboarded = localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
-      
-      if (!onboarded) {
-        try {
-          const [profile, companies] = await Promise.all([getMyProfile(), listMyCompanies()]);
-          if (profile.first_name && profile.last_name && companies.length > 0) {
-            onboarded = true;
-            localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
-          }
-        } catch (e) {
-          // Ignore
-        }
-      }
+      const onboarded = await checkOnboardingComplete(queryClient);
       navigate({ to: onboarded ? "/org" : "/onboarding/org" });
     },
   });
@@ -160,23 +135,10 @@ export function useLoginWithPassword() {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, type);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       
-      let onboarded = localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
-      
-      if (!onboarded && type === "vendor") {
-        try {
-          const [profile, companies] = await Promise.all([getMyProfile(), listMyCompanies()]);
-          if (profile.first_name && profile.last_name && companies.length > 0) {
-            onboarded = true;
-            localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
-          }
-        } catch (e) {
-          // Ignore
-        }
-      }
-
       if (type === "client") {
         navigate({ to: "/dashboard" });
       } else {
+        const onboarded = await checkOnboardingComplete(queryClient);
         navigate({ to: onboarded ? "/org" : "/onboarding/org" });
       }
     },

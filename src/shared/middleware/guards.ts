@@ -1,6 +1,6 @@
-
 import { redirect } from "@tanstack/react-router";
 import type { RouterContext } from "./types";
+import { checkOnboardingComplete } from "@/shared/lib/auth";
 
 type ContextArgs = { context: RouterContext };
 
@@ -14,21 +14,23 @@ export function requireAuth({ context }: ContextArgs): void {
 
 // ── requireGuest ──────────────────────────────────────────────────────
 
-export function requireGuest({ context }: ContextArgs): void {
+export async function requireGuest({ context }: ContextArgs): Promise<void> {
   if (context.auth.isAuthenticated()) {
+    const isOnboarded = await checkOnboardingComplete(context.queryClient);
     throw redirect({
-      to: context.auth.isOnboardingComplete() ? "/org" : "/onboarding/org",
+      to: isOnboarded ? "/org" : "/onboarding/org",
     });
   }
 }
 
 // ── requireOnboarding ─────────────────────────────────────────────────
 
-export function requireOnboarding({ context }: ContextArgs): void {
+export async function requireOnboarding({ context }: ContextArgs): Promise<void> {
   if (!context.auth.isAuthenticated()) {
     throw redirect({ to: "/vendor/login" });
   }
-  if (context.auth.isOnboardingComplete()) {
+  const isOnboarded = await checkOnboardingComplete(context.queryClient);
+  if (isOnboarded) {
     throw redirect({ to: "/org" });
   }
 }

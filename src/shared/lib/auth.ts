@@ -7,7 +7,10 @@
  */
 
 import type { TokenPair } from "@/types/auth";
-import { STORAGE_KEYS } from "./constants";
+import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
+import { getMyProfile } from "@/shared/api/users";
+import { listMyCompanies } from "@/shared/api/companies";
+import type { QueryClient } from "@tanstack/react-query";
 
 export type { TokenPair };
 
@@ -42,9 +45,24 @@ export function isAuthenticated(): boolean {
   return getAccessToken() !== null;
 }
 
-/** True when the user has completed the onboarding flow. */
-export function isOnboardingComplete(): boolean {
-  return localStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE) === "true";
+/** Check backend to see if onboarding is complete (has profile and company). */
+export async function checkOnboardingComplete(queryClient: QueryClient): Promise<boolean> {
+  try {
+    const profile = await queryClient.fetchQuery({
+      queryKey: QUERY_KEYS.currentProfile,
+      queryFn: getMyProfile,
+      staleTime: 1000 * 60 * 5,
+    });
+    const companies = await queryClient.fetchQuery({
+      queryKey: QUERY_KEYS.myCompanies,
+      queryFn: listMyCompanies,
+      staleTime: 1000 * 60 * 5,
+    });
+    
+    return !!(profile?.first_name && profile?.last_name && companies?.length > 0);
+  } catch (e) {
+    return false;
+  }
 }
 
 /**

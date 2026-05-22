@@ -1,4 +1,4 @@
-import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, type NavItem } from "@/app/nav-config";
+import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, resolvePageTitle, type NavItem } from "@/app/nav-config";
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
@@ -14,12 +14,16 @@ export function SidebarNav({ onClose }: SidebarNavProps) {
   const sidebarItems = resolveVerticalSidebarItems(pathname);
 
   const activeSidebarId = findBestMatchId(sidebarItems ?? [], pathname);
+  const mainTabLabel = resolvePageTitle(pathname);
 
   return (
-    <aside className="h-full w-[220px] flex flex-col md:bg-background rounded-r-2xl font-poppins select-none">
+    <aside className="h-full w-[220px] flex flex-col md:bg-background border-1 border-primary-300! border-l-0 border-t-0 rounded-r-2xl font-poppins select-none">
       <nav className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-2.5 scrollbar-hide">
         {sidebarItems?.length ? (
-          <div className="space-y-0.5">
+          <div className="space-y-0.5 text-base">
+            <div className="px-3 pb-2 pt-1 text-sm font-millik text-muted-foreground/50 uppercase tracking-wider select-none">
+              {mainTabLabel}
+            </div>
             {sidebarItems.map((item) => (
               <SidebarSubItem
                 key={item.id}
@@ -73,7 +77,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
         {/* {isDirectlyActive && (
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 bg-primary" />
         )} */}
-        {item.icon && <item.icon className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary" : "text-muted-foreground/70")} />}
+        {item.icon && <item.icon className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary-950" : "text-primary-900-950")} />}
         <span className="truncate">{item.label}</span>
       </Link>
     );

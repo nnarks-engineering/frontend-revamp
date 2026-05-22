@@ -25,11 +25,7 @@ export interface NavItem {
   description?: string;
   /** Allowed user types to see this nav item. */
   userTypes?: ("vendor" | "client")[];
-  /**
-   * "vertical-sidebar" → sub-items appear in the left sidebar when this
-   * top-level item is active.  Only meaningful on top-level items.
-   * Sub-items with children always render as collapsible accordions.
-   */
+
   childrenLayout?: "vertical-sidebar";
   children?: NavItem[];
 }
@@ -178,32 +174,17 @@ export const NAV_GROUPS: NavGroup[] = [
 
 // ─── Route helpers ────────────────────────────────────────────────────────────
 
-/** True when `pathname` equals `base` or starts with `base/`. */
 export function isUnder(pathname: string, base: string): boolean {
   return pathname === base || pathname.startsWith(base + "/");
 }
 
-/**
- * True when a nav item "owns" the given pathname — either because the pathname
- * matches the item's own route, or because any of its descendants' routes match.
- *
- * This allows items whose `to` lives outside a parent's path (e.g. `/escrow`
- * nested under a Projects item whose `to` is `/projects`) to correctly activate
- * the parent's sidebar and top-nav tab.
- */
+
 export function isOwnedBy(pathname: string, item: NavItem): boolean {
   if (isUnder(pathname, item.to)) return true;
   return item.children?.some((child) => isOwnedBy(pathname, child)) ?? false;
 }
 
-/**
- * Among a list of sibling nav items, returns the id of the item that most
- * specifically matches `pathname` — i.e. the one with the longest `to` path
- * that is still a prefix of `pathname`.  Returns `null` when nothing matches.
- *
- * This prevents a parent-level "Overview" at `/foo` from being highlighted
- * when you are at a deeper route like `/foo/bar`.
- */
+
 export function findBestMatchId(items: NavItem[], pathname: string): string | null {
   let bestId: string | null = null;
   let bestLen = -1;
@@ -262,13 +243,6 @@ export function getAllSearchableItems(): SearchableItem[] {
   return result;
 }
 
-/**
- * For the current pathname, returns the vertical-sidebar children of the
- * owning top-level item, or `null` when there is no sidebar for this route.
- *
- * Uses recursive ownership so that "guest" routes (e.g. `/escrow` nested
- * inside Projects) correctly surface the parent section's sidebar.
- */
 export function resolveVerticalSidebarItems(pathname: string): NavItem[] | null {
   for (const group of NAV_GROUPS) {
     for (const item of group.items) {

@@ -44,7 +44,6 @@ export function useSubmitVendorProfile() {
     mutationFn: (data: VendorProfilePayload) => submitVendorProfile(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
-      localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
       navigate({ to: VENDOR_HOME });
     },
     onError: (err: Error) => {
@@ -69,7 +68,6 @@ export function useSkipOnboarding() {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
     },
     onSettled: () => {
-      localStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
       navigate({ to: VENDOR_HOME });
     },
   });

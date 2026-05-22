@@ -13,8 +13,9 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
+import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { cn } from "@/shared/lib/utils";
-import { ChevronsUpDown, LogOut, Moon, Settings, Sun, SunMoon } from "lucide-react";
+import { ArrowLeftRight, Building2, ChevronsUpDown, LogOut, Moon, Plus, Settings, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 
@@ -47,13 +48,26 @@ export function SidebarUserMenu() {
     localStorage.setItem("font-size", size);
   };
 
+  const { data: companies = [] } = useMyCompanies();
+  const [activeCompanyId, setActiveCompanyId] = useState<string | null>(() => {
+    return localStorage.getItem("nnarks_active_company_id") ?? null;
+  });
+
+  const activeCompany = companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null;
+
+  const handleSelectCompany = (companyId: string) => {
+    setActiveCompanyId(companyId);
+    localStorage.setItem("nnarks_active_company_id", companyId);
+  };
+
   const displayName =
     profile?.first_name && profile?.last_name
       ? `${profile.first_name} ${profile.last_name}`
       : (user?.username ?? user?.email ?? "User");
 
-  const initials = getInitials(profile?.first_name, profile?.last_name, user?.email);
   const email = user?.email ?? "";
+  const initials = getInitials(profile?.first_name, profile?.last_name, user?.email);
+  const companyHandle = activeCompany?.slug ? `@${activeCompany.slug}` : (activeCompany?.name ?? "Company");
 
   return (
     <DropdownMenu>
@@ -68,7 +82,7 @@ export function SidebarUserMenu() {
             <p className="text-[13px] font-semibold text-foreground truncate">
               {displayName}
             </p>
-            <p className="text-[11px] text-muted-foreground truncate">{email}</p>
+            <p className="text-[11px] text-muted-foreground truncate">{companyHandle}</p>
           </div>
           <ChevronsUpDown className="w-4 h-4 text-muted-foreground/50 shrink-0 hidden lg:block" />
         </button>
@@ -101,6 +115,49 @@ export function SidebarUserMenu() {
             <Settings className="size-4" />
             Settings
           </DropdownMenuItem>
+
+          {/* Company switcher submenu */}
+          {companies.length > 0 && (
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger hideChevron className="gap-2 cursor-pointer">
+                <div className="w-5 h-5 rounded bg-primary/10 flex items-center justify-center text-[9px] font-bold text-primary shrink-0">
+                  {activeCompany ? getInitials(activeCompany.name) : <Building2 className="w-3 h-3" />}
+                </div>
+                <span className="truncate flex-1 text-left">{activeCompany?.display_name ?? activeCompany?.name ?? "Switch Company"}</span>
+                <ArrowLeftRight className="ml-auto size-4 text-muted-foreground" />
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent className="min-w-48">
+                  <DropdownMenuLabel className="text-xs text-muted-foreground">
+                    Your Companies
+                  </DropdownMenuLabel>
+                  {companies.map((company) => (
+                    <DropdownMenuItem
+                      key={company.id}
+                      onClick={() => handleSelectCompany(company.id)}
+                      className={cn(
+                        "gap-2 cursor-pointer",
+                        activeCompany?.id === company.id && "bg-accent text-accent-foreground"
+                      )}
+                    >
+                      <div className="w-5 h-5 rounded bg-primary/10 flex items-center justify-center text-[9px] font-bold text-primary shrink-0">
+                        {getInitials(company.name)}
+                      </div>
+                      <span className="truncate">{company.display_name ?? company.name}</span>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    className="gap-2 cursor-pointer text-muted-foreground"
+                    onClick={() => window.location.href = "/vendor"}
+                  >
+                    <Plus className="size-4" />
+                    New Company
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+          )}
 
           {/* Appearance submenu */}
           <DropdownMenuSub>

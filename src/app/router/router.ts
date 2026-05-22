@@ -1,5 +1,5 @@
 import { routeTree } from "@/routeTree.gen";
-import { isAuthenticated, isOnboardingComplete } from "@/shared/lib/auth";
+import { isAuthenticated } from "@/shared/lib/auth";
 import { queryClient } from "@/shared/lib/query-client";
 import { createRouter } from "@tanstack/react-router";
 
@@ -12,7 +12,6 @@ export const router = createRouter({
     queryClient,
     auth: {
       isAuthenticated,
-      isOnboardingComplete,
     },
   },
 });

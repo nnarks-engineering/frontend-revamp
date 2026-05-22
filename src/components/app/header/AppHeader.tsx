@@ -43,7 +43,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
         </button>
 
         {/* Logo */}
-        <Link to="/" className="flex items-center h-14 gap-2 px-4 group shrink-0 md:w-[220px] bg-primary-50 ">
+        <Link to="/" className="flex items-center h-14 gap-2 px-4 group shrink-0 md:w-[220px]  ">
           <NnarksLogo className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-200" />
           <span className="text-xl font-millik text-primary font-semibold tracking-tight text-foreground hidden sm:block">
             Nnarks

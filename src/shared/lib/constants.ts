@@ -119,7 +119,6 @@ export const STORAGE_KEYS = {
   REFRESH_TOKEN: "nnarks_refresh_token",
   ACCESS_EXPIRES: "nnarks_access_expires",
   REFRESH_EXPIRES: "nnarks_refresh_expires",
-  ONBOARDING_COMPLETE: "nnarks_onboarding_complete",
   USER_TYPE: "nnarks_user_type",
 } as const;
 
