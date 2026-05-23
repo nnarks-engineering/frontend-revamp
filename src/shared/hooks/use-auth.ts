@@ -87,8 +87,13 @@ export function useVerifyMagicLink() {
     onSuccess: async () => {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      const onboarded = await checkOnboardingComplete(queryClient);
-      navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      if (returnTo) {
+        navigate({ to: decodeURIComponent(returnTo) });
+      } else {
+        const onboarded = await checkOnboardingComplete(queryClient);
+        navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+      }
     },
   });
 }
@@ -110,8 +115,13 @@ export function useVerifyPasswordSignup() {
     onSuccess: async () => {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      const onboarded = await checkOnboardingComplete(queryClient);
-      navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      if (returnTo) {
+        navigate({ to: decodeURIComponent(returnTo) });
+      } else {
+        const onboarded = await checkOnboardingComplete(queryClient);
+        navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+      }
     },
   });
 }
@@ -135,7 +145,10 @@ export function useLoginWithPassword() {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, type);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       
-      if (type === "client") {
+      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      if (returnTo) {
+        navigate({ to: decodeURIComponent(returnTo) });
+      } else if (type === "client") {
         navigate({ to: "/dashboard" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);

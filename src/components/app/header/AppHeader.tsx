@@ -5,6 +5,8 @@ import { Link } from "@tanstack/react-router";
 import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GlobalSearch } from "./GlobalSearch";
+import { InvitationsDrawer } from "./InvitationsDrawer";
+import { useMyInvitations } from "@/shared/hooks/use-company-members";
 
 interface AppHeaderProps {
   isSidebarOpen: boolean;
@@ -13,6 +15,8 @@ interface AppHeaderProps {
 
 export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [invitationsOpen, setInvitationsOpen] = useState(false);
+  const { data: invitations = [] } = useMyInvitations();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -84,13 +88,18 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
           <Search className="w-[18px] h-[18px]" />
         </button>
 
-        {/* Notifications */}
+        {/* Notifications / Invitations */}
         <button
           className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
           aria-label="Notifications"
+          onClick={() => setInvitationsOpen(true)}
         >
           <Bell className="w-[18px] h-[18px]" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full ring-2 ring-white" />
+          {invitations.length > 0 && (
+            <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-white px-1">
+              {invitations.length}
+            </span>
+          )}
         </button>
 
         {/* User profile menu */}
@@ -99,6 +108,10 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
 
       {/* Global Search Modal */}
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+
+      {/* Invitations Drawer */}
+      <InvitationsDrawer open={invitationsOpen} onClose={() => setInvitationsOpen(false)} />
     </header>
   );
 }
+

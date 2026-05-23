@@ -6,6 +6,9 @@ import {
 import { Button } from "@/components/ui/button";
 import type { CompanyRole } from "@/types/enums";
 import { ShieldCheck, UserX, Crown, Users } from "lucide-react";
+import { toast } from "sonner";
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+import { useState } from "react";
 
 const ROLE_META: Record<CompanyRole, { label: string; icon: React.ReactNode; color: string }> = {
   owner: { label: "Owner", icon: <Crown className="w-3.5 h-3.5" />, color: "text-amber-600" },
@@ -24,8 +27,34 @@ export function MembersTab({ companyId }: { companyId: string }) {
   const removeMutation = useRemoveCompanyMember(companyId);
   const updateMutation = useUpdateCompanyMember(companyId);
 
+  // Dialog state
+  const [memberToRemove, setMemberToRemove] = useState<string | null>(null);
+
   // We only show active members here
   const activeMembers = members.filter((m) => m.status === "active");
+
+  const handleRemove = () => {
+    if (!memberToRemove) return;
+    removeMutation.mutate(memberToRemove, {
+      onSuccess: () => {
+        toast.success("Member removed successfully");
+        setMemberToRemove(null);
+      },
+      onError: () => {
+        toast.error("Failed to remove member");
+      }
+    });
+  };
+
+  const handleRoleChange = (memberId: string, newRole: CompanyRole) => {
+    updateMutation.mutate(
+      { memberId, data: { role: newRole } },
+      {
+        onSuccess: () => toast.success("Role updated successfully"),
+        onError: () => toast.error("Failed to update role"),
+      }
+    );
+  };
 
   if (isLoading) {
     return (
@@ -70,12 +99,7 @@ export function MembersTab({ companyId }: { companyId: string }) {
               <select
                 className="text-[12px] font-semibold bg-muted/30 border-none rounded-lg px-3 py-1.5 cursor-pointer outline-none ring-1 ring-border/50 focus:ring-primary"
                 value={member.role}
-                onChange={(e) => {
-                  updateMutation.mutate({
-                    memberId: member.id,
-                    data: { role: e.target.value as CompanyRole },
-                  });
-                }}
+                onChange={(e) => handleRoleChange(member.id, e.target.value as CompanyRole)}
                 disabled={updateMutation.isPending || member.role === "owner"}
               >
                 <option value="owner">Owner</option>
@@ -88,11 +112,7 @@ export function MembersTab({ companyId }: { companyId: string }) {
                 <Button
                   variant="outline"
                   className="h-8 px-2 text-destructive hover:bg-destructive/10 hover:text-destructive border-transparent shadow-none"
-                  onClick={() => {
-                    if (confirm("Are you sure you want to remove this member?")) {
-                      removeMutation.mutate(member.id);
-                    }
-                  }}
+                  onClick={() => setMemberToRemove(member.id)}
                   disabled={removeMutation.isPending}
                 >
                   <UserX className="w-4 h-4" />
@@ -102,6 +122,17 @@ export function MembersTab({ companyId }: { companyId: string }) {
           </div>
         );
       })}
+
+      <ConfirmDialog
+        open={!!memberToRemove}
+        onOpenChange={(open) => !open && setMemberToRemove(null)}
+        onConfirm={handleRemove}
+        title="Remove Member?"
+        description="Are you sure you want to remove this member from the organization? They will lose all access."
+        confirmText="Remove"
+        variant="destructive"
+        isPending={removeMutation.isPending}
+      />
     </div>
   );
 }

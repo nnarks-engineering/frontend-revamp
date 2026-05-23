@@ -53,6 +53,20 @@ export async function deleteCompany(id: string): Promise<void> {
   await api.delete(COMPANY_ENDPOINTS.DETAIL(id));
 }
 
+export async function getInvitationDetails(
+  invite_token: string,
+): Promise<any> {
+  const res = await api.get(COMPANY_ENDPOINTS.ACCEPT_INVITATION, {
+    params: { invite_token },
+  });
+  return res.data;
+}
+
+export async function listMyInvitations(): Promise<any[]> {
+  const res = await api.get(COMPANY_ENDPOINTS.MY_INVITATIONS);
+  return res.data;
+}
+
 export async function acceptCompanyInvitation(
   invite_token: string,
 ): Promise<CompanyMember> {
@@ -60,6 +74,21 @@ export async function acceptCompanyInvitation(
     invite_token,
   });
   return res.data;
+}
+
+export async function rejectCompanyInvitation(
+  invite_token: string,
+): Promise<void> {
+  await api.post(COMPANY_ENDPOINTS.REJECT_INVITATION, {
+    invite_token,
+  });
+}
+
+export async function resendCompanyInvitation(
+  id: string,
+  memberId: string,
+): Promise<void> {
+  await api.post(COMPANY_ENDPOINTS.RESEND_INVITATION(id, memberId));
 }
 
 export async function inviteCompanyMember(

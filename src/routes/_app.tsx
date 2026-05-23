@@ -3,6 +3,6 @@ import { requireAuth } from '@/shared/middleware'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app')({
-  beforeLoad: ({ context }) => requireAuth({ context }),
+  beforeLoad: ({ context, location }) => requireAuth({ context, location }),
   component: AppLayout,
 })

@@ -3,6 +3,11 @@ import {
   listCompanyMembers,
   removeCompanyMember,
   updateCompanyMember,
+  resendCompanyInvitation,
+  getInvitationDetails,
+  rejectCompanyInvitation,
+  listMyInvitations,
+  acceptCompanyInvitation,
 } from "@/shared/api/companies";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import type { CompanyMember, CompanyMemberInvite, CompanyMemberUpdate } from "@/types/companies";
@@ -24,6 +29,12 @@ export function useInviteCompanyMember(companyId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.companyMembers(companyId) });
     },
+  });
+}
+
+export function useResendCompanyInvitation(companyId: string) {
+  return useMutation<void, Error, string>({
+    mutationFn: (memberId) => resendCompanyInvitation(companyId, memberId),
   });
 }
 
@@ -49,6 +60,47 @@ export function useRemoveCompanyMember(companyId: string) {
     mutationFn: (memberId) => removeCompanyMember(companyId, memberId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.companyMembers(companyId) });
+    },
+  });
+}
+
+export function useInvitationDetails(inviteToken: string) {
+  return useQuery({
+    queryKey: ["invitation-details", inviteToken],
+    queryFn: () => getInvitationDetails(inviteToken),
+    enabled: Boolean(inviteToken),
+    retry: false,
+  });
+}
+
+export function useRejectCompanyInvitation() {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, Error, string>({
+    mutationFn: (token) => rejectCompanyInvitation(token),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
+      queryClient.invalidateQueries({ queryKey: ["my-invitations"] });
+    },
+  });
+}
+
+export function useMyInvitations() {
+  return useQuery({
+    queryKey: ["my-invitations"],
+    queryFn: () => listMyInvitations(),
+    refetchOnWindowFocus: true,
+  });
+}
+
+export function useAcceptCompanyInvitation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (token: string) => acceptCompanyInvitation(token),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
+      queryClient.invalidateQueries({ queryKey: ["my-invitations"] });
     },
   });
 }

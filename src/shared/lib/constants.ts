@@ -28,11 +28,15 @@ export const USER_ENDPOINTS = {
 export const COMPANY_ENDPOINTS = {
   LIST: "/companies",
   MY_COMPANIES: "/companies/me",
+  MY_INVITATIONS: "/companies/invitations/me",
   ACCEPT_INVITATION: "/companies/invitations/accept",
+  REJECT_INVITATION: "/companies/invitations/reject",
   DETAIL: (id: string) => `/companies/${id}`,
   MEMBERS: (id: string) => `/companies/${id}/members`,
   MEMBER_DETAIL: (id: string, memberId: string) =>
     `/companies/${id}/members/${memberId}`,
+  RESEND_INVITATION: (id: string, memberId: string) =>
+    `/companies/${id}/members/${memberId}/resend-invitation`,
   TRANSFER_OWNERSHIP: (id: string) => `/companies/${id}/transfer-ownership`,
   AGENT: (id: string) => `/companies/${id}/agent`,
   AGENT_CONFIG: (id: string) => `/companies/${id}/agent/config`,

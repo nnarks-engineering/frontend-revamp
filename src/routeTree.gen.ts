@@ -36,6 +36,7 @@ import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/ind
 import { Route as AppOrganizationIndexRouteImport } from './routes/_app/organization/index'
 import { Route as AppInboxIndexRouteImport } from './routes/_app/inbox/index'
 import { Route as AppCirclesIndexRouteImport } from './routes/_app/circles/index'
+import { Route as CompaniesInvitationsAcceptRouteImport } from './routes/companies.invitations.accept'
 import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/verify'
 import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
 import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
@@ -180,6 +181,12 @@ const AppCirclesIndexRoute = AppCirclesIndexRouteImport.update({
   path: '/circles/',
   getParentRoute: () => AppRoute,
 } as any)
+const CompaniesInvitationsAcceptRoute =
+  CompaniesInvitationsAcceptRouteImport.update({
+    id: '/companies/invitations/accept',
+    path: '/companies/invitations/accept',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthVendorVerifyRoute = AuthVendorVerifyRouteImport.update({
   id: '/vendor/verify',
   path: '/vendor/verify',
@@ -244,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
+  '/companies/invitations/accept': typeof CompaniesInvitationsAcceptRoute
   '/circles/': typeof AppCirclesIndexRoute
   '/inbox/': typeof AppInboxIndexRoute
   '/organization/': typeof AppOrganizationIndexRoute
@@ -276,6 +284,7 @@ export interface FileRoutesByTo {
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
+  '/companies/invitations/accept': typeof CompaniesInvitationsAcceptRoute
   '/circles': typeof AppCirclesIndexRoute
   '/inbox': typeof AppInboxIndexRoute
   '/organization': typeof AppOrganizationIndexRoute
@@ -313,6 +322,7 @@ export interface FileRoutesById {
   '/_auth/vendor/login': typeof AuthVendorLoginRoute
   '/_auth/vendor/register': typeof AuthVendorRegisterRoute
   '/_auth/vendor/verify': typeof AuthVendorVerifyRoute
+  '/companies/invitations/accept': typeof CompaniesInvitationsAcceptRoute
   '/_app/circles/': typeof AppCirclesIndexRoute
   '/_app/inbox/': typeof AppInboxIndexRoute
   '/_app/organization/': typeof AppOrganizationIndexRoute
@@ -349,6 +359,7 @@ export interface FileRouteTypes {
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
+    | '/companies/invitations/accept'
     | '/circles/'
     | '/inbox/'
     | '/organization/'
@@ -381,6 +392,7 @@ export interface FileRouteTypes {
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
+    | '/companies/invitations/accept'
     | '/circles'
     | '/inbox'
     | '/organization'
@@ -417,6 +429,7 @@ export interface FileRouteTypes {
     | '/_auth/vendor/login'
     | '/_auth/vendor/register'
     | '/_auth/vendor/verify'
+    | '/companies/invitations/accept'
     | '/_app/circles/'
     | '/_app/inbox/'
     | '/_app/organization/'
@@ -436,6 +449,7 @@ export interface RootRouteChildren {
   FinancialsRoute: typeof FinancialsRoute
   ModulesRoute: typeof ModulesRoute
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  CompaniesInvitationsAcceptRoute: typeof CompaniesInvitationsAcceptRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -629,6 +643,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCirclesIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/companies/invitations/accept': {
+      id: '/companies/invitations/accept'
+      path: '/companies/invitations/accept'
+      fullPath: '/companies/invitations/accept'
+      preLoaderRoute: typeof CompaniesInvitationsAcceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_auth/vendor/verify': {
       id: '/_auth/vendor/verify'
       path: '/vendor/verify'
@@ -785,6 +806,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinancialsRoute: FinancialsRoute,
   ModulesRoute: ModulesRoute,
   OnboardingRoute: OnboardingRouteWithChildren,
+  CompaniesInvitationsAcceptRoute: CompaniesInvitationsAcceptRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

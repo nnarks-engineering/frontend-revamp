@@ -74,7 +74,7 @@ function AppLayoutInner() {
 
           {/* Page content */}
           <main
-            className="flex-1 flex  bg-neutral-200 overflow-hidden min-h-0 "
+            className="flex-1 flex  bg-neutral-100 overflow-hidden min-h-0 "
             onClick={closeAllOverlaysOnMobile}
           > <div
           className={cn(

@@ -3,10 +3,13 @@ import {
   useCompanyMembers,
   useInviteCompanyMember,
   useRemoveCompanyMember,
+  useResendCompanyInvitation,
 } from "@/shared/hooks/use-company-members";
 import { Button } from "@/components/ui/button";
 import type { CompanyRole } from "@/types/enums";
-import { Mail, Clock, Trash2, Send } from "lucide-react";
+import { Mail, Clock, Trash2, Send, RefreshCw } from "lucide-react";
+import { toast } from "sonner";
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 
 export function InvitationsTab({ companyId }: { companyId: string }) {
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
@@ -16,8 +19,13 @@ export function InvitationsTab({ companyId }: { companyId: string }) {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<CompanyRole>("member");
   const [errorMsg, setErrorMsg] = useState("");
+  
+  // Dialog state
+  const [memberToRevoke, setMemberToRevoke] = useState<string | null>(null);
+  const [memberToResend, setMemberToResend] = useState<string | null>(null);
 
   const pendingInvites = members.filter((m) => m.status === "pending");
+  const resendMutation = useResendCompanyInvitation(companyId);
 
   const handleInvite = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,12 +42,40 @@ export function InvitationsTab({ companyId }: { companyId: string }) {
         onSuccess: () => {
           setEmail("");
           setRole("member");
+          toast.success("Invitation sent successfully");
         },
         onError: (err: any) => {
           setErrorMsg(err.message || "Failed to send invitation.");
+          toast.error("Failed to send invitation");
         },
       }
     );
+  };
+
+  const handleRevoke = () => {
+    if (!memberToRevoke) return;
+    removeMutation.mutate(memberToRevoke, {
+      onSuccess: () => {
+        toast.success("Invitation revoked");
+        setMemberToRevoke(null);
+      },
+      onError: () => {
+        toast.error("Failed to revoke invitation");
+      }
+    });
+  };
+
+  const handleResend = () => {
+    if (!memberToResend) return;
+    resendMutation.mutate(memberToResend, {
+      onSuccess: () => {
+        toast.success("Invitation resent successfully");
+        setMemberToResend(null);
+      },
+      onError: () => {
+        toast.error("Failed to resend invitation");
+      }
+    });
   };
 
   return (
@@ -121,24 +157,54 @@ export function InvitationsTab({ companyId }: { companyId: string }) {
                   </div>
                 </div>
 
-                <Button
-                  variant="outline"
-                  className="h-8 px-3 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive border-transparent shadow-none"
-                  onClick={() => {
-                    if (confirm("Are you sure you want to revoke this invitation?")) {
-                      removeMutation.mutate(invite.id);
-                    }
-                  }}
-                  disabled={removeMutation.isPending}
-                >
-                  <Trash2 className="w-3.5 h-3.5 mr-1.5" />
-                  Revoke
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    className="h-8 px-3 text-xs text-primary hover:bg-primary/10 hover:text-primary border-transparent shadow-none"
+                    onClick={() => setMemberToResend(invite.id)}
+                    disabled={resendMutation.isPending}
+                  >
+                    <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+                    Resend
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    className="h-8 px-3 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive border-transparent shadow-none"
+                    onClick={() => setMemberToRevoke(invite.id)}
+                    disabled={removeMutation.isPending}
+                  >
+                    <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                    Revoke
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        open={!!memberToRevoke}
+        onOpenChange={(open) => !open && setMemberToRevoke(null)}
+        onConfirm={handleRevoke}
+        title="Revoke Invitation?"
+        description="Are you sure you want to revoke this invitation? This action cannot be undone."
+        confirmText="Revoke"
+        variant="destructive"
+        isPending={removeMutation.isPending}
+      />
+
+      <ConfirmDialog
+        open={!!memberToResend}
+        onOpenChange={(open) => !open && setMemberToResend(null)}
+        onConfirm={handleResend}
+        title="Resend Invitation?"
+        description="Are you sure you want to resend the invitation email to this member?"
+        confirmText="Resend"
+        variant="primary"
+        isPending={resendMutation.isPending}
+      />
     </div>
   );
 }
