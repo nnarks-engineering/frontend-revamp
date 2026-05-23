@@ -9,7 +9,7 @@ export function TopNavBar() {
   const items = getAllTopLevelItems();
 
   return (
-    <nav className="shrink-0  flex  pr-4 font-outfit items-center-safe border-b border-b-primary-300! ">
+    <nav className="shrink-0  flex  pr-4 items-center-safe border-b border-b-primary-300! ">
 {/* <div className="hidden h-full md:block bg-primary- md:w-[220px] "></div> */}
 
       <div className="flex items-center gap-0   md:mx-auto w-fit  overflow-x-auto scrollbar-hide">

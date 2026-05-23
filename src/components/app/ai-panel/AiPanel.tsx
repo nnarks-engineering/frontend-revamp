@@ -84,7 +84,7 @@ export function AiPanel({ isOpen, onClose }: AiPanelProps) {
   return (
     <div
       className={cn(
-        "h-full flex flex-col bg-white border-l border-border/60 font-outfit transition-all duration-300 ease-in-out",
+        "h-full flex flex-col bg-white border-l border-border/60 transition-all duration-300 ease-in-out",
         isOpen ? "w-80" : "w-0"
       )}
     >
@@ -193,7 +193,7 @@ export function AiPanel({ isOpen, onClose }: AiPanelProps) {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask Nnarks AI..."
-                className="w-full pl-4 pr-10 py-2.5 text-[13px] bg-muted/30 border border-border/50 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:bg-white focus:shadow-[0_0_0_3px_rgba(23,204,236,0.06)] transition-all duration-200 font-outfit"
+                className="w-full pl-4 pr-10 py-2.5 text-[13px] bg-muted/30 border border-border/50 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:bg-white focus:shadow-[0_0_0_3px_rgba(23,204,236,0.06)] transition-all duration-200"
                 disabled={isThinking}
               />
               <button

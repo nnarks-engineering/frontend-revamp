@@ -58,7 +58,7 @@ function AppLayoutInner() {
   }, [isMobile, closeRightPanel]);
 
   return (
-    <div className="h-dvh fixed inset-0 flex flex-col bg-background font-outfit">
+    <div className="h-dvh fixed font-poppins inset-0 flex flex-col bg-background ">
       {/* Full-width header */}
       <AppHeader isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
 
@@ -74,7 +74,7 @@ function AppLayoutInner() {
 
           {/* Page content */}
           <main
-            className="flex-1 flex  bg-slate-50 overflow-hidden min-h-0 "
+            className="flex-1 flex  bg-neutral-100 overflow-hidden min-h-0 "
             onClick={closeAllOverlaysOnMobile}
           > <div
           className={cn(
@@ -87,7 +87,7 @@ function AppLayoutInner() {
         >
           <SidebarNav onClose={isMobile ? closeSidebarOnMobile : undefined} />
         </div>
-            <div className="p-3 md:p-4 min-h-full flex-1 overflow-auto ">
+            <div className="p-3 md:p-5 min-h-full flex-1 overflow-auto ">
               <LocationBanner />
               <Outlet />
             </div> <div

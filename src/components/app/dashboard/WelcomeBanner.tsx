@@ -1,6 +1,8 @@
 import { WeatherWidget } from "@/components/app/shared";
+import { Card, CardHeader } from "@/components/ui/card";
 import { useCurrentProfile } from "@/shared/hooks/use-auth";
 import { format } from "date-fns";
+import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 
 export function WelcomeBanner() {
   const { data: profile } = useCurrentProfile();
@@ -10,9 +12,10 @@ export function WelcomeBanner() {
   const timeFormatted = format(today, "h:mm a 'GMT'"); // Using string 'GMT' to mock timezone as shown in image
 
   return (
-    <div className="bg-white rounded-2xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between p-5 md:p-6 shadow-xs border border-border/40 gap-6">
-      <div className="flex-1">
-        <div className="flex flex-col gap-1 mb-4 sm:mb-6">
+    <Card className=" flex flex-col @min-lg:flex-row items-stretch overflow-clip justify-between p-0 px-0!">
+      <CardHeader className="flex-1 relative  overflow-clip bg-primary-100">
+        <RoundingLine className="absolute z-0 -top-3 left-0 text-primary-50  " />
+        <div className="relative z-2"> <div className="flex flex-col gap-1 mb-4 sm:mb-6">
           <p className="text-sm font-semibold text-foreground/80">{dateFormatted}</p>
           <p className="text-xs text-muted-foreground">{timeFormatted}</p>
         </div>
@@ -21,14 +24,15 @@ export function WelcomeBanner() {
         </h1>
         <p className="text-sm text-muted-foreground">
           Track and manage your activities
-        </p>
-      </div>
+        </p></div>
+       
+      </CardHeader>
 
       <div className="shrink-0 flex items-center justify-center self-start sm:self-center">
-        <div className="scale-125 origin-right">
+        <div className=" origin-right">
           <WeatherWidget />
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

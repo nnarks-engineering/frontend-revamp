@@ -106,7 +106,7 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
   if (isError) {
     return (
       <div className={cn(
-        "flex items-center gap-3 bg-white rounded-2xl border border-border/50 px-5 py-4 min-w-[220px]",
+        "flex items-center gap-3 rounded-2xl border border-border/50 px-5 py-4 min-w-[220px]",
         className,
       )}>
         <span className="text-2xl">🌡️</span>
@@ -129,7 +129,7 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={cn(
         "relative overflow-hidden px-5 py-4",
-        "bg-background rounded-md min-w-[260px]",
+        "rounded-md min-w-[260px]",
         conditionGradient(data.condition),
         border,
         className,

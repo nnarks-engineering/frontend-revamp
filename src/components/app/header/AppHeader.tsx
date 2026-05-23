@@ -26,7 +26,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
   }, []);
 
   return (
-    <header className="h-14 shrink-0 flex items-center justify-between gap-3 pr-4 border-b !border-background bg-white/80 backdrop-blur-sm font-outfit z-50 relative">
+    <header className="h-14 shrink-0 flex items-center justify-between gap-3 pr-4 border-b !border-background bg-white/80 backdrop-blur-sm z-50 relative">
       {/* Left — Mobile Toggle + Logo */}
       <div className="flex items-center gap-2 min-w-0">
         {/* Mobile-only sidebar toggle */}
@@ -65,7 +65,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
           )}
         >
           <Search className="w-4 h-4 text-muted-foreground/60 absolute left-3 pointer-events-none" />
-          <span className="w-full pl-9 pr-4 py-2 text-[13px] text-left text-muted-foreground/50 font-outfit">
+          <span className="w-full pl-9 pr-4 py-2 text-[13px] text-left text-muted-foreground/50">
             Search anything...
           </span>
           <kbd className="absolute right-3 hidden lg:inline text-[10px] font-mono text-muted-foreground/40 border border-border/50 rounded px-1.5 py-0.5 bg-white">

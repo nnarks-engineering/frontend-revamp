@@ -15,7 +15,7 @@ export function DashboardVideo({
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-sm group bg-black font-outfit">
+    <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-sm group bg-black">
       {isPlaying ? (
         <iframe
           className="w-full h-full border-0"
@@ -39,7 +39,7 @@ export function DashboardVideo({
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
             <button
               onClick={() => setIsPlaying(true)}
-              className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white mb-6 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 shadow-xl"
+              className="w-16 h-16 rounded-full bg-white/20 mt-10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white mb-6 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 shadow-xl"
               aria-label="Play video"
             >
               <Play className="w-6 h-6 ml-1" fill="currentColor" />

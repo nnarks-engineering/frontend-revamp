@@ -27,7 +27,7 @@ function getInitials(name: string) {
 
 export function EntityListCard({ title, viewAllLink, groups, className }: EntityListCardProps) {
   return (
-    <div className={cn("bg-white rounded-2xl p-5 shadow-xs border border-border/40 font-outfit h-full flex flex-col", className)}>
+    <div className={cn("bg-white rounded-2xl p-5 shadow-xs border border-border/40 h-full flex flex-col", className)}>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-[15px] font-bold text-foreground tracking-wide">

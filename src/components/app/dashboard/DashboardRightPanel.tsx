@@ -1,4 +1,3 @@
-import { cn } from "@/shared/lib/utils";
 import { ArrowUpRight, Calendar, ChevronRight, Clock } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -43,8 +42,8 @@ const PENDING_EVENTS = [
 
 export function DashboardRightPanel() {
   return (
-    <div className="h-full flex flex-col bg-slate-50/50 border-l border-border/40 font-outfit w-80 shrink-0 overflow-y-auto scrollbar-hide">
-      
+    <div className="h-full flex flex-col bg-slate-50/50 border-l border-border/40 w-80 shrink-0 overflow-y-auto scrollbar-hide">
+
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-6 pb-3 sticky top-0 bg-slate-50/95 backdrop-blur-sm z-10">
         <h3 className="text-[15px] font-bold text-foreground">
@@ -56,14 +55,14 @@ export function DashboardRightPanel() {
       </div>
 
       <div className="px-5 pb-8 flex flex-col gap-6">
-        
+
         {/* Upcoming Section */}
         <div className="space-y-4 mt-2">
           <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
             <Calendar className="w-4 h-4 text-primary" />
             Upcoming
           </div>
-          
+
           <div className="space-y-4">
             {UPCOMING_EVENTS.map((event) => (
               <div key={event.id} className="bg-white rounded-xl shadow-xs border border-border/40 overflow-hidden flex flex-col group">
@@ -77,7 +76,7 @@ export function DashboardRightPanel() {
                 <div className="p-3.5 flex flex-col gap-1.5">
                   <h4 className="text-[13px] font-bold text-foreground leading-tight">{event.title}</h4>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{event.desc}</p>
-                  
+
                   <Link
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     to={event.link as any}
@@ -97,7 +96,7 @@ export function DashboardRightPanel() {
             <Clock className="w-4 h-4 text-amber-500" />
             Pending Action
           </div>
-          
+
           <div className="space-y-3">
             {PENDING_EVENTS.map((event) => (
               <div key={event.id} className="bg-white rounded-xl shadow-xs border border-border/40 p-3.5 flex flex-col gap-2 group hover:border-primary/30 transition-colors">

@@ -70,7 +70,7 @@ function AiChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-5xl mx-auto overflow-hidden bg-white/50 backdrop-blur-sm shadow-sm font-outfit">
+    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-5xl mx-auto overflow-hidden bg-white/50 backdrop-blur-sm shadow-sm">
 
 
       {/* Chat Messages Area */}
@@ -167,7 +167,7 @@ function AiChatPage() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Message Nnarks AI..."
-              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-white border border-border/60 shadow-sm rounded-2xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200 font-outfit"
+              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-white border border-border/60 shadow-sm rounded-2xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200"
               disabled={isThinking}
             />
             <button

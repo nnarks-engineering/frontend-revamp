@@ -73,7 +73,7 @@ function AiChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-5xl mx-auto overflow-hidden font-outfit">
+    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-5xl mx-auto overflow-hidden">
 
 
       {/* Chat Messages Area */}
@@ -167,7 +167,7 @@ function AiChatPage() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Message Nnarks AI..."
-              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-white border border-border/60 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200 font-outfit"
+              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-white border border-border/60 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200"
               disabled={isThinking}
             />
             <button
@@ -194,7 +194,7 @@ function AiChatPage() {
 
 function AiRecentPanel() {
   return (
-    <div className="h-full flex flex-col bg-white border-l border-border/40 font-outfit w-80 shrink-0">
+    <div className="h-full flex flex-col bg-white border-l border-border/40 w-80 shrink-0">
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-border/40 shrink-0">
         <div>
           <h3 className="text-[13.5px] font-semibold text-foreground">

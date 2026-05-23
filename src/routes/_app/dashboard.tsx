@@ -26,7 +26,7 @@ function DashboardPage() {
   useRightPanel(<DashboardActivityPanel />, { openOnMount: true });
 
   return (
-    <div className="space-y-6 max-w-[1400px] mx-auto font-outfit">
+    <div className="space-y-6 max-w-[1400px] mx-auto">
       {/* Welcome Section */}
       <div className="flex items-start justify-between flex-wrap gap-4">
         <div>
@@ -121,7 +121,7 @@ const ACTIVITY = [
 
 function DashboardActivityPanel() {
   return (
-    <div className="h-full flex flex-col bg-white border-l border-border/40 font-outfit w-80 shrink-0">
+    <div className="h-full flex flex-col bg-white border-l border-border/40 w-80 shrink-0">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-border/40 shrink-0">
         <div>

@@ -20,7 +20,7 @@ export function SubNavBar() {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="shrink-0 bg-white border-b border-border/40 px-4 font-outfit overflow-hidden"
+          className="shrink-0 bg-white border-b border-border/40 px-4 overflow-hidden"
         >
           <div className="flex items-end gap-0 h-10 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {

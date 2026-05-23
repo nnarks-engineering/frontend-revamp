@@ -39,6 +39,7 @@ import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/veri
 import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
 import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
+import { Route as AppInboxNnarksAiRouteImport } from './routes/_app/inbox/nnarks-ai'
 import { Route as AppInboxAiRouteImport } from './routes/_app/inbox/ai'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -192,6 +193,11 @@ const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   path: '/projects/$projectId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppInboxNnarksAiRoute = AppInboxNnarksAiRouteImport.update({
+  id: '/nnarks-ai',
+  path: '/nnarks-ai',
+  getParentRoute: () => AppInboxRoute,
+} as any)
 const AppInboxAiRoute = AppInboxAiRouteImport.update({
   id: '/ai',
   path: '/ai',
@@ -220,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/verify': typeof AuthVerifyRoute
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
+  '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
@@ -250,6 +257,7 @@ export interface FileRoutesByTo {
   '/verify': typeof AuthVerifyRoute
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
+  '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
@@ -284,6 +292,7 @@ export interface FileRoutesById {
   '/_auth/verify': typeof AuthVerifyRoute
   '/onboarding/org': typeof OnboardingOrgRoute
   '/_app/inbox/ai': typeof AppInboxAiRoute
+  '/_app/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/_auth/vendor/login': typeof AuthVendorLoginRoute
   '/_auth/vendor/register': typeof AuthVendorRegisterRoute
@@ -317,6 +326,7 @@ export interface FileRouteTypes {
     | '/verify'
     | '/onboarding/org'
     | '/inbox/ai'
+    | '/inbox/nnarks-ai'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
@@ -347,6 +357,7 @@ export interface FileRouteTypes {
     | '/verify'
     | '/onboarding/org'
     | '/inbox/ai'
+    | '/inbox/nnarks-ai'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
@@ -380,6 +391,7 @@ export interface FileRouteTypes {
     | '/_auth/verify'
     | '/onboarding/org'
     | '/_app/inbox/ai'
+    | '/_app/inbox/nnarks-ai'
     | '/_app/projects/$projectId'
     | '/_auth/vendor/login'
     | '/_auth/vendor/register'
@@ -616,6 +628,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsProjectIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/inbox/nnarks-ai': {
+      id: '/_app/inbox/nnarks-ai'
+      path: '/nnarks-ai'
+      fullPath: '/inbox/nnarks-ai'
+      preLoaderRoute: typeof AppInboxNnarksAiRouteImport
+      parentRoute: typeof AppInboxRoute
+    }
     '/_app/inbox/ai': {
       id: '/_app/inbox/ai'
       path: '/ai'
@@ -628,11 +647,13 @@ declare module '@tanstack/react-router' {
 
 interface AppInboxRouteChildren {
   AppInboxAiRoute: typeof AppInboxAiRoute
+  AppInboxNnarksAiRoute: typeof AppInboxNnarksAiRoute
   AppInboxIndexRoute: typeof AppInboxIndexRoute
 }
 
 const AppInboxRouteChildren: AppInboxRouteChildren = {
   AppInboxAiRoute: AppInboxAiRoute,
+  AppInboxNnarksAiRoute: AppInboxNnarksAiRoute,
   AppInboxIndexRoute: AppInboxIndexRoute,
 }
 

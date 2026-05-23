@@ -11,7 +11,7 @@ interface InfoCardProps {
 export function InfoCard({ title, description, titleColor = "text-primary", className }: InfoCardProps) {
   return (
     <div className={cn(
-      "relative overflow-hidden bg-white rounded-2xl p-5 shadow-xs border border-border/40 font-outfit h-full",
+      "relative overflow-hidden bg-white rounded-2xl p-5 shadow-xs border border-border/40 h-full",
       className
     )}>
       {/* Decorative gradient blur */}
