@@ -4,5 +4,7 @@ export * from "./DashboardVideo";
 export * from "./EntityListCard";
 export * from "./InfoCard";
 export * from "./MiniCalendar";
+export * from "./ProjectsCard";
 export * from "./ServicesCard";
+export * from "./TeamMembersCard";
 export * from "./WelcomeBanner";

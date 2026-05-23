@@ -33,12 +33,14 @@ import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
 import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/onboarding/account-type/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
+import { Route as AppOrganizationIndexRouteImport } from './routes/_app/organization/index'
 import { Route as AppInboxIndexRouteImport } from './routes/_app/inbox/index'
 import { Route as AppCirclesIndexRouteImport } from './routes/_app/circles/index'
 import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/verify'
 import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
 import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
+import { Route as AppOrganizationTeamRouteImport } from './routes/_app/organization/team'
 import { Route as AppInboxNnarksAiRouteImport } from './routes/_app/inbox/nnarks-ai'
 import { Route as AppInboxAiRouteImport } from './routes/_app/inbox/ai'
 
@@ -163,6 +165,11 @@ const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOrganizationIndexRoute = AppOrganizationIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppOrganizationRoute,
+} as any)
 const AppInboxIndexRoute = AppInboxIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -193,6 +200,11 @@ const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   path: '/projects/$projectId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOrganizationTeamRoute = AppOrganizationTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AppOrganizationRoute,
+} as any)
 const AppInboxNnarksAiRoute = AppInboxNnarksAiRouteImport.update({
   id: '/nnarks-ai',
   path: '/nnarks-ai',
@@ -219,7 +231,7 @@ export interface FileRoutesByFullPath {
   '/escrow': typeof AppEscrowRoute
   '/inbox': typeof AppInboxRouteWithChildren
   '/org': typeof AppOrgRoute
-  '/organization': typeof AppOrganizationRoute
+  '/organization': typeof AppOrganizationRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
@@ -227,12 +239,14 @@ export interface FileRoutesByFullPath {
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
+  '/organization/team': typeof AppOrganizationTeamRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles/': typeof AppCirclesIndexRoute
   '/inbox/': typeof AppInboxIndexRoute
+  '/organization/': typeof AppOrganizationIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
@@ -250,7 +264,6 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
   '/org': typeof AppOrgRoute
-  '/organization': typeof AppOrganizationRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
@@ -258,12 +271,14 @@ export interface FileRoutesByTo {
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
+  '/organization/team': typeof AppOrganizationTeamRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
   '/circles': typeof AppCirclesIndexRoute
   '/inbox': typeof AppInboxIndexRoute
+  '/organization': typeof AppOrganizationIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/onboarding/account-type': typeof OnboardingAccountTypeIndexRoute
 }
@@ -285,7 +300,7 @@ export interface FileRoutesById {
   '/_app/escrow': typeof AppEscrowRoute
   '/_app/inbox': typeof AppInboxRouteWithChildren
   '/_app/org': typeof AppOrgRoute
-  '/_app/organization': typeof AppOrganizationRoute
+  '/_app/organization': typeof AppOrganizationRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/success': typeof AuthSuccessRoute
@@ -293,12 +308,14 @@ export interface FileRoutesById {
   '/onboarding/org': typeof OnboardingOrgRoute
   '/_app/inbox/ai': typeof AppInboxAiRoute
   '/_app/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
+  '/_app/organization/team': typeof AppOrganizationTeamRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/_auth/vendor/login': typeof AuthVendorLoginRoute
   '/_auth/vendor/register': typeof AuthVendorRegisterRoute
   '/_auth/vendor/verify': typeof AuthVendorVerifyRoute
   '/_app/circles/': typeof AppCirclesIndexRoute
   '/_app/inbox/': typeof AppInboxIndexRoute
+  '/_app/organization/': typeof AppOrganizationIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
@@ -327,12 +344,14 @@ export interface FileRouteTypes {
     | '/onboarding/org'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
+    | '/organization/team'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
     | '/circles/'
     | '/inbox/'
+    | '/organization/'
     | '/projects/'
     | '/onboarding/account-type/'
   fileRoutesByTo: FileRoutesByTo
@@ -350,7 +369,6 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/escrow'
     | '/org'
-    | '/organization'
     | '/login'
     | '/register'
     | '/success'
@@ -358,12 +376,14 @@ export interface FileRouteTypes {
     | '/onboarding/org'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
+    | '/organization/team'
     | '/projects/$projectId'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
     | '/circles'
     | '/inbox'
+    | '/organization'
     | '/projects'
     | '/onboarding/account-type'
   id:
@@ -392,12 +412,14 @@ export interface FileRouteTypes {
     | '/onboarding/org'
     | '/_app/inbox/ai'
     | '/_app/inbox/nnarks-ai'
+    | '/_app/organization/team'
     | '/_app/projects/$projectId'
     | '/_auth/vendor/login'
     | '/_auth/vendor/register'
     | '/_auth/vendor/verify'
     | '/_app/circles/'
     | '/_app/inbox/'
+    | '/_app/organization/'
     | '/_app/projects/'
     | '/onboarding/account-type/'
   fileRoutesById: FileRoutesById
@@ -586,6 +608,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/organization/': {
+      id: '/_app/organization/'
+      path: '/'
+      fullPath: '/organization/'
+      preLoaderRoute: typeof AppOrganizationIndexRouteImport
+      parentRoute: typeof AppOrganizationRoute
+    }
     '/_app/inbox/': {
       id: '/_app/inbox/'
       path: '/'
@@ -628,6 +657,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsProjectIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/organization/team': {
+      id: '/_app/organization/team'
+      path: '/team'
+      fullPath: '/organization/team'
+      preLoaderRoute: typeof AppOrganizationTeamRouteImport
+      parentRoute: typeof AppOrganizationRoute
+    }
     '/_app/inbox/nnarks-ai': {
       id: '/_app/inbox/nnarks-ai'
       path: '/nnarks-ai'
@@ -661,13 +697,27 @@ const AppInboxRouteWithChildren = AppInboxRoute._addFileChildren(
   AppInboxRouteChildren,
 )
 
+interface AppOrganizationRouteChildren {
+  AppOrganizationTeamRoute: typeof AppOrganizationTeamRoute
+  AppOrganizationIndexRoute: typeof AppOrganizationIndexRoute
+}
+
+const AppOrganizationRouteChildren: AppOrganizationRouteChildren = {
+  AppOrganizationTeamRoute: AppOrganizationTeamRoute,
+  AppOrganizationIndexRoute: AppOrganizationIndexRoute,
+}
+
+const AppOrganizationRouteWithChildren = AppOrganizationRoute._addFileChildren(
+  AppOrganizationRouteChildren,
+)
+
 interface AppRouteChildren {
   AppAdvisoryRoute: typeof AppAdvisoryRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppEscrowRoute: typeof AppEscrowRoute
   AppInboxRoute: typeof AppInboxRouteWithChildren
   AppOrgRoute: typeof AppOrgRoute
-  AppOrganizationRoute: typeof AppOrganizationRoute
+  AppOrganizationRoute: typeof AppOrganizationRouteWithChildren
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
@@ -679,7 +729,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppEscrowRoute: AppEscrowRoute,
   AppInboxRoute: AppInboxRouteWithChildren,
   AppOrgRoute: AppOrgRoute,
-  AppOrganizationRoute: AppOrganizationRoute,
+  AppOrganizationRoute: AppOrganizationRouteWithChildren,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,

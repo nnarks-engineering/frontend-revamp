@@ -104,12 +104,12 @@ export function MiniCalendar({ className, highlightedDates = [] }: MiniCalendarP
             <div
               key={idx}
               className={cn(
-                "h-8 flex items-center justify-center rounded-lg text-[12.5px] font-medium transition-colors",
+                "h-8 flex items-center justify-center rounded-md text-[12.5px] font-medium transition-colors",
                 day === null && "invisible",
                 isTodayDay
-                  ? "bg-primary text-white font-bold shadow-sm"
+                  ? "bg-primary-600 text-white font-bold"
                   : isHighlighted
-                  ? "bg-primary/10 text-primary font-semibold ring-1 ring-primary/20"
+                  ? "bg-primary/10 text-primary-600 font-semibold ring-1 ring-primary/20"
                   : "text-foreground hover:bg-muted/50 cursor-pointer"
               )}
             >

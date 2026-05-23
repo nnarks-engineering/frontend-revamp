@@ -31,14 +31,14 @@ export function ServiceSlideCard({
     >
       {/* ── Illustration — md+ only ──────────────────────────────── */}
       <div className="hidden md:flex relative max-h-64 shrink-0 items-center justify-center">
-        <span className="absolute right-0 flex items-end text-primary-600 justify-center text-[150px] font-millik font-black select-none leading-none">
+        <span className="absolute right-0 flex items-end text-primary-100 justify-center text-[150px] font-millik font-black select-none leading-none">
           {positionText}
         </span>
         <ServiceIllustrationSvg className="size-52 -mr-20 relative opacity-90" />
       </div>
 
       {/* ── Content card ─────────────────────────────────────────── */}
-      <div className="flex-1 relative min-w-0 flex flex-col gap-1 border border-primary-900/20 md:rounded-r-lg bg-amber-50 overflow-hidden p-3">
+      <div className="flex-1 relative min-w-0 flex flex-col gap-1 border border-primary-900/20 md:rounded-r-lg bg-white overflow-hidden p-3">
 
         {/* Watermark illustration — mobile/tablet only, hidden on md+ */}
         <ServiceIllustrationSvg
@@ -93,7 +93,7 @@ export function ServiceSlideCard({
       </div>
 
       {!isLast && (
-        <div className="ml-2 md:ml-4 opacity-20 size-6 md:size-10 rounded-full bg-primary-900 shrink-0" />
+        <div className="ml-2 md:ml-4 opacity-20 size-6 md:size-10 rounded-full bg-white/50 shrink-0" />
       )}
     </div>
   );

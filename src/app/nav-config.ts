@@ -120,8 +120,7 @@ export const NAV_GROUPS: NavGroup[] = [
         childrenLayout: "vertical-sidebar",
         children: [
           { id: "org-overview", label: "Overview", icon: PieChart, to: "/organization" },
-          { id: "org-members", label: "Members", icon: Users2, to: "/organization/members" },
-          { id: "org-teams", label: "Teams", icon: FolderKanban, to: "/organization/teams" },
+          { id: "org-team", label: "Team", icon: Users2, to: "/organization/team" },
           { id: "org-kyc", label: "KYC & Compliance", icon: ShieldCheck, to: "/organization/kyc" },
           { id: "org-wallet", label: "Wallet", icon: Wallet, to: "/organization/wallet" },
           { id: "org-agents", label: "Agents", icon: Bot, to: "/organization/agents" },

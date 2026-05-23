@@ -23,7 +23,7 @@ export function TopNavBar() {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               to={item.to as any}
               className={cn(
-                "relative h-full flex py-3 items-center gap-1.5 px-3.5 text-base font-medium",
+                "relative h-full flex py-3 items-center gap-1.5 px-3.5 text-base font-normal ",
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
                   ? "text-black bg-primary-50"

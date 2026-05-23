@@ -39,7 +39,7 @@ export function DashboardTopStrip({ companyId, highlightedDates = [] }: Props) {
   const isEmpty = !isLoading && services.length === 0;
 
   return (
-    <div className="bg-amber-100 rounded-lg border border-border/40 flex flex-col md:flex-row overflow-hidden min-h-[260px]">
+    <div className=" rounded-lg border border-border/40 flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden min-h-[260px]">
 
       {/* ── TOP/LEFT: Calendar ─────────────────────────────────────── */}
       <MiniCalendar
@@ -48,8 +48,8 @@ export function DashboardTopStrip({ companyId, highlightedDates = [] }: Props) {
       />
 
       {/* ── BOTTOM/RIGHT: Services area ──────────────────────────────── */}
-      <div className="flex-1 flex flex-col min-w-0 md:pr-4 relative">
-                <RoundingLine className="absolute z-0 -top-3 left-0 text-amber-50  z-0" />
+      <div className="flex-1 flex flex-col min-w-0 md:pr-4 relative bg-white">
+                <RoundingLine className="absolute z-0 -top-3 left-0 text-primary-50  z-0" />
 
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 shrink-0 z-1 relative">
