@@ -116,7 +116,7 @@ function MagicLinkForm() {
           >
             <Mail className="mr-2 h-4 w-4" />
             Send magic link
-            <ArrowRight className="ml-auto h-4 w-4" />
+            <ArrowRight className=" h-4 w-4" />
           </SubmitButton>
         )}
       </form.Subscribe>
@@ -188,7 +188,7 @@ function PasswordForm() {
             loadingText="Signing in…"
           >
             Sign in
-            <ArrowRight className="ml-auto h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </SubmitButton>
         )}
       </form.Subscribe>

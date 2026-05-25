@@ -70,7 +70,7 @@ function AppLayoutInner() {
         {/* Main column */}
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Main navigation — all top-level sections as horizontal tabs */}
-          <TopNavBar />
+          {/* <TopNavBar /> */}
 
           {/* Page content */}
           <main

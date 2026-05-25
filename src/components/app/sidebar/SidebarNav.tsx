@@ -2,7 +2,8 @@ import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, resolvePageTit
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 interface SidebarNavProps {
@@ -50,12 +51,9 @@ interface SidebarSubItemProps {
 }
 
 function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSubItemProps) {
-  // isSectionActive: any descendant route is active → keeps accordion open
   const isSectionActive = isOwnedBy(pathname, item);
   const hasChildren = !!item.children?.length;
 
-  // Active route always keeps the accordion open.
-  // The user can additionally open non-active accordions manually via the chevron.
   const [manualOpen, setManualOpen] = useState(false);
   const isOpen = isSectionActive || manualOpen;
 
@@ -67,68 +65,70 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
         to={item.to as any}
         onClick={onClose}
         className={cn(
-          "relative flex items-center px-3 py-2  rounded-r-md",
+          "relative flex items-center px-3 py-2 rounded-r-md",
           "transition-all duration-150",
           isDirectlyActive
-            ? "bg-primary/10  border-l-2 border-l-primary!"
+            ? "bg-primary/10 border-l-2 border-l-primary!"
             : "text-black hover:text-foreground hover:bg-muted/50",
         )}
       >
-        {/* {isDirectlyActive && (
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 bg-primary" />
-        )} */}
-        {item.icon && <item.icon className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary-950" : "text-primary-900-950")} />}
+        {item.icon && (
+          <FontAwesomeIcon
+            icon={item.icon}
+            className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary-950" : "text-primary-900-950")}
+          />
+        )}
         <span className="truncate">{item.label}</span>
       </Link>
     );
   }
 
-  // Most-specific child match — only the deepest matching child is highlighted
   const activeChildId = findBestMatchId(item.children!, pathname);
 
   // ── Accordion item (has children) ──────────────────────────────────────
   return (
     <div>
-      {/* Parent row: Link navigates, chevron button toggles */}
       <div
         className={cn(
-          "relative flex items-center ",
+          "relative flex items-center",
           "transition-all duration-150 group rounded-r-md",
           isDirectlyActive
-            ? "bg-primary/10  border-l-2 border-l-primary!"
-            : " hover:text-foreground hover:bg-muted/50",
+            ? "bg-primary/10 border-l-2 border-l-primary!"
+            : "hover:text-foreground hover:bg-muted/50",
         )}
       >
-        {/* {isDirectlyActive && (
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 bg-primary" />
-        )} */}
         <Link
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           to={item.to as any}
           onClick={onClose}
           className="flex-1 flex items-center px-3 py-2 truncate"
         >
-          {item.icon && <item.icon className="w-4 h-4 shrink-0 mr-3 text-muted-foreground/70" />}
+          {item.icon && (
+            <FontAwesomeIcon
+              icon={item.icon}
+              className="w-4 h-4 shrink-0 mr-3 text-muted-foreground/70"
+            />
+          )}
           <span className="truncate">{item.label}</span>
         </Link>
         <button
           onClick={() => setManualOpen((o) => !o)}
-          className="p-2 shrink-0 "
+          className="p-2 shrink-0"
           aria-label={isOpen ? "Collapse" : "Expand"}
         >
-          <ChevronRight
+          <FontAwesomeIcon
+            icon={faChevronRight}
             className={cn(
               "w-3.5 h-3.5 transition-transform duration-200",
               isOpen ? "rotate-90" : "",
               isDirectlyActive
-                ? " group-hover:"
-                : " group-hover:text-muted-foreground/70",
+                ? "group-hover:"
+                : "group-hover:text-muted-foreground/70",
             )}
           />
         </button>
       </div>
 
-      {/* Accordion children */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -148,15 +148,19 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
                     to={child.to as any}
                     onClick={onClose}
                     className={cn(
-                      "relative flex items-center px-3 py-1.5 rounded-r-md ",
+                      "relative flex items-center px-3 py-1.5 rounded-r-md",
                       "transition-all duration-150",
                       childActive
-                        ? "bg-primary/8 "
-                        : " hover:text-foreground hover:bg-muted/40",
+                        ? "bg-primary/8"
+                        : "hover:text-foreground hover:bg-muted/40",
                     )}
                   >
-
-                    {child.icon && <child.icon className={cn("w-3.5 h-3.5 shrink-0 mr-2", childActive ? "text-primary" : "text-muted-foreground/60")} />}
+                    {child.icon && (
+                      <FontAwesomeIcon
+                        icon={child.icon}
+                        className={cn("w-3.5 h-3.5 shrink-0 mr-2", childActive ? "text-primary" : "text-muted-foreground/60")}
+                      />
+                    )}
                     <span className="truncate">{child.label}</span>
                   </Link>
                 );

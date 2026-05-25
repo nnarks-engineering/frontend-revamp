@@ -80,7 +80,7 @@ export function SidebarUserMenu() {
           </div>
           <div className="flex-1 min-w-0 text-left hidden lg:block">
             <p className="text-[13px] font-semibold text-foreground truncate">
-              {displayName}
+              Me
             </p>
             <p className="text-[11px] text-muted-foreground truncate">{companyHandle}</p>
           </div>

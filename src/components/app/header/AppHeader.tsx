@@ -2,11 +2,12 @@ import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { cn } from "@/shared/lib/utils";
 import { Link } from "@tanstack/react-router";
-import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
+import { ArrowLeft, Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GlobalSearch } from "./GlobalSearch";
 import { InvitationsDrawer } from "./InvitationsDrawer";
 import { useMyInvitations } from "@/shared/hooks/use-company-members";
+import { TopNavBar } from "../navigation/TopNavBar";
 
 interface AppHeaderProps {
   isSidebarOpen: boolean;
@@ -30,87 +31,110 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
   }, []);
 
   return (
-    <header className="h-14 shrink-0 flex items-center justify-between gap-3 pr-4 border-b !border-background bg-white/80 backdrop-blur-sm z-50 relative">
-      {/* Left — Mobile Toggle + Logo */}
-      <div className="flex items-center gap-2 min-w-0">
-        {/* Mobile-only sidebar toggle */}
-        <button
-          onClick={onToggleSidebar}
-          className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 lg:hidden"
-          aria-label="Toggle sidebar"
-        >
-          {isSidebarOpen ? (
-            <PanelLeftClose className="w-[18px] h-[18px]" />
-          ) : (
-            <PanelLeftOpen className="w-[18px] h-[18px]" />
-          )}
-        </button>
+    <header className="h-14 shrink-0 bg-white backdrop-blur-sm z-50 relative">
+      <div className="max-w-[90rem] h-full flex items-center justify-between gap-2 mx-auto px-2">
 
-        {/* Logo */}
-        <Link to="/" className="flex items-center h-14 gap-2 px-4 group shrink-0 md:w-[220px]  ">
-          <NnarksLogo className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-200" />
-          <span className="text-xl font-millik text-primary font-semibold tracking-tight text-foreground hidden sm:block">
-            Nnarks
-          </span>
-        </Link>
+        {/* ── Left: sidebar toggle / back-arrow + logo ── */}
+        <div className="flex items-center gap-1 shrink-0 flex-1">
+          {/* Sidebar toggle — mobile only, hidden when search is open */}
+          <button
+            type="button"
+            onClick={onToggleSidebar}
+            className={cn(
+              "p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 lg:hidden",
+              searchOpen && "hidden",
+            )}
+            aria-label="Toggle sidebar"
+          >
+            {isSidebarOpen ? (
+              <PanelLeftClose className="w-[18px] h-[18px]" />
+            ) : (
+              <PanelLeftOpen className="w-[18px] h-[18px]" />
+            )}
+          </button>
 
-        {/* Divider */}
-        <div className="w-px h-5 bg-border/60 mx-1 hidden sm:block" />
-      </div>
+          {/* Back arrow — mobile only, visible when search is open */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(false)}
+            className={cn(
+              "p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150",
+              searchOpen ? "flex md:hidden" : "hidden",
+            )}
+            aria-label="Close search"
+          >
+            <ArrowLeft className="w-[18px] h-[18px]" />
+          </button>
 
-      {/* Center — Search (clicking opens modal) */}
-      <div className="flex-1 max-w-md mx-4 hidden md:block">
-        <button
-          type="button"
-          onClick={() => setSearchOpen(true)}
-          className={cn(
-            "w-full relative flex items-center rounded-xl border transition-all duration-200",
-            "border-border/50 bg-muted/30 hover:bg-muted/50 hover:border-primary/30 cursor-pointer",
-          )}
-        >
-          <Search className="w-4 h-4 text-muted-foreground/60 absolute left-3 pointer-events-none" />
-          <span className="w-full pl-9 pr-4 py-2 text-[13px] text-left text-muted-foreground/50">
-            Search anything...
-          </span>
-          <kbd className="absolute right-3 hidden lg:inline text-[10px] font-mono text-muted-foreground/40 border border-border/50 rounded px-1.5 py-0.5 bg-white">
-            ⌘K
-          </kbd>
-        </button>
-      </div>
-
-      {/* Right — Mobile Search + Notifications + User */}
-      <div className="flex items-center gap-1 shrink-0">
-        {/* Mobile search icon */}
-        <button
-          className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 md:hidden"
-          onClick={() => setSearchOpen(true)}
-        >
-          <Search className="w-[18px] h-[18px]" />
-        </button>
-
-        {/* Notifications / Invitations */}
-        <button
-          className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
-          aria-label="Notifications"
-          onClick={() => setInvitationsOpen(true)}
-        >
-          <Bell className="w-[18px] h-[18px]" />
-          {invitations.length > 0 && (
-            <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-white px-1">
-              {invitations.length}
+          {/* Logo — hidden on mobile when search is open */}
+          <Link
+            to="/org"
+            className={cn(
+              "flex items-center h-14 gap-2 px-3 group shrink-0",
+              searchOpen ? "hidden md:flex" : "flex",
+            )}
+          >
+            <NnarksLogo className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />
+            <span className="text-xl font-millik text-primary font-semibold tracking-tight hidden sm:block">
+              Nnarks
             </span>
+          </Link>
+
+            <div
+          className={cn(
+            "min-w-0 flex-1 transition-all duration-300 delay-100",
+            searchOpen
+              ? "md:max-w-lg"                          // fills all available space when active
+              : "hidden md:block w-52 max-w-xs", // desktop-only fixed width when idle
           )}
-        </button>
+        >
+          <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+        </div>
+        </div>
 
-        {/* User profile menu */}
-        <SidebarUserMenu />
+        {/* ── Right: mobile search icon + bell + user ── */}
+        <div
+          className={cn(
+            "flex items-cente gap-1 mt-auto shrink-0",
+            searchOpen && "hidden md:flex",  // hide entirely on mobile when search is open
+          )}
+        >
+           <div className={cn(
+          "flex-1",
+          searchOpen ? "hidden sm:flex" : "flex"
+        )}>
+          <TopNavBar />
+
+        </div>
+          {/* Mobile search trigger */}
+          <button
+            type="button"
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 md:hidden"
+            onClick={() => setSearchOpen(true)}
+          >
+            <Search className="w-[18px] h-[18px]" />
+          </button>
+
+          {/* Notifications / Invitations */}
+          <button
+            type="button"
+            className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
+            aria-label="Notifications"
+            onClick={() => setInvitationsOpen(true)}
+          >
+            <Bell className="w-[18px] h-[18px]" />
+            {invitations.length > 0 && (
+              <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-white px-1">
+                {invitations.length}
+              </span>
+            )}
+          </button>
+
+          <SidebarUserMenu />
+        </div>
+
+        <InvitationsDrawer open={invitationsOpen} onClose={() => setInvitationsOpen(false)} />
       </div>
-
-      {/* Global Search Modal */}
-      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-
-      {/* Invitations Drawer */}
-      <InvitationsDrawer open={invitationsOpen} onClose={() => setInvitationsOpen(false)} />
     </header>
   );
 }

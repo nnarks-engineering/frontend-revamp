@@ -1,31 +1,38 @@
-import type { LucideIcon } from "lucide-react";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
-  Briefcase,
-  Building2,
-  LayoutDashboard,
-  LineChart,
-  MessagesSquare,
-  Folder, AlertCircle, ScrollText, Users,
-  MessageSquare, Mail, Bell, Sparkles,
-  PieChart, Users2, ShieldCheck, Bot, FileText, CreditCard, Settings, FolderKanban, FileSearch, Wallet
-} from "lucide-react";
+  faHouseChimney,
+  faGaugeHigh,
+  faFolderOpen,
+  faList,
+  faGavel,
+  faLock,
+  faUserShield,
+  faInbox,
+  faComments,
+  faEnvelopeOpen,
+  faBell,
+  faBrain,
+  faPeopleGroup,
+  faChartPie,
+  faUserGroup,
+  faIdCard,
+  faWallet,
+  faMicrochip,
+  faSearch,
+  faFileInvoiceDollar,
+  faSliders,
+} from "@fortawesome/free-solid-svg-icons";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface NavItem {
   id: string;
   label: string;
-  /** Icon — only rendered by top-level tab bar items. */
-  icon?: LucideIcon;
-  /** Route path this item navigates to. */
+  icon?: IconDefinition;
   to: string;
-  /** Optional badge (e.g. unread count). */
   badge?: string | number;
-  /** Searchable description for the global search. */
   description?: string;
-  /** Allowed user types to see this nav item. */
   userTypes?: ("vendor" | "client")[];
-
   childrenLayout?: "vertical-sidebar";
   children?: NavItem[];
 }
@@ -50,7 +57,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "vendor-dashboard",
         label: "Home",
         description: "Overview of your business, activity, and key metrics.",
-        icon: LayoutDashboard,
+        icon: faHouseChimney,
         to: "/org",
         userTypes: ["vendor"],
       },
@@ -58,7 +65,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "dashboard",
         label: "Dashboard",
         description: "Your main dashboard and daily overview.",
-        icon: LayoutDashboard,
+        icon: faGaugeHigh,
         to: "/dashboard",
         userTypes: ["client"],
       },
@@ -70,14 +77,14 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "projects",
         label: "Projects",
-        icon: Briefcase,
+        icon: faFolderOpen,
         to: "/projects",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "projects-list", label: "List", icon: Folder, to: "/projects" },
-          { id: "projects-disputes", label: "Disputes", icon: AlertCircle, to: "/projects/disputes" },
-          { id: "projects-ledger", label: "Escrow Ledger", icon: ScrollText, to: "/escrow" },
-          { id: "projects-circles", label: "Trust Circles", icon: Users, to: "/circles" },
+          { id: "projects-list",     label: "List",          icon: faList,               to: "/projects" },
+          { id: "projects-disputes", label: "Disputes",      icon: faGavel,              to: "/projects/disputes" },
+          { id: "projects-ledger",   label: "Escrow Ledger", icon: faLock,               to: "/escrow" },
+          { id: "projects-circles",  label: "Trust Circles", icon: faUserShield,         to: "/circles" },
         ],
       },
     ],
@@ -88,23 +95,24 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "inbox",
         label: "Inbox",
-        icon: MessagesSquare,
+        icon: faInbox,
         to: "/inbox/direct",
         childrenLayout: "vertical-sidebar",
         children: [
           {
             id: "inbox-chats",
             label: "Chats",
-            icon: MessageSquare,
+            icon: faComments,
             to: "/inbox",
             children: [
               { id: "inbox-chats-direct", label: "Direct Messages", to: "/inbox/direct" },
-              { id: "inbox-chats-org", label: "Organizational", to: "/inbox/org" },
+              { id: "inbox-chats-org",    label: "Organizational",  to: "/inbox/org" },
             ],
           },
-          { id: "inbox-email", label: "Email", icon: Mail, to: "/inbox/email" },
-          { id: "inbox-notifications", label: "Notifications", icon: Bell, to: "/inbox/notifications" },
-          { id: "inbox-ai", label: "Nnarks AI", description: "Chat with your intelligent assistant.", icon: Sparkles, to: "/inbox/ai" },
+          { id: "inbox-email",         label: "Email",         icon: faEnvelopeOpen,     to: "/inbox/email" },
+          { id: "inbox-notifications", label: "Notifications", icon: faBell,             to: "/inbox/notifications" },
+          { id: "inbox-ai",            label: "Nnarks AI",     icon: faBrain,            to: "/inbox/ai",
+            description: "Chat with your intelligent assistant." },
         ],
       },
     ],
@@ -115,56 +123,39 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "organization",
         label: "Organization",
-        icon: Building2,
+        icon: faPeopleGroup,
         to: "/organization",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "org-overview", label: "Overview", icon: PieChart, to: "/organization" },
-          { id: "org-team", label: "Team", icon: Users2, to: "/organization/team" },
-          { id: "org-kyc", label: "KYC & Compliance", icon: ShieldCheck, to: "/organization/kyc" },
-          { id: "org-wallet", label: "Wallet", icon: Wallet, to: "/organization/wallet" },
-          { id: "org-agents", label: "Agents", icon: Bot, to: "/organization/agents" },
-          { id: "org-evidence", label: "Evidence", icon: FileSearch, to: "/organization/evidence" },
+          { id: "org-overview",  label: "Overview",         icon: faChartPie,           to: "/organization" },
+          { id: "org-team",      label: "Team",             icon: faUserGroup,          to: "/organization/team" },
+          { id: "org-kyc",       label: "KYC & Compliance", icon: faIdCard,             to: "/organization/kyc" },
+          { id: "org-wallet",    label: "Wallet",           icon: faWallet,             to: "/organization/wallet" },
+          { id: "org-agents",    label: "Agents",           icon: faMicrochip,          to: "/organization/agents" },
+          { id: "org-evidence",  label: "Evidence",         icon: faSearch,             to: "/organization/evidence" },
           {
             id: "org-billing",
             label: "Billing & Plan",
-            icon: CreditCard,
+            icon: faFileInvoiceDollar,
             to: "/organization/billing",
             children: [
-              { id: "org-billing-plan", label: "Current Plan", to: "/organization/billing" },
-              { id: "org-billing-invoices", label: "Invoices", to: "/organization/billing/invoices" },
-              { id: "org-billing-payment", label: "Payment Methods", to: "/organization/billing/payment" },
+              { id: "org-billing-plan",     label: "Current Plan",    to: "/organization/billing" },
+              { id: "org-billing-invoices", label: "Invoices",        to: "/organization/billing/invoices" },
+              { id: "org-billing-payment",  label: "Payment Methods", to: "/organization/billing/payment" },
             ],
           },
           {
             id: "org-settings",
             label: "Settings",
-            icon: Settings,
+            icon: faSliders,
             to: "/organization/settings",
             children: [
-              { id: "org-settings-general", label: "General", to: "/organization/settings" },
-              { id: "org-settings-security", label: "Security", to: "/organization/settings/security" },
-              { id: "org-settings-integrations", label: "Integrations", to: "/organization/settings/integrations" },
-              { id: "org-settings-notifications", label: "Notifications", to: "/organization/settings/notifications" },
+              { id: "org-settings-general",       label: "General",      to: "/organization/settings" },
+              { id: "org-settings-security",      label: "Security",     to: "/organization/settings/security" },
+              { id: "org-settings-integrations",  label: "Integrations", to: "/organization/settings/integrations" },
+              { id: "org-settings-notifications", label: "Notifications",to: "/organization/settings/notifications" },
             ],
           },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Advisory",
-    items: [
-      {
-        id: "advisory",
-        label: "Advisory",
-        icon: LineChart,
-        to: "/advisory",
-        childrenLayout: "vertical-sidebar",
-        children: [
-          { id: "advisory-overview", label: "Overview", icon: PieChart, to: "/advisory" },
-          { id: "advisory-insights", label: "Insights", icon: LineChart, to: "/advisory/insights" },
-          { id: "advisory-reports", label: "Reports", icon: FileText, to: "/advisory/reports" },
         ],
       },
     ],

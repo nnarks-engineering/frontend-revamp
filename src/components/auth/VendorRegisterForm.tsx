@@ -126,7 +126,7 @@ function MagicLinkForm() {
           >
             <Mail className="mr-2 h-4 w-4" />
             Send magic link
-            <ArrowRight className="ml-auto h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </SubmitButton>
         )}
       />
@@ -212,7 +212,7 @@ function PasswordForm() {
             loadingText="Creating account…"
           >
             Create account
-            <ArrowRight className="ml-auto h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </SubmitButton>
         )}
       />
