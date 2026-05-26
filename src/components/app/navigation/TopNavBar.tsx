@@ -23,7 +23,7 @@ export function TopNavBar() {
                 "relative flex flex-col items-center justify-center sm:justify-end gap-0.5 pb-1 px-3.5 text-xs font-normal",
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
-                  ? "text-primary-600"
+                  ? "text-active"
                   : "text-light-icon bg-slate- hover:text-foreground",
               )}
             >
@@ -44,7 +44,7 @@ export function TopNavBar() {
               {isActive && (
                 <motion.span
                   layoutId="topnav-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-t-full"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-active rounded-t-full"
                   transition={{ type: "spring", stiffness: 420, damping: 36 }}
                 />
               )}

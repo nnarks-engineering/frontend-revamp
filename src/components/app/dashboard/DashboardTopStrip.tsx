@@ -48,8 +48,8 @@ export function DashboardTopStrip({ companyId, highlightedDates = [] }: Props) {
       />
 
       {/* ── BOTTOM/RIGHT: Services area ──────────────────────────────── */}
-      <div className="flex-1 flex flex-col min-w-0 md:pr-4 relative bg-white">
-                <RoundingLine className="absolute z-0 -top-3 left-0 text-primary-50  z-0" />
+      <div className="flex-1 flex flex-col min-w-0 md:pr-4 relative bg-background">
+                <RoundingLine className="absolute z-0 -top-3 left-0 text-primary-50 dark:text-primary-900 z-0" />
 
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 shrink-0 z-1 relative">
@@ -80,7 +80,7 @@ export function DashboardTopStrip({ companyId, highlightedDates = [] }: Props) {
                 isLast={true}
                 onClick={() => navigate({ to: "/organization" as never })}
                 actionContent={
-                  <button className="flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:underline transition-colors">
+                  <button type="button" className="flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:underline transition-colors">
                     Create your first service
                   </button>
                 }

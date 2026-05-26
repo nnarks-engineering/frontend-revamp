@@ -57,6 +57,11 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
   const [manualOpen, setManualOpen] = useState(false);
   const isOpen = isSectionActive || manualOpen;
 
+  const activeClass = isDirectlyActive
+    ? "bg-primary/10 border-l-2 border-l-primary! text-active"
+    : "text-muted-foreground hover:text-foreground";
+    const inactiveIconClass = "text-muted-foreground hover:text-foreground";
+
   // ── Leaf item (no children) ─────────────────────────────────────────────
   if (!hasChildren) {
     return (
@@ -68,14 +73,14 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
           "relative flex items-center px-3 py-2 rounded-r-md",
           "transition-all duration-150",
           isDirectlyActive
-            ? "bg-primary/10 border-l-2 border-l-primary! text-active"
-            : "text-muted-foreground hover:text-foreground",
+            ? activeClass
+            : inactiveIconClass,
         )}
       >
         {item.icon && (
           <FontAwesomeIcon
             icon={item.icon}
-            className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "text-primary-950" : "text-primary-900-950")}
+            className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "" : "tex")}
           />
         )}
         <span className="truncate">{item.label}</span>
@@ -93,8 +98,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
           "relative flex items-center",
           "transition-all duration-150 group rounded-r-md",
           isDirectlyActive
-            ? "bg-primary/10 border-l-2 border-l-primary!"
-            : "hover:text-foreground hover:bg-muted/50",
+            ? activeClass : inactiveIconClass,
         )}
       >
         <Link
@@ -106,12 +110,13 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
           {item.icon && (
             <FontAwesomeIcon
               icon={item.icon}
-              className="w-4 h-4 shrink-0 mr-3 text-muted-foreground/70"
+              className="w-4 h-4 shrink-0 mr-3"
             />
           )}
           <span className="truncate">{item.label}</span>
         </Link>
         <button
+        type="button"
           onClick={() => setManualOpen((o) => !o)}
           className="p-2 shrink-0"
           aria-label={isOpen ? "Collapse" : "Expand"}
@@ -151,8 +156,8 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
                       "relative flex items-center px-3 py-1.5 rounded-r-md",
                       "transition-all duration-150",
                       childActive
-                        ? "bg-primary/8"
-                        : "hover:text-foreground hover:bg-muted/40",
+                        ? "bg-primary/10 text-active"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {child.icon && (

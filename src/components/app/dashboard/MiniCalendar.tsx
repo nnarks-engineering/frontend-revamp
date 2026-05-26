@@ -63,10 +63,11 @@ export function MiniCalendar({ className, highlightedDates = [] }: MiniCalendarP
     today.getFullYear() === year;
 
   return (
-    <div className={cn("bg-white rounded-lg 0 p-5 select-none", className)}>
+    <div className={cn("bg-background rounded-lg 0 p-5 select-none", className)}>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <button
+        type="button"
           onClick={prevMonth}
           className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-muted/60 transition-colors text-muted-foreground hover:text-foreground"
         >
@@ -78,6 +79,7 @@ export function MiniCalendar({ className, highlightedDates = [] }: MiniCalendarP
         </h3>
 
         <button
+        type="button"
           onClick={nextMonth}
           className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-muted/60 transition-colors text-muted-foreground hover:text-foreground"
         >
@@ -102,7 +104,7 @@ export function MiniCalendar({ className, highlightedDates = [] }: MiniCalendarP
 
           return (
             <div
-              key={idx}
+              key={day ?? `empty-${idx}`} 
               className={cn(
                 "h-8 flex items-center justify-center rounded-md text-[12.5px] font-medium transition-colors",
                 day === null && "invisible",
