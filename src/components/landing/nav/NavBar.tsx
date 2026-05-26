@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next'
 import { LinkPreview } from '@/components/ui/link-preview'
 import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
 import { AppearanceDropdown, useFontSize } from '@/components/common/ThemeSwitcher'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 export interface NavSubItem {
     labelKey: string
@@ -295,7 +294,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                                     </Link>
                                 </LinkPreview>
 
-      
+
 
                             </div>
                         </div>
@@ -339,9 +338,9 @@ function MobileNav({
                     aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>  
+                </button>
                 </div>
-                
+
             </div>
 
 

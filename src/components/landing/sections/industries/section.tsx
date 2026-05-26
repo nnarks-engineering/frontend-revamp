@@ -184,13 +184,13 @@ export default function IndustriesSection() {
               let distance = idx - activeIndex;
               if (distance > n / 2) distance -= n;
               if (distance < -n / 2) distance += n;
-              
+
               const rotation = isActive ? 0 : (isMobile ? distance * 15 : rotationSeeds[idx % rotationSeeds.length]);
-              
+
               const absDistance = Math.abs(distance);
-              
+
               // Positioning logic:
-              const spacing = isMobile ? 0 : (isActive ? 0 : 180 - (absDistance * 5)); 
+              const spacing = isMobile ? 0 : (isActive ? 0 : 180 - (absDistance * 5));
               const xOffset = isMobile ? (distance * 40) : distance * spacing;
               const yOffset = isMobile ? (isActive ? -180 : (absDistance * 20) + 120) : 0;
 
@@ -223,14 +223,14 @@ export default function IndustriesSection() {
                       "relative h-full transition-all  rounded-xl duration-500 overflow-hidden shrink-0",
                       isActive ? "w-full md:w-2/5 h-1/2 md:h-full" : "w-full h-full"
                     )}>
-                    
+
                       <div className="relative h-full">
                          <img
                         src={industry.imgs[0]}
                         alt={industry.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                       />
-                      
+
                         {
                         isActive && (
                             <button className="absolute bg-white dark:bg-tertiary-950 w-[90%] duration-300  mx-auto rounded-full my-auto p-1  h-fit inset-0 transition-all flex gap-4 items-center ">
@@ -243,9 +243,8 @@ export default function IndustriesSection() {
                       </button>
                         )
                       }
-                    
                       </div>
-                    
+
                       {/* <div className="absolute inset-0 bg-black/10 md:bg-transparent group-hover/card:bg-black/20 transition-all" /> */}
                       {!isActive && (
                          <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/20  backdrop-blur-[1px] opacity-100 group-hover/card:bg-black/40 transition-all">
@@ -271,7 +270,7 @@ export default function IndustriesSection() {
                           <p className="text-sm md:text-base text-white leading-relaxed mb-8">
                             {industry.desc}
                           </p>
-                       
+
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -301,7 +300,7 @@ export default function IndustriesSection() {
       <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-300 dark:via-tertiary-700 to-transparent h-px w-3/4" />
       <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary-200 dark:via-tertiary-600 to-transparent h-[5px] w-2/4 blur-sm" />
       <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary dark:via-tertiary-500 to-transparent h-px w-1/4" />
-  
+
     </section>
   );
 }
