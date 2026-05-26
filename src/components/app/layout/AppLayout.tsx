@@ -73,9 +73,10 @@ function AppLayoutInner() {
 
           {/* Page content */}
           <main
-            className="flex-1 flex  bg-[#E2E4E9]/80 overflow-hidden min-h-0 "
+            className="flex-1 flex  bg-background-space overflow-hidden min-h-0 "
             onClick={closeAllOverlaysOnMobile}
-          > <div
+          >
+        <div
           className={cn(
             "shrink-0 overflow-hidden z-10 relative -mt-0.5 text-sm text-black font-med transition-all duration-300 ease-in-out",
             "max-lg:fixed max-lg:left-0 text-sm max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",

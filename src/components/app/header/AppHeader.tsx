@@ -31,7 +31,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
   }, []);
 
   return (
-    <header className="h-14 shrink-0 bg-white backdrop-blur-sm z-50 relative">
+    <header className="h-14 shrink-0 bg-background backdrop-blur-sm z-50 relative">
       <div className="max-w-[90rem] h-full flex items-center justify-between gap-2 mx-auto px-2">
 
         {/* ── Left: sidebar toggle / back-arrow + logo ── */}
@@ -90,7 +90,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
         >
           <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
         </div>
-        </div>
+      </div>
 
         {/* ── Right: mobile search icon + bell + user ── */}
         <div
@@ -124,7 +124,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
           >
             <Bell className="w-[18px] h-[18px]" />
             {invitations.length > 0 && (
-              <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-white px-1">
+              <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-background px-1">
                 {invitations.length}
               </span>
             )}

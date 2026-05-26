@@ -9,7 +9,7 @@ export function TopNavBar() {
   const items = getAllTopLevelItems();
 
   return (
-    <nav className="shrink-0 flex pr-4 items-center h-full border-r border-neutral-200!">
+    <nav className="shrink-0 flex pr-4 items-center h-full border-r border-background-space!">
       <div className="flex items-stretch gap-0 mt-auto md:mx-auto h-full w-fit overflow-x-auto scrollbar-hide">
         {items.map((item) => {
           const isActive = isOwnedBy(pathname, item);
@@ -24,7 +24,7 @@ export function TopNavBar() {
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
                   ? "text-primary-600"
-                  : "text-neutral-500 hover:text-foreground",
+                  : "text-light-icon bg-slate- hover:text-foreground",
               )}
             >
               {item.icon && (

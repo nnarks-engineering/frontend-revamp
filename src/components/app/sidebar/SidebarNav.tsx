@@ -68,8 +68,8 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
           "relative flex items-center px-3 py-2 rounded-r-md",
           "transition-all duration-150",
           isDirectlyActive
-            ? "bg-primary/10 border-l-2 border-l-primary!"
-            : "text-black hover:text-foreground hover:bg-muted/50",
+            ? "bg-primary/10 border-l-2 border-l-primary! text-active"
+            : "text-muted-foreground hover:text-foreground",
         )}
       >
         {item.icon && (

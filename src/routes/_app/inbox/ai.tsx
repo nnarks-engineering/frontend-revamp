@@ -1,6 +1,6 @@
 import { cn } from "@/shared/lib/utils";
 import { createFileRoute } from '@tanstack/react-router';
-import { Bot, Loader2, Send, Sparkles, MessageSquare, History } from "lucide-react";
+import { Bot, Loader2, Send, Sparkles, History } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
 

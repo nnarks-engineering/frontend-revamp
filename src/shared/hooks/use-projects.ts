@@ -1,17 +1,4 @@
-/**
- * Project-related TanStack Query hooks.
- *
- * These are the hooks components call — never import the API
- * functions directly from a component.
- *
- *   const { data }        = useProjects();
- *   const { data }        = useProject(projectId);
- *   const createMutation  = useCreateProject();
- *   const updateMutation  = useUpdateProject(projectId);
- *
- * Query keys come from `constants.ts` so all invalidations are
- * consistent across the app.
- */
+
 
 import {
     useMutation,
@@ -43,6 +30,7 @@ import type {
 } from "@/types/common";
 
 import type {
+    AcceptProjectInvitationPayload,
     InviteMemberPayload,
     Milestone,
     MilestoneCreatePayload,
@@ -128,8 +116,8 @@ export function useInviteMember(projectId: string) {
 export function useAcceptInvitation() {
     const queryClient = useQueryClient();
 
-    return useMutation<void, Error, string>({
-        mutationFn: (inviteToken) => acceptInvitation(inviteToken),
+    return useMutation<void, Error, AcceptProjectInvitationPayload>({
+        mutationFn: (payload) => acceptInvitation(payload),
         onSuccess: () => {
             // The user is now a project member — refresh the full list
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.projects });

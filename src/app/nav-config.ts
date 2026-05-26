@@ -81,10 +81,10 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/projects",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "projects-list",     label: "List",          icon: faList,               to: "/projects" },
-          { id: "projects-disputes", label: "Disputes",      icon: faGavel,              to: "/projects/disputes" },
-          { id: "projects-ledger",   label: "Escrow Ledger", icon: faLock,               to: "/escrow" },
-          { id: "projects-circles",  label: "Trust Circles", icon: faUserShield,         to: "/circles" },
+          { id: "projects-list", label: "List", icon: faList, to: "/projects" },
+          { id: "projects-disputes", label: "Disputes", icon: faGavel, to: "/projects/disputes" },
+          { id: "projects-ledger", label: "Escrow Ledger", icon: faLock, to: "/escrow" },
+          { id: "projects-circles", label: "Trust Circles", icon: faUserShield, to: "/circles" },
         ],
       },
     ],
@@ -106,13 +106,15 @@ export const NAV_GROUPS: NavGroup[] = [
             to: "/inbox",
             children: [
               { id: "inbox-chats-direct", label: "Direct Messages", to: "/inbox/direct" },
-              { id: "inbox-chats-org",    label: "Organizational",  to: "/inbox/org" },
+              { id: "inbox-chats-org", label: "Organizational", to: "/inbox/org" },
             ],
           },
-          { id: "inbox-email",         label: "Email",         icon: faEnvelopeOpen,     to: "/inbox/email" },
-          { id: "inbox-notifications", label: "Notifications", icon: faBell,             to: "/inbox/notifications" },
-          { id: "inbox-ai",            label: "Nnarks AI",     icon: faBrain,            to: "/inbox/ai",
-            description: "Chat with your intelligent assistant." },
+          { id: "inbox-email", label: "Email", icon: faEnvelopeOpen, to: "/inbox/email" },
+          { id: "inbox-notifications", label: "Notifications", icon: faBell, to: "/inbox/notifications" },
+          {
+            id: "inbox-ai", label: "Nnarks AI", icon: faBrain, to: "/inbox/ai",
+            description: "Chat with your intelligent assistant."
+          },
         ],
       },
     ],
@@ -127,21 +129,21 @@ export const NAV_GROUPS: NavGroup[] = [
         to: "/organization",
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "org-overview",  label: "Overview",         icon: faChartPie,           to: "/organization" },
-          { id: "org-team",      label: "Team",             icon: faUserGroup,          to: "/organization/team" },
-          { id: "org-kyc",       label: "KYC & Compliance", icon: faIdCard,             to: "/organization/kyc" },
-          { id: "org-wallet",    label: "Wallet",           icon: faWallet,             to: "/organization/wallet" },
-          { id: "org-agents",    label: "Agents",           icon: faMicrochip,          to: "/organization/agents" },
-          { id: "org-evidence",  label: "Evidence",         icon: faSearch,             to: "/organization/evidence" },
+          { id: "org-overview", label: "Overview", icon: faChartPie, to: "/organization" },
+          { id: "org-team", label: "Team", icon: faUserGroup, to: "/organization/team" },
+          { id: "org-kyc", label: "KYC & Compliance", icon: faIdCard, to: "/organization/kyc" },
+          { id: "org-wallet", label: "Wallet", icon: faWallet, to: "/organization/wallet" },
+          { id: "org-agents", label: "Agents", icon: faMicrochip, to: "/organization/agents" },
+          { id: "org-evidence", label: "Evidence", icon: faSearch, to: "/organization/evidence" },
           {
             id: "org-billing",
             label: "Billing & Plan",
             icon: faFileInvoiceDollar,
             to: "/organization/billing",
             children: [
-              { id: "org-billing-plan",     label: "Current Plan",    to: "/organization/billing" },
-              { id: "org-billing-invoices", label: "Invoices",        to: "/organization/billing/invoices" },
-              { id: "org-billing-payment",  label: "Payment Methods", to: "/organization/billing/payment" },
+              { id: "org-billing-plan", label: "Current Plan", to: "/organization/billing" },
+              { id: "org-billing-invoices", label: "Invoices", to: "/organization/billing/invoices" },
+              { id: "org-billing-payment", label: "Payment Methods", to: "/organization/billing/payment" },
             ],
           },
           {
@@ -150,10 +152,10 @@ export const NAV_GROUPS: NavGroup[] = [
             icon: faSliders,
             to: "/organization/settings",
             children: [
-              { id: "org-settings-general",       label: "General",      to: "/organization/settings" },
-              { id: "org-settings-security",      label: "Security",     to: "/organization/settings/security" },
-              { id: "org-settings-integrations",  label: "Integrations", to: "/organization/settings/integrations" },
-              { id: "org-settings-notifications", label: "Notifications",to: "/organization/settings/notifications" },
+              { id: "org-settings-general", label: "General", to: "/organization/settings" },
+              { id: "org-settings-security", label: "Security", to: "/organization/settings/security" },
+              { id: "org-settings-integrations", label: "Integrations", to: "/organization/settings/integrations" },
+              { id: "org-settings-notifications", label: "Notifications", to: "/organization/settings/notifications" },
             ],
           },
         ],
@@ -259,4 +261,29 @@ export function resolveVerticalSidebarItems(pathname: string): NavItem[] | null 
     }
   }
   return null;
+}
+
+/**
+ * Returns the horizontal tab children for the current route, or null if no
+ * tabs apply. Tabs are children of nav items that do NOT use vertical-sidebar
+ * layout.
+ */
+export function resolveHorizontalTabs(pathname: string): NavItem[] | null {
+  for (const group of NAV_GROUPS) {
+    for (const item of group.items) {
+      if (
+        item.childrenLayout !== "vertical-sidebar" &&
+        item.children?.length &&
+        isOwnedBy(pathname, item)
+      ) {
+        return item.children;
+      }
+    }
+  }
+  return null;
+}
+
+/** Returns the id of the active tab from a list of tabs for the given pathname. */
+export function resolveActiveTabId(tabs: NavItem[], pathname: string): string | null {
+  return findBestMatchId(tabs, pathname);
 }

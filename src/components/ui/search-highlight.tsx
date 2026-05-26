@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@/shared/lib/utils";
 
 interface SearchHighlightProps {
@@ -10,7 +9,7 @@ interface SearchHighlightProps {
 
 export function SearchHighlight({ text, keyword, className, highlightClassName }: SearchHighlightProps) {
   const tokens = keyword.trim().split(/\s+/).filter(Boolean);
-  
+
   if (tokens.length === 0) {
     return <span className={className}>{text}</span>;
   }

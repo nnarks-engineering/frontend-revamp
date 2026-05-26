@@ -55,7 +55,7 @@ function ProjectsPage() {
                 {project.title}
               </div>
               <div>
-                <StatusBadge status={project.members.find(m => m.user_id === project.owner_id)?.role || "OWNER"} />
+                <StatusBadge status={project.members.find(m => m.company_id === project.owner_company_id)?.role || "OWNER"} />
               </div>
               <div>
                 <ProgressDots

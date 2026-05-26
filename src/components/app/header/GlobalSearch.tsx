@@ -89,7 +89,7 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
           <button
             type="button"
             aria-label="Close search"
-            className="fixed inset-x-0 top-14 bottom-0 z-40 cursor-default bg-primary-950/30 backdrop-blur-[1px] animate-in fade-in duration-150"
+            className="fixed inset-x-0 top-14 bottom-0 z-40 cursor-default bg-black/70 dark:bg-black/70 backdrop-blur-[1px animate-in fade-in duration-150"
             onClick={handleClose}
           />,
           document.body,
@@ -107,8 +107,8 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
             className={cn(
               "relative flex items-center border group focus-within:flex-1 rounded-full transition-all duration-200",
               open
-                ? "border-primary-800/50!"
-                : "border-neutral-300! hover:bg-muted/50 hover:border-primary/30",
+                ? "border-primary-800/50! "
+                : "border-border-deep! dark:bg-primary-900/30 dark:border-none hover:bg-muted/50 hover:border-primary/30",
             )}
           >
             <Search className="absolute group-focus-within:text-primary-600 left-3 w-4 h-4 text-muted-foreground/60 pointer-events-none" />
@@ -147,7 +147,7 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
             )}
 
             {!open && (
-              <kbd className="absolute right-3 hidden lg:inline text-[10px] font-mono text-muted-foreground/40 border border-border/50 rounded px-1.5 py-0.5 bg-white pointer-events-none">
+              <kbd className="absolute right-3 hidden lg:inline text-[10px] font-mono text-border-deep border border-border-deep! rounded px-1.5 py-0.5 bg-background pointer-events-none">
                 ⌘K
               </kbd>
             )}
