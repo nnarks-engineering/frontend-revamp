@@ -33,7 +33,7 @@ export default function PartnersSection() {
   return (
     <section
       id="partners"
-      className="w-full relative py-10 bg-white/80 border-t border-slate-100"
+      className="w-full relative py-10 bg-white/80 dark:bg-primary-200 border-t border-slate-100"
     >
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-medium font-clash-display text-slate-800">

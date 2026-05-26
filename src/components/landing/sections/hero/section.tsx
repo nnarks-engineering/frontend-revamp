@@ -84,16 +84,16 @@ export function HeroSection() {
                                 )}
                             </h1>
 
-                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-muted-foreground">
+                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-primary-100/80">
                                 {t('landing:hero.description')}{" "}
-                                <Link to="/about" hash="story" className="text-primary-700 italic  hover:underline inline-flex items-center gap-1 group/link cursor-pointer">
+                                <Link to="/about" hash="story" className="text-primary-700 dark:text-primary-600 italic  hover:underline inline-flex items-center gap-1 group/link cursor-pointer">
                                     why we care
                                     <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
                                 </Link>
                             </p>
                             <Link to="/register">
                                 <div
-                                    className="bg-primary w-56 mx-auto hover:bg-primary/90 px-6 py-3.5 text-sm font-bold text-white transition-all active:scale-95 shadow-lg shadow-primary/20"
+                                    className="bg-primary w-56 mx-auto hover:bg-primary/90 px-6 py-3.5 text-sm font-bold text-white transition-all active:scale-95 shadow-lg shadow-primary/20 dark:bg-primary-700"
                                 >
                                     {t('common:auth.getStarted')}
                                 </div>

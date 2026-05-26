@@ -38,7 +38,7 @@ export function FeatureCard({
       layoutId={layoutIdPrefix ? `card-${id}-${layoutIdPrefix}` : undefined}
       onClick={onClick}
       className={cn(
-        "group relative w-full flex flex-col md:flex-row items-stretch overflow-hidden bg-secondary/50 cursor-pointer transition-all duration-500",
+        "group relative w-full flex flex-col md:flex-row items-stretch overflow-hidden bg-secondary/50 dark:bg-background cursor-pointer transition-all duration-500",
         isReversed && "md:flex-row-reverse",
         className
       )}
@@ -59,7 +59,7 @@ export function FeatureCard({
         {pill && (
           <motion.div 
             layoutId={layoutIdPrefix ? `pill-${id}-${layoutIdPrefix}` : undefined}
-            className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white rounded-full p-1.5 pr-6 border border-white/20 backdrop-blur-sm overflow-hidden z-20"
+            className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center bg-white dark:bg-background-space rounded-full p-1.5 pr-6 border border-white/20 backdrop-blur-sm overflow-hidden z-20"
           >
             {pill.customContent ? (
               pill.customContent
@@ -88,7 +88,7 @@ export function FeatureCard({
 
                 {/* Hover State: "More" + Arrow */}
                 <div className="absolute inset-0 flex items-center px-1.5 transition duration-500 -translate-x-40 group-hover:translate-x-0">
-                  <div className="flex items-center justify-center size-10 rounded-full bg-primary text-white shrink-0">
+                  <div className="flex items-center justify-center size-10 rounded-full bg-primary dark:bg-background text-white shrink-0">
                     <ArrowRight size={20} />
                   </div>
                   <span className="ml-3 font-bold text-foreground">More</span>
@@ -116,7 +116,7 @@ export function FeatureCard({
           
           <motion.p 
             layoutId={layoutIdPrefix ? `description-${id}-${layoutIdPrefix}` : undefined}
-            className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed"
+            className="text-muted-foreground/80 text-lg mb-8 max-w-md leading-relaxed"
           >
             {description}
           </motion.p>

@@ -26,7 +26,7 @@ export default function StructureSection() {
   }, [active]);
 
   return (
-    <Section id="structure" className="relative py-24 bg-white overflow-hidden" maxWidth="8xl">
+    <Section id="structure" className="relative py-24 bg-white dark:bg-background-space overflow-hidden" maxWidth="8xl">
       {/* Background Accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -ml-64 -mb-64" />
@@ -34,7 +34,6 @@ export default function StructureSection() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Header */}
         <SectionHeader
-          eyebrow={t("landing:structure.badge")}
           title={t("landing:structure.title")}
           description={
             <>
@@ -80,6 +79,7 @@ export default function StructureSection() {
                 >
                   {/* Close Button */}
                   <button
+                  type="button"
                     onClick={() => setActive(null)}
                     className="absolute top-6 right-6 z-10 size-12 flex items-center justify-center text-background md:text-foreground  transition-all"
                   >

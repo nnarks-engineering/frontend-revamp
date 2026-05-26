@@ -146,9 +146,9 @@ export default function IndustriesSection() {
   }, [isHovering]);
 
   return (
-    <section id="industries" className="relative w-full py-24 bg-white overflow-hidden">
+    <section id="industries" className="relative w-full py-24 bg-white dark:bg-tertiary-950 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <LineJoinedDotSvg className="w-full h-full" />
+        <LineJoinedDotSvg className="w-full h-full text-primary dark:text-tertiary" />
       </div>
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         <div className="flex relative flex-col items-center text-center">
@@ -156,7 +156,7 @@ export default function IndustriesSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-bold mb-4 font-millik text-4xl md:text-6xl"
+            className="font-bold mb-4 font-millik text-4xl md:text-6xl dark:text-tertiary-100"
           >
             Industries We Serve
           </motion.p>
@@ -165,7 +165,7 @@ export default function IndustriesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-foreground "
+            className="text-foreground dark:text-tertiary-200"
           >
             Trusted across every sector of the African economy
           </motion.h2>
@@ -214,8 +214,8 @@ export default function IndustriesSection() {
                   }}
                   onClick={() => setActiveIndex(idx)}
                   className={cn(
-                    " bg-white  rounded-xl  min-h-fit overflow-hidden group/card",
-                    isActive ? "w-[320px] md:w-[680px] md:border-x-4  !border-x-white  px-2 md:pl-0   bg-primary h-[420px] md:h-[450px] min-h-fit" : "w-[180px] absolute cursor-pointer shadow-2xl p-2 md:w-[220px] h-[260px] md:h-[320px]"
+                    " bg-white   rounded-xl  min-h-fit overflow-hidden group/card dark:border-x-tertiary-950!",
+                    isActive ? "w-[320px] md:w-[680px] md:border-x-4  !border-x-white   px-2 md:pl-0   bg-primary h-[420px] md:h-[450px] min-h-fit dark:bg-background-space" : "dark:bg-tertiary-950 w-[180px] absolute cursor-pointer shadow-2xl p-2 md:w-[220px] h-[260px] md:h-[320px]"
                   )}
                 >
                   <div className="relative h-full  w-full flex flex-col md:flex-row items-center">
@@ -233,11 +233,11 @@ export default function IndustriesSection() {
                       
                         {
                         isActive && (
-                            <button className="absolute bg-white w-[90%] duration-300  mx-auto rounded-full my-auto p-1  h-fit inset-0 transition-all flex gap-4 items-center ">
-                       <span className="size-8 flex items-center justify-center rounded-full text-primary bg-primary p-2 ">
-                        <Armchair className="h-20 w-20 text-black" />
+                            <button className="absolute bg-white dark:bg-tertiary-950 w-[90%] duration-300  mx-auto rounded-full my-auto p-1  h-fit inset-0 transition-all flex gap-4 items-center ">
+                       <span className="size-8 flex items-center justify-center rounded-full text-primary bg-primary p-2 dark:bg-tertiary-700">
+                        <Armchair className="h-20 w-20 text-black dark:text-tertiary-100" />
                        </span>
-                       <p className=" font-medium  text-center drop-shadow-lg font-clash-display">
+                       <p className=" font-medium  text-center drop-shadow-lg font-clash-display dark:text-tertiary-100 ">
                         Explore more
                        </p>
                       </button>
@@ -248,7 +248,7 @@ export default function IndustriesSection() {
                     
                       {/* <div className="absolute inset-0 bg-black/10 md:bg-transparent group-hover/card:bg-black/20 transition-all" /> */}
                       {!isActive && (
-                         <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/20 backdrop-blur-[1px] opacity-100 group-hover/card:bg-black/40 transition-all">
+                         <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/20  backdrop-blur-[1px] opacity-100 group-hover/card:bg-black/40 transition-all">
                             <h3 className="text-xl font-bold text-white text-center drop-shadow-lg font-clash-display">
                               {industry.name}
                             </h3>
@@ -285,21 +285,22 @@ export default function IndustriesSection() {
         <div className="flex justify-center  gap-3">
           {industries.map((_, idx) => (
             <button
+            type="button"
               key={idx}
               onClick={() => setActiveIndex(idx)}
               className={cn(
                 "h-2 transition-all duration-500 rounded-full",
-                activeIndex === idx ? "w-10 bg-primary" : "w-2 bg-primary-200"
+                activeIndex === idx ? "w-10 bg-primary dark:bg-tertiary-500" : "w-2 bg-primary-200 dark:bg-tertiary-800"
               )}
               aria-label={`Go to industry ${idx + 1}`}
             />
           ))}
         </div>
       </div>
-          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-200 to-transparent h-[2px] w-3/4 blur-sm" />
-      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-300 to-transparent h-px w-3/4" />
-      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary-200 to-transparent h-[5px] w-2/4 blur-sm" />
-      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary to-transparent h-px w-1/4" />
+          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-200 dark:via-tertiary-600 to-transparent h-[2px] w-3/4 blur-sm" />
+      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-300 dark:via-tertiary-700 to-transparent h-px w-3/4" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary-200 dark:via-tertiary-600 to-transparent h-[5px] w-2/4 blur-sm" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary dark:via-tertiary-500 to-transparent h-px w-1/4" />
   
     </section>
   );

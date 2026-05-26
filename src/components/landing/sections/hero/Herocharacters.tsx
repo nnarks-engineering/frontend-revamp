@@ -12,7 +12,7 @@ const CARDS = [
     // Add responsive variants here directly, e.g. "translate-y-2 md:translate-y-10"
     translate: "-translate-y-10 md:-translate-y-8 lg:-translate-y-10",
     rotate: "-rotate-[16deg]",
-    color: "secondary",
+    color: "bg-secondary dark:bg-secondary-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_20px_60px_rgba(23,204,236,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_20px_60px_rgba(23,204,236,0.6)]",
     zIndex: "z-10",
     imgScale: "scale-x-[-1]",
   },
@@ -20,9 +20,9 @@ const CARDS = [
     id: "engineer",
     name: "Engineer",
     img: NnarksEngineerImage,
-    translate: "-translate-y-32 sm:-translate-y-3 md:-translate-y-24 lg:-translate-y-36",
+    translate: "-translate-y-32  sm:-translate-y-3 md:-translate-y-24 lg:-translate-y-36",
     rotate: "rotate-0",
-    color: "primary",
+    color: "bg-primary dark:bg-primary-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_20px_60px_rgba(23,204,236,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_20px_60px_rgba(23,204,236,0.6)]",
     zIndex: "z-30",
     imgScale: "",
   },
@@ -32,7 +32,7 @@ const CARDS = [
     img: ClockImage,
     translate: "translate-y-5 md:-translate-y-8 lg:-translate-y-12",
     rotate: "rotate-[16deg]",
-    color: "secondary",
+    color: "bg-secondary dark:bg-secondary-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_20px_60px_rgba(23,204,236,0.4)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_20px_60px_rgba(23,204,236,0.6)]",
     zIndex: "z-20",
     imgScale: "",
   },
@@ -79,10 +79,8 @@ export function HeroCharacters() {
               <div
                 className={`
                   absolute bottom-0 left-0 right-0
-                  bg-${card.color}
+                  ${card.color}
                   transition-shadow duration-500
-                  shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_20px_60px_rgba(23,204,236,0.4)]
-                  group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_20px_60px_rgba(23,204,236,0.6)]
                 `}
                 style={{ top: i === 1 ? "30%" : '22%', borderRadius: BORDER_RADIUS }}
               />

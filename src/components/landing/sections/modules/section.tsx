@@ -45,10 +45,10 @@ export default function ModulesTagSection(props: {hideModuleButton?: boolean}) {
         transition={{ duration: 0.6, delay: 0.15 }}
         className="max-w-2xl h-full text-center md:text-left "
       >
-        <h2 className="text-4xl font-bold font-clash-display text-white mb-4">
+        <h2 className="text-4xl font-bold font-clash-display text-foreground mb-4">
           {t("landing:modules.title")}
         </h2>
-        <p className="text-slate-300 mb-8 text-lg leading-relaxed">
+        <p className="text-primary-100/80 mb-8 text-lg leading-relaxed">
           {t("landing:modules.description")}
         </p>
 
