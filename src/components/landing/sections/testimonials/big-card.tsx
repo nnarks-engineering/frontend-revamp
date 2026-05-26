@@ -7,13 +7,13 @@ const LandingBigTrustedBusinessCard = () => {
   const { t } = useTranslation(["landing"]);
 
   return (
-    <div className="bg-white max-w-2xl h-full   shadow-md p-6 pb-0 overflow-clip bg-gradient-to-br from-primary-50 to-primary-400 relative flex flex-col justify-between">
-      <div className=" overflow-hidden z-10 relative shadow-md p-6  border-primary-400 bg-gradient-to-br from-primary-200 to-primary-400 text-slate-800 py-10">
+    <div className="bg-background max-w-2xl h-full   shadow-md p-6 pb-0 overflow-clip bg-gradient-to-br  from-primary-50 to-primary-400 dark:from-secondary-900 dark:to-secondary-900 relative flex flex-col justify-between">
+      <div className=" overflow-hidden z-10 relative shadow-md p-6  border-primary-400 bg-gradient-to-br from-primary-200 to-primary-400 dark:from-secondary-950 dark:to-secondary-950 text-foreground/80 py-10">
         <div>
           <Quote
             strokeWidth={0}
             fill="currentColor"
-            className="absolute scale-x-[-1] left-1/2 top-5 text-primary-50/15 stroke-[0.5] stroke-primary-50/5 size-40"
+            className="absolute scale-x-[-1] left-1/2 top-5 text-primary-50/15  stroke-[0.5] stroke-primary-50/5 size-40 dark:text-secondary-900/15 dark:stroke-secondary-900/5"
           />
         </div>
         <div className="z-2 relative text-sm leading-relaxed">
@@ -33,7 +33,7 @@ const LandingBigTrustedBusinessCard = () => {
       </div>
 
       {/* Organization badge */}
-      <div className="absolute z-50 -bottom-1 -right-1 bg-white border-2 border-white backdrop-blur-sm">
+      <div className="absolute z-50 -bottom-1 -right-1 bg-background border-2 border-white backdrop-blur-sm">
         <div className="relative w-32 h-20">
           <img
             src={CalBankLogo}

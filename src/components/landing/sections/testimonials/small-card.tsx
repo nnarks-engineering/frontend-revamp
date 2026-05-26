@@ -28,7 +28,7 @@ const LandingSmallTrustedBusinessCard = ({
   quote,
   rating = 5,
   logo,
-  gradientClass = "bg-gradient-to-br from-primary-50/50 to-primary-100",
+  gradientClass = "bg-gradient-to-br from-primary-50/50 to-primary-100 dark:from-primary-950 dark:to-secondary-900/50",
   featureImage,
   videoUrl,
 }: LandingSmallTrustedBusinessCardProps) => {
@@ -105,7 +105,7 @@ const thumbnail = thumbError
         </div>
 
         {/* Caption strip */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-white backdrop-blur-sm  h-full">
+        <div className="flex items-center gap-2 px-3 py-2 bg-secondary-900 backdrop-blur-sm  h-full">
           {logo && (
             <img
               src={logo}
@@ -113,7 +113,7 @@ const thumbnail = thumbError
               className="h-5 w-auto object-contain opacity-70"
             />
           )}
-          <p className="text-xs font-semibold text-slate-700 line-clamp-1">
+          <p className="text-xs text-foreground/80 line-clamp-1">
             {quote}
           </p>
         </div>
@@ -124,7 +124,7 @@ const thumbnail = thumbError
   // ── Default card variant ────────────────────────────────────────────────────
   return (
     <div
-      className={`relative overflow-hidden p-5 flex gap-4 ${gradientClass} ${
+      className={`relative overflow-hidden p-5 flex gap-4 bg-gradient-to-br from-primary-50/50 to-primary-100 dark:from-secondary-900 dark:to-secondary-900/50 ${
         isWide
           ? "col-span-2"
           : "flex-col  @max-lg:col-span-2"
@@ -149,7 +149,7 @@ const thumbnail = thumbError
       )}
 
       <div className="flex flex-col justify-between flex-1 gap-3 z-10">
-        <p className="text-sm text-slate-700 leading-relaxed flex-1">{quote}</p>
+        <p className="text-sm text-foreground/80 leading-relaxed flex-1">{quote}</p>
 
         <div className="flex gap-1">
           {[...Array(5)].map((_, i) => (
@@ -158,7 +158,7 @@ const thumbnail = thumbError
               className={`h-3.5 w-3.5 ${
                 i < rating
                   ? "text-amber-400 fill-amber-400"
-                  : "text-slate-300 fill-slate-300"
+                  : "text-slate-300 fill-slate-300 dark:text-foreground/50 dark:fill-foreground/50"
               }`}
               viewBox="0 0 20 20"
             >
@@ -169,7 +169,7 @@ const thumbnail = thumbError
         </div>
 
         <AnimatedTooltip item={{ id: company, name, role, company, logo }}>
-          <div className="w-fit rounded-t-lg rounded-b-none -mb-5 mx-auto bg-white/90 p-1.5">
+          <div className="w-fit rounded-t-lg rounded-b-none -mb-5 mx-auto bg-background p-1.5">
             {logo ? (
               <img
                 alt={`${company} logo`}

@@ -5,7 +5,7 @@ import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import PersonasSection from "@/components/landing/sections/personas/section";
 
-export const Route = createLazyFileRoute("/modules")({
+export const Route = createLazyFileRoute("/_landing/modules")({
   component: ModulesPage,
 });
 

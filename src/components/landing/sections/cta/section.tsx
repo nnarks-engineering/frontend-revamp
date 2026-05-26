@@ -15,7 +15,7 @@ export default function CtaSection() {
     <Section
       id="contact"
       className="relative mt-20 mb-10 [perspective:2000px] overflow-hidden px-4 sm:px-6 lg:px-8"
-      contentClassName="relative w-full border bg-gradient-to-br from-primary-50 to-primary-100 min-h-[480px] sm:pr-0 lg:pr-0 pr-0 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden"
+      contentClassName="relative w-full border bg-gradient-to-br from-primary-50 to-primary-100 dark:from-secondary-900 dark:to-secondary-900 min-h-[480px] sm:pr-0 lg:pr-0 pr-0 grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden"
     >
       {/* Left Content - Text + CTA */}
       <motion.div
@@ -35,9 +35,9 @@ export default function CtaSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <LinkPreview 
-              url="/register" 
-              isStatic 
+            <LinkPreview
+              url="/register"
+              isStatic
               imageSrc={EngineerImage}
               asChild
             >

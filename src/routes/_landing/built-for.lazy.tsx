@@ -8,7 +8,7 @@ import { CallToAction } from "@/components/landing/CallToAction";
 import { useTranslation } from "react-i18next";
 import CtaBg from "@/assets/img/vibrant_abstract_cta_bg-primary.jpg";
 
-export const Route = createLazyFileRoute("/built-for")({
+export const Route = createLazyFileRoute("/_landing/built-for")({
   component: BuiltForPage,
 });
 

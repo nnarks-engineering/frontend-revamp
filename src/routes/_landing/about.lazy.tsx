@@ -12,7 +12,7 @@ import CtaBg from "@/assets/img/landing/vibrant_abstract_cta_bg.png";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import TickerSection from "@/components/landing/sections/ticker/section";
 
-export const Route = createLazyFileRoute("/about")({
+export const Route = createLazyFileRoute("/_landing/about")({
   component: AboutPage,
 });
 

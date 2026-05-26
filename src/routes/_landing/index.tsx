@@ -13,7 +13,7 @@ import StructureSection from "@/components/landing/sections/structure/section";
 import ForWhoSectionTag from "@/components/landing/sections/for-who/section";
 // import WhyNnarksSection from "@/components/landing/sections/why-nnarks/section";
 
-export const Route = createFileRoute("/")(
+export const Route = createFileRoute("/_landing/")(
   {
     component: LandingPage,
   }

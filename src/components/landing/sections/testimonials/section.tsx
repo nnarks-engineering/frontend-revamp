@@ -51,7 +51,7 @@ export default function TestimonialsSection() {
   return (
     <Section
       id="testimonials"
-      className="relative w-full py-16 md:py-20 lg:py-24 bg-white overflow-hidden"
+      className="relative w-full py-16 md:py-20 lg:py-24 bg-background overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

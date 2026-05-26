@@ -4,7 +4,7 @@ import PricingTagSection from "@/components/landing/sections/pricing/section";
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 
-export const Route = createLazyFileRoute("/financials")({
+export const Route = createLazyFileRoute("/_landing/financials")({
   component: FinancialsPage,
 });
 

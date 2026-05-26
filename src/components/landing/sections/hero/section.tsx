@@ -75,7 +75,7 @@ export function HeroSection() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="max-w-3xl text-center"
                         >
-                            <h1 className="text-3xl sm:text-4xl lg:text-[66px] lg:mt-6 font-millik  font-clash-display  font-black mb-2 md:mb-3 leading-[1.05] text-foreground">
+                            <h1 className="text-3xl sm:text-4xl lg:text-[66px] lg:mt-6 font-foreground font-millik  font-black mb-2 md:mb-3 leading-[1.05] text-foreground">
                                 {t('landing:hero.headline').split(',')[0]}
                                 {t('landing:hero.headline').includes(',') && (
                                     <span className="text-primary">
@@ -84,7 +84,7 @@ export function HeroSection() {
                                 )}
                             </h1>
 
-                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-primary-100/80">
+                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-muted-foreground dark:text-muted-foreground/80">
                                 {t('landing:hero.description')}{" "}
                                 <Link to="/about" hash="story" className="text-primary-700 dark:text-primary-600 italic  hover:underline inline-flex items-center gap-1 group/link cursor-pointer">
                                     why we care

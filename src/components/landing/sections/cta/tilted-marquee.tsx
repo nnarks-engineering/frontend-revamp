@@ -9,7 +9,7 @@ interface CardProps {
 function Card({ label, children, className }: CardProps) {
   return (
     <div
-      className={`bg-white rounded-2xl border border-border p-6 shadow-sm w-full h-full flex flex-col ${className}`}
+      className={`bg-background rounded-2xl border border-border p-6 shadow-sm w-full h-full flex flex-col ${className}`}
     >
       {label && (
         <p className="text-[10px] text-muted-foreground mb-4 uppercase tracking-widest font-medium">

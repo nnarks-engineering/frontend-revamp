@@ -10,17 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as ModulesRouteImport } from './routes/modules'
-import { Route as FinancialsRouteImport } from './routes/financials'
-import { Route as FeaturesRouteImport } from './routes/features'
-import { Route as FaqsRouteImport } from './routes/faqs'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BuiltForRouteImport } from './routes/built-for'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as OnboardingOrgRouteImport } from './routes/onboarding/org'
+import { Route as LandingModulesRouteImport } from './routes/_landing/modules'
+import { Route as LandingFinancialsRouteImport } from './routes/_landing/financials'
+import { Route as LandingFeaturesRouteImport } from './routes/_landing/features'
+import { Route as LandingFaqsRouteImport } from './routes/_landing/faqs'
+import { Route as LandingContactRouteImport } from './routes/_landing/contact'
+import { Route as LandingBuiltForRouteImport } from './routes/_landing/built-for'
+import { Route as LandingAboutRouteImport } from './routes/_landing/about'
 import { Route as AuthVerifyRouteImport } from './routes/_auth/verify'
 import { Route as AuthSuccessRouteImport } from './routes/_auth/success'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
@@ -50,41 +50,6 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ModulesRoute = ModulesRouteImport.update({
-  id: '/modules',
-  path: '/modules',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/modules.lazy').then((d) => d.Route))
-const FinancialsRoute = FinancialsRouteImport.update({
-  id: '/financials',
-  path: '/financials',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/financials.lazy').then((d) => d.Route))
-const FeaturesRoute = FeaturesRouteImport.update({
-  id: '/features',
-  path: '/features',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/features.lazy').then((d) => d.Route))
-const FaqsRoute = FaqsRouteImport.update({
-  id: '/faqs',
-  path: '/faqs',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/faqs.lazy').then((d) => d.Route))
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/contact.lazy').then((d) => d.Route))
-const BuiltForRoute = BuiltForRouteImport.update({
-  id: '/built-for',
-  path: '/built-for',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/built-for.lazy').then((d) => d.Route))
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -93,8 +58,8 @@ const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const LandingIndexRoute = LandingIndexRouteImport.update({
+  id: '/_landing/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -103,6 +68,53 @@ const OnboardingOrgRoute = OnboardingOrgRouteImport.update({
   path: '/org',
   getParentRoute: () => OnboardingRoute,
 } as any)
+const LandingModulesRoute = LandingModulesRouteImport.update({
+  id: '/_landing/modules',
+  path: '/modules',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/modules.lazy').then((d) => d.Route),
+)
+const LandingFinancialsRoute = LandingFinancialsRouteImport.update({
+  id: '/_landing/financials',
+  path: '/financials',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/financials.lazy').then((d) => d.Route),
+)
+const LandingFeaturesRoute = LandingFeaturesRouteImport.update({
+  id: '/_landing/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/features.lazy').then((d) => d.Route),
+)
+const LandingFaqsRoute = LandingFaqsRouteImport.update({
+  id: '/_landing/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/_landing/faqs.lazy').then((d) => d.Route))
+const LandingContactRoute = LandingContactRouteImport.update({
+  id: '/_landing/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/contact.lazy').then((d) => d.Route),
+)
+const LandingBuiltForRoute = LandingBuiltForRouteImport.update({
+  id: '/_landing/built-for',
+  path: '/built-for',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/built-for.lazy').then((d) => d.Route),
+)
+const LandingAboutRoute = LandingAboutRouteImport.update({
+  id: '/_landing/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/_landing/about.lazy').then((d) => d.Route),
+)
 const AuthVerifyRoute = AuthVerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
@@ -224,14 +236,7 @@ const AppInboxAiRoute = AppInboxAiRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/built-for': typeof BuiltForRoute
-  '/contact': typeof ContactRoute
-  '/faqs': typeof FaqsRoute
-  '/features': typeof FeaturesRoute
-  '/financials': typeof FinancialsRoute
-  '/modules': typeof ModulesRoute
+  '/': typeof LandingIndexRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
@@ -243,6 +248,13 @@ export interface FileRoutesByFullPath {
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
+  '/about': typeof LandingAboutRoute
+  '/built-for': typeof LandingBuiltForRoute
+  '/contact': typeof LandingContactRoute
+  '/faqs': typeof LandingFaqsRoute
+  '/features': typeof LandingFeaturesRoute
+  '/financials': typeof LandingFinancialsRoute
+  '/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
@@ -259,14 +271,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/built-for': typeof BuiltForRoute
-  '/contact': typeof ContactRoute
-  '/faqs': typeof FaqsRoute
-  '/features': typeof FeaturesRoute
-  '/financials': typeof FinancialsRoute
-  '/modules': typeof ModulesRoute
+  '/': typeof LandingIndexRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
@@ -276,6 +281,13 @@ export interface FileRoutesByTo {
   '/register': typeof AuthRegisterRoute
   '/success': typeof AuthSuccessRoute
   '/verify': typeof AuthVerifyRoute
+  '/about': typeof LandingAboutRoute
+  '/built-for': typeof LandingBuiltForRoute
+  '/contact': typeof LandingContactRoute
+  '/faqs': typeof LandingFaqsRoute
+  '/features': typeof LandingFeaturesRoute
+  '/financials': typeof LandingFinancialsRoute
+  '/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
@@ -293,16 +305,8 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
-  '/about': typeof AboutRoute
-  '/built-for': typeof BuiltForRoute
-  '/contact': typeof ContactRoute
-  '/faqs': typeof FaqsRoute
-  '/features': typeof FeaturesRoute
-  '/financials': typeof FinancialsRoute
-  '/modules': typeof ModulesRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_app/advisory': typeof AppAdvisoryRoute
   '/_app/dashboard': typeof AppDashboardRoute
@@ -314,7 +318,15 @@ export interface FileRoutesById {
   '/_auth/register': typeof AuthRegisterRoute
   '/_auth/success': typeof AuthSuccessRoute
   '/_auth/verify': typeof AuthVerifyRoute
+  '/_landing/about': typeof LandingAboutRoute
+  '/_landing/built-for': typeof LandingBuiltForRoute
+  '/_landing/contact': typeof LandingContactRoute
+  '/_landing/faqs': typeof LandingFaqsRoute
+  '/_landing/features': typeof LandingFeaturesRoute
+  '/_landing/financials': typeof LandingFinancialsRoute
+  '/_landing/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
+  '/_landing/': typeof LandingIndexRoute
   '/_app/inbox/ai': typeof AppInboxAiRoute
   '/_app/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/_app/organization/team': typeof AppOrganizationTeamRoute
@@ -333,13 +345,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
-    | '/built-for'
-    | '/contact'
-    | '/faqs'
-    | '/features'
-    | '/financials'
-    | '/modules'
     | '/onboarding'
     | '/advisory'
     | '/dashboard'
@@ -351,6 +356,13 @@ export interface FileRouteTypes {
     | '/register'
     | '/success'
     | '/verify'
+    | '/about'
+    | '/built-for'
+    | '/contact'
+    | '/faqs'
+    | '/features'
+    | '/financials'
+    | '/modules'
     | '/onboarding/org'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
@@ -368,13 +380,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
-    | '/built-for'
-    | '/contact'
-    | '/faqs'
-    | '/features'
-    | '/financials'
-    | '/modules'
     | '/onboarding'
     | '/advisory'
     | '/dashboard'
@@ -384,6 +389,13 @@ export interface FileRouteTypes {
     | '/register'
     | '/success'
     | '/verify'
+    | '/about'
+    | '/built-for'
+    | '/contact'
+    | '/faqs'
+    | '/features'
+    | '/financials'
+    | '/modules'
     | '/onboarding/org'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
@@ -400,16 +412,8 @@ export interface FileRouteTypes {
     | '/onboarding/account-type'
   id:
     | '__root__'
-    | '/'
     | '/_app'
     | '/_auth'
-    | '/about'
-    | '/built-for'
-    | '/contact'
-    | '/faqs'
-    | '/features'
-    | '/financials'
-    | '/modules'
     | '/onboarding'
     | '/_app/advisory'
     | '/_app/dashboard'
@@ -421,7 +425,15 @@ export interface FileRouteTypes {
     | '/_auth/register'
     | '/_auth/success'
     | '/_auth/verify'
+    | '/_landing/about'
+    | '/_landing/built-for'
+    | '/_landing/contact'
+    | '/_landing/faqs'
+    | '/_landing/features'
+    | '/_landing/financials'
+    | '/_landing/modules'
     | '/onboarding/org'
+    | '/_landing/'
     | '/_app/inbox/ai'
     | '/_app/inbox/nnarks-ai'
     | '/_app/organization/team'
@@ -438,17 +450,17 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
-  AboutRoute: typeof AboutRoute
-  BuiltForRoute: typeof BuiltForRoute
-  ContactRoute: typeof ContactRoute
-  FaqsRoute: typeof FaqsRoute
-  FeaturesRoute: typeof FeaturesRoute
-  FinancialsRoute: typeof FinancialsRoute
-  ModulesRoute: typeof ModulesRoute
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  LandingAboutRoute: typeof LandingAboutRoute
+  LandingBuiltForRoute: typeof LandingBuiltForRoute
+  LandingContactRoute: typeof LandingContactRoute
+  LandingFaqsRoute: typeof LandingFaqsRoute
+  LandingFeaturesRoute: typeof LandingFeaturesRoute
+  LandingFinancialsRoute: typeof LandingFinancialsRoute
+  LandingModulesRoute: typeof LandingModulesRoute
+  LandingIndexRoute: typeof LandingIndexRoute
   CompaniesInvitationsAcceptRoute: typeof CompaniesInvitationsAcceptRoute
 }
 
@@ -459,55 +471,6 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/modules': {
-      id: '/modules'
-      path: '/modules'
-      fullPath: '/modules'
-      preLoaderRoute: typeof ModulesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/financials': {
-      id: '/financials'
-      path: '/financials'
-      fullPath: '/financials'
-      preLoaderRoute: typeof FinancialsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/features': {
-      id: '/features'
-      path: '/features'
-      fullPath: '/features'
-      preLoaderRoute: typeof FeaturesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faqs': {
-      id: '/faqs'
-      path: '/faqs'
-      fullPath: '/faqs'
-      preLoaderRoute: typeof FaqsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/built-for': {
-      id: '/built-for'
-      path: '/built-for'
-      fullPath: '/built-for'
-      preLoaderRoute: typeof BuiltForRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
@@ -524,11 +487,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_landing/': {
+      id: '/_landing/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof LandingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding/org': {
@@ -537,6 +500,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding/org'
       preLoaderRoute: typeof OnboardingOrgRouteImport
       parentRoute: typeof OnboardingRoute
+    }
+    '/_landing/modules': {
+      id: '/_landing/modules'
+      path: '/modules'
+      fullPath: '/modules'
+      preLoaderRoute: typeof LandingModulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/financials': {
+      id: '/_landing/financials'
+      path: '/financials'
+      fullPath: '/financials'
+      preLoaderRoute: typeof LandingFinancialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/features': {
+      id: '/_landing/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof LandingFeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/faqs': {
+      id: '/_landing/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof LandingFaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/contact': {
+      id: '/_landing/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof LandingContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/built-for': {
+      id: '/_landing/built-for'
+      path: '/built-for'
+      fullPath: '/built-for'
+      preLoaderRoute: typeof LandingBuiltForRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/about': {
+      id: '/_landing/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof LandingAboutRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_auth/verify': {
       id: '/_auth/verify'
@@ -795,17 +807,17 @@ const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
-  AboutRoute: AboutRoute,
-  BuiltForRoute: BuiltForRoute,
-  ContactRoute: ContactRoute,
-  FaqsRoute: FaqsRoute,
-  FeaturesRoute: FeaturesRoute,
-  FinancialsRoute: FinancialsRoute,
-  ModulesRoute: ModulesRoute,
   OnboardingRoute: OnboardingRouteWithChildren,
+  LandingAboutRoute: LandingAboutRoute,
+  LandingBuiltForRoute: LandingBuiltForRoute,
+  LandingContactRoute: LandingContactRoute,
+  LandingFaqsRoute: LandingFaqsRoute,
+  LandingFeaturesRoute: LandingFeaturesRoute,
+  LandingFinancialsRoute: LandingFinancialsRoute,
+  LandingModulesRoute: LandingModulesRoute,
+  LandingIndexRoute: LandingIndexRoute,
   CompaniesInvitationsAcceptRoute: CompaniesInvitationsAcceptRoute,
 }
 export const routeTree = rootRouteImport

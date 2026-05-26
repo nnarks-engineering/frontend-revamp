@@ -12,7 +12,7 @@ import GhanaImage from "@/assets/landing/ghana.webp"
 import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
 import { useTranslation } from "react-i18next";
 
-export const Route = createLazyFileRoute("/faqs")({
+export const Route = createLazyFileRoute("/_landing/faqs")({
   component: FAQsPage,
 });
 

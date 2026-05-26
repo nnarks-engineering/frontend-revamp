@@ -4,7 +4,7 @@ import FeaturesSection from "@/components/landing/sections/features/section";
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 
-export const Route = createLazyFileRoute("/features")({
+export const Route = createLazyFileRoute("/_landing/features")({
   component: FeaturesPage,
 });
 

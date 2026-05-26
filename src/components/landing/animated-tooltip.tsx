@@ -80,11 +80,11 @@ function TooltipAvatar({
             className="absolute -top-[4.5rem] left-1/2 z-50 -translate-x-1/2"
           >
             {/* Tooltip card */}
-            <div className="flex flex-col gap-0.5 rounded-lg bg-white border border-slate-100 shadow-lg shadow-slate-200/60 px-3.5 py-2.5 min-w-[140px]">
-              <span className="text-[13px] font-semibold text-slate-800 leading-tight">
+            <div className="flex flex-col gap-0.5 rounded-lg bg-background border border-slate-100 shadow-slate-200/60 px-3.5 py-2.5 min-w-[140px]">
+              <span className="text-[13px] font-semibold text-foreground/80 leading-tight">
                 {item.name}
               </span>
-              <span className="text-[11px] text-slate-500 leading-tight">
+              <span className="text-[11px] text-foreground/60 leading-tight">
                 {item.role}
               </span>
               <span className="text-[11px] font-medium text-primary-600 leading-tight mt-0.5">
@@ -92,7 +92,7 @@ function TooltipAvatar({
               </span>
             </div>
             {/* Arrow */}
-            <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 w-2.5 h-2.5 bg-white border-r border-b border-slate-100 rotate-45 shadow-[2px_2px_2px_-1px_rgba(0,0,0,0.04)]" />
+            <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 w-2.5 h-2.5 bg-background border-r border-b border-slate-100 rotate-45 shadow-[2px_2px_2px_-1px_rgba(0,0,0,0.04)]" />
           </motion.div>
         )}
       </AnimatePresence>
