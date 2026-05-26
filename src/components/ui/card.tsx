@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground",
+      "rounded-lg bg-card text-card-foreground",
       className
     )}
     {...props}
@@ -17,16 +17,27 @@ const Card = React.forwardRef<
 ))
 Card.displayName = "Card"
 
-const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
-  />
-))
+type CardHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
+  decoration?: React.FunctionComponent<React.ComponentProps<"svg"> & { title?: string }>
+  decorationClassName?: string
+}
+
+const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
+  ({ className, decoration: Decoration, decorationClassName, children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("flex flex-col space-y-1.5 p-6", Decoration && "isolate", className)}
+      {...props}
+    >
+      {Decoration && (
+        <div className="absolute inset-0 -z-[1] overflow-hidden pointer-events-none">
+          <Decoration className={decorationClassName} aria-hidden />
+        </div>
+      )}
+      {children}
+    </div>
+  )
+)
 CardHeader.displayName = "CardHeader"
 
 const CardTitle = React.forwardRef<

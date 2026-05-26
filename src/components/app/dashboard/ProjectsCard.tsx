@@ -11,6 +11,8 @@ import {
   FolderOpen,
   MapPin,
 } from "lucide-react";
+import RoundingLine2 from "@/assets/svg/rounding-line2.svg?react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 // ── Status helpers ──────────────────────────────────────────────────────
 
@@ -123,9 +125,9 @@ export function ProjectsCard({ className }: ProjectsCardProps) {
   const projects = data?.items ?? [];
 
   return (
-    <div className={cn("bg-white rounded-2xl p-5 shadow-xs border border-border/40 h-full flex flex-col", className)}>
+    <Card className={cn("bg-white rounded-2xl overflow-visible shadow-xs border border-border/40 h-fit flex flex-col", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <CardHeader decoration={RoundingLine2} decorationClassName="absolute -top-3 left-0 text-primary/10" className="relative flex items-center justify-between mb-4 overflow-clip">
         <div className="flex items-center gap-2">
           <CircleDot className="w-4 h-4 text-primary" />
           <h3 className="text-[15px] font-bold text-foreground">Active Projects</h3>
@@ -138,22 +140,24 @@ export function ProjectsCard({ className }: ProjectsCardProps) {
           View All
           <ChevronRight className="w-3.5 h-3.5" />
         </Link>
-      </div>
+      </CardHeader>
 
       {/* Body */}
-      {isLoading ? (
-        <div className="flex-1 flex items-center justify-center py-6">
-          <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-        </div>
-      ) : projects.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="flex flex-col gap-2 flex-1 overflow-y-auto scrollbar-hide">
-          {projects.map((project) => (
-            <ProjectRow key={project.id} project={project} />
-          ))}
-        </div>
-      )}
-    </div>
+      <CardContent className="flex-1 flex flex-col overflow-hidden px-6 pb-6">
+        {isLoading ? (
+          <div className="flex-1 flex items-center justify-center py-6">
+            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          </div>
+        ) : projects.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <div className="flex flex-col gap-2 flex-1 overflow-y-auto scrollbar-hide">
+            {projects.map((project) => (
+              <ProjectRow key={project.id} project={project} />
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

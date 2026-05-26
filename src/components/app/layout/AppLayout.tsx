@@ -1,6 +1,5 @@
 import { resolveVerticalSidebarItems } from "@/app/nav-config";
 import { AppHeader } from "@/components/app/header/AppHeader";
-import { TopNavBar } from "@/components/app/navigation/TopNavBar";
 import { LocationBanner } from "@/components/app/shared";
 import { SidebarNav } from "@/components/app/sidebar/SidebarNav";
 import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/right-panel-context";
@@ -74,7 +73,7 @@ function AppLayoutInner() {
 
           {/* Page content */}
           <main
-            className="flex-1 flex  bg-neutral-100 overflow-hidden min-h-0 "
+            className="flex-1 flex  bg-[#E2E4E9]/80 overflow-hidden min-h-0 "
             onClick={closeAllOverlaysOnMobile}
           > <div
           className={cn(
@@ -90,9 +89,10 @@ function AppLayoutInner() {
             <div className="p-3 md:p-5 min-h-full flex-1 overflow-auto ">
               <LocationBanner />
               <Outlet />
-            </div> <div
+            </div>
+            <div
           className={cn(
-            "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+            "shrink-0 overflow-hidden mt-4  rounded-tl-2xl transition-all duration-300 ease-in-out",
             "max-lg:fixed max-lg:right-0 max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)] max-lg:z-40",
             isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
           )}

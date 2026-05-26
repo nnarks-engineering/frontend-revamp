@@ -6,48 +6,84 @@ import {
   useResendCompanyInvitation,
 } from "@/shared/hooks/use-company-members";
 import { Button } from "@/components/ui/button";
-import type { CompanyRole } from "@/types/enums";
-import { Mail, Clock, Trash2, Send, RefreshCw } from "lucide-react";
-import { toast } from "sonner";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import type { CompanyMemberStatus, CompanyRole } from "@/types/enums";
+import { ChevronLeft, ChevronRight, RefreshCw, Send, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
-export function InvitationsTab({ companyId }: { companyId: string }) {
+const PAGE_SIZE = 10;
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr)
+    .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+    .replace(/ (\d{4})$/, ", $1");
+}
+
+function statusVariant(status: CompanyMemberStatus): string {
+  const map: Record<CompanyMemberStatus, string> = {
+    active: "active",
+    pending: "pending",
+    removed: "cancelled",
+    left: "ended",
+  };
+  return map[status] ?? "default";
+}
+
+interface InvitationsTabProps {
+  readonly companyId: string;
+  readonly search: string;
+  readonly page: number;
+  readonly onPageChange: (page: number) => void;
+  readonly inviteOpen: boolean;
+  readonly onInviteOpenChange: (open: boolean) => void;
+}
+
+export function InvitationsTab({ companyId, search, page, onPageChange, inviteOpen, onInviteOpenChange }: InvitationsTabProps) {
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
   const inviteMutation = useInviteCompanyMember(companyId);
   const removeMutation = useRemoveCompanyMember(companyId);
+  const resendMutation = useResendCompanyInvitation(companyId);
 
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<CompanyRole>("member");
   const [errorMsg, setErrorMsg] = useState("");
-  
-  // Dialog state
   const [memberToRevoke, setMemberToRevoke] = useState<string | null>(null);
   const [memberToResend, setMemberToResend] = useState<string | null>(null);
 
-  const pendingInvites = members.filter((m) => m.status === "pending");
-  const resendMutation = useResendCompanyInvitation(companyId);
+  // Show ALL members, filtered by search
+  const filtered = search.trim()
+    ? members.filter((m) => m.email.toLowerCase().includes(search.toLowerCase()))
+    : members;
 
-  const handleInvite = (e: React.FormEvent) => {
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(Math.max(1, page), totalPages);
+  const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  const handleInvite = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
-
-    if (!email) {
-      setErrorMsg("Email is required.");
-      return;
-    }
-
+    if (!email) { setErrorMsg("Email is required."); return; }
     inviteMutation.mutate(
       { email, role },
       {
-        onSuccess: () => {
-          setEmail("");
-          setRole("member");
-          toast.success("Invitation sent successfully");
-        },
-        onError: (err: any) => {
-          setErrorMsg(err.message || "Failed to send invitation.");
-          toast.error("Failed to send invitation");
-        },
+        onSuccess: () => { setEmail(""); setRole("member"); onInviteOpenChange(false); toast.success("Invitation sent successfully"); },
+        onError: (err: Error) => { setErrorMsg(err.message || "Failed to send invitation."); toast.error("Failed to send invitation"); },
       }
     );
   };
@@ -55,133 +91,186 @@ export function InvitationsTab({ companyId }: { companyId: string }) {
   const handleRevoke = () => {
     if (!memberToRevoke) return;
     removeMutation.mutate(memberToRevoke, {
-      onSuccess: () => {
-        toast.success("Invitation revoked");
-        setMemberToRevoke(null);
-      },
-      onError: () => {
-        toast.error("Failed to revoke invitation");
-      }
+      onSuccess: () => { toast.success("Invitation revoked"); setMemberToRevoke(null); },
+      onError: () => toast.error("Failed to revoke invitation"),
     });
   };
 
   const handleResend = () => {
     if (!memberToResend) return;
     resendMutation.mutate(memberToResend, {
-      onSuccess: () => {
-        toast.success("Invitation resent successfully");
-        setMemberToResend(null);
-      },
-      onError: () => {
-        toast.error("Failed to resend invitation");
-      }
+      onSuccess: () => { toast.success("Invitation resent successfully"); setMemberToResend(null); },
+      onError: () => toast.error("Failed to resend invitation"),
     });
   };
 
   return (
-    <div className="space-y-8">
-      {/* ── Invite Form ──────────────────────────────────────────────── */}
-      <div className="bg-muted/10 p-5 rounded-xl border border-border/40">
-        <h3 className="text-sm font-bold text-foreground mb-1">Invite a new member</h3>
-        <p className="text-xs text-muted-foreground mb-4">
-          Send an email invitation to add someone to your organization.
-        </p>
+    <div className="space-y-5">
+      {/* ── Invite Dialog ───────────────────────────────────────────── */}
+      <Dialog open={inviteOpen} onOpenChange={(open) => { onInviteOpenChange(open); if (!open) { setEmail(""); setRole("member"); setErrorMsg(""); } }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Invite a new member</DialogTitle>
+            <DialogDescription>
+              Send an email invitation to add someone to your organization.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleInvite} className="flex flex-col gap-4 pt-2">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="invite-email" className="text-sm font-medium text-foreground">Email address</label>
+              <input
+                id="invite-email"
+                type="email"
+                placeholder="colleague@company.com"
+                className="w-full h-10 px-3 text-sm rounded-lg border border-border bg-background outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={inviteMutation.isPending}
+                autoFocus
+              />
+              {errorMsg && <p className="text-xs text-destructive">{errorMsg}</p>}
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="invite-role" className="text-sm font-medium text-foreground">Role</label>
+              <select
+                id="invite-role"
+                className="h-10 px-3 text-sm rounded-lg border border-border bg-background outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                value={role}
+                onChange={(e) => setRole(e.target.value as CompanyRole)}
+                disabled={inviteMutation.isPending}
+              >
+                <option value="admin">Admin</option>
+                <option value="member">Member</option>
+                <option value="viewer">Viewer</option>
+              </select>
+            </div>
+            <div className="flex justify-end gap-2 pt-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => onInviteOpenChange(false)}
+                disabled={inviteMutation.isPending}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" className="gap-2" disabled={inviteMutation.isPending}>
+                {inviteMutation.isPending
+                  ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  : <Send className="w-4 h-4" />}
+                Send Invite
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
 
-        <form onSubmit={handleInvite} className="flex flex-col sm:flex-row gap-3 items-start">
-          <div className="flex-1 w-full">
-            <input
-              type="email"
-              placeholder="Email address"
-              className="w-full h-10 px-3 text-sm rounded-lg border border-border bg-white outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={inviteMutation.isPending}
-            />
-            {errorMsg && <p className="text-xs text-destructive mt-1.5">{errorMsg}</p>}
-          </div>
-
-          <select
-            className="h-10 px-3 text-sm font-semibold rounded-lg border border-border bg-white outline-none focus:border-primary focus:ring-1 focus:ring-primary w-full sm:w-40"
-            value={role}
-            onChange={(e) => setRole(e.target.value as CompanyRole)}
-            disabled={inviteMutation.isPending}
-          >
-            <option value="admin">Admin</option>
-            <option value="member">Member</option>
-            <option value="viewer">Viewer</option>
-          </select>
-
-          <Button type="submit" className="h-10 w-full sm:w-auto gap-2" disabled={inviteMutation.isPending}>
-            {inviteMutation.isPending ? (
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <Send className="w-4 h-4" />
-            )}
-            Send Invite
-          </Button>
-        </form>
+      {/* ── Table ───────────────────────────────────────────────────── */}
+      <div className="rounded-xl border border-border/40 overflow-hidden">
+        <Table className="table-fixed w-full">
+          <colgroup>
+            <col className="w-[30%]" />
+            <col className="w-[15%]" />
+            <col className="w-[20%]" />
+            <col className="w-[20%]" />
+            <col className="w-[15%]" />
+          </colgroup>
+          <TableHeader>
+            <TableRow className="hover:bg-transparent bg-muted/5">
+              <TableHead className="font-bold text-foreground">Email</TableHead>
+              <TableHead className="font-bold text-foreground">Role</TableHead>
+              <TableHead className="font-bold text-foreground">Date Invited</TableHead>
+              <TableHead className="font-bold text-foreground">Status</TableHead>
+              <TableHead className="font-bold text-foreground text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {(() => {
+              if (isLoading) {
+                return (
+                  <TableRow>
+                    <TableCell colSpan={5} className="py-16 text-center">
+                      <div className="flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+              if (pageItems.length === 0) {
+                return (
+                  <TableRow>
+                    <TableCell colSpan={5} className="py-16 text-center text-muted-foreground">
+                      {search ? `No members matching "${search}".` : "No members found."}
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+              return pageItems.map((member) => (
+                <TableRow key={member.id}>
+                  <TableCell className="text-foreground/80">{member.email}</TableCell>
+                  <TableCell className="text-muted-foreground capitalize">{member.role}</TableCell>
+                  <TableCell className="text-muted-foreground">{formatDate(member.invited_at)}</TableCell>
+                  <TableCell>
+                    <StatusBadge variant={statusVariant(member.status)} size="sm" />
+                  </TableCell>
+                  <TableCell className="text-right">
+                    {member.status === "pending" && (
+                      <div className="flex items-center justify-end gap-1">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-7 w-7 text-primary hover:bg-primary/10 hover:text-primary border-border/50 shadow-none"
+                          onClick={() => setMemberToResend(member.id)}
+                          disabled={resendMutation.isPending}
+                          title="Resend invitation"
+                        >
+                          <RefreshCw className="w-3.5 h-3.5" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-7 w-7 text-destructive hover:bg-destructive/10 hover:text-destructive border-border/50 shadow-none"
+                          onClick={() => setMemberToRevoke(member.id)}
+                          disabled={removeMutation.isPending}
+                          title="Revoke invitation"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ));
+            })()}
+          </TableBody>
+        </Table>
       </div>
 
-      {/* ── Pending Invites List ─────────────────────────────────────── */}
-      <div>
-        <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-          <Clock className="w-4 h-4 text-primary" />
-          Pending Invitations ({pendingInvites.length})
-        </h3>
-
-        {isLoading ? (
-          <div className="flex justify-center py-8">
-            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-          </div>
-        ) : pendingInvites.length === 0 ? (
-          <div className="text-center py-10 border border-dashed border-border/60 rounded-xl">
-            <Mail className="w-8 h-8 text-muted-foreground mx-auto mb-2 opacity-50" />
-            <p className="text-xs text-muted-foreground">No pending invitations.</p>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {pendingInvites.map((invite) => (
-              <div
-                key={invite.id}
-                className="flex items-center justify-between p-3.5 rounded-xl border border-border/40 hover:bg-muted/10 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center">
-                    <Mail className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div>
-                    <p className="text-[13px] font-bold text-foreground">{invite.email}</p>
-                    <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mt-0.5">
-                      Role: {invite.role}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    className="h-8 px-3 text-xs text-primary hover:bg-primary/10 hover:text-primary border-transparent shadow-none"
-                    onClick={() => setMemberToResend(invite.id)}
-                    disabled={resendMutation.isPending}
-                  >
-                    <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
-                    Resend
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    className="h-8 px-3 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive border-transparent shadow-none"
-                    onClick={() => setMemberToRevoke(invite.id)}
-                    disabled={removeMutation.isPending}
-                  >
-                    <Trash2 className="w-3.5 h-3.5 mr-1.5" />
-                    Revoke
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+      {/* ── Pagination ──────────────────────────────────────────────── */}
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
+        <span className="font-medium">Page {safePage} of {totalPages}</span>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 gap-1"
+            onClick={() => onPageChange(safePage - 1)}
+            disabled={safePage <= 1}
+          >
+            <ChevronLeft className="w-3.5 h-3.5" />
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 gap-1"
+            onClick={() => onPageChange(safePage + 1)}
+            disabled={safePage >= totalPages}
+          >
+            Next
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
       </div>
 
       <ConfirmDialog
@@ -200,7 +289,7 @@ export function InvitationsTab({ companyId }: { companyId: string }) {
         onOpenChange={(open) => !open && setMemberToResend(null)}
         onConfirm={handleResend}
         title="Resend Invitation?"
-        description="Are you sure you want to resend the invitation email to this member?"
+        description="Resend the invitation email to this member?"
         confirmText="Resend"
         variant="primary"
         isPending={resendMutation.isPending}

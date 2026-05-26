@@ -1,6 +1,7 @@
 import { CreateServiceModal } from "@/components/app/services/CreateServiceModal";
 import { Button } from "@/components/ui/button";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { useMyServices } from "@/shared/hooks/use-services";
 import { createFileRoute } from "@tanstack/react-router";
 import { PlusCircle } from "lucide-react";
@@ -12,9 +13,7 @@ export const Route = createFileRoute("/_app/organization/")({
 
 function OrganizationPage() {
   const { data: companies = [] } = useMyCompanies();
-  const [activeCompanyId] = useState<string | null>(() =>
-    localStorage.getItem("nnarks_active_company_id") ?? null
-  );
+  const { activeCompanyId } = useActiveCompany();
   const activeCompany = useMemo(
     () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
     [companies, activeCompanyId]

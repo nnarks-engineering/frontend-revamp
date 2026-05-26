@@ -1,16 +1,16 @@
 import { AnimatedTooltip } from "@/components/common/animated-tooltip";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
 import { cn } from "@/shared/lib/utils";
-import type { CompanyMember } from "@/types/companies";
-import type { CompanyMemberStatus, CompanyRole } from "@/types/enums";
+
 import { Link } from "@tanstack/react-router";
 import {
   ChevronRight,
-  Crown,
-  ShieldCheck,
+
   UserPlus,
   Users,
 } from "lucide-react";
+import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 
 
 
@@ -45,9 +45,9 @@ export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) 
   const pendingCount = members.filter((m) => m.status === "pending").length;
 
   return (
-    <div className={cn("bg-white rounded-2xl p-5 shadow-xs border border-border/40 h-full flex flex-col", className)}>
+    <Card className={cn("bg-white rounded-2xl p- overflow-visible shadow-xs border border-border/40 h-fit flex flex-col", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <CardHeader decoration={RoundingLine} decorationClassName="absolute -top-3 left-0 text-primary/10" className="relative flex items-center justify-between mb-4 overflow-clip">
         <div className="flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           <h3 className="text-[15px] font-bold text-foreground">Team Members</h3>
@@ -58,42 +58,41 @@ export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) 
           )}
         </div>
 
-      </div>
+      </CardHeader>
 
 
 
       {/* Body */}
-      {isLoading ? (
-        <div className="flex-1 flex items-center justify-center py-6">
-          <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-        </div>
-      ) : members.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="flex justify-between">
-   <div className="flex gap-0.5 flex-1 overflow-y-auto scrollbar-hide z-100 pt-40">
-         <AnimatedTooltip
+      <CardContent className="flex-1 flex flex-col px-6 pb-6">
+        {isLoading ? (
+          <div className="flex-1 flex items-center justify-center py-6">
+            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          </div>
+        ) : members.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <div className="flex justify-between">
+            <div className="flex gap-0.5 flex-1 overflow-visible scrollbar-hide relative">
+              <AnimatedTooltip
                 items={activeMembers.slice(0, 5).map((member) => ({
-                 id: member.id,
-                  name:member.email,
-                  designation: member.email || "Nominee",
+                  id: member.id,
+                  name: member.email,
+                  designation: member.email || "Me",
                   image: `https://dekhbwnxmhgsvndwpiox.supabase.co/storage/v1/object/public/events/27c527de-8757-4a85-a6a5-1e5698b5360e/nominations/1778082356002.webp`,
                 }))}
               />
-        </div>
-
-                       <Link
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          to={"/organization/team" as any}
-          className="flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
-        >
-          Manage
-          <ChevronRight className="w-3.5 h-3.5" />
-        </Link>
-
-        </div>
-
-      )}
-    </div>
+            </div>
+            <Link
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              to={"/organization/team" as any}
+              className="flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              Manage
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

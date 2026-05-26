@@ -89,7 +89,7 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
           <button
             type="button"
             aria-label="Close search"
-            className="fixed inset-x-0 top-14 bottom-0 z-40 cursor-default bg-black/25 backdrop-blur-[1px] animate-in fade-in duration-150"
+            className="fixed inset-x-0 top-14 bottom-0 z-40 cursor-default bg-primary-950/30 backdrop-blur-[1px] animate-in fade-in duration-150"
             onClick={handleClose}
           />,
           document.body,
@@ -129,7 +129,7 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
                 onClick={() => onOpenChange(true)}
                 className="w-full pl-9 pr-4 py-2 text-[13px] text-left text-muted-foreground/50"
               >
-                Search anything...
+                Search a feature, ...
               </button>
             )}
 

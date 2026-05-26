@@ -1,17 +1,31 @@
 import { TeamPageClient } from "@/components/app/organization/TeamPageClient";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+
+type TeamSearch = {
+  tab: "members" | "roles" | "invitations";
+  q: string;
+  page: number;
+};
+
+const VALID_TABS = ["members", "roles", "invitations"] as const;
 
 export const Route = createFileRoute("/_app/organization/team")({
+  validateSearch: (search: Record<string, unknown>): TeamSearch => ({
+    tab: VALID_TABS.includes(search.tab as TeamSearch["tab"])
+      ? (search.tab as TeamSearch["tab"])
+      : "members",
+    q: typeof search.q === "string" ? search.q : "",
+    page: Math.max(1, Number(search.page) || 1),
+  }),
   component: OrganizationTeamPage,
 });
 
 function OrganizationTeamPage() {
   const { data: companies = [] } = useMyCompanies();
-  const [activeCompanyId] = useState<string | null>(() =>
-    localStorage.getItem("nnarks_active_company_id") ?? null
-  );
+  const { activeCompanyId } = useActiveCompany();
   
   const activeCompany = useMemo(
     () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,

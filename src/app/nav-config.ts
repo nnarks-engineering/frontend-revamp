@@ -160,6 +160,19 @@ export const NAV_GROUPS: NavGroup[] = [
       },
     ],
   },
+  // {
+  //   title: "Ai",
+  //   items: [
+  //     {
+  //       id: "vendor-dashboard",
+  //       label: "Home",
+  //       description: "Overview of your business, activity, and key metrics.",
+  //       icon: faRobot,
+  //       to: "/inbox/ai",
+  //     },
+
+  //   ],
+  // },
 ];
 
 // ─── Route helpers ────────────────────────────────────────────────────────────

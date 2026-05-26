@@ -7,14 +7,12 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { cn } from "@/shared/lib/utils";
 import type { Company } from "@/types/companies";
 import { useNavigate } from "@tanstack/react-router";
 import { ChevronsUpDown, Plus } from "lucide-react";
-import { useState } from "react";
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
-
-const ACTIVE_COMPANY_KEY = "nnarks_active_company_id";
 
 function getInitials(name: string | null): string {
   if (!name) return "??";
@@ -33,17 +31,13 @@ interface Props {
 export function SidebarCompanySwitcher({ isCollapsed }: Props) {
   const navigate = useNavigate();
   const { data: companies = [] } = useMyCompanies();
-
-  const [activeId, setActiveId] = useState<string | null>(() => {
-    return localStorage.getItem(ACTIVE_COMPANY_KEY) ?? null;
-  });
+  const { activeCompanyId: activeId, setActiveCompanyId } = useActiveCompany();
 
   const activeCompany: Company | null =
     companies.find((c) => c.id === activeId) ?? companies[0] ?? null;
 
   const handleSelect = (company: Company) => {
-    setActiveId(company.id);
-    localStorage.setItem(ACTIVE_COMPANY_KEY, company.id);
+    setActiveCompanyId(company.id);
   };
 
   const displayName =

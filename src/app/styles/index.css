@@ -13,7 +13,7 @@
   font-display: swap;
 }
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dar (&:is(.dark *));
 
 :root {
   --radius: 0.625rem;
@@ -56,6 +56,20 @@
   --secondary-950: #0a2f45;
   --secondary-foreground: #0d1f2d;
 
+  --tertiary: #f97316;
+  --tertiary-50: #fff7ed;
+  --tertiary-100: #ffedd5;
+  --tertiary-200: #fed7aa;
+  --tertiary-300: #fdba74;
+  --tertiary-400: #fb923c;
+  --tertiary-500: var(--tertiary);
+  --tertiary-600: #ea580c;
+  --tertiary-700: #c2410c;
+  --tertiary-800: #9a3412;
+  --tertiary-900: #7c2d12;
+  --tertiary-950: #431407;
+  --tertiary-foreground: #ffffff;
+
   --muted: #ebf8fd;
   --muted-foreground: #5a7a8a;
 
@@ -87,7 +101,8 @@
 
 /* Dark mode overrides (optional, keeping minimal for now to respect brand palette) */
 .dar {
-  --background: var(--primary-950); /* Dark shell */
+  --background: var(--primary-950);
+  /* Dark shell */
   --foreground: #f4f9fb;
   --card: #0d1f2d;
   --card-foreground: #f4f9fb;
@@ -146,6 +161,21 @@
   --color-secondary-950: var(--secondary-950);
   --color-secondary-foreground: var(--secondary-foreground);
 
+  /* Tertiary Palette */
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-50: var(--tertiary-50);
+  --color-tertiary-100: var(--tertiary-100);
+  --color-tertiary-200: var(--tertiary-200);
+  --color-tertiary-300: var(--tertiary-300);
+  --color-tertiary-400: var(--tertiary-400);
+  --color-tertiary-500: var(--tertiary-500);
+  --color-tertiary-600: var(--tertiary-600);
+  --color-tertiary-700: var(--tertiary-700);
+  --color-tertiary-800: var(--tertiary-800);
+  --color-tertiary-900: var(--tertiary-900);
+  --color-tertiary-950: var(--tertiary-950);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -188,9 +218,9 @@
   --font-gravitas-one: "Gravitas One", cursive;
 }
 
-@theme{
+@theme {
 
- --font-outfit: "Outfit", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
   --font-geist: "Geist", sans-serif;
   --font-manrope: "Manrope", sans-serif;
@@ -228,10 +258,12 @@ body {
     transform: scale(1) rotate(0deg);
     background-position: 50% 90%;
   }
+
   50% {
     transform: scale(1.08) rotate(8deg);
     background-position: 54% 92%;
   }
+
   100% {
     transform: scale(1) rotate(-8deg);
     background-position: 46% 88%;
@@ -239,22 +271,22 @@ body {
 }
 
 .animate-gradient-move {
-  background: radial-gradient(
-    ellipse at 50% 90%,
-    rgba(23, 204, 236, 0.15) 0%,
-    rgba(23, 204, 236, 0.4) 40%,
-    rgba(23, 204, 236, 0.15) 70%,
-    transparent 100%
-  );
+  background: radial-gradient(ellipse at 50% 90%,
+      rgba(23, 204, 236, 0.15) 0%,
+      rgba(23, 204, 236, 0.4) 40%,
+      rgba(23, 204, 236, 0.15) 70%,
+      transparent 100%);
   animation: gradient-move 8s ease-in-out infinite alternate;
 }
 
 @keyframes breathing {
+
   0%,
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(23, 204, 236, 0.12);
   }
+
   50% {
     transform: scale(1.045);
     box-shadow: 0 0 0 8px rgba(23, 204, 236, 0.1);
@@ -266,6 +298,7 @@ body {
 }
 
 @layer base {
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -277,6 +310,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -286,6 +320,7 @@ body {
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -296,6 +331,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -310,11 +346,13 @@ body {
 }
 
 @keyframes bounce-slow {
+
   0%,
   100% {
     transform: translateY(-5%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -394,6 +432,7 @@ body {
 }
 
 @layer base {
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;

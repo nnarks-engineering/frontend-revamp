@@ -4,11 +4,29 @@ import {
   useUpdateCompanyMember,
 } from "@/shared/hooks/use-company-members";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import type { CompanyRole } from "@/types/enums";
-import { ShieldCheck, UserX, Crown, Users } from "lucide-react";
+import { ShieldCheck, UserX, Crown, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { useState } from "react";
+import { StatusBadge } from "@/components/ui/status-badge";
+
+const PAGE_SIZE = 10;
 
 const ROLE_META: Record<CompanyRole, { label: string; icon: React.ReactNode; color: string }> = {
   owner: { label: "Owner", icon: <Crown className="w-3.5 h-3.5" />, color: "text-amber-600" },
@@ -22,27 +40,42 @@ function getInitials(email: string) {
   return (email.split("@")[0] ?? "").slice(0, 2).toUpperCase();
 }
 
-export function MembersTab({ companyId }: { companyId: string }) {
+function formatDate(dateStr: string | null) {
+  if (!dateStr) return "—";
+  return new Date(dateStr)
+    .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+    .replace(/ (\d{4})$/, ", $1");
+}
+
+interface MembersTabProps {
+  readonly companyId: string;
+  readonly search: string;
+  readonly page: number;
+  readonly onPageChange: (page: number) => void;
+}
+
+export function MembersTab({ companyId, search, page, onPageChange }: MembersTabProps) {
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
   const removeMutation = useRemoveCompanyMember(companyId);
   const updateMutation = useUpdateCompanyMember(companyId);
 
-  // Dialog state
   const [memberToRemove, setMemberToRemove] = useState<string | null>(null);
 
-  // We only show active members here
   const activeMembers = members.filter((m) => m.status === "active");
+
+  const filtered = search.trim()
+    ? activeMembers.filter((m) => m.email.toLowerCase().includes(search.toLowerCase()))
+    : activeMembers;
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(Math.max(1, page), totalPages);
+  const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const handleRemove = () => {
     if (!memberToRemove) return;
     removeMutation.mutate(memberToRemove, {
-      onSuccess: () => {
-        toast.success("Member removed successfully");
-        setMemberToRemove(null);
-      },
-      onError: () => {
-        toast.error("Failed to remove member");
-      }
+      onSuccess: () => { toast.success("Member removed successfully"); setMemberToRemove(null); },
+      onError: () => toast.error("Failed to remove member"),
     });
   };
 
@@ -56,72 +89,135 @@ export function MembersTab({ companyId }: { companyId: string }) {
     );
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  if (activeMembers.length === 0) {
-    return (
-      <div className="text-center py-16">
-        <p className="text-muted-foreground text-sm">No active members found.</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-4">
-      {activeMembers.map((member) => {
-        const role = ROLE_META[member.role] ?? ROLE_META.member;
+    <div className="space-y-5">
+      {/* ── Table ───────────────────────────────────────────────────── */}
+      <div className="rounded-b-lg border border-border/40 overflow-hidden">
+        <Table className="table-fixed w-full">
+          <colgroup>
+            <col className="w-[35%]" />
+            <col className="w-[20%]" />
+            <col className="w-[20%]" />
+            <col className="w-[25%]" />
+          </colgroup>
+          <TableHeader>
+            <TableRow className="hover:bg-transparent bg-muted/5">
+              <TableHead className="font-bold text-foreground">Member</TableHead>
+              <TableHead className="font-bold text-foreground">Role</TableHead>
+              <TableHead className="font-bold text-foreground">Date Joined</TableHead>
+              <TableHead className="font-bold text-foreground text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {(() => {
+              if (isLoading) {
+                return (
+                  <TableRow>
+                    <TableCell colSpan={4} className="py-16 text-center">
+                      <div className="flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+              if (pageItems.length === 0) {
+                return (
+                  <TableRow>
+                    <TableCell colSpan={4} className="py-16 text-center text-muted-foreground">
+                      {search ? `No members matching "${search}".` : "No active members found."}
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+              return pageItems.map((member) => {
+                const role = ROLE_META[member.role] ?? ROLE_META.member;
+                return (
+                  <TableRow key={member.id}>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary shrink-0">
+                          {getInitials(member.email)}
+                        </div>
+                        <span className="text-foreground/80 truncate">{member.email}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      {/* <div className={`flex items-center gap-1.5 text-sm font-semibold ${role.color}`}>
+                        {role.icon}
+                        {role.label}
+                      </div> */}
+                       <StatusBadge variant={role.label} size="sm" />
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {formatDate(member.joined_at)}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        {member.role !== "owner" && (
+                          <Select
+                            value={member.role}
+                            onValueChange={(v) => handleRoleChange(member.id, v as CompanyRole)}
+                            disabled={updateMutation.isPending}
+                          >
+                            <SelectTrigger className="h-7 w-28 text-xs font-semibold">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="admin">Admin</SelectItem>
+                              <SelectItem value="member">Member</SelectItem>
+                              <SelectItem value="viewer">Viewer</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        )}
+                        {member.role !== "owner" && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-7 w-7 text-destructive hover:bg-destructive/10 hover:text-destructive border-border/50 shadow-none"
+                            onClick={() => setMemberToRemove(member.id)}
+                            disabled={removeMutation.isPending}
+                            title="Remove member"
+                          >
+                            <UserX className="w-3.5 h-3.5" />
+                          </Button>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              });
+            })()}
+          </TableBody>
+        </Table>
+      </div>
 
-        return (
-          <div
-            key={member.id}
-            className="flex items-center justify-between p-4 rounded-xl border border-border/40 hover:bg-muted/10 transition-colors"
+      {/* ── Pagination ──────────────────────────────────────────────── */}
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
+        <span className="font-medium">Page {safePage} of {totalPages}</span>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 gap-1"
+            onClick={() => onPageChange(safePage - 1)}
+            disabled={safePage <= 1}
           >
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">
-                {getInitials(member.email)}
-              </div>
-              <div>
-                <p className="text-[14px] font-bold text-foreground">{member.email}</p>
-                <div className={`flex items-center gap-1.5 mt-0.5 text-[12px] font-semibold ${role.color}`}>
-                  {role.icon}
-                  {role.label}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <select
-                className="text-[12px] font-semibold bg-muted/30 border-none rounded-lg px-3 py-1.5 cursor-pointer outline-none ring-1 ring-border/50 focus:ring-primary"
-                value={member.role}
-                onChange={(e) => handleRoleChange(member.id, e.target.value as CompanyRole)}
-                disabled={updateMutation.isPending || member.role === "owner"}
-              >
-                <option value="owner">Owner</option>
-                <option value="admin">Admin</option>
-                <option value="member">Member</option>
-                <option value="viewer">Viewer</option>
-              </select>
-
-              {member.role !== "owner" && (
-                <Button
-                  variant="outline"
-                  className="h-8 px-2 text-destructive hover:bg-destructive/10 hover:text-destructive border-transparent shadow-none"
-                  onClick={() => setMemberToRemove(member.id)}
-                  disabled={removeMutation.isPending}
-                >
-                  <UserX className="w-4 h-4" />
-                </Button>
-              )}
-            </div>
-          </div>
-        );
-      })}
+            <ChevronLeft className="w-3.5 h-3.5" />
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 gap-1"
+            onClick={() => onPageChange(safePage + 1)}
+            disabled={safePage >= totalPages}
+          >
+            Next
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
+      </div>
 
       <ConfirmDialog
         open={!!memberToRemove}

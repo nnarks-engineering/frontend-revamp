@@ -18,10 +18,10 @@ export function SidebarNav({ onClose }: SidebarNavProps) {
   const mainTabLabel = resolvePageTitle(pathname);
 
   return (
-    <aside className="h-full w-[220px] flex flex-col md:bg-background border-1 border-primary-300! border-l-0 border-t-0 rounded-r-2xl select-none">
+    <aside className="h-full w-[220px] mt-4 flex flex-col bg-background border-none border-primary-300! border-l-0 border-t-0 rounded-r-2xl select-none">
       <nav className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-2.5 scrollbar-hide">
         {sidebarItems?.length ? (
-          <div className="space-y-0.5 text-base">
+          <div className="space-y-0.5 text-sm">
             <div className="px-3 pb-2 pt-1 text-sm font-millik text-muted-foreground/50 uppercase tracking-wider select-none">
               {mainTabLabel}
             </div>

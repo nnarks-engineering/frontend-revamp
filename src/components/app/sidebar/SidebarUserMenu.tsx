@@ -14,10 +14,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { cn } from "@/shared/lib/utils";
 import { ArrowLeftRight, Building2, ChevronsUpDown, LogOut, Moon, Plus, Settings, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function getInitials(
   firstName?: string | null,
@@ -37,27 +38,26 @@ export function SidebarUserMenu() {
   const { setTheme, theme } = useTheme();
 
   const [fontSize, setFontSize] = useState<string>(() => {
-    return typeof window !== "undefined"
-      ? (localStorage.getItem("font-size") ?? "16")
-      : "16";
+    if (globalThis.window === undefined) return "16";
+    return localStorage.getItem("font-size") ?? "16";
   });
+
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${fontSize}px`;
+    localStorage.setItem("font-size", fontSize);
+  }, [fontSize]);
 
   const updateFontSize = (size: string) => {
     setFontSize(size);
-    document.documentElement.style.fontSize = `${size}px`;
-    localStorage.setItem("font-size", size);
   };
 
   const { data: companies = [] } = useMyCompanies();
-  const [activeCompanyId, setActiveCompanyId] = useState<string | null>(() => {
-    return localStorage.getItem("nnarks_active_company_id") ?? null;
-  });
+  const { activeCompanyId, setActiveCompanyId } = useActiveCompany();
 
   const activeCompany = companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null;
 
   const handleSelectCompany = (companyId: string) => {
     setActiveCompanyId(companyId);
-    localStorage.setItem("nnarks_active_company_id", companyId);
   };
 
   const displayName =
@@ -149,7 +149,7 @@ export function SidebarUserMenu() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="gap-2 cursor-pointer text-muted-foreground"
-                    onClick={() => window.location.href = "/vendor"}
+                    onClick={() => { globalThis.window.location.href = "/vendor"; }}
                   >
                     <Plus className="size-4" />
                     New Company
@@ -207,22 +207,25 @@ export function SidebarUserMenu() {
                   Font Size
                 </DropdownMenuLabel>
                 <div className="px-2 py-1.5 flex items-center justify-between gap-1">
-                  {(["14", "16", "18", "20"] as const).map((size) => (
-                    <Button
-                      key={size}
-                      variant="ghost"
-                      size="sm"
-                      className={cn(
-                        "h-8 w-8 p-0 text-xs",
-                        fontSize === size
-                          ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                          : "hover:bg-accent"
-                      )}
-                      onClick={() => updateFontSize(size)}
-                    >
-                      {size === "14" ? "S" : size === "16" ? "M" : size === "18" ? "L" : "XL"}
-                    </Button>
-                  ))}
+                  {(["14", "16", "18", "20"] as const).map((size) => {
+                    const LABELS: Record<string, string> = { "14": "S", "16": "M", "18": "L", "20": "XL" };
+                    return (
+                      <Button
+                        key={size}
+                        variant="ghost"
+                        size="sm"
+                        className={cn(
+                          "h-8 w-8 p-0 text-xs",
+                          fontSize === size
+                            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                            : "hover:bg-accent"
+                        )}
+                        onClick={() => updateFontSize(size)}
+                      >
+                        {LABELS[size]}
+                      </Button>
+                    );
+                  })}
                 </div>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>

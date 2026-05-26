@@ -1,8 +1,9 @@
 import { DashboardRightPanel, DashboardTopStrip, DashboardVideo, InfoCard, ProjectsCard, TeamMembersCard, WelcomeBanner } from "@/components/app/dashboard";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 export const Route = createFileRoute("/_app/org")({
   component: DashboardPage,
@@ -18,9 +19,7 @@ function DashboardPage() {
   useRightPanel(<DashboardRightPanel />, { openOnMount: true });
 
   const { data: companies = [] } = useMyCompanies();
-  const [activeCompanyId] = useState<string | null>(() =>
-    localStorage.getItem("nnarks_active_company_id") ?? null
-  );
+  const { activeCompanyId } = useActiveCompany();
   const activeCompany = useMemo(
     () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
     [companies, activeCompanyId]

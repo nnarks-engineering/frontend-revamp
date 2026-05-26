@@ -6,5 +6,7 @@ export * from "./InfoCard";
 export * from "./MiniCalendar";
 export * from "./ProjectsCard";
 export * from "./ServicesCard";
+export * from "./StatCard";
 export * from "./TeamMembersCard";
+export * from "./UserListCard";
 export * from "./WelcomeBanner";
