@@ -84,7 +84,7 @@ export function HeroSection() {
                                 )}
                             </h1>
 
-                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-foreground/70">
+                            <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto text-muted-foreground">
                                 {t('landing:hero.description')}{" "}
                                 <Link to="/about" hash="story" className="text-primary-700 italic  hover:underline inline-flex items-center gap-1 group/link cursor-pointer">
                                     why we care

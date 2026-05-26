@@ -104,7 +104,7 @@
 .dark {
   --background: var(--secondary-950);
   /* Dark shell */
-  --foreground: #f4f9fb;
+  --foreground: var(--secondary-100);
   --card: #0d1f2d;
   --card-foreground: #f4f9fb;
   --popover: #0d1f2d;
@@ -114,7 +114,7 @@
   --secondary: #3887b3;
   --secondary-foreground: #ffffff;
   --muted: #1e293b;
-  --muted-foreground: #94a3b8;
+  --muted-foreground: var(--secondary-100);
   --accent: #1e293b;
   --accent-foreground: #f4f9fb;
   --destructive: #c0392b;

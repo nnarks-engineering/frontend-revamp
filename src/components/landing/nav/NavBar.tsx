@@ -8,6 +8,8 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { useTranslation } from 'react-i18next'
 import { LinkPreview } from '@/components/ui/link-preview'
 import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
+import { AppearanceDropdown, useFontSize } from '@/components/common/ThemeSwitcher'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 export interface NavSubItem {
     labelKey: string
@@ -76,8 +78,9 @@ export function DesktopDropdown({ item, isLinkActive }: { item: NavMainItem, isL
 
     const hasActiveChild = item.items?.some(sub => isLinkActive(sub.href))
 
+
     return (
-        <div 
+        <div
             className="relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -96,7 +99,7 @@ export function DesktopDropdown({ item, isLinkActive }: { item: NavMainItem, isL
                     />
                 )}
             </button>
-            
+
             <AnimatePresence>
                 {isOpen && item.items && (
                     <motion.div
@@ -150,7 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
 
     const location = useLocation()
     const pathname = location.pathname
-    
+
     const isHero = HERO_PAGES.includes(pathname)
 
     const [scrolledPast, setScrolledPast] = useState(!isHero)
@@ -203,6 +206,9 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
         if (href.startsWith('/#')) return false
         return pathname === href
     }
+
+          const { fontSize, setFontSize } = useFontSize();
+
 
     return (
         <>
@@ -268,6 +274,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
 
                             <div className="flex items-center gap-4">
                                 <LanguageSwitcher />
+                                <AppearanceDropdown fontSize={fontSize} setFontSize={setFontSize} />
                                 <Link
                                     to={"/login" as any}
                                     className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
@@ -287,6 +294,9 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                                         {ctaText}
                                     </Link>
                                 </LinkPreview>
+
+      
+
                             </div>
                         </div>
                     </motion.div>
@@ -309,6 +319,9 @@ function MobileNav({
     const [isOpen, setIsOpen] = useState(false)
     const [openGroup, setOpenGroup] = useState<string | null>(null)
 
+              const { fontSize, setFontSize } = useFontSize();
+
+
     return (
         <>
             <div className="h-14 px-4 flex items-center justify-between">
@@ -316,6 +329,9 @@ function MobileNav({
                     <Logo className="h-8 w-auto text-foreground" />
                     <span className="font-bold text-foreground text-lg">{t('common:platform.name')}</span>
                 </Link>
+                <div className="">
+                 <AppearanceDropdown fontSize={fontSize} setFontSize={setFontSize} />
+
                 <button
                     type="button"
                     onClick={() => setIsOpen(!isOpen)}
@@ -323,8 +339,11 @@ function MobileNav({
                     aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                </button>  
+                </div>
+                
             </div>
+
 
             <AnimatePresence>
                 {isOpen && (
@@ -341,7 +360,7 @@ function MobileNav({
                                     const isGroupOpen = openGroup === item.labelKey
                                     return (
                                         <div key={i} className="flex flex-col border-b border-foreground/5 pb- last:border-0">
-                                            <button 
+                                            <button
                                                 onClick={() => setOpenGroup(isGroupOpen ? null : item.labelKey)}
                                                 className="flex items-center justify-between py-2 text-sm font-medium text-foreground/80"
                                             >
@@ -350,7 +369,7 @@ function MobileNav({
                                             </button>
                                             <AnimatePresence>
                                                 {isGroupOpen && (
-                                                    <motion.div 
+                                                    <motion.div
                                                         initial={{ height: 0, opacity: 0 }}
                                                         animate={{ height: "auto", opacity: 1 }}
                                                         exit={{ height: 0, opacity: 0 }}
@@ -380,7 +399,7 @@ function MobileNav({
                                         </div>
                                     )
                                 }
-                                
+
                                 return (
                                     <Link
                                         key={i}
@@ -397,7 +416,7 @@ function MobileNav({
                                     </Link>
                                 )
                             })}
-                            
+
                             <div className="flex flex-col gap-2 pt-5 mt-2">
                                 <div className="flex justify-center pb-2">
                                     <LanguageSwitcher />
