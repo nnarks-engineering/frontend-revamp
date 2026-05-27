@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
@@ -50,6 +51,10 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/_landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -59,9 +64,9 @@ const AppRoute = AppRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingIndexRoute = LandingIndexRouteImport.update({
-  id: '/_landing/',
+  id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any)
 const OnboardingOrgRoute = OnboardingOrgRouteImport.update({
   id: '/org',
@@ -69,49 +74,49 @@ const OnboardingOrgRoute = OnboardingOrgRouteImport.update({
   getParentRoute: () => OnboardingRoute,
 } as any)
 const LandingModulesRoute = LandingModulesRouteImport.update({
-  id: '/_landing/modules',
+  id: '/modules',
   path: '/modules',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/modules.lazy').then((d) => d.Route),
 )
 const LandingFinancialsRoute = LandingFinancialsRouteImport.update({
-  id: '/_landing/financials',
+  id: '/financials',
   path: '/financials',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/financials.lazy').then((d) => d.Route),
 )
 const LandingFeaturesRoute = LandingFeaturesRouteImport.update({
-  id: '/_landing/features',
+  id: '/features',
   path: '/features',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/features.lazy').then((d) => d.Route),
 )
 const LandingFaqsRoute = LandingFaqsRouteImport.update({
-  id: '/_landing/faqs',
+  id: '/faqs',
   path: '/faqs',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() => import('./routes/_landing/faqs.lazy').then((d) => d.Route))
 const LandingContactRoute = LandingContactRouteImport.update({
-  id: '/_landing/contact',
+  id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/contact.lazy').then((d) => d.Route),
 )
 const LandingBuiltForRoute = LandingBuiltForRouteImport.update({
-  id: '/_landing/built-for',
+  id: '/built-for',
   path: '/built-for',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/built-for.lazy').then((d) => d.Route),
 )
 const LandingAboutRoute = LandingAboutRouteImport.update({
-  id: '/_landing/about',
+  id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any).lazy(() =>
   import('./routes/_landing/about.lazy').then((d) => d.Route),
 )
@@ -307,6 +312,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
+  '/_landing': typeof LandingRouteWithChildren
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_app/advisory': typeof AppAdvisoryRoute
   '/_app/dashboard': typeof AppDashboardRoute
@@ -414,6 +420,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/_auth'
+    | '/_landing'
     | '/onboarding'
     | '/_app/advisory'
     | '/_app/dashboard'
@@ -452,15 +459,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
+  LandingRoute: typeof LandingRouteWithChildren
   OnboardingRoute: typeof OnboardingRouteWithChildren
-  LandingAboutRoute: typeof LandingAboutRoute
-  LandingBuiltForRoute: typeof LandingBuiltForRoute
-  LandingContactRoute: typeof LandingContactRoute
-  LandingFaqsRoute: typeof LandingFaqsRoute
-  LandingFeaturesRoute: typeof LandingFeaturesRoute
-  LandingFinancialsRoute: typeof LandingFinancialsRoute
-  LandingModulesRoute: typeof LandingModulesRoute
-  LandingIndexRoute: typeof LandingIndexRoute
   CompaniesInvitationsAcceptRoute: typeof CompaniesInvitationsAcceptRoute
 }
 
@@ -471,6 +471,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing': {
+      id: '/_landing'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
@@ -492,7 +499,7 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof LandingIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/onboarding/org': {
       id: '/onboarding/org'
@@ -506,49 +513,49 @@ declare module '@tanstack/react-router' {
       path: '/modules'
       fullPath: '/modules'
       preLoaderRoute: typeof LandingModulesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/financials': {
       id: '/_landing/financials'
       path: '/financials'
       fullPath: '/financials'
       preLoaderRoute: typeof LandingFinancialsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/features': {
       id: '/_landing/features'
       path: '/features'
       fullPath: '/features'
       preLoaderRoute: typeof LandingFeaturesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/faqs': {
       id: '/_landing/faqs'
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof LandingFaqsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/contact': {
       id: '/_landing/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof LandingContactRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/built-for': {
       id: '/_landing/built-for'
       path: '/built-for'
       fullPath: '/built-for'
       preLoaderRoute: typeof LandingBuiltForRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_landing/about': {
       id: '/_landing/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof LandingAboutRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/_auth/verify': {
       id: '/_auth/verify'
@@ -792,6 +799,31 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
+interface LandingRouteChildren {
+  LandingAboutRoute: typeof LandingAboutRoute
+  LandingBuiltForRoute: typeof LandingBuiltForRoute
+  LandingContactRoute: typeof LandingContactRoute
+  LandingFaqsRoute: typeof LandingFaqsRoute
+  LandingFeaturesRoute: typeof LandingFeaturesRoute
+  LandingFinancialsRoute: typeof LandingFinancialsRoute
+  LandingModulesRoute: typeof LandingModulesRoute
+  LandingIndexRoute: typeof LandingIndexRoute
+}
+
+const LandingRouteChildren: LandingRouteChildren = {
+  LandingAboutRoute: LandingAboutRoute,
+  LandingBuiltForRoute: LandingBuiltForRoute,
+  LandingContactRoute: LandingContactRoute,
+  LandingFaqsRoute: LandingFaqsRoute,
+  LandingFeaturesRoute: LandingFeaturesRoute,
+  LandingFinancialsRoute: LandingFinancialsRoute,
+  LandingModulesRoute: LandingModulesRoute,
+  LandingIndexRoute: LandingIndexRoute,
+}
+
+const LandingRouteWithChildren =
+  LandingRoute._addFileChildren(LandingRouteChildren)
+
 interface OnboardingRouteChildren {
   OnboardingOrgRoute: typeof OnboardingOrgRoute
   OnboardingAccountTypeIndexRoute: typeof OnboardingAccountTypeIndexRoute
@@ -809,15 +841,8 @@ const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
+  LandingRoute: LandingRouteWithChildren,
   OnboardingRoute: OnboardingRouteWithChildren,
-  LandingAboutRoute: LandingAboutRoute,
-  LandingBuiltForRoute: LandingBuiltForRoute,
-  LandingContactRoute: LandingContactRoute,
-  LandingFaqsRoute: LandingFaqsRoute,
-  LandingFeaturesRoute: LandingFeaturesRoute,
-  LandingFinancialsRoute: LandingFinancialsRoute,
-  LandingModulesRoute: LandingModulesRoute,
-  LandingIndexRoute: LandingIndexRoute,
   CompaniesInvitationsAcceptRoute: CompaniesInvitationsAcceptRoute,
 }
 export const routeTree = rootRouteImport

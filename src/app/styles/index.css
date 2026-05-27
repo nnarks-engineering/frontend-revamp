@@ -13,7 +13,8 @@
   font-display: swap;
 }
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *):not(:where(.light, .light *)));
+
 
 :root {
   --radius: 0.625rem;
@@ -473,3 +474,7 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+
+
+
