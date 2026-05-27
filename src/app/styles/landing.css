@@ -1,0 +1,461 @@
+/* Landing page specific styles */
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Monoton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+US+Trad+Guides&family=Poppins:wght@100..900&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Add landing-specific overrides and styles below */
+
+body.landing {
+  /* Example: unique background for landing */
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+}
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Geist:wght@100..900&family=Manrope:wght@200..800&family=Monoton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+US+Trad+Guides&family=Poppins:wght@100..900&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Millik — self-hosted (Fontshare does not carry this font)
+   Download from https://github.com/collletttivo/Millik and place in /public/fonts/ */
+@font-face {
+  font-family: "Millik";
+  src: url("/fonts/Millik.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+
+:root {
+  --radius: 0.625rem;
+
+  /* Brand Colors Map */
+  --background: #ffffff;
+  --foreground: #0d1f2d;
+  --background-space: #E2E4E9;
+  --border-deep: #d4d4d4;
+  --light-icon: #737373 --card: #ffffff;
+  --card-foreground: #0d1f2d;
+
+  --popover: #ffffff;
+  --popover-foreground: #0d1f2d;
+
+  --primary: #5ecbe2;
+  --primary-50: #ecfeff;
+  --primary-100: #cff7fe;
+  --primary-200: #a5effd;
+  --primary-300: #67e1f9;
+  --primary-400: #22caea;
+  --primary-500: var(--primary);
+  --primary-600: #08a1c4;
+  --primary-700: #0b81a0;
+  --primary-800: #116b83;
+  --primary-900: #13586e;
+  --primary-950: #073a4b;
+  --primary-foreground: #0d1f2d;
+
+  --secondary: #b9e4f1;
+  --secondary-50: #f0f9fd;
+  --secondary-100: #e0f2f9;
+  --secondary-200: var(--secondary);
+  --secondary-300: #7ccded;
+  --secondary-400: #36b1e6;
+  --secondary-500: #0ea1e0;
+  --secondary-600: #0a81ba;
+  --secondary-700: #0b6796;
+  --secondary-800: #0d577d;
+  --secondary-900: #104868;
+  --secondary-950: #0a2f45;
+  --secondary-foreground: #0d1f2d;
+
+  --tertiary: #f97316;
+  --tertiary-50: #fff7ed;
+  --tertiary-100: #ffedd5;
+  --tertiary-200: #fed7aa;
+  --tertiary-300: #fdba74;
+  --tertiary-400: #fb923c;
+  --tertiary-500: var(--tertiary);
+  --tertiary-600: #ea580c;
+  --tertiary-700: #c2410c;
+  --tertiary-800: #9a3412;
+  --tertiary-900: #7c2d12;
+  --tertiary-950: #431407;
+  --tertiary-foreground: #ffffff;
+
+  --muted: #ebf8fd;
+  --muted-foreground: #5a7a8a;
+
+  --accent: #ebf8fd;
+  --accent-foreground: #17ccec;
+
+  --destructive: #fc4a37;
+  --destructive-foreground: #ffffff;
+
+  --border: #f1f5f9;
+  --input: #dde6ea;
+  --ring: #17ccec;
+
+  /* Status Colors */
+  --success: #2a9d6f;
+  --success-foreground: #ffffff;
+  --warning: #c98a2a;
+  --warning-foreground: #ffffff;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0d1f2d;
+  --sidebar-primary: #17ccec;
+  --sidebar-primary-foreground: #0d1f2d;
+  --sidebar-accent: #ebf8fd;
+  --sidebar-accent-foreground: #17ccec;
+  --sidebar-border: #dde6ea;
+  --sidebar-ring: #17ccec;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+
+  /* Primary Palette */
+  --color-primary: var(--primary);
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* Secondary Palette */
+  --color-secondary: var(--secondary);
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-950: var(--secondary-950);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Tertiary Palette */
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-50: var(--tertiary-50);
+  --color-tertiary-100: var(--tertiary-100);
+  --color-tertiary-200: var(--tertiary-200);
+  --color-tertiary-300: var(--tertiary-300);
+  --color-tertiary-400: var(--tertiary-400);
+  --color-tertiary-500: var(--tertiary-500);
+  --color-tertiary-600: var(--tertiary-600);
+  --color-tertiary-700: var(--tertiary-700);
+  --color-tertiary-800: var(--tertiary-800);
+  --color-tertiary-900: var(--tertiary-900);
+  --color-tertiary-950: var(--tertiary-950);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Predefined properties */
+  --color-background-space: var(--background-space);
+  --color-border-deep: var(--border-deep);
+  --color-light-icon: var(--light-icon);
+  --color-active: var(--secondary-600);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+
+  /* Fonts */
+  --font-outfit: "Outfit", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-geist: "Geist", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-bungee-spice: "Bungee Spice", cursive;
+  --font-playwrite-us-trad-guides: "Playwrite US Trad Guides", serif;
+  --font-monoton: "Monoton", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-clash-display:
+    "Clash Display", "ClashDisplay-Variable", "ClashDisplay", sans-serif;
+  --font-millik: "Millik", serif;
+  --font-gravitas-one: "Gravitas One", cursive;
+}
+
+@theme {
+
+  --font-outfit: "Outfit", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-geist: "Geist", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-bungee-spice: "Bungee Spice", cursive;
+  --font-playwrite-us-trad-guides: "Playwrite US Trad Guides", serif;
+  --font-monoton: "Monoton", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-clash-display:
+    "Clash Display", "ClashDisplay-Variable", "ClashDisplay", sans-serif;
+  --font-millik: "Millik", serif;
+  --font-gravitas-one: "Gravitas One", cursive;
+}
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  border-color: var(--border);
+  outline-color: var(--ring);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes gradient-move {
+  0% {
+    transform: scale(1) rotate(0deg);
+    background-position: 50% 90%;
+  }
+
+  50% {
+    transform: scale(1.08) rotate(8deg);
+    background-position: 54% 92%;
+  }
+
+  100% {
+    transform: scale(1) rotate(-8deg);
+    background-position: 46% 88%;
+  }
+}
+
+.animate-gradient-move {
+  background: radial-gradient(ellipse at 50% 90%,
+      rgba(23, 204, 236, 0.15) 0%,
+      rgba(23, 204, 236, 0.4) 40%,
+      rgba(23, 204, 236, 0.15) 70%,
+      transparent 100%);
+  animation: gradient-move 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathing {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(23, 204, 236, 0.12);
+  }
+
+  50% {
+    transform: scale(1.045);
+    box-shadow: 0 0 0 8px rgba(23, 204, 236, 0.1);
+  }
+}
+
+.animate-breathing {
+  animation: breathing 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@layer base {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ── Marquee animations for CTA section ── */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Infinite horizontal scroll animation for InfiniteMovingCards */
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right linear infinite;
+}
+
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
+.animate-scroll {
+  animation-name: scroll-x;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: var(--animation-direction, forwards);
+  animation-duration: var(--animation-duration, 40s);
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* Track (background of scrollbar) - Light mode */
+::-webkit-scrollbar-track {
+  background-color: rgb(241, 245, 249);
+  /* bg-slate-100 */
+  border-radius: 9999px;
+  /* rounded-full */
+}
+
+/* Track - Dark mode */
+.dark ::-webkit-scrollbar-track {
+  background-color: var(--bg-slate-400);
+  /* dark:bg-slate-900 */
+}
+
+/* Thumb (draggable part of the scrollbar) - Light mode */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(203, 213, 225);
+  /* bg-slate-300 */
+  border-radius: 9999px;
+  /* rounded-full */
+}
+
+/* Thumb - Dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(71, 85, 105);
+  /* dark:bg-slate-600 */
+}
+
+/* Thumb hover state - Light mode */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148, 163, 184);
+  /* hover:bg-slate-400 */
+}
+
+/* Thumb hover - Dark mode */
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(100, 116, 139);
+  /* dark:hover:bg-slate-500 */
+}
+
+@layer base {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Text selection styles - Light mode */
+::selection {
+  color: white;
+  /* text-white */
+  background-color: var(--color-primary);
+  /* bg-primary-600 */
+}
+
+/* Text selection - Dark mode */
+.dark ::selection {
+  color: white;
+  /* text-white */
+  background-color: var(--color-primary-700);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+

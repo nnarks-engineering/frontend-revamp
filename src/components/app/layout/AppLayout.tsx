@@ -6,6 +6,7 @@ import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/righ
 import { cn } from "@/shared/lib/utils";
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
+import "@/app/styles/index.css";
 
 // ─── Outer shell — just provides the right-panel context ─────────────────────
 
