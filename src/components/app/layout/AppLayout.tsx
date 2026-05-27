@@ -6,15 +6,17 @@ import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/righ
 import { cn } from "@/shared/lib/utils";
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import "@/app/styles/index.css";
+import { ThemeProvider } from "next-themes";
 
 // ─── Outer shell — just provides the right-panel context ─────────────────────
 
 export function AppLayout() {
   return (
-    <RightPanelProvider>
-      <AppLayoutInner />
-    </RightPanelProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <RightPanelProvider>
+        <AppLayoutInner />
+      </RightPanelProvider>
+    </ThemeProvider>
   );
 }
 
