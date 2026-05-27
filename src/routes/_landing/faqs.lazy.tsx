@@ -30,8 +30,8 @@ function FAQsPage() {
           <p className="text-lg max-w-2xl mx-auto">{t('landing:faqsSection.subtitle')}</p>
         </div>
 
-        <div className="top-72 p-4 size-28 right-8 aspect-square absolute border-4 bg-primary-950 rotate-12 !border-white text-primary text-9xl">?</div>
-      </div>  
+        <div className="top-72 p-4 size-28 right-8 aspect-square absolute border-4 bg-primary-950 rotate-12 border-white! text-primary text-9xl">?</div>
+      </div>
        <DrawingCoilsSvg
   className="absolute inset-0 w-full z-  h-full text-primary-200 pointer-events-none"
   preserveAspectRatio="xMidYMid slice"
@@ -40,13 +40,13 @@ function FAQsPage() {
 
 
         <div className="flex flex-col md:flex-row items-start">
-          <div className="w-full md:w-1/2 flex-shrink-0">
+          <div className="w-full md:w-1/2 shrink-0">
 
-            <div className=" overflow-hidden bg-primary-200  border-r !border-primary-200/0">
+            <div className=" overflow-hidden bg-primary-200  border-r border-primary-200/0!">
               <img
                 src={FaqImage}
                 alt="Nnarks FAQ"
-                className="w-full h-[300px] md:h-[500px] object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-75 md:h-125 object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
@@ -54,7 +54,7 @@ function FAQsPage() {
           <div className="w-full md:w-1/2">
             <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
               {Array.isArray(faqsItems) && faqsItems.map((faq, i) => (
-                <AccordionItem value={`item-${i}`} key={i} className="mb-4 border-0 border-l-4 !border-primary-200 px-6  data-[state=open]:bg-primary-50 transition-colors">
+                <AccordionItem value={`item-${i}`} key={faq.question} className="mb-4 border-0 border-l-4 border-primary-200! px-6  data-[state=open]:bg-primary-50 transition-colors">
                   <AccordionTrigger className="text-left font-clash-display font-semibold text-lg hover:no-underline py-4">
                     {faq.question}
                   </AccordionTrigger>

@@ -16,7 +16,7 @@ export default function LandingFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-white overflow-hidden">
+    <footer className="relative bg-background dark:bg-background-space overflow-hidden">
       {/* Large subtle Logo Background */}
       <NnarksLogo
         className="absolute opacity-10 bottom-0 left-1/2 text-slate-100 -translate-x-1/2 w-[600px] sm:w-[1000px] md:w-[1440px] h-auto pointer-events-none"
@@ -202,7 +202,7 @@ export default function LandingFooter() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="relative bg-primary pt-8 overflow-hidden">
+      <div className="relative bg-primary-200 dark:bg-black pt-8 overflow-hidden">
         <NnarksLogo
           className="absolute opacity-10 bottom-0 left-1/2 text-white/10 -translate-x-1/2 w-[600px] sm:w-[1000px] md:w-[1440px] h-auto pointer-events-none"
           aria-hidden="true"
@@ -211,29 +211,29 @@ export default function LandingFooter() {
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-8">
           <div className="flex pb-6 flex-col md:flex-row justify-between items-center gap-6 text-sm">
             {/* Copyright */}
-            <div className="text-white/90 flex items-center gap-2">
+            <div className="text-foreground/70 flex items-center gap-2">
               {t("landing:footer.copyright", { year: currentYear })}
             </div>
 
             {/* Legal Links */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/80 text-sm">
-              <Link to="/" className="hover:text-white transition-colors">
+            <div className="flex flex-wrap gap-x-6 [&>a]:hover:text-primary-700 gap-y-2 text-foreground/70 text-sm">
+              <Link to="/" className=" transition-colors">
                 {t("landing:footer.links.terms")}
               </Link>
-              <Link to="/" className="hover:text-white transition-colors">
+              <Link to="/" className=" transition-colors">
                 {t("landing:footer.links.privacy")}
               </Link>
-              <Link to="/" className="hover:text-white transition-colors">
+              <Link to="/" className=" transition-colors">
                 {t("landing:footer.links.cookies")}
               </Link>
-              <Link to="/" className="hover:text-white transition-colors">
+              <Link to="/" className=" transition-colors">
                 {t("landing:footer.links.security")}
               </Link>
             </div>
 
             {/* Trust / Status */}
-            <div className="flex items-center gap-2 text-xs text-white/80">
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            <div className="flex items-center gap-2 text-xs text-foreground/80">
+              <div className="w-2 h-2 bg-background rounded-full animate-pulse" />
               {t("landing:footer.systemOperational")}
             </div>
           </div>
@@ -241,10 +241,10 @@ export default function LandingFooter() {
       </div>
 
       {/* Top glow lines */}
-      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-200 to-transparent h-[2px] w-3/4 blur-sm" />
-      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-300 to-transparent h-px w-3/4" />
-      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary-200 to-transparent h-[5px] w-2/4 blur-sm" />
-      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary to-transparent h-px w-1/4" />
+      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-200 dark:via-secondary-950 to-transparent h-[2px] w-3/4 blur-sm" />
+      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary-300 dark:via-secondary-900 to-transparent h-px w-3/4" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary-200 dark:via-secondary-950 to-transparent h-[5px] w-2/4 blur-sm" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-primary dark:via-secondary-900 to-transparent h-px w-1/4" />
     </footer>
   );
 }

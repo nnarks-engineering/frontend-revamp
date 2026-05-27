@@ -75,7 +75,7 @@ export function HeroSection() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="max-w-3xl text-center"
                         >
-                            <h1 className="text-3xl sm:text-4xl lg:text-[66px] lg:mt-6 font-foreground font-millik  font-black mb-2 md:mb-3 leading-[1.05] text-foreground">
+                            <h1 className="text-3xl sm:text-4xl lg:text-[60px] lg:mt-6 font-foreground font-millik  font-black mb-2 md:mb-3 leading-[1.05] text-foreground">
                                 {t('landing:hero.headline').split(',')[0]}
                                 {t('landing:hero.headline').includes(',') && (
                                     <span className="text-primary">

@@ -105,7 +105,7 @@ const thumbnail = thumbError
         </div>
 
         {/* Caption strip */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-secondary-900 backdrop-blur-sm  h-full">
+        <div className="flex items-center gap-2 px-3 py-2 bg-primary-100 dark:bg-secondary-900 backdrop-blur-sm  h-full">
           {logo && (
             <img
               src={logo}
