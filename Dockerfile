@@ -4,11 +4,9 @@ WORKDIR /app
 
 # Install pnpm
 RUN corepack enable pnpm
-RUN echo "network-timeout=300000\nnetwork-concurrency=4\nfetch-retries=5" >> /root/.npmrc
 
 COPY package.json pnpm-lock.yaml ./
-RUN --mount=type=cache,id=pnpm-revamp,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 RUN pnpm build
