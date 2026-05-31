@@ -64,7 +64,7 @@ export function SidebarUserMenu() {
               lastName={profile?.last_name}
               email={user?.email}
               size="lg"
-            />
+            />  
             <div className="min-w-0">
               <p className="text-sm font-medium truncate">{displayName}</p>
               <p className="text-xs text-muted-foreground truncate">{email}</p>
