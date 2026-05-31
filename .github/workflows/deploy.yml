@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          VITE_BASE_PATH: /frontend-revamp/
+          VITE_BASE_PATH: /
 
       - name: Create 404 page for SPA routing
         run: cp dist/index.html dist/404.html
