@@ -42,7 +42,7 @@ export function SidebarUserMenu() {
             email={user?.email}
             size="md"
           />
-          <div className="flex-1 min-w-0 text-left hidden lg:block">
+          <div className="flex-1 min-w-0 text-left hidden lg:block max-w-32">
             <p className="text-[13px] font-semibold text-foreground truncate">Me</p>
             <p className="text-[11px] text-muted-foreground truncate">{companyHandle}</p>
           </div>
