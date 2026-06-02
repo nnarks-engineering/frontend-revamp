@@ -13,6 +13,7 @@ import { listMyCompanies } from "@/shared/api/companies";
 import type { QueryClient } from "@tanstack/react-query";
 
 export type { TokenPair };
+export type UserType = "vendor" | "client";
 
 // ── Read ─────────────────────────────────────────────────────────────
 export function getAccessToken(): string | null {
@@ -45,8 +46,20 @@ export function isAuthenticated(): boolean {
   return getAccessToken() !== null;
 }
 
+export function getStoredUserType(): UserType {
+  const raw = localStorage.getItem(STORAGE_KEYS.USER_TYPE);
+  return raw === "client" ? "client" : "vendor";
+}
+
 /** Check backend to see if onboarding is complete (has profile and company). */
-export async function checkOnboardingComplete(queryClient: QueryClient): Promise<boolean> {
+export async function checkOnboardingComplete(
+  queryClient: QueryClient,
+  userType: UserType = "vendor",
+): Promise<boolean> {
+  if (userType === "client") {
+    return true;
+  }
+
   try {
     const profile = await queryClient.fetchQuery({
       queryKey: QUERY_KEYS.currentProfile,
@@ -60,7 +73,7 @@ export async function checkOnboardingComplete(queryClient: QueryClient): Promise
     });
     
     return !!(profile?.first_name && profile?.last_name && companies?.length > 0);
-  } catch (e) {
+  } catch {
     return false;
   }
 }

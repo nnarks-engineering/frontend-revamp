@@ -22,6 +22,7 @@ import {
   faFileInvoiceDollar,
   faSliders,
 } from "@fortawesome/free-solid-svg-icons";
+import { STORAGE_KEYS } from "@/shared/lib/constants";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -45,6 +46,15 @@ export interface SearchableItem extends NavItem {
 export interface NavGroup {
   title?: string;
   items: NavItem[];
+}
+
+function getActiveUserType(): "vendor" | "client" {
+  return localStorage.getItem(STORAGE_KEYS.USER_TYPE) === "client" ? "client" : "vendor";
+}
+
+function canAccessItem(item: NavItem): boolean {
+  const userType = getActiveUserType();
+  return !item.userTypes || item.userTypes.includes(userType);
 }
 
 // ─── Navigation tree ──────────────────────────────────────────────────────────
@@ -216,10 +226,7 @@ export function resolvePageTitle(pathname: string): string {
 
 /** All top-level nav items across every group (used by AppHeader). */
 export function getAllTopLevelItems(): NavItem[] {
-  // For now, statically filter out client-only items. Later, use active user type.
-  return NAV_GROUPS.flatMap((g) => g.items).filter(
-    (item) => !item.userTypes || item.userTypes.includes("vendor")
-  );
+  return NAV_GROUPS.flatMap((g) => g.items).filter((item) => canAccessItem(item));
 }
 
 /** Flatten all nav items for global search, enriching them with breadcrumbs. */
@@ -227,8 +234,8 @@ export function getAllSearchableItems(): SearchableItem[] {
   const result: SearchableItem[] = [];
   function traverse(items: NavItem[], parentPath: string[]) {
     for (const item of items) {
-      if (!item.userTypes || item.userTypes.includes("vendor")) {
-        const currentPath = parentPath.length > 0 && parentPath[parentPath.length - 1] === item.label
+      if (canAccessItem(item)) {
+        const currentPath = parentPath.length > 0 && parentPath.at(-1) === item.label
           ? [...parentPath]
           : [...parentPath, item.label];
 

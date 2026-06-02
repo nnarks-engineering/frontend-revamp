@@ -14,7 +14,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
-import { isAuthenticated, checkOnboardingComplete } from "@/shared/lib/auth";
+import {
+  isAuthenticated,
+  checkOnboardingComplete,
+  type UserType,
+} from "@/shared/lib/auth";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 
 import {
@@ -77,19 +81,32 @@ export function useSendMagicLink() {
   });
 }
 
+interface VerifyAuthOptions {
+  userType?: UserType;
+  onVerified?: () => Promise<void> | void;
+}
+
 /** Verify magic link token or OTP code → sends new user to onboarding. */
-export function useVerifyMagicLink() {
+export function useVerifyMagicLink(options?: VerifyAuthOptions) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return useMutation({
     mutationFn: (data: MagicVerifyRequest) => verifyMagicLink(data),
     onSuccess: async () => {
-      localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
+      const userType = options?.userType ?? "vendor";
+
+      if (options?.onVerified) {
+        await options.onVerified();
+      }
+
+      localStorage.setItem(STORAGE_KEYS.USER_TYPE, userType);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
+      } else if (userType === "client") {
+        navigate({ to: "/dashboard" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);
         navigate({ to: onboarded ? "/org" : "/onboarding/org" });
@@ -106,18 +123,26 @@ export function useRequestPasswordSignup() {
 }
 
 /** Verify password signup code → sends new user to onboarding. */
-export function useVerifyPasswordSignup() {
+export function useVerifyPasswordSignup(options?: VerifyAuthOptions) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return useMutation({
     mutationFn: (data: PasswordSignupVerifyRequest) => verifyPasswordSignup(data),
     onSuccess: async () => {
-      localStorage.setItem(STORAGE_KEYS.USER_TYPE, "vendor");
+      const userType = options?.userType ?? "vendor";
+
+      if (options?.onVerified) {
+        await options.onVerified();
+      }
+
+      localStorage.setItem(STORAGE_KEYS.USER_TYPE, userType);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
+      } else if (userType === "client") {
+        navigate({ to: "/dashboard" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);
         navigate({ to: onboarded ? "/org" : "/onboarding/org" });
@@ -145,7 +170,7 @@ export function useLoginWithPassword() {
       localStorage.setItem(STORAGE_KEYS.USER_TYPE, type);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       
-      const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+      const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
       } else if (type === "client") {

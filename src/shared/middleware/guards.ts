@@ -1,15 +1,29 @@
 import { redirect } from "@tanstack/react-router";
 import type { RouterContext } from "./types";
-import { checkOnboardingComplete } from "@/shared/lib/auth";
+import { checkOnboardingComplete, getStoredUserType } from "@/shared/lib/auth";
 
-type ContextArgs = { context: RouterContext; location?: any };
+type ContextArgs = {
+  context: RouterContext;
+  location?: {
+    href: string;
+    pathname: string;
+  };
+};
+
+function getLoginRoute(pathname?: string): "/login" | "/vendor/login" {
+  if (pathname?.startsWith("/dashboard")) {
+    return "/login";
+  }
+
+  return getStoredUserType() === "client" ? "/login" : "/vendor/login";
+}
 
 // ── requireAuth ───────────────────────────────────────────────────────
 
 export function requireAuth({ context, location }: ContextArgs): void {
   if (!context.auth.isAuthenticated()) {
     throw redirect({
-      to: "/vendor/login",
+      to: getLoginRoute(location?.pathname),
       search: location ? { returnTo: encodeURIComponent(location.href) } : undefined,
     });
   }
@@ -19,13 +33,20 @@ export function requireAuth({ context, location }: ContextArgs): void {
 
 export async function requireGuest({ context }: ContextArgs): Promise<void> {
   if (context.auth.isAuthenticated()) {
+    const userType = getStoredUserType();
+
     // If the user arrived here via a returnTo redirect (e.g. invitation link),
     // send them back to that URL instead of the default dashboard.
-    const returnTo = new URLSearchParams(window.location.search).get("returnTo");
+    const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
     if (returnTo) {
       throw redirect({ to: decodeURIComponent(returnTo) });
     }
-    const isOnboarded = await checkOnboardingComplete(context.queryClient);
+
+    if (userType === "client") {
+      throw redirect({ to: "/dashboard" });
+    }
+
+    const isOnboarded = await checkOnboardingComplete(context.queryClient, userType);
     throw redirect({
       to: isOnboarded ? "/org" : "/onboarding/org",
     });
@@ -37,7 +58,7 @@ export async function requireGuest({ context }: ContextArgs): Promise<void> {
 export async function requireOnboarding({ context, location }: ContextArgs): Promise<void> {
   if (!context.auth.isAuthenticated()) {
     throw redirect({
-      to: "/vendor/login",
+      to: getLoginRoute(location?.pathname),
       search: location ? { returnTo: encodeURIComponent(location.href) } : undefined,
     });
   }

@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { VerifyForm } from "@/components/auth/VerifyForm"
+import { ClientVerifyForm } from "@/components/auth/ClientVerifyForm"
 import { z } from "zod"
 
 const searchSchema = z.object({
   email: z.string().optional(),
+  token: z.string().optional(),
+  flow: z.enum(["magic", "signup"]).optional(),
+  name: z.string().optional(),
 })
 
 export const Route = createFileRoute("/_auth/verify")({
@@ -12,6 +15,6 @@ export const Route = createFileRoute("/_auth/verify")({
 })
 
 function VerifyPage() {
-  const { email } = Route.useSearch()
-  return <VerifyForm email={email} />
+  const { email, token, flow, name } = Route.useSearch()
+  return <ClientVerifyForm email={email} token={token} flow={flow} name={name} />
 }
