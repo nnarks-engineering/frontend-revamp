@@ -15,8 +15,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
 import {
+  clearStoredUserType,
   isAuthenticated,
   checkOnboardingComplete,
+  setStoredUserType,
   type UserType,
 } from "@/shared/lib/auth";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
@@ -100,7 +102,7 @@ export function useVerifyMagicLink(options?: VerifyAuthOptions) {
         await options.onVerified();
       }
 
-      localStorage.setItem(STORAGE_KEYS.USER_TYPE, userType);
+      setStoredUserType(userType);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
@@ -136,7 +138,7 @@ export function useVerifyPasswordSignup(options?: VerifyAuthOptions) {
         await options.onVerified();
       }
 
-      localStorage.setItem(STORAGE_KEYS.USER_TYPE, userType);
+      setStoredUserType(userType);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
       const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
@@ -167,9 +169,9 @@ export function useLoginWithPassword() {
     }) => loginWithPassword(email, password),
     onSuccess: async (_data, variables) => {
       const type = variables.userType ?? "vendor";
-      localStorage.setItem(STORAGE_KEYS.USER_TYPE, type);
+      setStoredUserType(type);
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentUser });
-      
+
       const returnTo = new URLSearchParams(globalThis.location.search).get("returnTo");
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
@@ -192,6 +194,7 @@ export function useLogout() {
     mutationFn: () => logout(),
     onSettled: () => {
       const userType = localStorage.getItem(STORAGE_KEYS.USER_TYPE);
+      clearStoredUserType();
       queryClient.clear();
       navigate({ to: userType === "client" ? "/login" : "/vendor/login" });
     },

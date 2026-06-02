@@ -22,7 +22,7 @@ import {
   faFileInvoiceDollar,
   faSliders,
 } from "@fortawesome/free-solid-svg-icons";
-import { STORAGE_KEYS } from "@/shared/lib/constants";
+import { hasUserTypeAccess, type UserType } from "@/shared/lib/auth";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -33,7 +33,7 @@ export interface NavItem {
   to: string;
   badge?: string | number;
   description?: string;
-  userTypes?: ("vendor" | "client")[];
+  userTypes?: UserType[];
   childrenLayout?: "vertical-sidebar";
   children?: NavItem[];
 }
@@ -48,13 +48,8 @@ export interface NavGroup {
   items: NavItem[];
 }
 
-function getActiveUserType(): "vendor" | "client" {
-  return localStorage.getItem(STORAGE_KEYS.USER_TYPE) === "client" ? "client" : "vendor";
-}
-
 function canAccessItem(item: NavItem): boolean {
-  const userType = getActiveUserType();
-  return !item.userTypes || item.userTypes.includes(userType);
+  return hasUserTypeAccess(item.userTypes);
 }
 
 // ─── Navigation tree ──────────────────────────────────────────────────────────

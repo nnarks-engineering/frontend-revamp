@@ -15,6 +15,8 @@ import type { QueryClient } from "@tanstack/react-query";
 export type { TokenPair };
 export type UserType = "vendor" | "client";
 
+const USER_TYPE_CHANGE_EVENT = "nnarks_user_type_changed";
+
 // ── Read ─────────────────────────────────────────────────────────────
 export function getAccessToken(): string | null {
   return localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
@@ -47,8 +49,53 @@ export function isAuthenticated(): boolean {
 }
 
 export function getStoredUserType(): UserType {
+  if (globalThis.window === undefined) {
+    return "vendor";
+  }
+
   const raw = localStorage.getItem(STORAGE_KEYS.USER_TYPE);
   return raw === "client" ? "client" : "vendor";
+}
+
+function dispatchUserTypeChange() {
+  if (globalThis.window === undefined) {
+    return;
+  }
+
+  globalThis.dispatchEvent(new Event(USER_TYPE_CHANGE_EVENT));
+}
+
+export function setStoredUserType(userType: UserType): void {
+  localStorage.setItem(STORAGE_KEYS.USER_TYPE, userType);
+  dispatchUserTypeChange();
+}
+
+export function clearStoredUserType(): void {
+  localStorage.removeItem(STORAGE_KEYS.USER_TYPE);
+  dispatchUserTypeChange();
+}
+
+export function subscribeToStoredUserType(onStoreChange: () => void): () => void {
+  if (globalThis.window === undefined) {
+    return () => undefined;
+  }
+
+  const handleChange = () => onStoreChange();
+
+  globalThis.addEventListener(USER_TYPE_CHANGE_EVENT, handleChange);
+  globalThis.addEventListener("storage", handleChange);
+
+  return () => {
+    globalThis.removeEventListener(USER_TYPE_CHANGE_EVENT, handleChange);
+    globalThis.removeEventListener("storage", handleChange);
+  };
+}
+
+export function hasUserTypeAccess(
+  allowedUserTypes: readonly UserType[] | undefined,
+  userType: UserType = getStoredUserType(),
+): boolean {
+  return !allowedUserTypes || allowedUserTypes.includes(userType);
 }
 
 /** Check backend to see if onboarding is complete (has profile and company). */
@@ -71,7 +118,7 @@ export async function checkOnboardingComplete(
       queryFn: listMyCompanies,
       staleTime: 1000 * 60 * 5,
     });
-    
+
     return !!(profile?.first_name && profile?.last_name && companies?.length > 0);
   } catch {
     return false;
