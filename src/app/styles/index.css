@@ -24,7 +24,8 @@
   --foreground: #0d1f2d;
   --background-space: #E2E4E9;
   --border-deep: #d4d4d4;
-  --light-icon: #737373 --card: #ffffff;
+  --light-icon: #737373;
+  --card: #ffffff;
   --card-foreground: #0d1f2d;
 
   --popover: #ffffff;

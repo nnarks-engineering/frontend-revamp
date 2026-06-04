@@ -92,7 +92,7 @@ function AiChatPage() {
                 <button
                   key={suggestion}
                   onClick={() => sendMessage(suggestion)}
-                  className="text-left text-[13px] text-muted-foreground px-4 py-3.5 rounded-md bg-background border border-border/50 hover:border-primary/30 hover:bg-primary-50 hover:text-foreground  transition-all duration-200 group"
+                  className="text-left text-[13px] text-muted-foreground px-4 py-3.5 rounded-md bg-background hover:opacity-80 transition-all duration-200 group"
                 >
                   <div className="flex items-start gap-2.5">
                     <Sparkles className="w-4 h-4 text-primary/40 mt-0.5 group-hover:text-primary transition-colors" />
@@ -132,8 +132,8 @@ function AiChatPage() {
                   className={cn(
                     "px-4 py-3 rounded-2xl text-[14px] leading-relaxed max-w-[80%]",
                     msg.role === "user"
-                      ? "bg-primary text-white rounded-tr-sm"
-                      : "bg-white border border-border/40 text-foreground rounded-tl-sm"
+                      ? "bg-active text-foreground rounded-tr-sm"
+                      : "bg-background border border-border/40 text-foreground rounded-tl-sm"
                   )}
                 >
                   {msg.content}
@@ -147,7 +147,7 @@ function AiChatPage() {
                 <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-white items-center justify-center shrink-0 mt-1">
                   <Bot className="w-4 h-4 text-primary" />
                 </div>
-                <div className="bg-white border border-border/40 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-2">
+                <div className="bg-background border border-border/40 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-2">
                   <Loader2 className="w-4 h-4 text-primary animate-spin" />
                   <span className="text-[13px] text-muted-foreground">Thinking...</span>
                 </div>
@@ -158,7 +158,7 @@ function AiChatPage() {
       </div>
 
       {/* Input Area */}
-      <div className="shrink-0 p-4 md:p-6 bg-white/80 border-t border-border/40">
+      <div className="shrink-0 p-4 md:p-6 bg-background border-t border-border/40">
         <form onSubmit={handleSubmit} className="relative max-w-3xl mx-auto flex items-end gap-3">
           <div className="relative flex-1">
             <input
@@ -167,7 +167,7 @@ function AiChatPage() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Message Nnarks AI..."
-              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-white border border-border/60 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200"
+              className="w-full pl-5 pr-14 py-3.5 text-[14px] bg-background border border-border/60 rounded-xl outline-none text-foreground placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-4 focus:ring-primary/5 transition-all duration-200"
               disabled={isThinking}
             />
             <button
@@ -194,7 +194,7 @@ function AiChatPage() {
 
 function AiRecentPanel() {
   return (
-    <div className="h-full flex flex-col bg-white border-l border-border/40 w-80 shrink-0">
+    <div className="h-full flex flex-col bg-background border-l border-border/40 w-80 shrink-0">
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-border/40 shrink-0">
         <div>
           <h3 className="text-[13.5px] font-semibold text-foreground">

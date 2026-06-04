@@ -52,6 +52,29 @@ function canAccessItem(item: NavItem): boolean {
   return hasUserTypeAccess(item.userTypes);
 }
 
+function filterItemByAccess(item: NavItem): NavItem | null {
+  if (!canAccessItem(item)) {
+    return null;
+  }
+
+  const visibleChildren = item.children
+    ?.map(filterItemByAccess)
+    .filter((child): child is NavItem => child !== null);
+
+  return {
+    ...item,
+    children: visibleChildren,
+  };
+}
+
+function getVisibleTopLevelItems(): NavItem[] {
+  return NAV_GROUPS.flatMap((group) =>
+    group.items
+      .map(filterItemByAccess)
+      .filter((item): item is NavItem => item !== null),
+  );
+}
+
 // ─── Navigation tree ──────────────────────────────────────────────────────────
 
 export const NAV_GROUPS: NavGroup[] = [
@@ -84,6 +107,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Projects",
         icon: faFolderOpen,
         to: "/projects",
+        userTypes: ["client", "vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
           { id: "projects-list", label: "List", icon: faList, to: "/projects" },
@@ -102,6 +126,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Inbox",
         icon: faInbox,
         to: "/inbox/direct",
+        userTypes: ["client", "vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
           {
@@ -109,16 +134,40 @@ export const NAV_GROUPS: NavGroup[] = [
             label: "Chats",
             icon: faComments,
             to: "/inbox",
+            userTypes: ["client", "vendor"],
             children: [
-              { id: "inbox-chats-direct", label: "Direct Messages", to: "/inbox/direct" },
-              { id: "inbox-chats-org", label: "Organizational", to: "/inbox/org" },
+              {
+                id: "inbox-chats-direct",
+                label: "Direct Messages",
+                to: "/inbox/direct",
+                userTypes: ["client", "vendor"],
+              },
+              {
+                id: "inbox-chats-org",
+                label: "Organizational",
+                to: "/inbox/org",
+                userTypes: ["vendor"],
+              },
             ],
           },
-          { id: "inbox-email", label: "Email", icon: faEnvelopeOpen, to: "/inbox/email" },
-          { id: "inbox-notifications", label: "Notifications", icon: faBell, to: "/inbox/notifications" },
+          {
+            id: "inbox-email",
+            label: "Email",
+            icon: faEnvelopeOpen,
+            to: "/inbox/email",
+            userTypes: ["client", "vendor"],
+          },
+          {
+            id: "inbox-notifications",
+            label: "Notifications",
+            icon: faBell,
+            to: "/inbox/notifications",
+            userTypes: ["client", "vendor"],
+          },
           {
             id: "inbox-ai", label: "Nnarks AI", icon: faBrain, to: "/inbox/ai",
-            description: "Chat with your intelligent assistant."
+            description: "Chat with your intelligent assistant.",
+            userTypes: ["client", "vendor"],
           },
         ],
       },
@@ -132,6 +181,7 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Organization",
         icon: faPeopleGroup,
         to: "/organization",
+        userTypes: ["vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
           { id: "org-overview", label: "Overview", icon: faChartPie, to: "/organization" },
@@ -211,17 +261,15 @@ export function findBestMatchId(items: NavItem[], pathname: string): string | nu
  * Returns the label of the top-level nav section that owns the given pathname.
  */
 export function resolvePageTitle(pathname: string): string {
-  for (const group of NAV_GROUPS) {
-    for (const item of group.items) {
-      if (isOwnedBy(pathname, item)) return item.label;
-    }
+  for (const item of getVisibleTopLevelItems()) {
+    if (isOwnedBy(pathname, item)) return item.label;
   }
   return "Dashboard";
 }
 
 /** All top-level nav items across every group (used by AppHeader). */
 export function getAllTopLevelItems(): NavItem[] {
-  return NAV_GROUPS.flatMap((g) => g.items).filter((item) => canAccessItem(item));
+  return getVisibleTopLevelItems();
 }
 
 /** Flatten all nav items for global search, enriching them with breadcrumbs. */
@@ -229,37 +277,37 @@ export function getAllSearchableItems(): SearchableItem[] {
   const result: SearchableItem[] = [];
   function traverse(items: NavItem[], parentPath: string[]) {
     for (const item of items) {
-      if (canAccessItem(item)) {
-        const currentPath = parentPath.length > 0 && parentPath.at(-1) === item.label
-          ? [...parentPath]
-          : [...parentPath, item.label];
+      const currentPath = parentPath.length > 0 && parentPath.at(-1) === item.label
+        ? [...parentPath]
+        : [...parentPath, item.label];
 
-        result.push({
-          ...item,
-          breadcrumbLabel: currentPath.join(" > "),
-          breadcrumbPath: currentPath,
-        });
-        if (item.children) traverse(item.children, currentPath);
-      }
+      result.push({
+        ...item,
+        breadcrumbLabel: currentPath.join(" > "),
+        breadcrumbPath: currentPath,
+      });
+      if (item.children) traverse(item.children, currentPath);
     }
   }
 
   for (const group of NAV_GROUPS) {
-    traverse(group.items, group.title ? [group.title] : []);
+    const visibleItems = group.items
+      .map(filterItemByAccess)
+      .filter((item): item is NavItem => item !== null);
+
+    traverse(visibleItems, group.title ? [group.title] : []);
   }
   return result;
 }
 
 export function resolveVerticalSidebarItems(pathname: string): NavItem[] | null {
-  for (const group of NAV_GROUPS) {
-    for (const item of group.items) {
-      if (
-        item.childrenLayout === "vertical-sidebar" &&
-        item.children?.length &&
-        isOwnedBy(pathname, item)
-      ) {
-        return item.children;
-      }
+  for (const item of getVisibleTopLevelItems()) {
+    if (
+      item.childrenLayout === "vertical-sidebar" &&
+      item.children?.length &&
+      isOwnedBy(pathname, item)
+    ) {
+      return item.children;
     }
   }
   return null;
@@ -271,15 +319,13 @@ export function resolveVerticalSidebarItems(pathname: string): NavItem[] | null 
  * layout.
  */
 export function resolveHorizontalTabs(pathname: string): NavItem[] | null {
-  for (const group of NAV_GROUPS) {
-    for (const item of group.items) {
-      if (
-        item.childrenLayout !== "vertical-sidebar" &&
-        item.children?.length &&
-        isOwnedBy(pathname, item)
-      ) {
-        return item.children;
-      }
+  for (const item of getVisibleTopLevelItems()) {
+    if (
+      item.childrenLayout !== "vertical-sidebar" &&
+      item.children?.length &&
+      isOwnedBy(pathname, item)
+    ) {
+      return item.children;
     }
   }
   return null;

@@ -121,7 +121,7 @@ const ACTIVITY = [
 
 function DashboardActivityPanel() {
   return (
-    <div className="h-full flex flex-col bg-white border-l border-border/40 w-80 shrink-0">
+    <div className="h-full flex flex-col bg-background border-l border-border/40 w-80 shrink-0">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-border/40 shrink-0">
         <div>

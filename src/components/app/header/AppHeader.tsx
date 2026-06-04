@@ -12,9 +12,10 @@ import { TopNavBar } from "../navigation/TopNavBar";
 interface AppHeaderProps {
   isSidebarOpen: boolean;
   onToggleSidebar: () => void;
+  showSidebarToggle?: boolean;
 }
 
-export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
+export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = true }: Readonly<AppHeaderProps>) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [invitationsOpen, setInvitationsOpen] = useState(false);
   const { data: invitations = [] } = useMyInvitations();
@@ -42,7 +43,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar }: AppHeaderProps) {
             onClick={onToggleSidebar}
             className={cn(
               "p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 lg:hidden",
-              searchOpen && "hidden",
+              (searchOpen || !showSidebarToggle) && "hidden",
             )}
             aria-label="Toggle sidebar"
           >
