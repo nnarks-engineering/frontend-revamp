@@ -108,10 +108,10 @@ export function useVerifyMagicLink(options?: VerifyAuthOptions) {
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
       } else if (userType === "client") {
-        navigate({ to: "/dashboard" });
+        navigate({ to: "/home" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);
-        navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+        navigate({ to: onboarded ? "/home" : "/onboarding/org" });
       }
     },
   });
@@ -144,10 +144,10 @@ export function useVerifyPasswordSignup(options?: VerifyAuthOptions) {
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
       } else if (userType === "client") {
-        navigate({ to: "/dashboard" });
+        navigate({ to: "/home" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);
-        navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+        navigate({ to: onboarded ? "/home" : "/onboarding/org" });
       }
     },
   });
@@ -176,10 +176,10 @@ export function useLoginWithPassword() {
       if (returnTo) {
         navigate({ to: decodeURIComponent(returnTo) });
       } else if (type === "client") {
-        navigate({ to: "/dashboard" });
+        navigate({ to: "/home" });
       } else {
         const onboarded = await checkOnboardingComplete(queryClient);
-        navigate({ to: onboarded ? "/org" : "/onboarding/org" });
+        navigate({ to: onboarded ? "/home" : "/onboarding/org" });
       }
     },
   });

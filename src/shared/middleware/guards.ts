@@ -11,7 +11,7 @@ type ContextArgs = {
 };
 
 function getLoginRoute(pathname?: string): "/login" | "/vendor/login" {
-  if (pathname?.startsWith("/dashboard")) {
+  if (pathname?.startsWith("/home")) {
     return "/login";
   }
 
@@ -43,12 +43,12 @@ export async function requireGuest({ context }: ContextArgs): Promise<void> {
     }
 
     if (userType === "client") {
-      throw redirect({ to: "/dashboard" });
+      throw redirect({ to: "/home" });
     }
 
     const isOnboarded = await checkOnboardingComplete(context.queryClient, userType);
     throw redirect({
-      to: isOnboarded ? "/org" : "/onboarding/org",
+      to: isOnboarded ? "/home" : "/onboarding/org",
     });
   }
 }
@@ -64,6 +64,6 @@ export async function requireOnboarding({ context, location }: ContextArgs): Pro
   }
   const isOnboarded = await checkOnboardingComplete(context.queryClient);
   if (isOnboarded) {
-    throw redirect({ to: "/org" });
+    throw redirect({ to: "/home" });
   }
 }

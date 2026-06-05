@@ -8,14 +8,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
+import { usePermissions } from "@/shared/hooks/use-permissions";
 import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
 import { UserAvatar } from "./UserAvatar";
-import { CompanySubMenu, useCompanySwitcher } from "./CompanySwitcher";
+import { CompanySubMenu } from "./CompanySwitcher";
+import { useCompanySwitcher } from "./useCompanySwitcher";
 import { AppearanceSubMenu, useFontSize } from "@/components/common/ThemeSwitcher";
 
 export function SidebarUserMenu() {
   const { data: user } = useCurrentUser();
   const { data: profile } = useCurrentProfile();
+  const { isClient } = usePermissions();
   const logout = useLogout();
 
   const { fontSize, setFontSize } = useFontSize();
@@ -28,9 +31,19 @@ export function SidebarUserMenu() {
 
   const email = user?.email ?? "";
 
-  const companyHandle = activeCompany?.slug
-    ? `@${activeCompany.slug}`
-    : (activeCompany?.name ?? "Company");
+  let companyHandle = "Client account";
+
+  if (!isClient) {
+    if (activeCompany?.slug) {
+      companyHandle = `@${activeCompany.slug}`;
+    } else {
+      companyHandle = activeCompany?.name ?? "Company";
+    }
+  }
+
+  const profileImage = (profile as { avatar_url?: string | null } | undefined)?.avatar_url ?? null;
+
+
 
   return (
     <DropdownMenu>
@@ -40,12 +53,17 @@ export function SidebarUserMenu() {
             firstName={profile?.first_name}
             lastName={profile?.last_name}
             email={user?.email}
+            src={profileImage}
             size="md"
           />
-          <div className="flex-1 min-w-0 text-left hidden lg:block max-w-32">
+          {
+            !isClient &&
+        <div className="flex-1 min-w-0 text-left hidden lg:block max-w-32">
             <p className="text-[13px] font-semibold text-foreground truncate">Me</p>
             <p className="text-[11px] text-muted-foreground truncate">{companyHandle}</p>
           </div>
+          }
+
           <ChevronsUpDown className="w-4 h-4 text-muted-foreground/50 shrink-0 hidden lg:block" />
         </button>
       </DropdownMenuTrigger>
@@ -63,8 +81,9 @@ export function SidebarUserMenu() {
               firstName={profile?.first_name}
               lastName={profile?.last_name}
               email={user?.email}
+              src={profileImage}
               size="lg"
-            />  
+            />
             <div className="min-w-0">
               <p className="text-sm font-medium truncate">{displayName}</p>
               <p className="text-xs text-muted-foreground truncate">{email}</p>
@@ -81,7 +100,7 @@ export function SidebarUserMenu() {
           </DropdownMenuItem>
 
           {/* ↓ drop-in reusable submenus */}
-          <CompanySubMenu />
+          {!isClient && <CompanySubMenu />}
           <AppearanceSubMenu fontSize={fontSize} setFontSize={setFontSize} />
         </DropdownMenuGroup>
 

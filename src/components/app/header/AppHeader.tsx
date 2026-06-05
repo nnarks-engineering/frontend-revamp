@@ -33,7 +33,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
 
   return (
     <header className="h-14 shrink-0 bg-background backdrop-blur-sm z-50 relative">
-      <div className="max-w-[90rem] h-full flex items-center justify-between gap-2 mx-auto px-2">
+      <div className="max-w-360 h-full flex items-center justify-between gap-2 mx-auto px-2">
 
         {/* ── Left: sidebar toggle / back-arrow + logo ── */}
         <div className="flex items-center gap-1 shrink-0 flex-1">
@@ -48,9 +48,9 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             aria-label="Toggle sidebar"
           >
             {isSidebarOpen ? (
-              <PanelLeftClose className="w-[18px] h-[18px]" />
+              <PanelLeftClose className="w-4.5 h-4.5" />
             ) : (
-              <PanelLeftOpen className="w-[18px] h-[18px]" />
+              <PanelLeftOpen className="w-4.5 h-4.5" />
             )}
           </button>
 
@@ -64,12 +64,12 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             )}
             aria-label="Close search"
           >
-            <ArrowLeft className="w-[18px] h-[18px]" />
+            <ArrowLeft className="w-4.5 h-4.5" />
           </button>
 
           {/* Logo — hidden on mobile when search is open */}
           <Link
-            to="/org"
+            to="/home"
             className={cn(
               "flex items-center h-14 gap-2 px-3 group shrink-0",
               searchOpen ? "hidden md:flex" : "flex",
@@ -113,7 +113,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 md:hidden"
             onClick={() => setSearchOpen(true)}
           >
-            <Search className="w-[18px] h-[18px]" />
+            <Search className="w-4.5 h-4.5" />
           </button>
 
           {/* Notifications / Invitations */}
@@ -123,9 +123,9 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             aria-label="Notifications"
             onClick={() => setInvitationsOpen(true)}
           >
-            <Bell className="w-[18px] h-[18px]" />
+            <Bell className="w-4.5 h-4.5" />
             {invitations.length > 0 && (
-              <span className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-background px-1">
+              <span className="absolute top-1 right-1 min-w-4 h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-background px-1">
                 {invitations.length}
               </span>
             )}

@@ -22,11 +22,13 @@
   /* Brand Colors Map */
   --background: #ffffff;
   --foreground: #0d1f2d;
-  --background-space: #E2E4E9;
+  --background-space: #F6F8FA;
   --border-deep: #d4d4d4;
   --light-icon: #737373;
   --card: #ffffff;
   --card-foreground: #0d1f2d;
+  --active-background: var(--primary-50);
+  --active-foreground: var(--primary-600);
 
   --popover: #ffffff;
   --popover-foreground: #0d1f2d;
@@ -129,6 +131,8 @@
   --background-space: #0d1f2d;
   --border-deep: #45556c;
   --light-icon: #62748e;
+  --active-background: var(--primary-900);
+  --active-foreground: var(--primary-200);
 
 }
 
@@ -213,6 +217,8 @@
   --color-border-deep: var(--border-deep);
   --color-light-icon: var(--light-icon);
   --color-active: var(--secondary-600);
+  --color-active-foreground: var(--active-foreground);
+  --color-active-background: var(--active-background);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

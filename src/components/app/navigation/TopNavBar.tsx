@@ -20,11 +20,11 @@ export function TopNavBar() {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               to={item.to as any}
               className={cn(
-                "relative flex flex-col items-center justify-center sm:justify-end gap-0.5 pb-1 px-3.5 text-xs font-normal",
+                "relative flex items-center justify-center sm:justify-end gap-0.5 pb-1 mx-3 text-xs font-normal",
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
-                  ? "text-active"
-                  : "text-light-icon bg-slate- hover:text-foreground",
+                  ? "text-active-foreground"
+                  : "text-muted-foreground/80 bg-slate- hover:text-foreground",
               )}
             >
               {item.icon && (
@@ -44,7 +44,7 @@ export function TopNavBar() {
               {isActive && (
                 <motion.span
                   layoutId="topnav-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-active rounded-t-full"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-active-foreground rounded-t-full"
                   transition={{ type: "spring", stiffness: 420, damping: 36 }}
                 />
               )}

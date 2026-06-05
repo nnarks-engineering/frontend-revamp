@@ -1,9 +1,7 @@
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faHouseChimney,
-  faGaugeHigh,
   faFolderOpen,
-  faList,
   faGavel,
   faLock,
   faUserShield,
@@ -82,20 +80,12 @@ export const NAV_GROUPS: NavGroup[] = [
     title: "Overview",
     items: [
       {
-        id: "vendor-dashboard",
+        id: "home",
         label: "Home",
         description: "Overview of your business, activity, and key metrics.",
         icon: faHouseChimney,
-        to: "/org",
-        userTypes: ["vendor"],
-      },
-      {
-        id: "dashboard",
-        label: "Dashboard",
-        description: "Your main dashboard and daily overview.",
-        icon: faGaugeHigh,
-        to: "/dashboard",
-        userTypes: ["client"],
+        to: "/home",
+        userTypes: ["client", "vendor"],
       },
     ],
   },
@@ -110,10 +100,75 @@ export const NAV_GROUPS: NavGroup[] = [
         userTypes: ["client", "vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "projects-list", label: "List", icon: faList, to: "/projects" },
-          { id: "projects-disputes", label: "Disputes", icon: faGavel, to: "/projects/disputes" },
-          { id: "projects-ledger", label: "Escrow Ledger", icon: faLock, to: "/escrow" },
-          { id: "projects-circles", label: "Trust Circles", icon: faUserShield, to: "/circles" },
+          {
+            id: "projects-milestones",
+            label: "Milestones",
+            icon: faLock,
+            to: "/projects/milestones",
+          },
+          {
+            id: "projects-tasks",
+            label: "Tasks & Timeline",
+            icon: faBell,
+            to: "/projects/tasks-timeline",
+          },
+          {
+            id: "projects-documents",
+            label: "Documents",
+            icon: faEnvelopeOpen,
+            to: "/projects/documents",
+          },
+          {
+            id: "projects-disputes",
+            label: "Disputes",
+            icon: faGavel,
+            to: "/projects/disputes",
+          },
+          {
+            id: "projects-supervisors",
+            label: "Supervisors",
+            icon: faUserShield,
+            to: "/projects/supervisors",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Finance",
+    items: [
+      {
+        id: "wallet",
+        label: "Wallet",
+        icon: faWallet,
+        to: "/escrow",
+        userTypes: ["vendor","client"],
+        childrenLayout: "vertical-sidebar",
+        children: [
+          {
+            id: "wallet-overview",
+            label: "Wallet Overview",
+            icon: faChartPie,
+            to: "/escrow",
+          },
+          {
+            id: "wallet-transactions",
+            label: "Transactions",
+            icon: faFileInvoiceDollar,
+            to: "/escrow",
+          },
+          {
+            id: "wallet-contributors",
+            label: "Contributors",
+            icon: faUserGroup,
+            to: "/organization/team",
+          },
+          {
+            id: "wallet-bank-integration",
+            label: "Bank Integration",
+            icon: faLock,
+            to: "/organization",
+          },
         ],
       },
     ],
@@ -187,7 +242,6 @@ export const NAV_GROUPS: NavGroup[] = [
           { id: "org-overview", label: "Overview", icon: faChartPie, to: "/organization" },
           { id: "org-team", label: "Team", icon: faUserGroup, to: "/organization/team" },
           { id: "org-kyc", label: "KYC & Compliance", icon: faIdCard, to: "/organization/kyc" },
-          { id: "org-wallet", label: "Wallet", icon: faWallet, to: "/organization/wallet" },
           { id: "org-agents", label: "Agents", icon: faMicrochip, to: "/organization/agents" },
           { id: "org-evidence", label: "Evidence", icon: faSearch, to: "/organization/evidence" },
           {
@@ -264,7 +318,7 @@ export function resolvePageTitle(pathname: string): string {
   for (const item of getVisibleTopLevelItems()) {
     if (isOwnedBy(pathname, item)) return item.label;
   }
-  return "Dashboard";
+  return "Home";
 }
 
 /** All top-level nav items across every group (used by AppHeader). */

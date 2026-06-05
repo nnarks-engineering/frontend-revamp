@@ -48,7 +48,7 @@ function AcceptCompanyInvitationPage() {
       toast.success("Invitation accepted successfully");
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.myCompanies });
       setTimeout(() => {
-        navigate({ to: "/org" });
+        navigate({ to: "/home" });
       }, 3000);
     },
     onError: () => {
@@ -62,7 +62,7 @@ function AcceptCompanyInvitationPage() {
     rejectMutation.mutate(token, {
       onSuccess: () => {
         toast.success("Invitation declined");
-        navigate({ to: "/org" });
+        navigate({ to: "/home" });
       },
       onError: () => {
         toast.error("Failed to decline invitation");
@@ -134,7 +134,7 @@ function AcceptCompanyInvitationPage() {
                   : "Failed to load the invitation. It may have expired or already been processed."}
               </p>
               <Button variant="outline" className="mt-4" asChild>
-                <Link to="/org">Go to Dashboard</Link>
+                <Link to="/home">Go to Dashboard</Link>
               </Button>
             </div>
           )}
@@ -154,15 +154,15 @@ function AcceptCompanyInvitationPage() {
               </p>
 
               <div className="flex gap-3 w-full">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full"
                   onClick={() => setShowRejectDialog(true)}
                   disabled={acceptMutation.isPending}
                 >
                   Decline
                 </Button>
-                <Button 
+                <Button
                   className="w-full"
                   onClick={() => acceptMutation.mutate(token)}
                   disabled={acceptMutation.isPending}
@@ -173,7 +173,7 @@ function AcceptCompanyInvitationPage() {
               </div>
               <button
                 type="button"
-                onClick={() => navigate({ to: "/org" })}
+                onClick={() => navigate({ to: "/home" })}
                 className="mt-3 text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
               >
                 Skip for now

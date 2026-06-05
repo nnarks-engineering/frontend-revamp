@@ -89,7 +89,7 @@ const searchState = getSearchState(hasQuery, filteredItems.length > 0);
           <button
             type="button"
             aria-label="Close search"
-            className="fixed inset-x-0 top-14 bottom-0 z-40 cursor-default bg-black/70 dark:bg-black/70 backdrop-blur-[1px animate-in fade-in duration-150"
+            className="fixed inset-x-0 top-14 md:inset-0 bottom-0 z-40 cursor-default bg-black/70 dark:bg-black/70 backdrop-blur-[1px] animate-in fade-in duration-150"
             onClick={handleClose}
           />,
           document.body,

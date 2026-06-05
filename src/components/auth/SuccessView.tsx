@@ -22,11 +22,10 @@ export function SuccessView() {
           {t("common:auth.successSignedIn")}
         </p>
       </div>
-      <SubmitButton 
+      <SubmitButton
         type="button"
         onClick={() => {
-          const userType = localStorage.getItem("userType") ?? "vendor";
-          navigate({ to: userType === "client" ? "/dashboard" : "/org" });
+          navigate({ to: "/home" });
         }}
       >
         {t("common:navigation.dashboard")}

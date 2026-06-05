@@ -7,11 +7,10 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { cn } from "@/shared/lib/utils";
+import { getInitials } from "@/shared/lib/initials";
 import { ArrowLeftRight, Building2, Plus } from "lucide-react";
-import { getInitials } from "./UserAvatar";
+import { useCompanySwitcher } from "./useCompanySwitcher";
 
 // ── Company avatar (reusable independently) ───────────────────────────────────
 interface CompanyAvatarProps {
@@ -19,7 +18,7 @@ interface CompanyAvatarProps {
   className?: string;
 }
 
-export function CompanyAvatar({ name, className }: CompanyAvatarProps) {
+export function CompanyAvatar({ name, className }: Readonly<CompanyAvatarProps>) {
   return (
     <div
       className={cn(
@@ -30,19 +29,6 @@ export function CompanyAvatar({ name, className }: CompanyAvatarProps) {
       {name ? getInitials(name) : <Building2 className="w-3 h-3" />}
     </div>
   );
-}
-
-// ── Hook: active company (reusable anywhere) ──────────────────────────────────
-export function useCompanySwitcher() {
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId, setActiveCompanyId } = useActiveCompany();
-  const activeCompany = companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null;
-
-  return {
-    companies,
-    activeCompany,
-    setActiveCompanyId,
-  };
 }
 
 // ── Dropdown submenu variant (for use inside a DropdownMenu) ──────────────────

@@ -8,21 +8,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { useActiveCompany } from "@/shared/contexts/active-company-context";
+import { getInitials } from "@/shared/lib/initials";
 import { cn } from "@/shared/lib/utils";
 import type { Company } from "@/types/companies";
 import { useNavigate } from "@tanstack/react-router";
 import { ChevronsUpDown, Plus } from "lucide-react";
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
-
-function getInitials(name: string | null): string {
-  if (!name) return "??";
-  return name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-}
 
 interface Props {
   readonly isCollapsed: boolean;
@@ -47,6 +38,7 @@ export function SidebarCompanySwitcher({ isCollapsed }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
+          type="button"
           className={cn(
             "w-full flex items-center  rounded-br-xl bg-primary-50 border-r border-background! gap-2.5 px-2.5 py-1.5 text-sm font-medium",
             " hover:bg-primary-100 transition-all duration-150 outline-none focus:outline-none",

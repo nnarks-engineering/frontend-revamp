@@ -1,49 +1,50 @@
+import { Avatar as ProfileImage } from "@/components/image/Image";
 import { cn } from "@/shared/lib/utils";
-
-function getInitials(
-  firstName?: string | null,
-  lastName?: string | null,
-  email?: string
-): string {
-  if (firstName && lastName) return `${firstName[0]}${lastName[0]}`.toUpperCase();
-  if (firstName) return firstName.slice(0, 2).toUpperCase();
-  if (email) return email.slice(0, 2).toUpperCase();
-  return "?";
-}
 
 interface UserAvatarProps {
   firstName?: string | null;
   lastName?: string | null;
   email?: string;
+  src?: string | null;
   size?: "sm" | "md" | "lg";
   className?: string;
 }
 
 const sizeMap = {
-  sm: "w-6 h-6 text-[10px]",
-  md: "w-7 h-7 text-xs",
-  lg: "w-8 h-8 text-xs",
+  sm: "w-6 h-6",
+  md: "w-7 h-7",
+  lg: "w-8 h-8",
+};
+
+const sizePx = {
+  sm: 24,
+  md: 28,
+  lg: 32,
 };
 
 export function UserAvatar({
   firstName,
   lastName,
   email,
+  src,
   size = "md",
   className,
-}: UserAvatarProps) {
-  const initials = getInitials(firstName, lastName, email);
+}: Readonly<UserAvatarProps>) {
+  const fullName = [firstName, lastName].filter(Boolean).join(" ") || null;
+  const alt = fullName ?? email ?? "User";
+
   return (
-    <div
+    <ProfileImage
+      src={src}
+      fullName={fullName}
+      alt={alt}
+      width={sizePx[size]}
+      height={sizePx[size]}
       className={cn(
-        "shrink-0 rounded-full bg-linear-to-br from-primary via-primary/80 to-secondary flex items-center justify-center text-white font-bold",
+        "shrink-0 overflow-hidden border border-border/50",
         sizeMap[size],
         className
       )}
-    >
-      {initials}
-    </div>
+    />
   );
 }
-
-export { getInitials };

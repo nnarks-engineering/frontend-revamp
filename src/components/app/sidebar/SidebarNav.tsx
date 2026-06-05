@@ -58,7 +58,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
   const isOpen = isSectionActive || manualOpen;
 
   const activeClass = isDirectlyActive
-    ? "bg-primary/10 border-l-2 border-l-primary! text-active"
+    ? "bg-active-background border-l-2 border-l-primary! text-active-foreground"
     : "text-muted-foreground hover:text-foreground";
     const inactiveIconClass = "text-muted-foreground hover:text-foreground";
 
@@ -156,7 +156,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
                       "relative flex items-center px-3 py-1.5 rounded-r-md",
                       "transition-all duration-150",
                       childActive
-                        ? "bg-primary/10 text-active"
+                        ? "bg-active-background text-active-foreground"
                         : "text-muted-foreground hover:text-foreground",
                     )}
                   >

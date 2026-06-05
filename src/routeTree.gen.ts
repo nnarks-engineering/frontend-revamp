@@ -29,6 +29,7 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AppOrganizationRouteImport } from './routes/_app/organization'
 import { Route as AppOrgRouteImport } from './routes/_app/org'
 import { Route as AppInboxRouteImport } from './routes/_app/inbox'
+import { Route as AppHomeRouteImport } from './routes/_app/home'
 import { Route as AppEscrowRouteImport } from './routes/_app/escrow'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
@@ -45,6 +46,11 @@ import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects
 import { Route as AppOrganizationTeamRouteImport } from './routes/_app/organization/team'
 import { Route as AppInboxNnarksAiRouteImport } from './routes/_app/inbox/nnarks-ai'
 import { Route as AppInboxAiRouteImport } from './routes/_app/inbox/ai'
+import { Route as AppProjectsTasksTimelineIndexRouteImport } from './routes/_app/projects/tasks-timeline/index'
+import { Route as AppProjectsSupervisorsIndexRouteImport } from './routes/_app/projects/supervisors/index'
+import { Route as AppProjectsMilestonesIndexRouteImport } from './routes/_app/projects/milestones/index'
+import { Route as AppProjectsDocumentsIndexRouteImport } from './routes/_app/projects/documents/index'
+import { Route as AppProjectsDisputesIndexRouteImport } from './routes/_app/projects/disputes/index'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -155,6 +161,11 @@ const AppInboxRoute = AppInboxRouteImport.update({
   path: '/inbox',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHomeRoute = AppHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEscrowRoute = AppEscrowRouteImport.update({
   id: '/escrow',
   path: '/escrow',
@@ -239,6 +250,36 @@ const AppInboxAiRoute = AppInboxAiRouteImport.update({
   path: '/ai',
   getParentRoute: () => AppInboxRoute,
 } as any)
+const AppProjectsTasksTimelineIndexRoute =
+  AppProjectsTasksTimelineIndexRouteImport.update({
+    id: '/projects/tasks-timeline/',
+    path: '/projects/tasks-timeline/',
+    getParentRoute: () => AppRoute,
+  } as any)
+const AppProjectsSupervisorsIndexRoute =
+  AppProjectsSupervisorsIndexRouteImport.update({
+    id: '/projects/supervisors/',
+    path: '/projects/supervisors/',
+    getParentRoute: () => AppRoute,
+  } as any)
+const AppProjectsMilestonesIndexRoute =
+  AppProjectsMilestonesIndexRouteImport.update({
+    id: '/projects/milestones/',
+    path: '/projects/milestones/',
+    getParentRoute: () => AppRoute,
+  } as any)
+const AppProjectsDocumentsIndexRoute =
+  AppProjectsDocumentsIndexRouteImport.update({
+    id: '/projects/documents/',
+    path: '/projects/documents/',
+    getParentRoute: () => AppRoute,
+  } as any)
+const AppProjectsDisputesIndexRoute =
+  AppProjectsDisputesIndexRouteImport.update({
+    id: '/projects/disputes/',
+    path: '/projects/disputes/',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
@@ -246,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
+  '/home': typeof AppHomeRoute
   '/inbox': typeof AppInboxRouteWithChildren
   '/org': typeof AppOrgRoute
   '/organization': typeof AppOrganizationRouteWithChildren
@@ -274,6 +316,11 @@ export interface FileRoutesByFullPath {
   '/organization/': typeof AppOrganizationIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
+  '/projects/disputes/': typeof AppProjectsDisputesIndexRoute
+  '/projects/documents/': typeof AppProjectsDocumentsIndexRoute
+  '/projects/milestones/': typeof AppProjectsMilestonesIndexRoute
+  '/projects/supervisors/': typeof AppProjectsSupervisorsIndexRoute
+  '/projects/tasks-timeline/': typeof AppProjectsTasksTimelineIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
@@ -281,6 +328,7 @@ export interface FileRoutesByTo {
   '/advisory': typeof AppAdvisoryRoute
   '/dashboard': typeof AppDashboardRoute
   '/escrow': typeof AppEscrowRoute
+  '/home': typeof AppHomeRoute
   '/org': typeof AppOrgRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
@@ -307,6 +355,11 @@ export interface FileRoutesByTo {
   '/organization': typeof AppOrganizationIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/onboarding/account-type': typeof OnboardingAccountTypeIndexRoute
+  '/projects/disputes': typeof AppProjectsDisputesIndexRoute
+  '/projects/documents': typeof AppProjectsDocumentsIndexRoute
+  '/projects/milestones': typeof AppProjectsMilestonesIndexRoute
+  '/projects/supervisors': typeof AppProjectsSupervisorsIndexRoute
+  '/projects/tasks-timeline': typeof AppProjectsTasksTimelineIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -317,6 +370,7 @@ export interface FileRoutesById {
   '/_app/advisory': typeof AppAdvisoryRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/escrow': typeof AppEscrowRoute
+  '/_app/home': typeof AppHomeRoute
   '/_app/inbox': typeof AppInboxRouteWithChildren
   '/_app/org': typeof AppOrgRoute
   '/_app/organization': typeof AppOrganizationRouteWithChildren
@@ -346,6 +400,11 @@ export interface FileRoutesById {
   '/_app/organization/': typeof AppOrganizationIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
+  '/_app/projects/disputes/': typeof AppProjectsDisputesIndexRoute
+  '/_app/projects/documents/': typeof AppProjectsDocumentsIndexRoute
+  '/_app/projects/milestones/': typeof AppProjectsMilestonesIndexRoute
+  '/_app/projects/supervisors/': typeof AppProjectsSupervisorsIndexRoute
+  '/_app/projects/tasks-timeline/': typeof AppProjectsTasksTimelineIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -355,6 +414,7 @@ export interface FileRouteTypes {
     | '/advisory'
     | '/dashboard'
     | '/escrow'
+    | '/home'
     | '/inbox'
     | '/org'
     | '/organization'
@@ -383,6 +443,11 @@ export interface FileRouteTypes {
     | '/organization/'
     | '/projects/'
     | '/onboarding/account-type/'
+    | '/projects/disputes/'
+    | '/projects/documents/'
+    | '/projects/milestones/'
+    | '/projects/supervisors/'
+    | '/projects/tasks-timeline/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -390,6 +455,7 @@ export interface FileRouteTypes {
     | '/advisory'
     | '/dashboard'
     | '/escrow'
+    | '/home'
     | '/org'
     | '/login'
     | '/register'
@@ -416,6 +482,11 @@ export interface FileRouteTypes {
     | '/organization'
     | '/projects'
     | '/onboarding/account-type'
+    | '/projects/disputes'
+    | '/projects/documents'
+    | '/projects/milestones'
+    | '/projects/supervisors'
+    | '/projects/tasks-timeline'
   id:
     | '__root__'
     | '/_app'
@@ -425,6 +496,7 @@ export interface FileRouteTypes {
     | '/_app/advisory'
     | '/_app/dashboard'
     | '/_app/escrow'
+    | '/_app/home'
     | '/_app/inbox'
     | '/_app/org'
     | '/_app/organization'
@@ -454,6 +526,11 @@ export interface FileRouteTypes {
     | '/_app/organization/'
     | '/_app/projects/'
     | '/onboarding/account-type/'
+    | '/_app/projects/disputes/'
+    | '/_app/projects/documents/'
+    | '/_app/projects/milestones/'
+    | '/_app/projects/supervisors/'
+    | '/_app/projects/tasks-timeline/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -606,6 +683,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInboxRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/home': {
+      id: '/_app/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AppHomeRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/escrow': {
       id: '/_app/escrow'
       path: '/escrow'
@@ -718,6 +802,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInboxAiRouteImport
       parentRoute: typeof AppInboxRoute
     }
+    '/_app/projects/tasks-timeline/': {
+      id: '/_app/projects/tasks-timeline/'
+      path: '/projects/tasks-timeline'
+      fullPath: '/projects/tasks-timeline/'
+      preLoaderRoute: typeof AppProjectsTasksTimelineIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/projects/supervisors/': {
+      id: '/_app/projects/supervisors/'
+      path: '/projects/supervisors'
+      fullPath: '/projects/supervisors/'
+      preLoaderRoute: typeof AppProjectsSupervisorsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/projects/milestones/': {
+      id: '/_app/projects/milestones/'
+      path: '/projects/milestones'
+      fullPath: '/projects/milestones/'
+      preLoaderRoute: typeof AppProjectsMilestonesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/projects/documents/': {
+      id: '/_app/projects/documents/'
+      path: '/projects/documents'
+      fullPath: '/projects/documents/'
+      preLoaderRoute: typeof AppProjectsDocumentsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/projects/disputes/': {
+      id: '/_app/projects/disputes/'
+      path: '/projects/disputes'
+      fullPath: '/projects/disputes/'
+      preLoaderRoute: typeof AppProjectsDisputesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -755,24 +874,36 @@ interface AppRouteChildren {
   AppAdvisoryRoute: typeof AppAdvisoryRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppEscrowRoute: typeof AppEscrowRoute
+  AppHomeRoute: typeof AppHomeRoute
   AppInboxRoute: typeof AppInboxRouteWithChildren
   AppOrgRoute: typeof AppOrgRoute
   AppOrganizationRoute: typeof AppOrganizationRouteWithChildren
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
+  AppProjectsDisputesIndexRoute: typeof AppProjectsDisputesIndexRoute
+  AppProjectsDocumentsIndexRoute: typeof AppProjectsDocumentsIndexRoute
+  AppProjectsMilestonesIndexRoute: typeof AppProjectsMilestonesIndexRoute
+  AppProjectsSupervisorsIndexRoute: typeof AppProjectsSupervisorsIndexRoute
+  AppProjectsTasksTimelineIndexRoute: typeof AppProjectsTasksTimelineIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAdvisoryRoute: AppAdvisoryRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppEscrowRoute: AppEscrowRoute,
+  AppHomeRoute: AppHomeRoute,
   AppInboxRoute: AppInboxRouteWithChildren,
   AppOrgRoute: AppOrgRoute,
   AppOrganizationRoute: AppOrganizationRouteWithChildren,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
+  AppProjectsDisputesIndexRoute: AppProjectsDisputesIndexRoute,
+  AppProjectsDocumentsIndexRoute: AppProjectsDocumentsIndexRoute,
+  AppProjectsMilestonesIndexRoute: AppProjectsMilestonesIndexRoute,
+  AppProjectsSupervisorsIndexRoute: AppProjectsSupervisorsIndexRoute,
+  AppProjectsTasksTimelineIndexRoute: AppProjectsTasksTimelineIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
