@@ -1,4 +1,4 @@
-import { resolveVerticalSidebarItems } from "@/app/nav-config";
+import { resolveVerticalSidebarItems } from "@/app/nav-config-si";
 import { LocationBanner } from "@/components/app/shared";
 import {
   RightPanelProvider,

@@ -1,10 +1,10 @@
-import { findBestMatchId, isOwnedBy, type NavItem } from "@/app/nav-config";
+import { findBestMatchId, isOwnedBy, type NavItem } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { ChevronRight } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SubNavItemProps {
   item: NavItem;
@@ -74,8 +74,7 @@ export function SubNavItem({ item, depth = 0 }: Readonly<SubNavItemProps>) {
           )}
           <span className="truncate">{item.label}</span>
         </span>
-        <FontAwesomeIcon
-          icon={faChevronRight}
+        <ChevronRight
           className={cn(
             "w-3 h-3 shrink-0 transition-transform duration-200 text-muted-foreground/50",
             open && "rotate-90",

@@ -72,7 +72,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
 
       <div className="flex items-start gap-6">
       {/* Main card */}
-      <div className="flex-1 min-w-0 bg-white rounded-2xl overflow-clip min-h-100">
+      <div className="flex-1 min-w-0 bg-background rounded-2xl overflow-clip min-h-100">
        <div className="relative overflow-hidden flex items-start justify-between gap-4 p-6 bg-tertiary-100">
         {/* Illustrative decoration — matches TeamMembersCard / ProjectsCard pattern */}
         <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-orange-50 pointer-events-none" aria-hidden />

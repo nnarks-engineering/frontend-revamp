@@ -1,4 +1,4 @@
-import { getAllTopLevelItems } from "@/app/nav-config";
+import { getAllTopLevelItems } from "@/app/nav-config-si";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";

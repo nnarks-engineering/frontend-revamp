@@ -1,6 +1,7 @@
 export * from "./DashboardRightPanel";
 export * from "./DashboardTopStrip";
 export * from "./DashboardVideo";
+export * from "./ClientAnnouncementsPanel";
 export * from "./EntityListCard";
 export * from "./InfoCard";
 export * from "./MiniCalendar";
@@ -9,4 +10,5 @@ export * from "./ServicesCard";
 export * from "./StatCard";
 export * from "./TeamMembersCard";
 export * from "./UserListCard";
+export * from "./VendorAnnouncementsSliderPanel";
 export * from "./WelcomeBanner";

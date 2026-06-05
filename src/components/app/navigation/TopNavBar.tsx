@@ -2,7 +2,13 @@ import { getAllTopLevelItems, isOwnedBy } from "@/app/nav-config";
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { LucideIcon } from "lucide-react";
+
+function NavIcon({ icon }: Readonly<{ icon?: LucideIcon }>) {
+  if (!icon) return null;
+  const Icon = icon;
+  return <Icon className="w-4 h-4 shrink-0 transition-colors duration-150" />;
+}
 
 export function TopNavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -18,21 +24,16 @@ export function TopNavBar() {
             <Link
               key={item.id}
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              to={item.to as any}
+              to={item.to as never}
               className={cn(
-                "relative flex items-center justify-center sm:justify-end gap-0.5 pb-1 mx-3 text-xs font-normal",
+                "relative flex items-center justify-center sm:justify-end gap-1.5 pb-1 mx-3 text-xs font-normal",
                 "whitespace-nowrap transition-colors duration-150 select-none",
                 isActive
                   ? "text-active-foreground"
-                  : "text-muted-foreground/80 bg-slate- hover:text-foreground",
+                  : "text-muted-foreground/80 hover:text-foreground",
               )}
             >
-              {item.icon && (
-                <FontAwesomeIcon
-                  icon={item.icon}
-                  className="text-xl shrink-0 transition-colors duration-150"
-                />
-              )}
+              <NavIcon icon={item.icon} />
               <span className="hidden sm:flex">{item.label}</span>
 
               {item.badge && (

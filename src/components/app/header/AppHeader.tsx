@@ -2,7 +2,7 @@ import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { cn } from "@/shared/lib/utils";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
+import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GlobalSearch } from "./GlobalSearch";
 import { InvitationsDrawer } from "./InvitationsDrawer";
@@ -36,7 +36,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
       <div className="max-w-360 h-full flex items-center justify-between gap-2 mx-auto px-2">
 
         {/* ── Left: sidebar toggle / back-arrow + logo ── */}
-        <div className="flex items-center gap-1 shrink-0 flex-1">
+        <div className="flex items-center gap-1 shrink-0 flex-1 h-full min-w-0">
           {/* Sidebar toggle — mobile only, hidden when search is open */}
           <button
             type="button"
@@ -54,19 +54,6 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             )}
           </button>
 
-          {/* Back arrow — mobile only, visible when search is open */}
-          <button
-            type="button"
-            onClick={() => setSearchOpen(false)}
-            className={cn(
-              "p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150",
-              searchOpen ? "flex md:hidden" : "hidden",
-            )}
-            aria-label="Close search"
-          >
-            <ArrowLeft className="w-4.5 h-4.5" />
-          </button>
-
           {/* Logo — hidden on mobile when search is open */}
           <Link
             to="/home"
@@ -81,37 +68,24 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
             </span>
           </Link>
 
-            <div
-          className={cn(
-            "min-w-0 flex-1 transition-all duration-300 delay-100",
-            searchOpen
-              ? "md:max-w-lg"                          // fills all available space when active
-              : "hidden md:block w-52 max-w-xs", // desktop-only fixed width when idle
-          )}
-        >
-          <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-        </div>
+          <div className="hidden lg:flex h-full flex-1 min-w-0">
+            <TopNavBar />
+          </div>
       </div>
 
         {/* ── Right: mobile search icon + bell + user ── */}
         <div
           className={cn(
-            "flex items-cente gap-1 mt-auto shrink-0",
+            "flex items-center gap-1 mt-auto shrink-0 h-full",
             searchOpen && "hidden md:flex",  // hide entirely on mobile when search is open
           )}
         >
-           <div className={cn(
-          "flex-1",
-          searchOpen ? "hidden sm:flex" : "flex"
-        )}>
-          <TopNavBar />
-
-        </div>
-          {/* Mobile search trigger */}
+          {/* Search trigger */}
           <button
             type="button"
-            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150 md:hidden"
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all duration-150"
             onClick={() => setSearchOpen(true)}
+            aria-label="Search"
           >
             <Search className="w-4.5 h-4.5" />
           </button>
@@ -134,6 +108,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
           <SidebarUserMenu />
         </div>
 
+        <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
         <InvitationsDrawer open={invitationsOpen} onClose={() => setInvitationsOpen(false)} />
       </div>
     </header>

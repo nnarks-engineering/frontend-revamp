@@ -2,15 +2,14 @@ import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, resolvePageTit
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 interface SidebarNavProps {
   onClose?: () => void;
 }
 
-export function SidebarNav({ onClose }: SidebarNavProps) {
+export function SidebarNav({ onClose }: Readonly<SidebarNavProps>) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const sidebarItems = resolveVerticalSidebarItems(pathname);
 
@@ -18,7 +17,7 @@ export function SidebarNav({ onClose }: SidebarNavProps) {
   const mainTabLabel = resolvePageTitle(pathname);
 
   return (
-    <aside className="h-full w-[220px] mt-4 flex flex-col bg-background border-none border-primary-300! border-l-0 border-t-0 rounded-r-2xl select-none">
+    <aside className="h-full w-55 mt-4 flex flex-col bg-background border-none border-primary-300! border-l-0 border-t-0 rounded-r-2xl select-none">
       <nav className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-2.5 scrollbar-hide">
         {sidebarItems?.length ? (
           <div className="space-y-0.5 text-sm">
@@ -50,7 +49,7 @@ interface SidebarSubItemProps {
   onClose?: () => void;
 }
 
-function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSubItemProps) {
+function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: Readonly<SidebarSubItemProps>) {
   const isSectionActive = isOwnedBy(pathname, item);
   const hasChildren = !!item.children?.length;
 
@@ -66,8 +65,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
   if (!hasChildren) {
     return (
       <Link
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        to={item.to as any}
+        to={item.to as never}
         onClick={onClose}
         className={cn(
           "relative flex items-center px-3 py-2 rounded-r-md",
@@ -78,17 +76,14 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
         )}
       >
         {item.icon && (
-          <FontAwesomeIcon
-            icon={item.icon}
-            className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "" : "tex")}
-          />
+          <item.icon className={cn("w-4 h-4 shrink-0 mr-3", isDirectlyActive ? "" : "text-muted-foreground/70")} />
         )}
         <span className="truncate">{item.label}</span>
       </Link>
     );
   }
 
-  const activeChildId = findBestMatchId(item.children!, pathname);
+  const activeChildId = findBestMatchId(item.children ?? [], pathname);
 
   // ── Accordion item (has children) ──────────────────────────────────────
   return (
@@ -102,33 +97,25 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
         )}
       >
         <Link
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          to={item.to as any}
+          to={item.to as never}
           onClick={onClose}
           className="flex-1 flex items-center px-3 py-2 truncate"
         >
           {item.icon && (
-            <FontAwesomeIcon
-              icon={item.icon}
-              className="w-4 h-4 shrink-0 mr-3"
-            />
+            <item.icon className="w-4 h-4 shrink-0 mr-3" />
           )}
           <span className="truncate">{item.label}</span>
         </Link>
         <button
-        type="button"
+          type="button"
           onClick={() => setManualOpen((o) => !o)}
           className="p-2 shrink-0"
           aria-label={isOpen ? "Collapse" : "Expand"}
         >
-          <FontAwesomeIcon
-            icon={faChevronRight}
+          <ChevronRight
             className={cn(
-              "w-3.5 h-3.5 transition-transform duration-200",
-              isOpen ? "rotate-90" : "",
-              isDirectlyActive
-                ? "group-hover:"
-                : "group-hover:text-muted-foreground/70",
+              "w-3.5 h-3.5 transition-transform duration-200 text-muted-foreground/50",
+              isOpen && "rotate-90",
             )}
           />
         </button>
@@ -144,13 +131,12 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
             className="overflow-hidden"
           >
             <div className="pl-3 py-1 space-y-0.5">
-              {item.children!.map((child) => {
+              {(item.children ?? []).map((child) => {
                 const childActive = child.id === activeChildId;
                 return (
                   <Link
                     key={child.id}
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    to={child.to as any}
+                    to={child.to as never}
                     onClick={onClose}
                     className={cn(
                       "relative flex items-center px-3 py-1.5 rounded-r-md",
@@ -161,10 +147,7 @@ function SidebarSubItem({ item, pathname, isDirectlyActive, onClose }: SidebarSu
                     )}
                   >
                     {child.icon && (
-                      <FontAwesomeIcon
-                        icon={child.icon}
-                        className={cn("w-3.5 h-3.5 shrink-0 mr-2", childActive ? "text-primary" : "text-muted-foreground/60")}
-                      />
+                      <child.icon className={cn("w-3.5 h-3.5 shrink-0 mr-2", childActive ? "text-primary" : "text-muted-foreground/60")} />
                     )}
                     <span className="truncate">{child.label}</span>
                   </Link>

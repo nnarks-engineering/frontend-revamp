@@ -1,25 +1,26 @@
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
-  Bell,
-  Brain,
-  CreditCard,
-  Cpu,
-  FileText,
-  FolderOpen,
-  Gavel,
-  Home,
-  Inbox,
-  Lock,
-  Mail,
-  MessageSquare,
-  PieChart,
-  Search,
-  ShieldCheck,
-  SlidersHorizontal,
-  UserCheck,
-  Users,
-  Wallet,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  faHouseChimney,
+  faFolderOpen,
+  faGavel,
+  faLock,
+  faUserShield,
+  faInbox,
+  faComments,
+  faEnvelopeOpen,
+  faBell,
+  faBrain,
+  faPeopleGroup,
+  faChartPie,
+  faUserGroup,
+  faIdCard,
+  faWallet,
+  faMicrochip,
+  faSearch,
+  faFileInvoiceDollar,
+  faSliders,
+  faProjectDiagram
+} from "@fortawesome/free-solid-svg-icons";
 import { hasUserTypeAccess, type UserType } from "@/shared/lib/auth";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -27,7 +28,7 @@ import { hasUserTypeAccess, type UserType } from "@/shared/lib/auth";
 export interface NavItem {
   id: string;
   label: string;
-  icon?: LucideIcon;
+  icon?: IconDefinition;
   to: string;
   badge?: string | number;
   description?: string;
@@ -83,7 +84,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "home",
         label: "Home",
         description: "Overview of your business, activity, and key metrics.",
-        icon: Home,
+        icon: faHouseChimney,
         to: "/home",
         userTypes: ["client", "vendor"],
       },
@@ -95,45 +96,45 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "projects",
         label: "Projects",
-        icon: FolderOpen,
+        icon: faFolderOpen,
         to: "/projects",
         userTypes: ["client", "vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
            {
             id: "projects-overview",
-            label: "Overview",
-            icon: Lock,
+            label: "Projects Overview",
+            icon: faProjectDiagram,
             to: "/projects",
           },
           {
             id: "projects-milestones",
             label: "Milestones",
-            icon: Lock,
+            icon: faLock,
             to: "/projects/milestones",
           },
           {
             id: "projects-tasks",
             label: "Tasks & Timeline",
-            icon: Bell,
+            icon: faBell,
             to: "/projects/tasks-timeline",
           },
           {
             id: "projects-documents",
             label: "Documents",
-            icon: Mail,
+            icon: faEnvelopeOpen,
             to: "/projects/documents",
           },
           {
             id: "projects-disputes",
             label: "Disputes",
-            icon: Gavel,
+            icon: faGavel,
             to: "/projects/disputes",
           },
           {
             id: "projects-supervisors",
             label: "Supervisors",
-            icon: ShieldCheck,
+            icon: faUserShield,
             to: "/projects/supervisors",
           },
         ],
@@ -146,7 +147,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "wallet",
         label: "Wallet",
-        icon: Wallet,
+        icon: faWallet,
         to: "/escrow",
         userTypes: ["vendor", "client"],
         childrenLayout: "vertical-sidebar",
@@ -154,25 +155,25 @@ export const NAV_GROUPS: NavGroup[] = [
           {
             id: "wallet-overview",
             label: "Wallet Overview",
-            icon: PieChart,
+            icon: faChartPie,
             to: "/escrow",
           },
           {
             id: "wallet-transactions",
             label: "Transactions",
-            icon: FileText,
+            icon: faFileInvoiceDollar,
             to: "/escrow",
           },
           {
             id: "wallet-contributors",
             label: "Contributors",
-            icon: Users,
+            icon: faUserGroup,
             to: "/organization/team",
           },
           {
             id: "wallet-bank-integration",
             label: "Bank Integration",
-            icon: Lock,
+            icon: faLock,
             to: "/organization",
           },
         ],
@@ -185,7 +186,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "inbox",
         label: "Inbox",
-        icon: Inbox,
+        icon: faInbox,
         to: "/inbox/direct",
         userTypes: ["client", "vendor"],
         childrenLayout: "vertical-sidebar",
@@ -193,7 +194,7 @@ export const NAV_GROUPS: NavGroup[] = [
           {
             id: "inbox-chats",
             label: "Chats",
-            icon: MessageSquare,
+            icon: faComments,
             to: "/inbox",
             userTypes: ["client", "vendor"],
             children: [
@@ -214,19 +215,19 @@ export const NAV_GROUPS: NavGroup[] = [
           {
             id: "inbox-email",
             label: "Email",
-            icon: Mail,
+            icon: faEnvelopeOpen,
             to: "/inbox/email",
             userTypes: ["client", "vendor"],
           },
           {
             id: "inbox-notifications",
             label: "Notifications",
-            icon: Bell,
+            icon: faBell,
             to: "/inbox/notifications",
             userTypes: ["client", "vendor"],
           },
           {
-            id: "inbox-ai", label: "Nnarks AI", icon: Brain, to: "/inbox/ai",
+            id: "inbox-ai", label: "Nnarks AI", icon: faBrain, to: "/inbox/ai",
             description: "Chat with your intelligent assistant.",
             userTypes: ["client", "vendor"],
           },
@@ -240,20 +241,20 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         id: "organization",
         label: "Organization",
-        icon: Users,
+        icon: faPeopleGroup,
         to: "/organization",
         userTypes: ["vendor"],
         childrenLayout: "vertical-sidebar",
         children: [
-          { id: "org-overview", label: "Overview", icon: PieChart, to: "/organization" },
-          { id: "org-team", label: "Team", icon: Users, to: "/organization/team" },
-          { id: "org-kyc", label: "KYC & Compliance", icon: UserCheck, to: "/organization/kyc" },
-          { id: "org-agents", label: "Agents", icon: Cpu, to: "/organization/agents" },
-          { id: "org-evidence", label: "Evidence", icon: Search, to: "/organization/evidence" },
+          { id: "org-overview", label: "Overview", icon: faChartPie, to: "/organization" },
+          { id: "org-team", label: "Team", icon: faUserGroup, to: "/organization/team" },
+          { id: "org-kyc", label: "KYC & Compliance", icon: faIdCard, to: "/organization/kyc" },
+          { id: "org-agents", label: "Agents", icon: faMicrochip, to: "/organization/agents" },
+          { id: "org-evidence", label: "Evidence", icon: faSearch, to: "/organization/evidence" },
           {
             id: "org-billing",
             label: "Billing & Plan",
-            icon: CreditCard,
+            icon: faFileInvoiceDollar,
             to: "/organization/billing",
             children: [
               { id: "org-billing-plan", label: "Current Plan", to: "/organization/billing" },
@@ -264,7 +265,7 @@ export const NAV_GROUPS: NavGroup[] = [
           {
             id: "org-settings",
             label: "Settings",
-            icon: SlidersHorizontal,
+            icon: faSliders,
             to: "/organization/settings",
             children: [
               { id: "org-settings-general", label: "General", to: "/organization/settings" },

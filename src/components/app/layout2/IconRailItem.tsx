@@ -1,4 +1,4 @@
-import { isOwnedBy, type NavItem } from "@/app/nav-config";
+import { isOwnedBy, type NavItem } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

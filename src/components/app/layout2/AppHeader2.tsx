@@ -71,7 +71,7 @@ export function AppHeader2() {
       {searchOpen &&
         createPortal(
           <div className="fixed top-[18%] left-1/2 z-50 w-full max-w-xl -translate-x-1/2 px-4">
-            <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+             <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
           </div>,
           document.body,
         )}

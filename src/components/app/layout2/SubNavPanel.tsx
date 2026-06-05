@@ -1,4 +1,4 @@
-import { resolvePageTitle, type NavItem } from "@/app/nav-config";
+import { resolvePageTitle, type NavItem } from "@/app/nav-config-si";
 import { useRouterState } from "@tanstack/react-router";
 import { SubNavItem } from "./SubNavItem";
 
@@ -6,7 +6,7 @@ interface SubNavPanelProps {
   items: NavItem[];
 }
 
-export function SubNavPanel({ items }: SubNavPanelProps) {
+export function SubNavPanel({ items }: Readonly<SubNavPanelProps>) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const title = resolvePageTitle(pathname);
 
