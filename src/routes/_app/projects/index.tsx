@@ -1,31 +1,6 @@
-import {
-  CREATE_PROJECT_ROUTE,
-  PROJECTS_PAGE_SIZE,
-  ProjectsTable,
-  useProjectTabCounts,
-  useProjectTabFilter,
-} from "@/components/app/page/projects/shared";
-import { PROJECT_TABS } from "@/components/app/page/projects/shared/constants";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  PageLayout,
-  PageLayoutHeader,
-  PageLayoutHeaderContent,
-  PageLayoutTitle,
-  PageLayoutDescription,
-  PageLayoutHeaderActions,
-  PageLayoutToolbar,
-  PageLayoutToolbarCenter,
-  PageLayoutToolbarRight,
-} from "@/components/ui/page-layout";
-import { Plus, Search, ListFilter } from "lucide-react";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { useProjects } from "@/shared/hooks/use-projects";
+import { ProjectsModule } from "@/components/app/page/projects/shared";
 import type { ProjectListTab } from "@/types/project-list";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 
 type ProjectsSearch = {
   tab: ProjectListTab;
@@ -43,88 +18,9 @@ export const Route = createFileRoute("/_app/projects/")({
 });
 
 function ProjectsPage() {
-  const { tab } = Route.useSearch();
-  const navigate = useNavigate({ from: "/projects/" });
-  const { data, isLoading } = useProjects({ page: 1, size: PROJECTS_PAGE_SIZE });
-
-  const items = data?.items ?? [];
-  const counts = useProjectTabCounts(items);
-  const filteredProjects = useProjectTabFilter(items, tab);
-
-  const setTab = (nextTab: ProjectListTab) => {
-    navigate({ to: ".", search: { tab: nextTab } }).catch(() => {});
-  };
-
-  const goToCreate = () => {
-    navigate({ to: CREATE_PROJECT_ROUTE }).catch(() => {});
-  };
-
-  const [q, setQ] = useState("");
-
   return (
     <div className="mx-auto pb-12 px-6 pt-8 w-full max-w-6xl animate-in fade-in duration-500">
-      <PageLayout>
-        <PageLayoutHeader variant="primary">
-          <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none" aria-hidden />
-          <div className="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
-
-          <PageLayoutHeaderContent>
-            <PageLayoutTitle>Projects</PageLayoutTitle>
-            <PageLayoutDescription>
-              Manage your escrow projects and milestones
-            </PageLayoutDescription>
-          </PageLayoutHeaderContent>
-
-          <PageLayoutHeaderActions>
-            <Button variant="default" size="sm" className="gap-2" onClick={goToCreate}>
-              <Plus className="w-4 h-4" />
-              Create Project
-            </Button>
-          </PageLayoutHeaderActions>
-        </PageLayoutHeader>
-
-        <Tabs value={tab} onValueChange={(next) => setTab(next as ProjectListTab)} className="px-6">
-          <PageLayoutToolbar>
-            <TabsList variant="primary">
-              {PROJECT_TABS.map((t) => (
-                <TabsTrigger key={t.value} value={t.value} className="gap-2 px-4 font-poppins">
-                  <span>{t.label}</span>
-                  <span className="rounded-full bg-background/70 px-2 py-0.5 text-xs font-semibold text-foreground">
-                    {counts[t.value]}
-                  </span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            <PageLayoutToolbarCenter>
-              <div className="relative w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-                <Input
-                  placeholder="Search projects..."
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  className="pl-9 h-9"
-                />
-              </div>
-            </PageLayoutToolbarCenter>
-
-            <PageLayoutToolbarRight>
-              <Button variant="outline" className="gap-2">
-                <ListFilter className="w-4 h-4" />
-                Show Filter
-              </Button>
-            </PageLayoutToolbarRight>
-          </PageLayoutToolbar>
-
-          {/* Table Container */}
-          <div className="mt-4">
-             {/* If filtering by Q was needed, we would apply it here. Keeping it UI only for now if hook doesn't support it out of box or we can implement basic client side filtering */}
-             {/* Note: since q is just visual UI state, ProjectsTable will receive filteredProjects from tabs */}
-            <ProjectsTable projects={filteredProjects} isLoading={isLoading} />
-          </div>
-        </Tabs>
-      </PageLayout>
+      <ProjectsModule />
     </div>
   );
 }

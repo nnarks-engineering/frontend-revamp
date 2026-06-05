@@ -13,16 +13,16 @@ import { UserProfileCard } from "@/components/app/shared/UserProfileCard";
 import { UserListCard } from "@/components/app/dashboard/UserListCard";
 import type { UserListItem } from "@/components/app/dashboard/UserListCard";
 import {
-  PageLayout,
-  PageLayoutHeader,
-  PageLayoutHeaderContent,
-  PageLayoutTitle,
-  PageLayoutDescription,
-  PageLayoutHeaderActions,
-  PageLayoutToolbar,
-  PageLayoutToolbarCenter,
-  PageLayoutToolbarRight,
-} from "@/components/ui/page-layout";
+  ModuleLayout,
+  ModuleLayoutHeader,
+  ModuleLayoutHeaderContent,
+  ModuleLayoutTitle,
+  ModuleLayoutDescription,
+  ModuleLayoutHeaderActions,
+  ModuleLayoutToolbar,
+  ModuleLayoutToolbarCenter,
+  ModuleLayoutToolbarRight,
+} from "@/components/ui/module-layout";
 import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/use-auth";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
 
@@ -82,29 +82,29 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
 
 
       <div className="flex items-start gap-6">
-      <PageLayout>
-       <PageLayoutHeader variant="tertiary">
+      <ModuleLayout>
+       <ModuleLayoutHeader variant="tertiary">
         {/* Illustrative decoration — matches TeamMembersCard / ProjectsCard pattern */}
         <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-orange-50 pointer-events-none" aria-hidden />
         {/* Decorative gradient blobs */}
         <div className="absolute -right-12 -top-12 w-32 h-32 bg-orange-10 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
-        <PageLayoutHeaderContent>
-          <PageLayoutTitle>Team Management</PageLayoutTitle>
-          <PageLayoutDescription>
+        <ModuleLayoutHeaderContent>
+          <ModuleLayoutTitle>Team Management</ModuleLayoutTitle>
+          <ModuleLayoutDescription>
             Manage your organization's members, roles, and invitations.
-          </PageLayoutDescription>
-        </PageLayoutHeaderContent>
-        <PageLayoutHeaderActions>
+          </ModuleLayoutDescription>
+        </ModuleLayoutHeaderContent>
+        <ModuleLayoutHeaderActions>
           <Button variant="tertiary" size="sm" className="gap-2" onClick={() => setInviteOpen(true)}>
             <Plus className="w-4 h-4" />
             Invite Member
           </Button>
-        </PageLayoutHeaderActions>
-      </PageLayoutHeader>
+        </ModuleLayoutHeaderActions>
+      </ModuleLayoutHeader>
         <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-6">
           {/* ── Toolbar ─────────────────────────────────────────── */}
-          <PageLayoutToolbar>
+          <ModuleLayoutToolbar>
             {/* Left: Tabs */}
             <TabsList variant="tertiary">
               <TabsTrigger value="members" className="gap-1.5 font-poppins">
@@ -119,7 +119,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
             </TabsList>
 
             {/* Center: Search */}
-            <PageLayoutToolbarCenter>
+            <ModuleLayoutToolbarCenter>
               {showSearch && (
                 <div className="relative w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
@@ -131,16 +131,16 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
                   />
                 </div>
               )}
-            </PageLayoutToolbarCenter>
+            </ModuleLayoutToolbarCenter>
 
             {/* Right: Invite button */}
-            <PageLayoutToolbarRight>
+            <ModuleLayoutToolbarRight>
               <Button variant="outline" className="gap-2">
                 <ListFilter className="w-4 h-4" />
                 Show Filter
               </Button>
-            </PageLayoutToolbarRight>
-          </PageLayoutToolbar>
+            </ModuleLayoutToolbarRight>
+          </ModuleLayoutToolbar>
 
           {/* ── Content ─────────────────────────────────────────── */}
           <TabsContent value="members" className="">
@@ -153,7 +153,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
             <InvitationsTab companyId={company.id} search={q} page={page} onPageChange={setPage} inviteOpen={inviteOpen} onInviteOpenChange={setInviteOpen} />
           </TabsContent>
         </Tabs>
-      </PageLayout>
+      </ModuleLayout>
 
       {/* Right panel */}
       <aside className="w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
@@ -170,5 +170,6 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
     </div>
   );
 }
+
 
 
