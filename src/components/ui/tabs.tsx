@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, createContext, useContext } from "react";
 import type * as React from "react";
 import { cn } from "@/shared/lib/utils";
 
-type TabsVariant = "default" | "tertiary";
+type TabsVariant = "default" | "tertiary" | "primary";
 const TabsVariantContext = createContext<TabsVariant>("default");
 
 function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
@@ -60,6 +60,7 @@ function TabsList({
           "relative inline-flex h-9 w-fit gap-1 rounded-md p-1 text-muted-foreground",
           variant === "default" && "bg-slate-100",
           variant === "tertiary" && "bg-tertiary-50",
+          variant === "primary" && "bg-primary-50",
           className,
         )}
         {...props}
@@ -70,6 +71,7 @@ function TabsList({
             "pointer-events-none absolute inset-y-1 z-1 rounded-[0.35rem] transition-[left,width] duration-300 ease-in-out",
             variant === "default" && "bg-primary-300",
             variant === "tertiary" && "bg-tertiary-200",
+            variant === "primary" && "bg-primary-200",
           )}
           style={{ left: indicator.left, width: indicator.width }}
         />
@@ -91,6 +93,7 @@ function TabsTrigger({
         "relative z-2 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md border-transparent px-3 py-1 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         variant === "default" && "data-[state=active]:text-foreground",
         variant === "tertiary" && "data-[state=active]:text-tertiary-800",
+        variant === "primary" && "data-[state=active]:text-primary-800",
         className,
       )}
       {...props}

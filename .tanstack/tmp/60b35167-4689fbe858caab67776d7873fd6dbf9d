@@ -44,7 +44,7 @@ export const Route = createFileRoute("/_app/projects/")({
 
 function ProjectsPage() {
   const { tab } = Route.useSearch();
-  const navigate = useNavigate({ from: "/projects/" });
+  const navigate = useNavigate({ from: "/_app/projects/" });
   const { data, isLoading } = useProjects({ page: 1, size: PROJECTS_PAGE_SIZE });
 
   const items = data?.items ?? [];
