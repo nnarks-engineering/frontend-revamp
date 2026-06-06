@@ -33,9 +33,7 @@ function TabsList({
         '[data-slot="tabs-trigger"][data-state="active"]',
       );
       if (!active) return;
-      const listRect = el.getBoundingClientRect();
-      const tabRect = active.getBoundingClientRect();
-      setIndicator({ left: tabRect.left - listRect.left, width: tabRect.width });
+      setIndicator({ left: active.offsetLeft, width: active.offsetWidth });
     };
 
     update();
@@ -57,7 +55,7 @@ function TabsList({
         ref={ref}
         data-slot="tabs-list"
         className={cn(
-          "relative inline-flex h-9 w-fit gap-1 rounded-md p-1 text-muted-foreground",
+          "relative inline-flex h-9 w-fit max-w-full overflow-x-auto overflow-y-hidden scrollbar-hide gap-1 rounded-md p-1 text-muted-foreground",
           variant === "default" && "bg-slate-100",
           variant === "tertiary" && "bg-tertiary-bg",
           variant === "primary" && "bg-primary-bg",

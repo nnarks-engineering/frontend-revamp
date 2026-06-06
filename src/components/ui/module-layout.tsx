@@ -84,7 +84,7 @@ const ModuleLayoutToolbar = React.forwardRef<HTMLDivElement, React.HTMLAttribute
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex items-center gap-3 rounded-t-lg p-4 ", className)}
+      className={cn("flex flex-col @2xl:flex-row @2xl:items-center items-stretch gap-3 rounded-t-lg p-4", className)}
       {...props}
     />
   )
@@ -93,14 +93,14 @@ ModuleLayoutToolbar.displayName = "ModuleLayoutToolbar"
 
 const ModuleLayoutToolbarCenter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("flex-1 flex justify-center", className)} {...props} />
+    <div ref={ref} className={cn("flex-1 flex w-full @2xl:w-auto @2xl:justify-center", className)} {...props} />
   )
 )
 ModuleLayoutToolbarCenter.displayName = "ModuleLayoutToolbarCenter"
 
 const ModuleLayoutToolbarRight = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("shrink-0 flex items-center gap-2", className)} {...props} />
+    <div ref={ref} className={cn("shrink-0 flex items-center gap-2 w-full @2xl:w-auto @2xl:justify-end", className)} {...props} />
   )
 )
 ModuleLayoutToolbarRight.displayName = "ModuleLayoutToolbarRight"

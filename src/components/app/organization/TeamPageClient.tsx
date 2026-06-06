@@ -108,7 +108,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
           <div className="border rounded-md">
           <ModuleLayoutToolbar className="flex-wrap gap-2">
             {/* Left: Tabs */}
-            <TabsList variant="tertiary" className="flex-wrap">
+            <TabsList variant="tertiary">
               <TabsTrigger value="members" className="gap-1.5 font-poppins">
                 Members
               </TabsTrigger>

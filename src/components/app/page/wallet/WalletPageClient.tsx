@@ -227,7 +227,7 @@ export function WalletPageClient() {
           <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-4 md:px-6">
             <div className="border rounded-md">
               <ModuleLayoutToolbar className="flex-wrap gap-2">
-                <TabsList variant="primary" className="flex-wrap">
+                <TabsList variant="primary">
                   <TabsTrigger value="all" className="gap-1.5 font-poppins">
                     All
                   </TabsTrigger>
