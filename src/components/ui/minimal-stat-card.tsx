@@ -22,7 +22,7 @@ export const MinimalStatCard = React.forwardRef<HTMLElement, MinimalStatCardProp
           {label}
         </p>
         <div className="flex items-end justify-between gap-4 pt-6">
-          <p className="text-3xl leading-none font-semibold text-foreground overflow-clip group-even:text-tertiary-fg-hover group-odd:text-primary-fg-hover">
+          <p className="text-2xl leading-none font-semibold font-millik text-foreground overflow-clip group-even:text-tertiary-fg-hover group-odd:text-primary-fg-hover">
             {value}
           </p>
           {action && (

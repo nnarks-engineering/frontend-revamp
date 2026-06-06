@@ -9,6 +9,7 @@ import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { Link } from "@tanstack/react-router";
 import { useMemo } from "react";
+import NoMembersSvg from "@/assets/svg/no-users.svg?react"
 
 interface TeamActionCardProps {
   className?: string;
@@ -56,15 +57,18 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
             <Loader2 className="size-5 text-muted-foreground animate-spin" />
           </div>
         ) : totalCount === 0 ? (
-          <div className="flex flex-col items-center justify-center text-center py-3 gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <UserPlus className="w-5 h-5 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground">No team members yet</p>
+          <div className="flex items-center justify-center gap-4">
+              <NoMembersSvg className="size-20 text-primary" />
+
+            <div className="space-y-2 place-content-start">
               <p className="text-xs text-muted-foreground mt-0.5">
                 Invite people to start collaborating.
               </p>
+              <Link to={"/organization/team" as any}>
+              <Button variant="primary" size="sm" className="place-self-start">
+                New member
+              </Button>
+            </Link>
             </div>
           </div>
         ) : (
@@ -168,7 +172,7 @@ function ActionRow({
     return (
       <Link
         to={to as any}
-      className="flex items-center overflow-hidden  gap-3 px-3.5  pl-0 rounded-xl border border-dashed border-background-space hover:bg-muted/50 transition-colors text-left w-full group"
+      className="flex items-center overflow-hidden  gap-3 px-3.5  pl-0 rounded-sm border border-dashed border-background-space hover:bg-muted/50 transition-colors text-left w-full group"
       >
         {content}
       </Link>

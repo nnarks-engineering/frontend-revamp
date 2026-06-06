@@ -1,14 +1,16 @@
 import { cn } from "@/shared/lib/utils";
 import type { DocumentFileType } from "@/types/enums";
-import { FileText, FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-react";
+import { FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-react";
+import PdfSvg from "@/assets/svg/pdf.svg?react";
+import ExcelSvg from "@/assets/svg/excel.svg?react";
 
 /**
- * Returns a color and icon for each document file type.
+ * Returns a color and icon for each document file type (fallback).
  */
 function getFileTypeMeta(fileType: DocumentFileType) {
   switch (fileType) {
     case "PDF":
-      return { color: "text-red-600 bg-red-50", label: "PDF", Icon: FileText };
+      return { color: "text-red-600 bg-red-50", label: "PDF", Icon: File };
     case "IMAGE":
       return { color: "text-blue-600 bg-blue-50", label: "IMG", Icon: FileImage };
     case "VIDEO":
@@ -31,10 +33,18 @@ interface DocumentFileIconProps {
 }
 
 /**
- * Renders a stylized file icon with a file-type badge.
- * Matches the reference design: large file silhouette + small colored badge.
+ * Renders a stylized file icon.
+ * Uses dedicated SVGs for PDF and Excel, and a fallback silhouette for the rest.
  */
 export function DocumentFileIcon({ fileType, className }: DocumentFileIconProps) {
+  if (fileType === "PDF") {
+    return <PdfSvg className={cn("shrink-0 size-8", className)} />;
+  }
+
+  if (fileType === "SPREADSHEET") {
+    return <ExcelSvg className={cn("shrink-0 size-8", className)} />;
+  }
+
   const { color, label } = getFileTypeMeta(fileType);
 
   return (

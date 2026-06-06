@@ -37,46 +37,67 @@ export function DocumentsPageClient() {
   };
 
   return (
-    <div className="mx-auto p-4 @md:p-6 space-y-6 @container max-w-350">
-      <ModuleLayout>
-        <ModuleLayoutHeader variant="primary">
-          <RoundingLine
-            className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none"
-            aria-hidden
-          />
-          <div className="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
-          <ModuleLayoutHeaderContent>
-            <ModuleLayoutTitle>Documents</ModuleLayoutTitle>
-            <ModuleLayoutDescription>
-              View and manage all project documents, contracts, and files.
-            </ModuleLayoutDescription>
-          </ModuleLayoutHeaderContent>
-          <ModuleLayoutHeaderActions>
-            <Button variant="primary" size="sm" className="gap-2">
-              <Upload className="w-4 h-4" />
-              Upload File
-            </Button>
-          </ModuleLayoutHeaderActions>
-        </ModuleLayoutHeader>
+    <div className="mx-auto h-full">
+      <ModuleLayout className="h-full rounded-none">
+        <div className="flex h-full overflow-hidden">
+          
+          {/* SIDEBAR */}
+          <div className="w-full md:w-64 shrink-0 flex-col border-r border-border/60 bg-background/50 hidden md:flex">
+            <ModuleLayoutHeader variant="primary" className="border-b border-border/60 p-6 pb-6 rounded-none relative overflow-hidden">
+              <RoundingLine
+                className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none"
+                aria-hidden
+              />
+              <div className="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
+              <ModuleLayoutHeaderContent className="relative z-10">
+                <ModuleLayoutTitle className="text-xl">Documents</ModuleLayoutTitle>
+                <ModuleLayoutDescription>
+                  Manage project files
+                </ModuleLayoutDescription>
+              </ModuleLayoutHeaderContent>
+            </ModuleLayoutHeader>
 
-        <div className="flex flex-col @2xl:flex-row min-h-[400px]">
-          {/* Category sidebar */}
-          <aside className="shrink-0 @2xl:w-52 @2xl:border-r border-b @2xl:border-b-0 border-border/40 p-3 @2xl:py-4">
-            <DocumentCategoryFilter
-              activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
-              className="@2xl:flex-col flex-row flex-wrap @2xl:flex-nowrap"
-            />
-          </aside>
+            <div className="flex-1 overflow-y-auto p-4 scrollbar-hide">
+              <DocumentCategoryFilter
+                activeCategory={activeCategory}
+                onCategoryChange={setActiveCategory}
+                className="flex-col"
+              />
+            </div>
+          </div>
 
-          {/* Document list */}
-          <DocumentList
-            documents={documents}
-            isLoading={isLoading}
-            onDownload={handleDownload}
-            title={activeCategoryLabel}
-          />
+          {/* MAIN CONTENT AREA */}
+          <div className="relative min-w-0 flex-1 flex flex-col overflow-hidden bg-background">
+            <div className="px-4 md:px-6 py-4 border-b border-border/60 flex items-center justify-between bg-background z-10 shrink-0">
+              <h2 className="text-lg font-bold text-foreground">{activeCategoryLabel}</h2>
+              <Button variant="primary" size="sm" className="gap-2">
+                <Upload className="w-4 h-4" />
+                <span className="hidden sm:inline">Upload</span>
+              </Button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto scrollbar-hide">
+              {/* For mobile, show the filter here as well maybe? We can keep it simple for now and rely on desktop */}
+              {/* Mobile filter (hidden on desktop) */}
+              <div className="md:hidden border-b border-border/40 p-3 bg-muted/20 shrink-0">
+                <DocumentCategoryFilter
+                  activeCategory={activeCategory}
+                  onCategoryChange={setActiveCategory}
+                  className="flex-row flex-wrap"
+                />
+              </div>
+
+              {/* In DocumentList we don't need the internal title since we render it in the top bar */}
+              <DocumentList
+                documents={documents}
+                isLoading={isLoading}
+                onDownload={handleDownload}
+                title="" // hide internal title
+              />
+            </div>
+          </div>
+
         </div>
       </ModuleLayout>
     </div>

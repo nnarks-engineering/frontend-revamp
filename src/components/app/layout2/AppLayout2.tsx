@@ -47,17 +47,17 @@ function AppLayout2Inner() {
   return (
     <div className="h-dvh fixed font-poppins @container inset-0 flex overflow-hidden bg-background">
       {/* ── Icon rail (hidden on mobile) ─────────────────────────────────── */}
-      <div className="hidden md:flex shrink-0">
+      <div className="hidden md:flex shrink-0 relative z-10">
         <IconRail subPanelOpen={hasSubItems} />
       </div>
 
       {/* ── Right column: header + (sub-panel | content) ──────────────── */}
-      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 relative z-20">
         {/* Header spans the full right area */}
         <AppHeader2 onMenuToggle={() => setMobileMenuOpen(true)} />
 
         {/* Body row: optional sub-nav panel + page content */}
-        <div className="flex-1 flex overflow-hidden min-h-0 bg-background-space">
+        <div className="flex-1 flex min-h-0 bg-background-space">
           {/* Sub-nav panel (hidden on mobile) */}
           <div className="hidden md:flex shrink-0">
             {hasSubItems && subItems && <SubNavPanel items={subItems} />}

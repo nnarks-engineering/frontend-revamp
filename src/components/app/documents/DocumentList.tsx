@@ -18,9 +18,11 @@ export function DocumentList({ documents, isLoading, onDownload, title = "All Fi
   return (
     <div className="flex-1 min-w-0">
       {/* Section title */}
-      <div className="px-4 md:px-6 py-4 border-b border-border/40">
-        <h2 className="text-lg font-bold text-foreground">{title}</h2>
-      </div>
+      {title && (
+        <div className="px-4 md:px-6 py-4 border-b border-border/40">
+          <h2 className="text-lg font-bold text-foreground">{title}</h2>
+        </div>
+      )}
 
       {/* Content */}
       {isLoading ? (

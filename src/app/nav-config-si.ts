@@ -108,12 +108,6 @@ export const NAV_GROUPS: NavGroup[] = [
             to: "/projects",
           },
           {
-            id: "projects-milestones",
-            label: "Milestones",
-            icon: faLock,
-            to: "/projects/milestones",
-          },
-          {
             id: "projects-tasks",
             label: "Tasks & Timeline",
             icon: faBell,

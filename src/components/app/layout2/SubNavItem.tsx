@@ -20,7 +20,7 @@ export function SubNavItem({ item, depth = 0 }: Readonly<SubNavItemProps>) {
   const [open, setOpen] = useState(isSectionActive);
 
   const itemBase = cn(
-    "w-full flex items-center gap-2.5 rounded-lg text-sm transition-colors duration-150 select-none",
+    "w-full flex items-center gap-2.5 rounded-sm text-sm transition-colors duration-150 select-none",
     depth === 0 ? "px-3 py-2" : "px-2.5 py-1.5 text-[13px]",
   );
 

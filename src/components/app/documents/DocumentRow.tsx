@@ -27,7 +27,7 @@ export function DocumentRow({ document: doc, onDownload, className }: DocumentRo
   return (
     <div
       className={cn(
-        "flex items-center gap-4 px-4 md:px-6 py-4 transition-colors hover:bg-muted/30 border-b border-border/40 last:border-0",
+        "flex items-center gap-4 px-4 md:px-6 py-3 transition-colors hover:bg-muted/30 border-b border-border/40 last:border-0",
         className,
       )}
     >
@@ -36,8 +36,8 @@ export function DocumentRow({ document: doc, onDownload, className }: DocumentRo
 
       {/* Name + meta */}
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-foreground truncate">{doc.name}</p>
-        <p className="text-xs text-muted-foreground mt-0.5">
+        <p className="text-sm text-foreground truncate">{doc.name}</p>
+        <p className="text-xs text-muted-foreground ">
           {formatFileSize(doc.size_bytes)} • {doc.file_type}
         </p>
       </div>

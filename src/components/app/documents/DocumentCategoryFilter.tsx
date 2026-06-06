@@ -44,13 +44,13 @@ export function DocumentCategoryFilter({
             type="button"
             onClick={() => onCategoryChange(id)}
             className={cn(
-              "flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left",
+              "flex items-center gap-2.5 px-3 py-2 rounded-sm text-sm font-medium transition-colors text-left",
               isActive
                 ? "bg-primary/10 text-primary"
                 : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
             )}
           >
-            <Icon className="w-4 h-4 shrink-0" />
+            {/* <Icon className="w-4 h-4 shrink-0" /> */}
             {label}
           </button>
         );
