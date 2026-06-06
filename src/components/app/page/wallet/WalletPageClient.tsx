@@ -175,7 +175,7 @@ export function WalletPageClient() {
   }
 
   return (
-    <div className="mx-auto pb-12 px-6 space-y-6 @container">
+    <div className="mx-auto p-4 space-y-6 @container">
       {/* Stats Row */}
       <Card className="grid grid-cols-1 @sm:grid-cols-2 @5xl:grid-cols-4 gap-5">
         <MinimalStatCard
@@ -269,12 +269,12 @@ export function WalletPageClient() {
                     <Loader2 className="w-6 h-6 animate-spin text-primary" />
                   </div>
                 ) : filteredTransactions.length === 0 ? (
-                  <EmptyState 
-                    svgIcon={NoMoneySvg} 
-                    svgClassName="w-32" 
-                    title="No transactions yet" 
-                    description="Fund your wallet or start a project milestone to see activity here." 
-                    className="py-20" 
+                  <EmptyState
+                    svgIcon={NoMoneySvg}
+                    svgClassName="w-32"
+                    title="No transactions yet"
+                    description="Fund your wallet or start a project milestone to see activity here."
+                    className="py-20"
                   />
                 ) : (
                   <div className="flex flex-col">

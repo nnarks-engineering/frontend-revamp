@@ -54,7 +54,7 @@ export function Step5Partners() {
             selected={state.partnerSelection === "invite"}
             title="Invite my own supervisor"
             iconClassName={cn(
-              "w-16 p-2 items-center justify-center mb-3",
+              "w-16 p-4 items-center justify-center mb-3",
               state.partnerSelection === "invite" ? "text-primary" : "text-muted-foreground"
             )}
             icon={Mail}
@@ -65,7 +65,7 @@ export function Step5Partners() {
             selected={state.partnerSelection === "later"}
             title="Decide later"
             iconClassName={cn(
-              "w-16 p-2 items-center justify-center mb-3",
+              "w-16 p-4 items-center justify-center mb-3",
               state.partnerSelection === "later" ? "text-primary" : "text-muted-foreground"
             )}
             icon={Clock}
@@ -76,45 +76,12 @@ export function Step5Partners() {
             selected={state.partnerSelection === "verified"}
             title="Verified Nnarks partner"
             iconClassName={cn(
-              "w-16 p-2 items-center justify-center mb-3",
+              "w-16 p-4 items-center justify-center mb-3",
               state.partnerSelection === "verified" ? "text-primary" : "text-muted-foreground"
             )}
             icon={ShieldCheck}
           />
 
-          {/* <button
-            type="button"
-            onClick={() => updateState({ partnerSelection: "invite" })}
-            className={cn(
-              "flex flex-col items-center text-center p-5 rounded-xl border-2 transition-all",
-              state.partnerSelection === "invite"
-                ? "border-primary bg-primary/5 shadow-sm"
-                : "border-border/60 hover:border-border bg-background",
-            )}
-          >
-            <Mail className={cn(
-              "w-8 h-8 mb-3",
-              state.partnerSelection === "invite" ? "text-primary" : "text-muted-foreground"
-            )} />
-            <h3 className="font-semibold text-foreground mb-1 text-sm">Invite my own partner</h3>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => updateState({ partnerSelection: "later" })}
-            className={cn(
-              "flex flex-col items-center text-center p-5 rounded-xl border-2 transition-all",
-              state.partnerSelection === "later"
-                ? "border-primary bg-primary/5 shadow-sm"
-                : "border-border/60 hover:border-border bg-background",
-            )}
-          >
-            <Clock className={cn(
-              "w-8 h-8 mb-3",
-              state.partnerSelection === "later" ? "text-primary" : "text-muted-foreground"
-            )} />
-            <h3 className="font-semibold text-foreground mb-1 text-sm">Decide later</h3>
-          </button> */}
         </div>
 
         {state.partnerSelection === "invite" && (
@@ -159,7 +126,7 @@ export function Step5Partners() {
           <h3 className="text-lg font-bold text-foreground">Project supervision</h3>
 
           <label className={cn(
-            "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",
+            "flex items-start gap-3 p-4 rounded-lg cursor-pointer transition-all",
             state.supervisionRequired ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
           )}>
             <div className="flex h-5 items-center">

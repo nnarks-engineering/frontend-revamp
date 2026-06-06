@@ -32,14 +32,14 @@ import {
   verifyPasswordSignup,
 } from "@/shared/api/auth";
 
-import { getMe, getMyProfile } from "@/shared/api/users";
+import { getMe, getMyProfile, updateMyProfile } from "@/shared/api/users";
 import type {
   MagicLinkRequest,
   MagicVerifyRequest,
   PasswordSignupRequest,
   PasswordSignupVerifyRequest,
 } from "@/types/auth";
-import type { ProfileRead, UserRead } from "@/types/users";
+import type { ProfileRead, ProfileUpdate, UserRead } from "@/types/users";
 
 // ═══════════════════════════════════════════════════════════════════
 // Queries
@@ -69,6 +69,18 @@ export function useCurrentProfile() {
     enabled: isAuthenticated(),
     staleTime: 1000 * 60 * 5,
     retry: false,
+  });
+}
+
+/** Update the current user's profile. */
+export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: ProfileUpdate) => updateMyProfile(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
+    },
   });
 }
 

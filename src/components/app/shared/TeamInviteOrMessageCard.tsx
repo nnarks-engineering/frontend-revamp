@@ -129,6 +129,7 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
             iconClass="bg-primary/10 text-primary"
             label="Message team"
             sublabel="Send a broadcast or DM"
+            to={"/inbox" as any}
           />
         </div>
 
@@ -167,7 +168,7 @@ function ActionRow({
     return (
       <Link
         to={to as any}
-        className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-dashed border-border/50 hover:bg-muted/50 transition-colors text-left w-full group"
+      className="flex items-center overflow-hidden  gap-3 px-3.5  pl-0 rounded-xl border border-dashed border-background-space hover:bg-muted/50 transition-colors text-left w-full group"
       >
         {content}
       </Link>
@@ -176,6 +177,9 @@ function ActionRow({
 
   return (
     <button
+    onClick={() => {
+
+    }}
       type="button"
       className="flex items-center overflow-hidden  gap-3 px-3.5  pl-0 rounded-xl border border-dashed border-background-space hover:bg-muted/50 transition-colors text-left w-full group"
     >

@@ -115,7 +115,7 @@ function InboxIndexPage() {
             </div>
 
             {/* MAIN CONTENT AREA */}
-            <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden bg-background/30">
+            <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden bg-background-space">
               {activeThread ? (
                 <div className="relative flex min-h-0 flex-1 flex-col">
                   <ChatMessages
