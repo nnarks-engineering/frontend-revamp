@@ -14,6 +14,7 @@ import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
+import { Route as ProjectsCreateRouteImport } from './routes/projects.create'
 import { Route as OnboardingOrgRouteImport } from './routes/onboarding/org'
 import { Route as LandingModulesRouteImport } from './routes/_landing/modules'
 import { Route as LandingFinancialsRouteImport } from './routes/_landing/financials'
@@ -42,7 +43,6 @@ import { Route as CompaniesInvitationsAcceptRouteImport } from './routes/compani
 import { Route as AuthVendorVerifyRouteImport } from './routes/_auth/vendor/verify'
 import { Route as AuthVendorRegisterRouteImport } from './routes/_auth/vendor/register'
 import { Route as AuthVendorLoginRouteImport } from './routes/_auth/vendor/login'
-import { Route as AppProjectsCreateRouteImport } from './routes/_app/projects/create'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
 import { Route as AppOrganizationTeamRouteImport } from './routes/_app/organization/team'
 import { Route as AppInboxNnarksAiRouteImport } from './routes/_app/inbox/nnarks-ai'
@@ -74,6 +74,11 @@ const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LandingRoute,
+} as any)
+const ProjectsCreateRoute = ProjectsCreateRouteImport.update({
+  id: '/projects/create',
+  path: '/projects/create',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingOrgRoute = OnboardingOrgRouteImport.update({
   id: '/org',
@@ -231,11 +236,6 @@ const AuthVendorLoginRoute = AuthVendorLoginRouteImport.update({
   path: '/vendor/login',
   getParentRoute: () => AuthRoute,
 } as any)
-const AppProjectsCreateRoute = AppProjectsCreateRouteImport.update({
-  id: '/projects/create',
-  path: '/projects/create',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   id: '/projects/$projectId',
   path: '/projects/$projectId',
@@ -309,11 +309,11 @@ export interface FileRoutesByFullPath {
   '/financials': typeof LandingFinancialsRoute
   '/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
+  '/projects/create': typeof ProjectsCreateRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/organization/team': typeof AppOrganizationTeamRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
-  '/projects/create': typeof AppProjectsCreateRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
@@ -349,11 +349,11 @@ export interface FileRoutesByTo {
   '/financials': typeof LandingFinancialsRoute
   '/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
+  '/projects/create': typeof ProjectsCreateRoute
   '/inbox/ai': typeof AppInboxAiRoute
   '/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/organization/team': typeof AppOrganizationTeamRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
-  '/projects/create': typeof AppProjectsCreateRoute
   '/vendor/login': typeof AuthVendorLoginRoute
   '/vendor/register': typeof AuthVendorRegisterRoute
   '/vendor/verify': typeof AuthVendorVerifyRoute
@@ -394,12 +394,12 @@ export interface FileRoutesById {
   '/_landing/financials': typeof LandingFinancialsRoute
   '/_landing/modules': typeof LandingModulesRoute
   '/onboarding/org': typeof OnboardingOrgRoute
+  '/projects/create': typeof ProjectsCreateRoute
   '/_landing/': typeof LandingIndexRoute
   '/_app/inbox/ai': typeof AppInboxAiRoute
   '/_app/inbox/nnarks-ai': typeof AppInboxNnarksAiRoute
   '/_app/organization/team': typeof AppOrganizationTeamRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
-  '/_app/projects/create': typeof AppProjectsCreateRoute
   '/_auth/vendor/login': typeof AuthVendorLoginRoute
   '/_auth/vendor/register': typeof AuthVendorRegisterRoute
   '/_auth/vendor/verify': typeof AuthVendorVerifyRoute
@@ -439,11 +439,11 @@ export interface FileRouteTypes {
     | '/financials'
     | '/modules'
     | '/onboarding/org'
+    | '/projects/create'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
     | '/organization/team'
     | '/projects/$projectId'
-    | '/projects/create'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
@@ -479,11 +479,11 @@ export interface FileRouteTypes {
     | '/financials'
     | '/modules'
     | '/onboarding/org'
+    | '/projects/create'
     | '/inbox/ai'
     | '/inbox/nnarks-ai'
     | '/organization/team'
     | '/projects/$projectId'
-    | '/projects/create'
     | '/vendor/login'
     | '/vendor/register'
     | '/vendor/verify'
@@ -523,12 +523,12 @@ export interface FileRouteTypes {
     | '/_landing/financials'
     | '/_landing/modules'
     | '/onboarding/org'
+    | '/projects/create'
     | '/_landing/'
     | '/_app/inbox/ai'
     | '/_app/inbox/nnarks-ai'
     | '/_app/organization/team'
     | '/_app/projects/$projectId'
-    | '/_app/projects/create'
     | '/_auth/vendor/login'
     | '/_auth/vendor/register'
     | '/_auth/vendor/verify'
@@ -550,6 +550,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   LandingRoute: typeof LandingRouteWithChildren
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  ProjectsCreateRoute: typeof ProjectsCreateRoute
   CompaniesInvitationsAcceptRoute: typeof CompaniesInvitationsAcceptRoute
 }
 
@@ -589,6 +590,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof LandingIndexRouteImport
       parentRoute: typeof LandingRoute
+    }
+    '/projects/create': {
+      id: '/projects/create'
+      path: '/projects/create'
+      fullPath: '/projects/create'
+      preLoaderRoute: typeof ProjectsCreateRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/onboarding/org': {
       id: '/onboarding/org'
@@ -786,13 +794,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthVendorLoginRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/_app/projects/create': {
-      id: '/_app/projects/create'
-      path: '/projects/create'
-      fullPath: '/projects/create'
-      preLoaderRoute: typeof AppProjectsCreateRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/projects/$projectId': {
       id: '/_app/projects/$projectId'
       path: '/projects/$projectId'
@@ -898,7 +899,6 @@ interface AppRouteChildren {
   AppOrgRoute: typeof AppOrgRoute
   AppOrganizationRoute: typeof AppOrganizationRouteWithChildren
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
-  AppProjectsCreateRoute: typeof AppProjectsCreateRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
   AppProjectsDisputesIndexRoute: typeof AppProjectsDisputesIndexRoute
@@ -917,7 +917,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppOrgRoute: AppOrgRoute,
   AppOrganizationRoute: AppOrganizationRouteWithChildren,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
-  AppProjectsCreateRoute: AppProjectsCreateRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
   AppProjectsDisputesIndexRoute: AppProjectsDisputesIndexRoute,
@@ -995,6 +994,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   LandingRoute: LandingRouteWithChildren,
   OnboardingRoute: OnboardingRouteWithChildren,
+  ProjectsCreateRoute: ProjectsCreateRoute,
   CompaniesInvitationsAcceptRoute: CompaniesInvitationsAcceptRoute,
 }
 export const routeTree = rootRouteImport

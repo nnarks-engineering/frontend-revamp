@@ -30,6 +30,16 @@
   --active-background: var(--primary-50);
   --active-foreground: var(--primary-600);
 
+  --primary-bg: var(--primary-50);
+  --primary-bg-hover: var(--primary-100);
+  --primary-fg: var(--primary-900);
+  --primary-fg-hover: var(--primary-700);
+
+  --tertiary-bg: var(--tertiary-50);
+  --tertiary-bg-hover: var(--tertiary-100);
+  --tertiary-fg: var(--tertiary-900);
+  --tertiary-fg-hover: var(--tertiary-700);
+
   --popover: #ffffff;
   --popover-foreground: #0d1f2d;
 
@@ -108,7 +118,7 @@
 .dark {
   --background: var(--secondary-950);
   /* Dark shell */
-  --foreground: var(--secondary-100);
+  --foreground: var(--color-slate-400);
   --card: #0d1f2d;
   --card-foreground: #f4f9fb;
   --popover: #0d1f2d;
@@ -118,7 +128,7 @@
   --secondary: #3887b3;
   --secondary-foreground: #ffffff;
   --muted: #1e293b;
-  --muted-foreground: var(--secondary-100);
+  --muted-foreground: var(--color-slate-500);
   --accent: #1e293b;
   --accent-foreground: #f4f9fb;
   --destructive: #c0392b;
@@ -133,6 +143,16 @@
   --light-icon: #62748e;
   --active-background: var(--primary-900);
   --active-foreground: var(--primary-200);
+
+  --primary-bg: var(--primary-950);
+  --primary-bg-hover: var(--primary-900);
+  --primary-fg: var(--primary-100);
+  --primary-fg-hover: var(--primary-300);
+
+  --tertiary-bg: var(--tertiary-950);
+  --tertiary-bg-hover: var(--tertiary-900);
+  --tertiary-fg: var(--tertiary-100);
+  --tertiary-fg-hover: var(--tertiary-300);
 
 }
 
@@ -219,6 +239,16 @@
   --color-active: var(--secondary-600);
   --color-active-foreground: var(--active-foreground);
   --color-active-background: var(--active-background);
+
+    --color-primary-bg: var(--primary-bg);
+  --color-primary-bg-hover: var(--primary-bg-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-fg-hover: var(--primary-fg-hover);
+
+  --color-tertiary-bg: var(--tertiary-bg);
+  --color-tertiary-bg-hover: var(--tertiary-bg-hover);
+  --color-tertiary-fg: var(--tertiary-fg);
+  --color-tertiary-fg-hover: var(--tertiary-fg-hover);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

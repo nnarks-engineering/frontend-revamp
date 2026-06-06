@@ -27,7 +27,7 @@ export function AppLayout() {
 function AppLayoutInner() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const { isOpen: isRightPanelOpen, close: closeRightPanel, open: openRightPanel, content: rightPanelContent } =
+  const { isOpen: isRightPanelOpen, close: closeRightPanel, open: openRightPanel, content: rightPanelContent, icon: FabIcon } =
     useRightPanelContext();
 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -137,7 +137,7 @@ function AppLayoutInner() {
           className="fixed bottom-4 right-4 z-40 lg:hidden h-11 w-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 active:scale-95 transition-all"
           aria-label="Open right panel"
         >
-          <PanelRightOpen className="h-5 w-5 mx-auto" />
+          {FabIcon ? <FabIcon className="h-5 w-5 mx-auto" /> : <PanelRightOpen className="h-5 w-5 mx-auto" />}
         </button>
       )}
     </div>

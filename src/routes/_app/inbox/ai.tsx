@@ -25,7 +25,7 @@ function AiChatPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useRightPanel(<AiRecentPanel />, { openOnMount: true });
+  useRightPanel(<AiRecentPanel />, { openOnMount: true, icon: History });
 
   // Auto-focus input on mount
   useEffect(() => {

@@ -104,6 +104,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       </ModuleLayoutHeader>
         <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-6">
           {/* ── Toolbar ─────────────────────────────────────────── */}
+          <div className="border rounded-md">
           <ModuleLayoutToolbar>
             {/* Left: Tabs */}
             <TabsList variant="tertiary">
@@ -152,6 +153,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
           <TabsContent value="invitations" className="">
             <InvitationsTab companyId={company.id} search={q} page={page} onPageChange={setPage} inviteOpen={inviteOpen} onInviteOpenChange={setInviteOpen} />
           </TabsContent>
+          </div>
         </Tabs>
       </ModuleLayout>
 

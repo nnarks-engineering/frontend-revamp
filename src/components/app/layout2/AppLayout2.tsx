@@ -32,6 +32,7 @@ function AppLayout2Inner() {
     close: closeRightPanel,
     open: openRightPanel,
     content: rightPanelContent,
+    icon: FabIcon,
   } = useRightPanelContext();
 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -41,7 +42,7 @@ function AppLayout2Inner() {
   const canShowFab = !!rightPanelContent && !isRightPanelOpen;
 
   return (
-    <div className="h-dvh fixed font-poppins inset-0 flex overflow-hidden bg-background">
+    <div className="h-dvh fixed font-poppins @container inset-0 flex overflow-hidden bg-background">
       {/* ── Icon rail (always visible) ─────────────────────────────────── */}
       <IconRail subPanelOpen={hasSubItems} />
 
@@ -56,7 +57,7 @@ function AppLayout2Inner() {
           {hasSubItems && subItems && <SubNavPanel items={subItems} />}
 
           {/* Page content */}
-          <div className="flex-1 p-4 md:p-6 overflow-auto min-w-0">
+          <div className="flex-1 overflow-auto min-w-0">
             <LocationBanner />
             <Outlet />
           </div>
@@ -81,7 +82,7 @@ function AppLayout2Inner() {
           className="fixed bottom-4 right-4 z-40 h-11 w-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 active:scale-95 transition-all"
           aria-label="Open panel"
         >
-          <PanelRightOpen className="h-5 w-5 mx-auto" />
+          {FabIcon ? <FabIcon className="h-5 w-5 mx-auto" /> : <PanelRightOpen className="h-5 w-5 mx-auto" />}
         </button>
       )}
 

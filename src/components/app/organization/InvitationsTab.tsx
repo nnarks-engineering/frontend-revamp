@@ -7,6 +7,7 @@ import {
 } from "@/shared/hooks/use-company-members";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { EmptyState, Pagination } from "@/components/app/shared";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import {
   Dialog,
@@ -165,7 +166,7 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
       </Dialog>
 
       {/* ── Table ───────────────────────────────────────────────────── */}
-      <div className="rounded-xl border border-border/40 overflow-hidden">
+      <div className="overflow-hidden bg-background">
         <Table className="table-fixed w-full">
           <colgroup>
             <col className="w-[30%]" />
@@ -175,7 +176,7 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
             <col className="w-[15%]" />
           </colgroup>
           <TableHeader>
-            <TableRow className="hover:bg-transparent bg-muted/5">
+            <TableRow className="hover:bg-transparent">
               <TableHead className="font-bold text-foreground">Email</TableHead>
               <TableHead className="font-bold text-foreground">Role</TableHead>
               <TableHead className="font-bold text-foreground">Date Invited</TableHead>
@@ -198,9 +199,12 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
               }
               if (pageItems.length === 0) {
                 return (
-                  <TableRow>
+                  <TableRow className="hover:bg-transparent">
                     <TableCell colSpan={5} className="py-16 text-center text-muted-foreground">
-                      {search ? `No members matching "${search}".` : "No members found."}
+                      <EmptyState
+                        title="No members found"
+                        description={search ? `No members matching "${search}".` : "No members found."}
+                      />
                     </TableCell>
                   </TableRow>
                 );
@@ -247,31 +251,11 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
       </div>
 
       {/* ── Pagination ──────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span className="font-medium">Page {safePage} of {totalPages}</span>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 px-3 gap-1"
-            onClick={() => onPageChange(safePage - 1)}
-            disabled={safePage <= 1}
-          >
-            <ChevronLeft className="w-3.5 h-3.5" />
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 px-3 gap-1"
-            onClick={() => onPageChange(safePage + 1)}
-            disabled={safePage >= totalPages}
-          >
-            Next
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Button>
-        </div>
-      </div>
+      <Pagination
+        currentPage={safePage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+      />
 
       <ConfirmDialog
         open={!!memberToRevoke}

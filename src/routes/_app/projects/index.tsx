@@ -1,4 +1,4 @@
-import { ProjectsModule } from "@/components/app/page/projects/shared";
+import { ProjectsCardModule, ProjectsModule } from "@/components/app/page/projects/shared";
 import type { ProjectListTab } from "@/types/project-list";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -19,8 +19,13 @@ export const Route = createFileRoute("/_app/projects/")({
 
 function ProjectsPage() {
   return (
-    <div className="mx-auto pb-12 px-6 pt-8 w-full max-w-6xl animate-in fade-in duration-500">
-      <ProjectsModule />
+    <div className="mx-auto pb-12 px-6 pt-8 w-full max-w-6xl animate-in fade-in duration-500 @container space-y-12">
+      <div>
+        <ProjectsCardModule />
+      </div>
+      <div>
+        <ProjectsModule />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ const ModuleLayout = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex-1 min-w-0 bg-background rounded-2xl overflow-clip min-h-100", className)}
+      className={cn("flex-1 min-w-0 bg-background rounded-2xl overflow-clip min-h-100 h-full", className)}
       {...props}
     />
   )
@@ -18,8 +18,8 @@ const ModuleLayoutHeaderVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary-50",
-        tertiary: "bg-tertiary-100",
+        primary: "bg-primary-bg  text-primary-fg",
+        tertiary: "bg-tertiary-bg text-tertiary-fg",
       },
     },
     defaultVariants: {
@@ -54,15 +54,15 @@ ModuleLayoutHeaderContent.displayName = "ModuleLayoutHeaderContent"
 
 const ModuleLayoutTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
-    <h1 ref={ref} className={cn("text-2xl font-bold text-foreground font-millik", className)} {...props} />
+    <h1 ref={ref} className={cn("text-2xl font-bold font-millik text-inherit", className)} {...props} />
   )
 )
 ModuleLayoutTitle.displayName = "ModuleLayoutTitle"
 
 const ModuleLayoutDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("text-muted-foreground mt-1 text-sm", className)} {...props} />
-  )
+    <p ref={ref} className={cn("text-inherit opacity-80 mt-1 text-sm leading-relaxed", className)} {...props} />
+    )
 )
 ModuleLayoutDescription.displayName = "ModuleLayoutDescription"
 
@@ -84,7 +84,7 @@ const ModuleLayoutToolbar = React.forwardRef<HTMLDivElement, React.HTMLAttribute
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex items-center gap-3 border rounded-t-lg p-4 border-border", className)}
+      className={cn("flex items-center gap-3 rounded-t-lg p-4 ", className)}
       {...props}
     />
   )

@@ -12,9 +12,10 @@ import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
 import { useMemo } from "react";
 import { UPCOMING_DATES } from "./constants";
+import { Megaphone } from "lucide-react";
 
 export function VendorHomePage() {
-  useRightPanel(<VendorAnnouncementsSliderPanel />, { openOnMount: true });
+  useRightPanel(<VendorAnnouncementsSliderPanel />, { openOnMount: true, icon: Megaphone });
 
   const { data: companies = [] } = useMyCompanies();
   const { activeCompanyId } = useActiveCompany();

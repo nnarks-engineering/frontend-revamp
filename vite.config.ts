@@ -26,6 +26,13 @@ export default defineConfig(() => {
     },
     server: {
       port: 3000,
+      proxy: {
+        '/api': {
+          target: 'https://api.nnarksup.com',
+          changeOrigin: true,
+          secure: false,
+        }
+      }
     },
   };
 });

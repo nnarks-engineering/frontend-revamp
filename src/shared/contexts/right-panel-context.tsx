@@ -4,6 +4,7 @@ import {
     useContext,
     useState,
     type ReactNode,
+    type ComponentType,
 } from "react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -14,11 +15,13 @@ interface RightPanelState {
    * `null` means "no page content" → AppLayout falls back to the AI Panel.
    */
   content: ReactNode;
+  /** Icon shown on the collapsed FAB. Falls back to PanelRightOpen in the layout. */
+  icon: ComponentType<{ className?: string }> | null;
   isOpen: boolean;
 }
 
 export interface RightPanelContextValue extends RightPanelState {
-  setContent: (content: ReactNode) => void;
+  setContent: (content: ReactNode, icon?: ComponentType<{ className?: string }>) => void;
   clearContent: () => void;
   open: () => void;
   close: () => void;
@@ -34,15 +37,16 @@ const RightPanelContext = createContext<RightPanelContextValue | null>(null);
 export function RightPanelProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<RightPanelState>({
     content: null,
+    icon: null,
     isOpen: false,
   });
 
-  const setContent = useCallback((content: ReactNode) => {
-    setState((prev) => ({ ...prev, content }));
+  const setContent = useCallback((content: ReactNode, icon?: ComponentType<{ className?: string }>) => {
+    setState((prev) => ({ ...prev, content, icon: icon ?? null }));
   }, []);
 
   const clearContent = useCallback(() => {
-    setState((prev) => ({ ...prev, content: null }));
+    setState((prev) => ({ ...prev, content: null, icon: null }));
   }, []);
 
   const open = useCallback(

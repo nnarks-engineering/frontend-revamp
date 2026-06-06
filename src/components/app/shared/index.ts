@@ -3,9 +3,9 @@ export { FilterTabs } from "./FilterTabs";
 export { LocationBanner } from "./LocationBanner";
 export { MetricCard } from "./MetricCard";
 export { PageHeader } from "./PageHeader";
+export { Pagination } from "./Pagination";
 export { ProgressDots } from "./ProgressDots";
 export { SectionDivider } from "./SectionDivider";
 export { StatusBadge } from "./StatusBadge";
 export { UserProfileCard } from "./UserProfileCard";
 export { WeatherWidget } from "./WeatherWidget";
-

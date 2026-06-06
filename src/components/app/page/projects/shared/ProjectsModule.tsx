@@ -42,14 +42,14 @@ export function ProjectsModule() {
         <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none" aria-hidden />
         <div className="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
-        
+
         <ModuleLayoutHeaderContent>
           <ModuleLayoutTitle>Projects</ModuleLayoutTitle>
           <ModuleLayoutDescription>
             Manage your escrow projects and milestones
           </ModuleLayoutDescription>
         </ModuleLayoutHeaderContent>
-        
+
         <ModuleLayoutHeaderActions>
           <Button variant="default" size="sm" className="gap-2" onClick={goToCreate}>
             <Plus className="w-4 h-4" />
@@ -58,8 +58,10 @@ export function ProjectsModule() {
         </ModuleLayoutHeaderActions>
       </ModuleLayoutHeader>
 
-      <Tabs value={tab} onValueChange={(next) => setTab(next as ProjectListTab)} className="px-6">
-        <ModuleLayoutToolbar>
+      <Tabs value={tab} onValueChange={(next) => setTab(next as ProjectListTab)} className="@sm:p-4 @md:p-6">
+        <div className="border rounded-md">
+
+         <ModuleLayoutToolbar>
           <TabsList variant="primary">
             {PROJECT_TABS.map((t) => (
               <TabsTrigger key={t.value} value={t.value} className="gap-2 px-4 font-poppins">
@@ -94,6 +96,8 @@ export function ProjectsModule() {
         <div className="mt-4 pb-6">
           <ProjectsTable projects={filteredProjects} isLoading={isLoading} />
         </div>
+        </div>
+
       </Tabs>
     </ModuleLayout>
   );

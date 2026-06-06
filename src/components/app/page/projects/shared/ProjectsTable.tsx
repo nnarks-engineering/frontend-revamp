@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { EmptyState, StatusBadge } from "@/components/app/shared";
 import {
   Table,
   TableBody,
@@ -7,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { StatusBadge } from "@/components/app/shared";
+
 import type { Project } from "@/types/projects";
 
 interface ProjectsTableProps {
@@ -33,7 +34,7 @@ function formatDate(value: string) {
 
 export function ProjectsTable({ projects, isLoading }: ProjectsTableProps) {
   return (
-    <div className="rounded-xl border border-border/40 overflow-hidden bg-background">
+    <div className=" overflow-hidden bg-background">
       <Table className="table-fixed w-full">
         <colgroup>
           <col className="w-[32%]" />
@@ -43,12 +44,12 @@ export function ProjectsTable({ projects, isLoading }: ProjectsTableProps) {
           <col className="w-[24%]" />
         </colgroup>
         <TableHeader>
-          <TableRow className="hover:bg-transparent bg-muted/5">
-            <TableHead className="font-bold text-foreground">Project Name</TableHead>
-            <TableHead className="font-bold text-foreground">Status</TableHead>
-            <TableHead className="font-bold text-foreground">Type</TableHead>
-            <TableHead className="font-bold text-foreground">Budget</TableHead>
-            <TableHead className="font-bold text-foreground">Timeline</TableHead>
+          <TableRow className="hover:bg-transparent">
+            <TableHead >Project Name</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Budget</TableHead>
+            <TableHead>Timeline</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -61,9 +62,12 @@ export function ProjectsTable({ projects, isLoading }: ProjectsTableProps) {
               </TableCell>
             </TableRow>
           ) : projects.length === 0 ? (
-            <TableRow>
+            <TableRow className="hover:bg-transparent">
               <TableCell colSpan={5} className="py-16 text-center text-muted-foreground">
-                No projects found for this status.
+                <EmptyState
+                  title="No projects found"
+                  description="There are no projects for this status right now."
+                />
               </TableCell>
             </TableRow>
           ) : (

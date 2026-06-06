@@ -25,6 +25,9 @@ import { toast } from "sonner";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { useState } from "react";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { EmptyState, Pagination } from "@/components/app/shared";
+
+import NoUsersSvg from "@/assets/svg/no-users.svg?react";
 
 const PAGE_SIZE = 10;
 
@@ -92,7 +95,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
   return (
     <div className="space-y-5">
       {/* ── Table ───────────────────────────────────────────────────── */}
-      <div className="rounded-b-lg border border-border/40 overflow-hidden">
+      <div className="overflow-hidden bg-background">
         <Table className="table-fixed w-full">
           <colgroup>
             <col className="w-[35%]" />
@@ -101,7 +104,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
             <col className="w-[25%]" />
           </colgroup>
           <TableHeader>
-            <TableRow className="hover:bg-transparent bg-muted/5">
+            <TableRow className="hover:bg-transparent">
               <TableHead className="font-bold text-foreground">Member</TableHead>
               <TableHead className="font-bold text-foreground">Role</TableHead>
               <TableHead className="font-bold text-foreground">Date Joined</TableHead>
@@ -123,9 +126,14 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
               }
               if (pageItems.length === 0) {
                 return (
-                  <TableRow>
+                  <TableRow className="hover:bg-transparent">
                     <TableCell colSpan={4} className="py-16 text-center text-muted-foreground">
-                      {search ? `No members matching "${search}".` : "No active members found."}
+                      <EmptyState
+                        svgIcon={NoUsersSvg}
+                        svgClassName="w-32"
+                        title="No members found"
+                        description={search ? `No members matching "${search}".` : "No active members found."}
+                      />
                     </TableCell>
                   </TableRow>
                 );
@@ -193,31 +201,11 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
       </div>
 
       {/* ── Pagination ──────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span className="font-medium">Page {safePage} of {totalPages}</span>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 px-3 gap-1"
-            onClick={() => onPageChange(safePage - 1)}
-            disabled={safePage <= 1}
-          >
-            <ChevronLeft className="w-3.5 h-3.5" />
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 px-3 gap-1"
-            onClick={() => onPageChange(safePage + 1)}
-            disabled={safePage >= totalPages}
-          >
-            Next
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Button>
-        </div>
-      </div>
+      <Pagination
+        currentPage={safePage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+      />
 
       <ConfirmDialog
         open={!!memberToRemove}

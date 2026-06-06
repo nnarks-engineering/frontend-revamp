@@ -24,7 +24,7 @@ export function AppHeader2() {
   }, []);
 
   return (
-    <header className="h-12 shrink-0 bg-background border-b border-border/50 flex items-center justify-end gap-1 px-4 z-30">
+    <header className="h-12 shrink-0 bg-background flex items-center justify-end gap-1 px-4 z-30">
       {/* ── Right actions: search · AI · bell · user ── */}
 
       {/* Search icon + ⌘K hint */}
