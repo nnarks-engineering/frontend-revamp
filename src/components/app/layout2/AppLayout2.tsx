@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { resolveVerticalSidebarItems } from "@/app/nav-config-si";
 import { LocationBanner } from "@/components/app/shared";
 import {
@@ -8,6 +9,7 @@ import { cn } from "@/shared/lib/utils";
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { PanelRightOpen } from "lucide-react";
 import { ThemeProvider } from "next-themes";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { AppHeader2 } from "./AppHeader2";
 import { IconRail } from "./IconRail";
 import { SubNavPanel } from "./SubNavPanel";
@@ -40,21 +42,26 @@ function AppLayout2Inner() {
   const hasSubItems = !!subItems?.length;
 
   const canShowFab = !!rightPanelContent && !isRightPanelOpen;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="h-dvh fixed font-poppins @container inset-0 flex overflow-hidden bg-background">
-      {/* ── Icon rail (always visible) ─────────────────────────────────── */}
-      <IconRail subPanelOpen={hasSubItems} />
+      {/* ── Icon rail (hidden on mobile) ─────────────────────────────────── */}
+      <div className="hidden md:flex shrink-0">
+        <IconRail subPanelOpen={hasSubItems} />
+      </div>
 
       {/* ── Right column: header + (sub-panel | content) ──────────────── */}
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         {/* Header spans the full right area */}
-        <AppHeader2 />
+        <AppHeader2 onMenuToggle={() => setMobileMenuOpen(true)} />
 
         {/* Body row: optional sub-nav panel + page content */}
         <div className="flex-1 flex overflow-hidden min-h-0 bg-background-space">
-          {/* Sub-nav panel */}
-          {hasSubItems && subItems && <SubNavPanel items={subItems} />}
+          {/* Sub-nav panel (hidden on mobile) */}
+          <div className="hidden md:flex shrink-0">
+            {hasSubItems && subItems && <SubNavPanel items={subItems} />}
+          </div>
 
           {/* Page content */}
           <div className="flex-1 overflow-auto min-w-0">
@@ -95,6 +102,14 @@ function AppLayout2Inner() {
           onClick={closeRightPanel}
         />
       )}
+
+      {/* ── Mobile Navigation Drawer ───────────────────────────────────── */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="p-0 flex w-auto max-w-xs border-r-0">
+          <IconRail subPanelOpen={hasSubItems} />
+          {hasSubItems && subItems && <SubNavPanel items={subItems} />}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

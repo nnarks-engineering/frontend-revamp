@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { cn } from "@/shared/lib/utils";
 import { MessagesSquare } from "lucide-react";
 import { ChatThreadList } from "@/components/app/inbox/ChatThreadList";
 import { ChatMessages } from "@/components/app/inbox/ChatMessages";
@@ -75,7 +76,12 @@ function InboxIndexPage() {
         >
           <div className="border bg-card flex h-full overflow-hidden shadow-sm">
             {/* SIDEBAR */}
-            <div className="w-80 md:w-104 shrink-0 flex flex-col border-r border-border bg-background/50">
+            <div 
+              className={cn(
+                "w-full md:w-80 lg:w-104 shrink-0 flex-col border-r border-border bg-background/50",
+                activeThread ? "hidden md:flex" : "flex"
+              )}
+            >
               <ModuleLayoutHeader variant="primary" className="border-b border-border p-6 pb-6 rounded-none relative overflow-hidden">
                 <RoundingLine
                   className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none"
@@ -115,7 +121,12 @@ function InboxIndexPage() {
             </div>
 
             {/* MAIN CONTENT AREA */}
-            <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden bg-background-space">
+            <div 
+              className={cn(
+                "relative min-w-0 flex-1 flex-col overflow-hidden bg-background-space",
+                activeThread ? "flex" : "hidden md:flex"
+              )}
+            >
               {activeThread ? (
                 <div className="relative flex min-h-0 flex-1 flex-col">
                   <ChatMessages

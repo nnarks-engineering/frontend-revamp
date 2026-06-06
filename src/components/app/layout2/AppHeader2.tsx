@@ -3,11 +3,11 @@ import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/use-company-members";
 import { Link } from "@tanstack/react-router";
-import { Bell, BrainCircuit, Search } from "lucide-react";
+import { Bell, BrainCircuit, Search, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-export function AppHeader2() {
+export function AppHeader2({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [invitationsOpen, setInvitationsOpen] = useState(false);
   const { data: invitations = [] } = useMyInvitations();
@@ -24,10 +24,22 @@ export function AppHeader2() {
   }, []);
 
   return (
-    <header className="h-12 shrink-0 bg-background flex items-center justify-end gap-1 px-4 z-30">
-      {/* ── Right actions: search · AI · bell · user ── */}
+    <header className="h-12 shrink-0 bg-background flex items-center justify-between gap-1 px-4 z-30">
+      {/* ── Left actions: mobile menu toggle ── */}
+      <div className="flex items-center md:hidden">
+        <button
+          type="button"
+          onClick={onMenuToggle}
+          className="p-2 -ml-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
 
-      {/* Search icon + ⌘K hint */}
+      {/* ── Right actions: search · AI · bell · user ── */}
+      <div className="flex items-center justify-end gap-1 ml-auto">
+        {/* Search icon + ⌘K hint */}
       <button
         type="button"
         onClick={() => setSearchOpen(true)}
@@ -66,6 +78,7 @@ export function AppHeader2() {
 
       {/* User menu */}
       <SidebarUserMenu />
+      </div>
 
       {/* ── Search modal (portalled, centered) ──────── */}
       {searchOpen &&
