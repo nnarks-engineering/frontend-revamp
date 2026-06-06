@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, Trash2, ShieldCheck, Mail, Clock } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
+import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
 
 export function Step5Partners() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -47,24 +48,41 @@ export function Step5Partners() {
 
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button
-            type="button"
-            onClick={() => updateState({ partnerSelection: "verified" })}
-            className={cn(
-              "flex flex-col items-center text-center p-5 rounded-xl border-2 transition-all",
-              state.partnerSelection === "verified"
-                ? "border-primary bg-primary/5 shadow-sm"
-                : "border-border/60 hover:border-border bg-background",
-            )}
-          >
-            <ShieldCheck className={cn(
-              "w-8 h-8 mb-3",
-              state.partnerSelection === "verified" ? "text-primary" : "text-muted-foreground"
-            )} />
-            <h3 className="font-semibold text-foreground mb-1 text-sm">Verified Nnarks partner</h3>
-          </button>
 
-          <button
+          <ProjectTypeButton
+            onClick={() => updateState({ partnerSelection: "invite" })}
+            selected={state.partnerSelection === "invite"}
+            title="Invite my own supervisor"
+            iconClassName={cn(
+              "w-16 p-2 items-center justify-center mb-3",
+              state.partnerSelection === "invite" ? "text-primary" : "text-muted-foreground"
+            )}
+            icon={Mail}
+          />
+
+          <ProjectTypeButton
+            onClick={() => updateState({ partnerSelection: "later" })}
+            selected={state.partnerSelection === "later"}
+            title="Decide later"
+            iconClassName={cn(
+              "w-16 p-2 items-center justify-center mb-3",
+              state.partnerSelection === "later" ? "text-primary" : "text-muted-foreground"
+            )}
+            icon={Clock}
+          />
+
+          <ProjectTypeButton
+            onClick={() => updateState({ partnerSelection: "verified" })}
+            selected={state.partnerSelection === "verified"}
+            title="Verified Nnarks partner"
+            iconClassName={cn(
+              "w-16 p-2 items-center justify-center mb-3",
+              state.partnerSelection === "verified" ? "text-primary" : "text-muted-foreground"
+            )}
+            icon={ShieldCheck}
+          />
+
+          {/* <button
             type="button"
             onClick={() => updateState({ partnerSelection: "invite" })}
             className={cn(
@@ -96,7 +114,7 @@ export function Step5Partners() {
               state.partnerSelection === "later" ? "text-primary" : "text-muted-foreground"
             )} />
             <h3 className="font-semibold text-foreground mb-1 text-sm">Decide later</h3>
-          </button>
+          </button> */}
         </div>
 
         {state.partnerSelection === "invite" && (
@@ -139,7 +157,7 @@ export function Step5Partners() {
 
         <div className="pt-6 border-t border-border/50 space-y-4">
           <h3 className="text-lg font-bold text-foreground">Project supervision</h3>
-          
+
           <label className={cn(
             "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",
             state.supervisionRequired ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CountryDropdown } from "@/components/ui/country-select";
 import { Info } from "lucide-react";
+import { Hint } from "../../shared/hint";
 
 export function Step2Location() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -18,10 +19,7 @@ export function Step2Location() {
         <h1 className="text-3xl font-millik font-bold text-foreground">
           Where is the project located?
         </h1>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border/40 mt-4">
-          <Info className="w-4 h-4 text-primary shrink-0" />
-          <p>Location helps us assign the right partners and supervisors.</p>
-        </div>
+        <Hint icon={Info} description="This helps us provide relevant insights and connect you with local partners." />
       </div>
 
       <div className="space-y-5">

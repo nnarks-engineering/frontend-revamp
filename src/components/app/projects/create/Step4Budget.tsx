@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/shared/lib/utils";
+import { Hint } from "../../shared/hint";
 
 export function Step4Budget() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -79,7 +80,7 @@ export function Step4Budget() {
             />
           </div>
           <div className="space-y-3 col-span-1">
-            <label className="text-sm font-semibold text-foreground">
+            <label htmlFor="currency" className="text-sm font-semibold text-foreground">
               Currency
             </label>
             <Select
@@ -155,12 +156,7 @@ export function Step4Budget() {
             )}
 
             {state.milestones.length === 0 && (
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 mb-6 flex items-start gap-3">
-                <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <p className="text-sm text-primary-900 leading-relaxed">
-                  Tip: You can create and edit milestones later with <strong>Lynn</strong>, our AI consultant, if you prefer to skip this step or need assistance breaking down your project.
-                </p>
-              </div>
+             <Hint icon={Info} description="Start by adding milestones to allocate your budget effectively." className="mb-2" />
             )}
 
             <div className="space-y-4">
@@ -215,7 +211,7 @@ export function Step4Budget() {
                   </div>
                 </div>
               ))}
-              
+
               {state.milestones.length === 0 && (
                 <div className="text-center py-8 border-2 border-dashed border-border rounded-xl">
                   <p className="text-sm text-muted-foreground mb-4">No milestones defined yet.</p>

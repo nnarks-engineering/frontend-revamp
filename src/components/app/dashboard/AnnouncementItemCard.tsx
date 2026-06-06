@@ -15,7 +15,7 @@ interface AnnouncementItemCardProps {
 
 export function AnnouncementItemCard({ announcement }: AnnouncementItemCardProps) {
   return (
-    <article className="rounded-2xl border-2 border-background-space! p-4 overflow-hidden group hover:bg-primary-50 cursor-pointer transition-colors">
+    <article className="rounded-xl border- border-background-space! p-4 bg-background-space overflow-hidden group cursor-pointer transition-colors">
       <Link
         to={announcement.link as never}
         className="block"
@@ -30,7 +30,7 @@ export function AnnouncementItemCard({ announcement }: AnnouncementItemCardProps
         </div>
 
         <div className="pt-3 space-y-2">
-          <p className="text-[12px] text-muted-foreground">{announcement.date}</p>
+          <p className="text-[12px] text-tertiary-fg-hover">{announcement.date}</p>
           <h4 className="text-[17px] font-semibold text-foreground leading-snug font-millik">
             {announcement.title}
           </h4>

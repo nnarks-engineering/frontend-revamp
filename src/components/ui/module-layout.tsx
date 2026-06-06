@@ -6,7 +6,7 @@ const ModuleLayout = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex-1 min-w-0 bg-background rounded-2xl overflow-clip min-h-100 h-full", className)}
+      className={cn("flex-1 min-w-0 bg-background rounded-xl overflow-clip min-h-100 h-full", className)}
       {...props}
     />
   )

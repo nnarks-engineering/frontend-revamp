@@ -17,31 +17,44 @@ export const Route = createFileRoute('/projects/create')({
   component: CreateProjectLayoutWrapper,
 });
 
+import realBuilding from "@/assets/landing/real-building.png";
+
 function CreateProjectLayoutWrapper() {
   return (
     <CreateProjectProvider>
-      <div className="relative h-screen w-full bg-background flex flex-col overflow-hidden font-poppins">
-        {/* Subtle brand decoration — fixed behind header */}
-        <div className="fixed opacity-20 -top-10 -right-2 w-fit pointer-events-none z-0" aria-hidden>
-          <RoundingLine className="w-full text-secondary" />
+      <div className="h-dvh w-full flex bg-background font-poppins overflow-hidden">
+        {/* Left Form Area */}
+        <div className="relative flex-1 flex flex-col overflow-hidden">
+          {/* Subtle brand decoration — fixed behind header */}
+          <div className="absolute opacity-20 -top-10 -right-2 w-fit pointer-events-none z-0 lg:hidden" aria-hidden>
+            <RoundingLine className="w-full text-secondary" />
+          </div>
+
+          {/* Top bar — sticky */}
+          <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-5 border-b border-border/50 bg-background/80 backdrop-blur-md shrink-0">
+            <Link to="/" className="flex items-center gap-2 group">
+              <NnarksLogo className="h-8 w-auto text-primary group-hover:scale-105 transition-transform" />
+            </Link>
+            <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-muted/50">
+              <X className="w-5 h-5" />
+            </Link>
+          </header>
+
+          {/* Scrollable content area */}
+          <main className="relative z-10 flex-1 overflow-y-auto flex items-start justify-center p-6 sm:p-10">
+            <div className="w-full max-w-2xl pb-10">
+              <CreateProjectWizard />
+            </div>
+          </main>
         </div>
 
-        {/* Top bar — sticky */}
-        <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-5 border-b border-border/50 bg-background/80 backdrop-blur-md shrink-0">
-          <Link to="/" className="flex items-center gap-2 group">
-            <NnarksLogo className="h-8 w-auto text-primary group-hover:scale-105 transition-transform" />
-          </Link>
-          <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-muted/50">
-            <X className="w-5 h-5" />
-          </Link>
-        </header>
-
-        {/* Scrollable content area */}
-        <main className="relative z-10 flex-1 overflow-y-auto flex items-start justify-center p-6 sm:p-10">
-          <div className="w-full max-w-2xl pb-10">
-            <CreateProjectWizard />
-          </div>
-        </main>
+        {/* Right side: Visual Panel (lg+ only, max-w-1/3) */}
+        <div
+          style={{ backgroundImage: `url(${realBuilding})`, backgroundSize: "cover", backgroundPosition: "center" }}
+          className="hidden lg:flex lg:w-1/3 bg-secondary relative overflow-hidden items-center justify-center"
+        >
+          <RoundingLine className="w-full h-full text-background absolute inset-0" />
+        </div>
       </div>
     </CreateProjectProvider>
   );

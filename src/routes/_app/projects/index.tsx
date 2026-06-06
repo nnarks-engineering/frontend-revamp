@@ -19,13 +19,9 @@ export const Route = createFileRoute("/_app/projects/")({
 
 function ProjectsPage() {
   return (
-    <div className="mx-auto pb-12 px-6 pt-8 w-full max-w-6xl animate-in fade-in duration-500 @container space-y-12">
-      <div>
-        <ProjectsCardModule />
-      </div>
-      <div>
-        <ProjectsModule />
-      </div>
+
+    <div className="h-full flex flex-col p-4 @md:p-4 w-full animate-in fade-in duration-500 @container">
+      <ProjectsCardModule />
     </div>
   );
 }

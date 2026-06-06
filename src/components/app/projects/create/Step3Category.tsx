@@ -1,10 +1,13 @@
 import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
-import { User, Users, Check, Info } from "lucide-react";
-import { cn } from "@/shared/lib/utils";
+import { User, Users,Info } from "lucide-react";
 import { type Industry } from "@/types/enums";
 import { Combobox } from "@/components/ui/combobox";
 import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
+import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
+import HandShake from "@/assets/svg/handshake.svg?react";
+import SingleMan from "@/assets/svg/single.svg?react";
+import { Hint } from "../../shared/hint";
 
 const PROJECT_TYPE_OPTIONS: { value: Industry; label: string }[] = [
   { value: "OTHER", label: "Market Research" },
@@ -35,7 +38,7 @@ export function Step3Category() {
   const isFormValid = state.projectType !== "" && state.servicesNeeded.length > 0;
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <div className="space-y-2">
         <h1 className="text-3xl font-millik font-bold text-foreground">
           What is the project form?
@@ -47,62 +50,30 @@ export function Step3Category() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Solo Project Card */}
-        <button
-          type="button"
-          onClick={() => updateState({ isPartnered: false })}
-          className={cn(
-            "flex flex-col items-center text-center p-6 rounded-xl border-2 transition-all",
-            !state.isPartnered
-              ? "border-primary bg-primary/5 shadow-sm"
-              : "border-border/60 hover:border-border bg-background",
-          )}
-        >
-          <div className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center mb-4 transition-colors",
-            !state.isPartnered ? "bg-primary text-white" : "bg-muted text-muted-foreground"
-          )}>
-            <User className="w-6 h-6" />
-          </div>
-          <h3 className="font-semibold text-foreground mb-1">Solo Project</h3>
-          <p className="text-sm text-muted-foreground">
-            I am funding and managing this project independently.
-          </p>
-        </button>
 
-        {/* Partnered Project Card */}
-        <button
-          type="button"
+        <ProjectTypeButton
+          icon={SingleMan}
+          title="Solo Project"
+          description="I am funding and managing this project independently."
+          selected={!state.isPartnered}
+          onClick={() => updateState({ isPartnered: false })}
+        />
+
+        <ProjectTypeButton
+          icon={HandShake}
+          title="Partnered Project"
+          description="This project is co-managed with one or more partners."
+          selected={state.isPartnered}
           onClick={() => updateState({ isPartnered: true })}
-          className={cn(
-            "flex flex-col items-center text-center p-6 rounded-xl border-2 transition-all",
-            state.isPartnered
-              ? "border-primary bg-primary/5 shadow-sm"
-              : "border-border/60 hover:border-border bg-background",
-          )}
-        >
-          <div className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center mb-4 transition-colors",
-            state.isPartnered ? "bg-primary text-white" : "bg-muted text-muted-foreground"
-          )}>
-            <Users className="w-6 h-6" />
-          </div>
-          <h3 className="font-semibold text-foreground mb-1">Partnered</h3>
-          <p className="text-sm text-muted-foreground">
-            This project is being co-funded or partnered with others.
-          </p>
-        </button>
+        />
+
       </div>
 
       {state.isPartnered && (
-        <div className="bg-primary-50 text-primary-900 p-4 rounded-lg text-sm border border-primary-100 flex gap-3">
-          <Info className="w-5 h-5 shrink-0 mt-0.5" />
-          <p>
-            You can add partner emails later in the setup process, or invite them from the project dashboard.
-          </p>
-        </div>
+       <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." className="bg-yellow-50 text-yellow-900 border-yellow-200" />
       )}
 
-      <div className="space-y-6 pt-2 border-t border-border/50">
+      <div className="space-y-6 border-border/50">
         <Combobox
           label="What type of project is this?"
           placeholder="Select a category"

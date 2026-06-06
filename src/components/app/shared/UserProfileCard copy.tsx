@@ -24,7 +24,7 @@ export function UserProfileCard() {
   const location = profile?.country ? profile.country : "";
 
   return (
-    <Card className="w-full max-w-xs overflow-hidden flex h-full flex-col p-0! border-border/40">
+    <Card className="w-full max-w-xs overflow-hidden flex flex-col p-0! border-border/40 shadow-xs">
       {/* ── Banner Section ── */}
       <div className="h-24 bg-tertiary relative overflow-hidden shrink-0">
         <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-400 opacity-50 scale-x-[-1]" />
