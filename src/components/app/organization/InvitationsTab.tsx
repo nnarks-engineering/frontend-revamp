@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   useCompanyMembers,
-  useInviteCompanyMember,
   useRemoveCompanyMember,
   useResendCompanyInvitation,
 } from "@/shared/hooks/use-company-members";
@@ -10,13 +9,6 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { EmptyState, Pagination } from "@/components/app/shared";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
   Table,
   TableBody,
   TableCell,
@@ -24,8 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { CompanyMemberStatus, CompanyRole } from "@/types/enums";
-import { ChevronLeft, ChevronRight, RefreshCw, Send, Trash2 } from "lucide-react";
+import type { CompanyMemberStatus } from "@/types/enums";
+import { RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 const PAGE_SIZE = 10;
@@ -51,19 +43,14 @@ interface InvitationsTabProps {
   readonly search: string;
   readonly page: number;
   readonly onPageChange: (page: number) => void;
-  readonly inviteOpen: boolean;
-  readonly onInviteOpenChange: (open: boolean) => void;
+  readonly onPageChange: (page: number) => void;
 }
 
-export function InvitationsTab({ companyId, search, page, onPageChange, inviteOpen, onInviteOpenChange }: InvitationsTabProps) {
+export function InvitationsTab({ companyId, search, page, onPageChange }: InvitationsTabProps) {
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
-  const inviteMutation = useInviteCompanyMember(companyId);
   const removeMutation = useRemoveCompanyMember(companyId);
   const resendMutation = useResendCompanyInvitation(companyId);
 
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState<CompanyRole>("member");
-  const [errorMsg, setErrorMsg] = useState("");
   const [memberToRevoke, setMemberToRevoke] = useState<string | null>(null);
   const [memberToResend, setMemberToResend] = useState<string | null>(null);
 
@@ -75,19 +62,6 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(Math.max(1, page), totalPages);
   const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
-
-  const handleInvite = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setErrorMsg("");
-    if (!email) { setErrorMsg("Email is required."); return; }
-    inviteMutation.mutate(
-      { email, role },
-      {
-        onSuccess: () => { setEmail(""); setRole("member"); onInviteOpenChange(false); toast.success("Invitation sent successfully"); },
-        onError: (err: Error) => { setErrorMsg(err.message || "Failed to send invitation."); toast.error("Failed to send invitation"); },
-      }
-    );
-  };
 
   const handleRevoke = () => {
     if (!memberToRevoke) return;
@@ -107,63 +81,6 @@ export function InvitationsTab({ companyId, search, page, onPageChange, inviteOp
 
   return (
     <div className="space-y-5">
-      {/* ── Invite Dialog ───────────────────────────────────────────── */}
-      <Dialog open={inviteOpen} onOpenChange={(open) => { onInviteOpenChange(open); if (!open) { setEmail(""); setRole("member"); setErrorMsg(""); } }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Invite a new member</DialogTitle>
-            <DialogDescription>
-              Send an email invitation to add someone to your organization.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleInvite} className="flex flex-col gap-4 pt-2">
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="invite-email" className="text-sm font-medium text-foreground">Email address</label>
-              <input
-                id="invite-email"
-                type="email"
-                placeholder="colleague@company.com"
-                className="w-full h-10 px-3 text-sm rounded-lg border border-border bg-background outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={inviteMutation.isPending}
-                autoFocus
-              />
-              {errorMsg && <p className="text-xs text-destructive">{errorMsg}</p>}
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="invite-role" className="text-sm font-medium text-foreground">Role</label>
-              <select
-                id="invite-role"
-                className="h-10 px-3 text-sm rounded-lg border border-border bg-background outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                value={role}
-                onChange={(e) => setRole(e.target.value as CompanyRole)}
-                disabled={inviteMutation.isPending}
-              >
-                <option value="admin">Admin</option>
-                <option value="member">Member</option>
-                <option value="viewer">Viewer</option>
-              </select>
-            </div>
-            <div className="flex justify-end gap-2 pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => onInviteOpenChange(false)}
-                disabled={inviteMutation.isPending}
-              >
-                Cancel
-              </Button>
-              <Button type="submit" className="gap-2" disabled={inviteMutation.isPending}>
-                {inviteMutation.isPending
-                  ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  : <Send className="w-4 h-4" />}
-                Send Invite
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
 
       {/* ── Table ───────────────────────────────────────────────────── */}
       <div className="overflow-hidden bg-background">

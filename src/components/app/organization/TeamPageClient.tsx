@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MembersTab } from "./MembersTab";
 import { RolesTab } from "./RolesTab";
 import { InvitationsTab } from "./InvitationsTab";
+import { InviteMemberDialog } from "./InviteMemberDialog";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { UserProfileCard } from "@/components/app/shared/UserProfileCard";
 import { UserListCard } from "@/components/app/dashboard/UserListCard";
@@ -151,7 +152,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
             <RolesTab />
           </TabsContent>
           <TabsContent value="invitations" className="">
-            <InvitationsTab companyId={company.id} search={q} page={page} onPageChange={setPage} inviteOpen={inviteOpen} onInviteOpenChange={setInviteOpen} />
+            <InvitationsTab companyId={company.id} search={q} page={page} onPageChange={setPage} />
           </TabsContent>
           </div>
         </Tabs>
@@ -169,6 +170,11 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
         />
       </aside>
       </div>
+      <InviteMemberDialog
+        companyId={company.id}
+        open={inviteOpen}
+        onOpenChange={setInviteOpen}
+      />
     </div>
   );
 }
