@@ -200,9 +200,9 @@ export function WalletPageClient() {
         />
       </Card>
 
-      <div className="flex items-start gap-6">
+      <div className="flex flex-col @4xl:flex-row items-start gap-6">
         {/* Main Table Module */}
-        <ModuleLayout>
+        <ModuleLayout className="w-full flex-1 min-w-0">
           <ModuleLayoutHeader variant="primary">
             <RoundingLine
               className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none"
@@ -224,10 +224,10 @@ export function WalletPageClient() {
             </ModuleLayoutHeaderActions>
           </ModuleLayoutHeader>
 
-          <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-6">
+          <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-4 md:px-6">
             <div className="border rounded-md">
-              <ModuleLayoutToolbar>
-                <TabsList variant="primary">
+              <ModuleLayoutToolbar className="flex-wrap gap-2">
+                <TabsList variant="primary" className="flex-wrap">
                   <TabsTrigger value="all" className="gap-1.5 font-poppins">
                     All
                   </TabsTrigger>
@@ -243,7 +243,7 @@ export function WalletPageClient() {
                 </TabsList>
 
                 <ModuleLayoutToolbarCenter>
-                  <div className="relative w-64">
+                  <div className="relative w-full sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     <Input
                       placeholder="Search transactions..."
@@ -289,7 +289,7 @@ export function WalletPageClient() {
         </ModuleLayout>
 
         {/* Right Panel — Wallet Card */}
-        <aside className="w-72 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
+        <aside className="w-full @4xl:w-72 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
           <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary-50 to-background p-5 space-y-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">

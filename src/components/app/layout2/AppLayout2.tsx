@@ -72,7 +72,8 @@ function AppLayout2Inner() {
           {/* Right panel (registered by pages via context) */}
           <div
             className={cn(
-              "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+              "shrink-0 overflow-hidden transition-all duration-300 ease-in-out z-40",
+              "absolute lg:static right-0 top-0 bottom-0 bg-background lg:bg-transparent shadow-2xl lg:shadow-none border-l border-border/50",
               isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
             )}
           >

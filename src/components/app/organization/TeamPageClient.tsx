@@ -78,12 +78,12 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
   }, [membersData]);
 
   return (
-    <div className="mx-auto pb-12 px-6">
+    <div className="mx-auto pb-12 px-6 @container">
       {/* Header */}
 
 
-      <div className="flex items-start gap-6">
-      <ModuleLayout>
+      <div className="flex flex-col @4xl:flex-row items-start gap-6">
+      <ModuleLayout className="w-full flex-1 min-w-0">
        <ModuleLayoutHeader variant="tertiary">
         {/* Illustrative decoration — matches TeamMembersCard / ProjectsCard pattern */}
         <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-orange-50 pointer-events-none" aria-hidden />
@@ -106,9 +106,9 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
         <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-6">
           {/* ── Toolbar ─────────────────────────────────────────── */}
           <div className="border rounded-md">
-          <ModuleLayoutToolbar>
+          <ModuleLayoutToolbar className="flex-wrap gap-2">
             {/* Left: Tabs */}
-            <TabsList variant="tertiary">
+            <TabsList variant="tertiary" className="flex-wrap">
               <TabsTrigger value="members" className="gap-1.5 font-poppins">
                 Members
               </TabsTrigger>
@@ -123,7 +123,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
             {/* Center: Search */}
             <ModuleLayoutToolbarCenter>
               {showSearch && (
-                <div className="relative w-64">
+                <div className="relative w-full sm:w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   <Input
                     placeholder="Search..."
@@ -159,7 +159,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       </ModuleLayout>
 
       {/* Right panel */}
-      <aside className="w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
+      <aside className="w-full @4xl:w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
         <UserProfileCard
           name={ownerName}
           handle={user?.email}
