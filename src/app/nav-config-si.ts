@@ -19,7 +19,8 @@ import {
   faSearch,
   faFileInvoiceDollar,
   faSliders,
-  faProjectDiagram
+  faProjectDiagram,
+  faStore
 } from "@fortawesome/free-solid-svg-icons";
 import { hasUserTypeAccess, type UserType } from "@/shared/lib/auth";
 

@@ -35,6 +35,7 @@ import { Route as AppEscrowRouteImport } from './routes/_app/escrow'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppAdvisoryRouteImport } from './routes/_app/advisory'
 import { Route as OnboardingAccountTypeIndexRouteImport } from './routes/onboarding/account-type/index'
+import { Route as AppVendorsIndexRouteImport } from './routes/_app/vendors/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
 import { Route as AppOrganizationIndexRouteImport } from './routes/_app/organization/index'
 import { Route as AppInboxIndexRouteImport } from './routes/_app/inbox/index'
@@ -195,6 +196,11 @@ const OnboardingAccountTypeIndexRoute =
   } as any).lazy(() =>
     import('./routes/onboarding/account-type/index.lazy').then((d) => d.Route),
   )
+const AppVendorsIndexRoute = AppVendorsIndexRouteImport.update({
+  id: '/vendors/',
+  path: '/vendors/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -322,6 +328,7 @@ export interface FileRoutesByFullPath {
   '/inbox/': typeof AppInboxIndexRoute
   '/organization/': typeof AppOrganizationIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
+  '/vendors/': typeof AppVendorsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
   '/projects/disputes/': typeof AppProjectsDisputesIndexRoute
   '/projects/documents/': typeof AppProjectsDocumentsIndexRoute
@@ -362,6 +369,7 @@ export interface FileRoutesByTo {
   '/inbox': typeof AppInboxIndexRoute
   '/organization': typeof AppOrganizationIndexRoute
   '/projects': typeof AppProjectsIndexRoute
+  '/vendors': typeof AppVendorsIndexRoute
   '/onboarding/account-type': typeof OnboardingAccountTypeIndexRoute
   '/projects/disputes': typeof AppProjectsDisputesIndexRoute
   '/projects/documents': typeof AppProjectsDocumentsIndexRoute
@@ -408,6 +416,7 @@ export interface FileRoutesById {
   '/_app/inbox/': typeof AppInboxIndexRoute
   '/_app/organization/': typeof AppOrganizationIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
+  '/_app/vendors/': typeof AppVendorsIndexRoute
   '/onboarding/account-type/': typeof OnboardingAccountTypeIndexRoute
   '/_app/projects/disputes/': typeof AppProjectsDisputesIndexRoute
   '/_app/projects/documents/': typeof AppProjectsDocumentsIndexRoute
@@ -452,6 +461,7 @@ export interface FileRouteTypes {
     | '/inbox/'
     | '/organization/'
     | '/projects/'
+    | '/vendors/'
     | '/onboarding/account-type/'
     | '/projects/disputes/'
     | '/projects/documents/'
@@ -492,6 +502,7 @@ export interface FileRouteTypes {
     | '/inbox'
     | '/organization'
     | '/projects'
+    | '/vendors'
     | '/onboarding/account-type'
     | '/projects/disputes'
     | '/projects/documents'
@@ -537,6 +548,7 @@ export interface FileRouteTypes {
     | '/_app/inbox/'
     | '/_app/organization/'
     | '/_app/projects/'
+    | '/_app/vendors/'
     | '/onboarding/account-type/'
     | '/_app/projects/disputes/'
     | '/_app/projects/documents/'
@@ -738,6 +750,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingAccountTypeIndexRouteImport
       parentRoute: typeof OnboardingRoute
     }
+    '/_app/vendors/': {
+      id: '/_app/vendors/'
+      path: '/vendors'
+      fullPath: '/vendors/'
+      preLoaderRoute: typeof AppVendorsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/projects/': {
       id: '/_app/projects/'
       path: '/projects'
@@ -901,6 +920,7 @@ interface AppRouteChildren {
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCirclesIndexRoute: typeof AppCirclesIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
+  AppVendorsIndexRoute: typeof AppVendorsIndexRoute
   AppProjectsDisputesIndexRoute: typeof AppProjectsDisputesIndexRoute
   AppProjectsDocumentsIndexRoute: typeof AppProjectsDocumentsIndexRoute
   AppProjectsMilestonesIndexRoute: typeof AppProjectsMilestonesIndexRoute
@@ -919,6 +939,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCirclesIndexRoute: AppCirclesIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
+  AppVendorsIndexRoute: AppVendorsIndexRoute,
   AppProjectsDisputesIndexRoute: AppProjectsDisputesIndexRoute,
   AppProjectsDocumentsIndexRoute: AppProjectsDocumentsIndexRoute,
   AppProjectsMilestonesIndexRoute: AppProjectsMilestonesIndexRoute,
