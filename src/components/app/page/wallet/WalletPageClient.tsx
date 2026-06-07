@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 import type { WalletTransaction } from "@/types/wallet";
 import type { TxType } from "@/types/enums";
+import { PayoutAccountCard } from "./WalletBalanceCard";
 
 type TabKey = "all" | "deposits" | "releases" | "transfers";
 
@@ -290,46 +291,12 @@ export function WalletPageClient() {
 
         {/* Right Panel — Wallet Card */}
         <aside className="w-full @4xl:w-72 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
-          <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary-50 to-background p-5 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Wallet className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  Available Balance
-                </p>
-                <p className="text-xl font-bold text-foreground font-geist">
-                  {formatFull(wallet?.available_balance ?? 0, stats.currency)}
-                </p>
-              </div>
-            </div>
 
-            <div className="h-px bg-border/60" />
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Locked</span>
-                <span className="font-medium font-geist text-foreground">
-                  {formatFull(wallet?.locked_balance ?? 0, stats.currency)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Total</span>
-                <span className="font-medium font-geist text-foreground">
-                  {formatFull(
-                    (wallet?.available_balance ?? 0) + (wallet?.locked_balance ?? 0),
-                    stats.currency
-                  )}
-                </span>
-              </div>
-            </div>
-
-            <Button className="w-full gap-2" size="sm">
-              <CreditCard className="w-4 h-4" />
-              Add Funds
-            </Button>
-          </div>
+         <PayoutAccountCard
+            wallet={wallet}
+            currency={stats.currency}
+            formatFull={formatFull}
+          />
 
           {/* Quick Project Budget Overview */}
           {projectsData && projectsData.items && projectsData.items.length > 0 && (

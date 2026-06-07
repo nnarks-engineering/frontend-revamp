@@ -2,7 +2,7 @@
 
 import { CheckIcon, ChevronDownIcon, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Badge } from './badge' 
+import { Badge } from './badge'
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -14,9 +14,9 @@ import {
 } from '@/components/ui/command'
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { useMediaQuery } from '@/shared/hooks/use-media-query' 
-import { cn } from '@/shared/lib/utils' 
-import { Avatar } from '../image/Image' 
+import { useMediaQuery } from '@/shared/hooks/use-media-query'
+import { cn } from '@/shared/lib/utils'
+import { Avatar } from '../image/Image'
 
 interface MultiSelectComboboxProps {
   readonly value?: string[]
@@ -62,12 +62,12 @@ function TriggerContent({
   return (
     <div className="flex flex-wrap gap-1">
       {displayOptions.map((option) => (
-        <Badge key={option.value} variant="secondary" className="text-xs px-2 py-0.5 h-6">
+        <Badge key={option.value} variant="secondary" className="text-xs px-2 py-0.5 h-6 text-primary-fg-hover rounded-md">
           {option.label}
           <span
             role="button"
             tabIndex={0}
-            className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5 cursor-pointer inline-flex items-center justify-center"
+            className="ml-1 hover:bg-secondary-foreground/20 rounded-md  p-0.5 cursor-pointer inline-flex items-center justify-center"
             onClick={(e) => {
               e.stopPropagation()
               e.preventDefault()

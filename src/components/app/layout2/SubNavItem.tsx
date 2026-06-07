@@ -1,4 +1,4 @@
-import { findBestMatchId, isOwnedBy, type NavItem } from "@/app/nav-config-si";
+import {type NavItem } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,10 +12,14 @@ interface SubNavItemProps {
 }
 
 export function SubNavItem({ item, depth = 0 }: Readonly<SubNavItemProps>) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isSectionActive = isOwnedBy(pathname, item);
-  const isDirectlyActive = findBestMatchId([item], pathname) === item.id;
+   const pathname = useRouterState({ select: (s) => s.location.pathname });
+   const isExactActive = pathname === item.to;
+ const isSectionActive = isExactActive ||
+    (item.children?.some(child => pathname === child.to) ?? false);
+  const isDirectlyActive = isExactActive;
   const hasChildren = !!item.children?.length;
+
+
 
   const [open, setOpen] = useState(isSectionActive);
 
