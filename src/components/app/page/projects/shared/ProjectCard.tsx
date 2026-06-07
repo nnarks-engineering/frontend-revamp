@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { DetailField } from "@/components/common/DetailField";
-import { Briefcase } from "lucide-react";
 import type { Project } from "@/types/projects";
 import { StatusBadge } from "@/components/ui/status-badge";
 

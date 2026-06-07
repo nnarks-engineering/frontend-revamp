@@ -1,4 +1,4 @@
-import { ProjectsCardModule, ProjectsModule } from "@/components/app/page/projects/shared";
+import { ProjectsCardModule } from "@/components/app/page/projects/shared";
 import type { ProjectListTab } from "@/types/project-list";
 import { createFileRoute } from "@tanstack/react-router";
 

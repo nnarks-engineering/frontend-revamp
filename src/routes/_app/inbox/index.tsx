@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/shared/lib/utils";
-import { MessagesSquare } from "lucide-react";
 import { ChatThreadList } from "@/components/app/inbox/ChatThreadList";
 import { ChatMessages } from "@/components/app/inbox/ChatMessages";
 import { ParticipantsOverlay } from "@/components/app/inbox/ParticipantsOverlay";
@@ -19,7 +18,6 @@ import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import type { SessionType } from "@/types/enums";
 import type { ChatSession } from "@/types/messaging";
 import NoMessageSvg from "@/assets/svg/no-message.svg?react";
-import NoUsersSvg from "@/assets/svg/no-users.svg?react";
 
 export const Route = createFileRoute("/_app/inbox/")({
   component: InboxIndexPage,
@@ -33,7 +31,7 @@ function InboxIndexPage() {
 
   const { data: sessionsData, isLoading: sessionsLoading } = useSessions(
     activeTab === "ALL" ? undefined : activeTab,
-    { limit: 50 }
+    // { limit: 50 }
   );
 
   const { data: messagesData, isLoading: messagesLoading } = useMessages(
@@ -76,7 +74,7 @@ function InboxIndexPage() {
         >
           <div className="border bg-card flex h-full overflow-hidden shadow-sm">
             {/* SIDEBAR */}
-            <div 
+            <div
               className={cn(
                 "w-full md:w-80 lg:w-104 shrink-0 flex-col border-r border-border bg-background/50",
                 activeThread ? "hidden md:flex" : "flex"
@@ -121,7 +119,7 @@ function InboxIndexPage() {
             </div>
 
             {/* MAIN CONTENT AREA */}
-            <div 
+            <div
               className={cn(
                 "relative min-w-0 flex-1 flex-col overflow-hidden bg-background-space",
                 activeThread ? "flex" : "hidden md:flex"

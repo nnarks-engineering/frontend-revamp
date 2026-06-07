@@ -1,7 +1,7 @@
 import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
-import { User, Users,Info } from "lucide-react";
-import { type Industry } from "@/types/enums";
+import {Info } from "lucide-react";
+import type{ Industry } from "@/types/enums";
 import { Combobox } from "@/components/ui/combobox";
 import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
 import { ProjectTypeButton } from "./step3category/ProjectTypeButton";

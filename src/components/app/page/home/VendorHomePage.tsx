@@ -28,7 +28,7 @@ export function VendorHomePage() {
     <div className="max-w-350 mx-auto pb-12 space-y-5">
       <DashboardTopStrip
         companyId={activeCompany?.id}
-        highlightedDates={UPCOMING_DATES}
+        highlightedDates={[...UPCOMING_DATES]}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">

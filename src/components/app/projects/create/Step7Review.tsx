@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { DetailField } from "@/components/common/DetailField";
+import type { Industry } from "@/types/enums";
 
 export function Step7Review() {
   const { state, prevStep } = useCreateProjectForm();
@@ -50,8 +51,8 @@ Partner Setup: ${state.partnerSelection}`;
         owner_company_id: validCompanyId,
         title: state.title,
         description: combinedDescription,
-        industry: state.projectType.toLowerCase() as any,
-        project_type: state.isPartnered ? "partnered" : "individual",
+        industry: state.projectType.toLowerCase() as Industry,
+        project_type: state.isPartnered ? "PARTNERED" : "INDIVIDUAL",
         location_address: combinedLocation,
         start_date: startDateObj.toISOString().split("T")[0],
         end_date: endDateObj.toISOString().split("T")[0],
@@ -105,15 +106,15 @@ Partner Setup: ${state.partnerSelection}`;
           You can now invite partners and fund milestones from your dashboard.
         </p>
         <div className="pt-8 flex flex-col gap-4 w-full max-w-sm">
-          <Button size="lg" onClick={() => navigate({ to: "/projects" })} className="w-full text-base h-14">
+          <Button size="lg" onClick={() => navigate({ to: "/projects",search:{ tab:"active"} })} className="w-full text-base h-14">
             Go to Project Dashboard <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
           <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-            <button className="hover:text-foreground transition-colors">Invite Partner</button>
-            <span>|</span>
-            <button className="hover:text-foreground transition-colors">Add Funds</button>
-            <span>|</span>
-            <button className="hover:text-foreground transition-colors">Create Milestones</button>
+            <button type="button" className="hover:text-foreground transition-colors">Invite Partner</button>
+            <span>n type="button"</span>
+            <button type="button" className="hover:text-foreground transition-colors">Add Funds</button>
+            <span>n type="button"</span>
+            <button type="button" className="hover:text-foreground transition-colors">Create Milestones</button>
           </div>
         </div>
       </div>

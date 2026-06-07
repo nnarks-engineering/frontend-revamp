@@ -86,7 +86,7 @@ export function DashboardProjects() {
 
           <div className="flex justify-center pt-2">
             <Button variant="outline" className="gap-2 w-full sm:w-auto" asChild>
-              <Link to="/projects">
+              <Link search={{ tab:"active"}} to="/projects">
                 View All Projects
                 <ArrowRight className="w-4 h-4" />
               </Link>

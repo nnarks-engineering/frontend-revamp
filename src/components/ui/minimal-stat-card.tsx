@@ -26,7 +26,7 @@ export const MinimalStatCard = React.forwardRef<HTMLElement, MinimalStatCardProp
             {value}
           </p>
           {action && (
-            <div className="pb-1.5 flex-shrink-0">
+            <div className="pb-1.5 shrink-0">
               {action}
             </div>
           )}

@@ -6,10 +6,8 @@ import {
   faLock,
   faUserShield,
   faInbox,
-  faComments,
   faEnvelopeOpen,
   faBell,
-  faBrain,
   faPeopleGroup,
   faChartPie,
   faUserGroup,
@@ -20,7 +18,6 @@ import {
   faFileInvoiceDollar,
   faSliders,
   faProjectDiagram,
-  faStore
 } from "@fortawesome/free-solid-svg-icons";
 import { hasUserTypeAccess, type UserType } from "@/shared/lib/auth";
 

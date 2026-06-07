@@ -2,7 +2,6 @@ import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/shared/lib/utils";
-import { Check } from "lucide-react";
 
 export function Step6Timeline() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -72,7 +71,7 @@ export function Step6Timeline() {
 
         <div className="pt-6 border-t border-border/50 space-y-4">
           <h3 className="text-lg font-bold text-foreground">Expectations & Compliance</h3>
-          
+
           <div className="space-y-3">
             <label className={cn(
               "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",

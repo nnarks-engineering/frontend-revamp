@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { Industry, ProjectType } from "@/types/enums";
+import type { Industry } from "@/types/enums";
 
 export interface FormMilestone {
   id: string; // temporary ID for UI mapping

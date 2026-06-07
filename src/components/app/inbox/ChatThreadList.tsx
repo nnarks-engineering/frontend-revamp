@@ -1,5 +1,4 @@
 import { cn } from "@/shared/lib/utils";
-import React from "react";
 import { Avatar } from "./Avatar";
 import type { ChatSession } from "@/types/messaging";
 import NoUsersSvg from "@/assets/svg/no-users.svg?react";
@@ -15,7 +14,7 @@ export const ChatThreadList: React.FC<ChatThreadListProps> = ({
   threads,
   activeThreadId,
   onThreadClick,
-  onParticipantClick,
+  // onParticipantClick,
 }) => {
   return (
     <div className=" custom-scrollbar flex-1 overflow-y-auto">
@@ -23,7 +22,7 @@ export const ChatThreadList: React.FC<ChatThreadListProps> = ({
         {threads.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
             <NoUsersSvg className="w-24 h-auto mb-4 text-primary" />
-            <p className="text-[12px] text-muted-foreground max-w-[200px] leading-relaxed">
+            <p className="text-[12px] text-muted-foreground max-w-50 leading-relaxed">
               No conversations yet
             </p>
           </div>
@@ -36,6 +35,7 @@ export const ChatThreadList: React.FC<ChatThreadListProps> = ({
 
             return (
               <button
+              type="button"
                 key={thread.id}
                 onClick={() => onThreadClick(thread)}
                 className={cn(

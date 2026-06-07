@@ -36,7 +36,7 @@ export function DocumentCategoryFilter({
   return (
     <div className={cn("flex flex-col gap-0.5", className)}>
       <h3 className="text-sm font-bold text-foreground px-3 py-2">File Type</h3>
-      {DOCUMENT_CATEGORIES.map(({ id, label, icon: Icon }) => {
+      {DOCUMENT_CATEGORIES.map(({ id, label }) => {
         const isActive = activeCategory === id;
         return (
           <button

@@ -43,7 +43,6 @@ interface InvitationsTabProps {
   readonly search: string;
   readonly page: number;
   readonly onPageChange: (page: number) => void;
-  readonly onPageChange: (page: number) => void;
 }
 
 export function InvitationsTab({ companyId, search, page, onPageChange }: InvitationsTabProps) {

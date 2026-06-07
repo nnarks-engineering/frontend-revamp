@@ -17,6 +17,8 @@ export interface User {
 export interface Profile {
   id: string;
   user_id: string;
+   country?: string | null;
+  avatar?: string | null;
   first_name: string | null;
   last_name: string | null;
   other_names: string | null;
@@ -26,6 +28,8 @@ export interface Profile {
 export interface ProfileUpdatePayload {
   first_name?: string | null;
   last_name?: string | null;
+  country?: string | null;
+  avatar?: string | null;
   other_names?: string | null;
 }
 

@@ -1,5 +1,4 @@
 import { ChevronRight } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import ContractorImg from "@/assets/img/landing/contractor.webp";
 import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";

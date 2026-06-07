@@ -1,8 +1,7 @@
 import { cn } from "@/shared/lib/utils";
-import { ArrowDown, ArrowUp, AudioLines, ChevronLeft, Paperclip } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Avatar } from "./Avatar";
-import { AvatarStack } from "./AvatarStack";
 import type { ChatSession, Message } from "@/types/messaging";
 
 interface ChatMessagesProps {
@@ -25,7 +24,6 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   onSend,
   onKeyDown,
   onBack,
-  onParticipantClick,
   isLoading,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -59,6 +57,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
         <div className="border-border bg-background/30 z-10 flex items-center gap-3 border-b px-4 py-3 backdrop-blur-sm">
           {onBack && (
             <button
+            type="button"
               onClick={onBack}
               className="hover:bg-primary/10 text-primary cursor-pointer rounded-full p-1.5 transition-all md:hidden"
             >
@@ -66,7 +65,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
             </button>
           )}
           <div className="flex flex-1 items-center justify-between gap-3">
-            <button className="group/header flex min-w-0 cursor-pointer items-center gap-3 text-left focus:outline-none">
+            <button type="button" className="group/header flex min-w-0 cursor-pointer items-center gap-3 text-left focus:outline-none">
               <Avatar
                 src={null}
                 name={thread.name || "Unnamed Chat"}
@@ -129,6 +128,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       {/* SCROLL TO BOTTOM BUTTON */}
       {showScrollBottom && (
         <button
+        type="button"
           onClick={scrollToBottom}
           className="bg-background/80 border-border text-primary animate-in fade-in slide-in-from-bottom-2 absolute bottom-30 left-1/2 z-20 -translate-x-1/2 cursor-pointer rounded-full border p-2 shadow-lg backdrop-blur-md transition-all hover:scale-110 focus:outline-none active:scale-95"
         >
@@ -139,7 +139,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       {/* INPUT AREA */}
       <div className="bg-card border-border border-t p-4">
         <div className="bg-background/50 border-border focus-within:ring-primary flex items-end gap-2 rounded-2xl border p-2 transition-all focus-within:ring-1">
-          <button className="text-muted-foreground hover:text-primary hover:bg-primary/5 mb-0.5 shrink-0 cursor-pointer rounded-xl p-2 transition-colors focus:outline-none">
+          <button type="button" className="text-muted-foreground hover:text-primary hover:bg-primary/5 mb-0.5 shrink-0 cursor-pointer rounded-xl p-2 transition-colors focus:outline-none">
             <Paperclip className="h-4 w-4" />
           </button>
 
@@ -154,6 +154,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 
           <div className="mb-0.5 flex shrink-0 items-center">
             <button
+              type="button"
               onClick={onSend}
               disabled={!message.trim() || isLoading}
               className={cn(

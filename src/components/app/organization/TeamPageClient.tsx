@@ -160,10 +160,8 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
 
       {/* Right panel */}
       <aside className="w-full @4xl:w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
-        <UserProfileCard
-          name={ownerName}
-          handle={user?.email}
-        />
+        <UserProfileCard/>
+        
         <UserListCard
           title="Admin Members"
           users={adminMembers}

@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import TeamIllustration from "@/assets/svg/no-message.svg?react";
 import { cn } from "@/shared/lib/utils";
-import { MessageSquare, ChevronRight, UserPlus, Loader2 } from "lucide-react";
+import { MessageSquare, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Image } from "@/components/image/Image";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
@@ -44,7 +44,7 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
       <div className="h-24 bg-primary-bg relative overflow-hidden shrink-0">
         <TeamIllustration className="absolute bottom-0 right-3 h-20 w-auto opacity-90" />
         <div className="absolute top-4 left-5">
-          <p className="text-sm font-semibold text-primary-fg leading-tight font-millik text-xl">Your Team</p>
+          <p className=" font-semibold text-primary-fg leading-tight font-millik text-xl">Your Team</p>
           <p className="text-xs text-primary-fg-hover mt-0.5">Collaborate &amp; connect</p>
         </div>
       </div>
@@ -64,11 +64,18 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
               <p className="text-xs text-muted-foreground mt-0.5">
                 Invite people to start collaborating.
               </p>
-              <Link to={"/organization/team" as any}>
-              <Button variant="primary" size="sm" className="place-self-start">
-                New member
-              </Button>
-            </Link>
+              <Link
+                to="/organization/team"
+                search={{
+                  tab: "members" as const,   // better typing
+                  q: "",                     // default empty search
+                  page: 1                    // default page
+                }}
+              >
+                <Button variant="primary" size="sm" className="place-self-start">
+                  New member
+                </Button>
+              </Link>
             </div>
           </div>
         ) : (
@@ -116,11 +123,18 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
               </span>
             </div>
 
-            <Link to={"/organization/team" as any}>
-              <Button variant="primary" size="sm">
-                New member
-              </Button>
-            </Link>
+            <Link
+  to="/organization/team"
+  search={{
+    tab: "members" as const,   // better typing
+    q: "",                     // default empty search
+    page: 1                    // default page
+  }}
+>
+  <Button variant="primary" size="sm">
+    New member
+  </Button>
+</Link>
           </div>
         )}
 
@@ -133,7 +147,7 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
             iconClass="bg-primary/10 text-primary"
             label="Message team"
             sublabel="Send a broadcast or DM"
-            to={"/inbox" as any}
+            to={"/inbox"}
           />
         </div>
 
@@ -162,7 +176,7 @@ function ActionRow({
       </div>
       <div className="flex-1 min-w-0 py-2.5">
         <p className="text-sm font-semibold text-primary-fg font-millik">{label}</p>
-        <p className="text-xs text-muted-foreground mt-0.5 text-primary-fg-hover">{sublabel}</p>
+        <p className="text-xs mt-0.5 text-primary-fg-hover">{sublabel}</p>
       </div>
       <ChevronRight className="size-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
     </>
@@ -171,7 +185,7 @@ function ActionRow({
   if (to) {
     return (
       <Link
-        to={to as any}
+        to={to}
       className="flex items-center overflow-hidden  gap-3 px-3.5  pl-0 rounded-sm border border-dashed border-background-space hover:bg-muted/50 transition-colors text-left w-full group"
       >
         {content}

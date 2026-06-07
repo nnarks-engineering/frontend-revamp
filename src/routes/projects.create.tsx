@@ -35,7 +35,7 @@ function CreateProjectLayoutWrapper() {
             <Link to="/" className="flex items-center gap-2 group">
               <NnarksLogo className="h-8 w-auto text-primary group-hover:scale-105 transition-transform" />
             </Link>
-            <Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-muted/50">
+            <Link search={{tab:'active'}} to="/projects" className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-full hover:bg-muted/50">
               <X className="w-5 h-5" />
             </Link>
           </header>

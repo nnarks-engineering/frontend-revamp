@@ -20,7 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { CompanyRole } from "@/types/enums";
-import { ShieldCheck, UserX, Crown, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShieldCheck, UserX, Crown, Users} from "lucide-react";
 import { toast } from "sonner";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { useState } from "react";

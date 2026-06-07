@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { cn } from "@/shared/lib/utils";
 import { useDocuments } from "@/shared/hooks/use-documents";
 import { DocumentCategoryFilter, DocumentList, DOCUMENT_CATEGORIES } from "@/components/app/documents";
 import {
@@ -8,7 +7,7 @@ import {
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
   ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
+
 } from "@/components/ui/module-layout";
 import { Button } from "@/components/ui/button";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
@@ -40,7 +39,7 @@ export function DocumentsPageClient() {
     <div className="mx-auto h-full">
       <ModuleLayout className="h-full rounded-none">
         <div className="flex h-full overflow-hidden">
-          
+
           {/* SIDEBAR */}
           <div className="w-full md:w-64 shrink-0 flex-col border-r border-border/60 bg-background/50 hidden md:flex">
             <ModuleLayoutHeader variant="primary" className="border-b border-border/60 p-6 pb-6 rounded-none relative overflow-hidden">
@@ -76,7 +75,7 @@ export function DocumentsPageClient() {
                 <span className="hidden sm:inline">Upload</span>
               </Button>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto scrollbar-hide">
               {/* For mobile, show the filter here as well maybe? We can keep it simple for now and rely on desktop */}
               {/* Mobile filter (hidden on desktop) */}
