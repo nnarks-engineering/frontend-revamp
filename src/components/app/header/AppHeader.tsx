@@ -4,7 +4,6 @@ import { cn } from "@/shared/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-import { GlobalSearch } from "./GlobalSearch";
 import { InvitationsDrawer } from "./InvitationsDrawer";
 import { useMyInvitations } from "@/shared/hooks/use-company-members";
 import { TopNavBar } from "../navigation/TopNavBar";

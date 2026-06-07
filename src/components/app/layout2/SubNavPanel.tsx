@@ -25,11 +25,11 @@ export function SubNavPanel({ items }: Readonly<SubNavPanelProps>) {
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={cn(
-          "absolute top-5 -right-3 z-50 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background shadow-sm hover:bg-muted transition-all",
+          "absolute top-5 -right-3 z-50 flex h-6 w-6 items-center justify-center rounded-full border border-background-space! hover:opacity-90 transition-all",isCollapsed ? "bg-primary-fg" : "bg-background",
         )}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
-        {isCollapsed ? <PanelLeftOpen className="h-3.5 w-3.5 text-muted-foreground" /> : <PanelLeftClose className="h-3.5 w-3.5 text-muted-foreground" />}
+        {isCollapsed ? <PanelLeftOpen className="size-4 text-background" /> : <PanelLeftClose className="h-3.5 w-3.5 text-primary-fg-hover" />}
       </button>
 
       {/* Panel Content (hidden when collapsed to prevent layout breaks) */}

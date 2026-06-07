@@ -22,7 +22,6 @@ import { StatusBadge, EmptyState } from "@/components/app/shared";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import NoMoneySvg from "@/assets/svg/no-money.svg?react";
 import {
-  Wallet,
   ArrowDownLeft,
   ArrowUpRight,
   Search,
