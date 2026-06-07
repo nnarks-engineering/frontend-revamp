@@ -55,7 +55,7 @@ export function PayoutAccountCard({
 
         {/* ── FRONT: Balance ── */}
         <div
-          className="absolute inset-0 rounded-2xl bg-primary-800 overflow-hidden select-none"
+          className="absolute inset-0 rounded-2xl bg-primary-fg overflow-hidden select-none"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/[0.06]" />
@@ -103,7 +103,7 @@ export function PayoutAccountCard({
 
         {/* ── BACK: Account details ── */}
         <div
-          className="absolute inset-0 rounded-2xl bg-primary-800 overflow-hidden select-none"
+          className="absolute inset-0 rounded-2xl bg-primary-fg overflow-hidden select-none"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/[0.06]" />
