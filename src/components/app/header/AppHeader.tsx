@@ -58,7 +58,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
           <Link
             to="/home"
             className={cn(
-              "flex items-center h-14 gap-2 px-3 group shrink-0",
+              "flex items-center h-14 gap-2 px-3 group shrink-0 mr-10",
               searchOpen ? "hidden md:flex" : "flex",
             )}
           >
@@ -108,7 +108,7 @@ export function AppHeader({ isSidebarOpen, onToggleSidebar, showSidebarToggle = 
           <SidebarUserMenu />
         </div>
 
-        <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+        {/* <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} /> */}
         <InvitationsDrawer open={invitationsOpen} onClose={() => setInvitationsOpen(false)} />
       </div>
     </header>
