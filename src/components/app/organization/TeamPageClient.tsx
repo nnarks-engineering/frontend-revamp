@@ -78,12 +78,12 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
   }, [membersData]);
 
   return (
-    <div className="mx-auto pb-12 px-6 @container">
+    <div className="mx-auto p-6 @container h-full ">
       {/* Header */}
 
 
-      <div className="flex flex-col @4xl:flex-row items-start gap-6">
-      <ModuleLayout className="w-full flex-1 min-w-0">
+      <div className="flex flex-col @4xl:flex-row items-start h-full gap-6">
+      <ModuleLayout className="w-full flex-1 min-w-0 h-full">
        <ModuleLayoutHeader variant="tertiary">
         {/* Illustrative decoration — matches TeamMembersCard / ProjectsCard pattern */}
         <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-orange-50 pointer-events-none" aria-hidden />
