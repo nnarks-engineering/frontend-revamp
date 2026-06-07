@@ -24,7 +24,7 @@ import {
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
-import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/use-auth";
+// import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/use-auth";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
 
 interface TeamPageClientProps {
@@ -54,16 +54,16 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
   const showSearch = !SEARCH_HIDDEN_TABS.has(tab);
   const [inviteOpen, setInviteOpen] = useState(false);
 
-  const { data: user } = useCurrentUser();
-  const { data: profile } = useCurrentProfile();
+  // const { data: user } = useCurrentUser();
+  // const { data: profile } = useCurrentProfile();
   const { data: membersData } = useCompanyMembers(company.id);
 
-  const ownerName = useMemo(() => {
-    const first = profile?.first_name;
-    const last = profile?.last_name;
-    if (first ?? last) return [first, last].filter(Boolean).join(" ");
-    return user?.username ?? user?.email ?? "You";
-  }, [profile, user]);
+  // const ownerName = useMemo(() => {
+  //   const first = profile?.first_name;
+  //   const last = profile?.last_name;
+  //   if (first ?? last) return [first, last].filter(Boolean).join(" ");
+  //   return user?.username ?? user?.email ?? "You";
+  // }, [profile, user]);
 
   const adminMembers = useMemo<UserListItem[]>(() => {
     if (!membersData) return [];
@@ -161,7 +161,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       {/* Right panel */}
       <aside className="w-full @4xl:w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
         <UserProfileCard/>
-        
+
         <UserListCard
           title="Admin Members"
           users={adminMembers}
