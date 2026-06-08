@@ -12,7 +12,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     description:
       "Your client workspace is ready. Track milestones, verify releases, and keep all project communication in one place.",
     image: ContractorImg,
-    link: "/projects",
+    link: "/home",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     description:
       "A new milestone release is pending approval. Review deliverables to keep your project on schedule.",
     image: DiasporaImg,
-    link: "/projects/milestones",
+    link: "/home",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     description:
       "Bring contributors into the workspace so they can view tasks, updates, and progress in real time.",
     image: ContributorsImg,
-    link: "/organization/team",
+    link: "/home",
   },
 ];
 
