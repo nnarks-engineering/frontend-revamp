@@ -86,7 +86,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       <ModuleLayout className="w-full flex-1 min-w-0 h-full">
        <ModuleLayoutHeader variant="tertiary">
         {/* Illustrative decoration — matches TeamMembersCard / ProjectsCard pattern */}
-        <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-orange-50 pointer-events-none" aria-hidden />
+        <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-tertiary-bg-hover pointer-events-none" aria-hidden />
         {/* Decorative gradient blobs */}
         <div className="absolute -right-12 -top-12 w-32 h-32 bg-orange-10 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />

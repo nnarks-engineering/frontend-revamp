@@ -151,12 +151,6 @@ export const NAV_GROUPS: NavGroup[] = [
             to: "/escrow",
           },
           {
-            id: "wallet-transactions",
-            label: "Transactions",
-            icon: faFileInvoiceDollar,
-            to: "/escrow",
-          },
-          {
             id: "wallet-contributors",
             label: "Contributors",
             icon: faUserGroup,

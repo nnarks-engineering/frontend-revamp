@@ -14,7 +14,7 @@ interface EditProfileDrawerProps {
 export function EditProfileDrawer({ open, onOpenChange }: EditProfileDrawerProps) {
   const { data: profile } = useCurrentProfile();
   const updateProfile = useUpdateProfile();
-  
+
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [otherNames, setOtherNames] = React.useState("");
@@ -43,17 +43,17 @@ export function EditProfileDrawer({ open, onOpenChange }: EditProfileDrawerProps
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="p-0 sm:max-w-md w-full flex flex-col bg-background">
         <div className="h-full flex flex-col">
-          <div className="bg-tertiary relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b border-tertiary-600/20">
-            <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-400 opacity-50 scale-x-[-1]" aria-hidden />
+          <div className="bg-tertiary-bg relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b border-tertiary-600/20">
+            <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-bg-hover opacity-50 scale-x-[-1]" aria-hidden />
             <div className="relative z-10 flex items-start justify-between gap-3">
               <div>
-                <h2 className="text-3xl leading-none font-millik text-tertiary-foreground">Edit Profile</h2>
-                <p className="text-tertiary-foreground/75 mt-2 text-base">Update your personal details.</p>
+                <h2 className="text-3xl leading-none font-millik text-tertiary-fg">Edit Profile</h2>
+                <p className="text-tertiary-fg-hover mt-2 text-base">Update your personal details.</p>
               </div>
               <button
                 type="button"
                 onClick={() => onOpenChange(false)}
-                className="p-2 -mr-2 rounded-lg text-tertiary-foreground/70 hover:text-tertiary-foreground hover:bg-black/10 transition-colors"
+                className="p-2 -mr-2 rounded-lg text-tertiary-fg-hover/70 hover:text-tertiary-fg hover:bg-black/10 transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
@@ -65,25 +65,25 @@ export function EditProfileDrawer({ open, onOpenChange }: EditProfileDrawerProps
             <div className="space-y-5">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-foreground">First Name</label>
-                <Input 
-                  value={firstName} 
-                  onChange={(e) => setFirstName(e.target.value)} 
+                <Input
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Enter your first name"
                 />
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-foreground">Last Name</label>
-                <Input 
-                  value={lastName} 
-                  onChange={(e) => setLastName(e.target.value)} 
+                <Input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   placeholder="Enter your last name"
                 />
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-foreground">Other Names</label>
-                <Input 
-                  value={otherNames} 
-                  onChange={(e) => setOtherNames(e.target.value)} 
+                <Input
+                  value={otherNames}
+                  onChange={(e) => setOtherNames(e.target.value)}
                   placeholder="Enter your other names (optional)"
                 />
               </div>

@@ -27,40 +27,40 @@ export function InviteMemberDialog({ companyId, open, onOpenChange }: InviteMemb
     inviteMutation.mutate(
       { email, role },
       {
-        onSuccess: () => { 
-          setEmail(""); 
-          setRole("member"); 
-          onOpenChange(false); 
-          toast.success("Invitation sent successfully"); 
+        onSuccess: () => {
+          setEmail("");
+          setRole("member");
+          onOpenChange(false);
+          toast.success("Invitation sent successfully");
         },
-        onError: (err: Error) => { 
-          setErrorMsg(err.message || "Failed to send invitation."); 
-          toast.error("Failed to send invitation"); 
+        onError: (err: Error) => {
+          setErrorMsg(err.message || "Failed to send invitation.");
+          toast.error("Failed to send invitation");
         },
       }
     );
   };
 
   return (
-    <Sheet 
-      open={open} 
-      onOpenChange={(isOpen) => { 
-        onOpenChange(isOpen); 
-        if (!isOpen) { 
-          setEmail(""); 
-          setRole("member"); 
-          setErrorMsg(""); 
-        } 
+    <Sheet
+      open={open}
+      onOpenChange={(isOpen) => {
+        onOpenChange(isOpen);
+        if (!isOpen) {
+          setEmail("");
+          setRole("member");
+          setErrorMsg("");
+        }
       }}
     >
       <SheetContent side="right" className="p-0 sm:max-w-md w-full flex flex-col bg-background">
         <div className="h-full flex flex-col">
-          <div className="bg-tertiary relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b border-tertiary-600/20">
-            <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-400 opacity-50 scale-x-[-1]" aria-hidden />
+          <div className="bg-tertiary-bg relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b border-tertiary-600/20">
+            <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-bg-hover opacity-50 scale-x-[-1]" aria-hidden />
             <div className="relative z-10 flex items-start justify-between gap-3">
               <div>
-                <h2 className="text-3xl leading-none font-millik text-tertiary-foreground">Invite Member</h2>
-                <p className="text-tertiary-foreground/75 mt-2 text-base">Send an email invitation to add someone to your organization.</p>
+                <h2 className="text-3xl leading-none font-millik text-tertiary-fg">Invite Member</h2>
+                <p className="text-tertiary-fg-hover mt-2 text-base">Send an email invitation to add someone to your organization.</p>
               </div>
               <button
                 type="button"

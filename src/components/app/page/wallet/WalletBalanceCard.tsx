@@ -55,7 +55,7 @@ export function PayoutAccountCard({
 
         {/* ── FRONT: Balance ── */}
         <div
-          className="absolute inset-0 rounded-2xl bg-primary-fg overflow-hidden select-none"
+          className="absolute inset-0 rounded-md bg-primary-900 dark:bg-primary-950 overflow-hidden select-none"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/[0.06]" />
@@ -72,10 +72,10 @@ export function PayoutAccountCard({
           </span>
 
           {/* Chip */}
-          <div className="absolute top-[68px] left-[22px] w-[42px] h-8 rounded-md bg-white/[0.14] border border-white/20 p-[5px] box-border">
+          <div className="absolute top-[68px] left-[22px] w-[42px] h-8 rounded-sm bg-tertiary-700/50 border border-tertiary/20! p-[5px] box-border">
             <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-0.5">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="bg-white/20 rounded-[2px]" />
+                <div key={i} className="bg-tertiary-700/90 rounded-[2px]" />
               ))}
             </div>
           </div>
@@ -103,7 +103,7 @@ export function PayoutAccountCard({
 
         {/* ── BACK: Account details ── */}
         <div
-          className="absolute inset-0 rounded-2xl bg-primary-fg overflow-hidden select-none"
+          className="absolute inset-0 rounded-md bg-primary-900 dark:bg-primary-950 overflow-hidden select-none"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/[0.06]" />
@@ -115,25 +115,25 @@ export function PayoutAccountCard({
           </span>
 
           {/* Network badge */}
-          <div className="absolute top-[18px] right-5 flex items-center gap-1.5">
+          <div className="absolute top-[18px] right-5 flex items-center -gap-1.5">
             {isMomo ? (
               <>
-                <span className="w-2 h-2 rounded-full bg-[#ff9240]" />
+                <span className="w-2 h-2 rounded-full bg-tertiary-700" />
                 <span className="text-[10px] text-white/60 tracking-[2px] uppercase">MoMo</span>
               </>
             ) : (
               <>
-                <span className="w-5 h-5 rounded-full bg-[#ff7010] opacity-90" />
-                <span className="w-5 h-5 rounded-full bg-[#ff9240] opacity-75 -ml-1.5" />
+                <span className="w-5 h-5 rounded-full bg-primary-700 opacity-90" />
+                <span className="w-5 h-5 rounded-full bg-primary-600 opacity-75 -ml-1.5" />
               </>
             )}
           </div>
 
           {/* Chip */}
-          <div className="absolute top-[68px] left-[22px] w-[42px] h-8 rounded-md bg-white/[0.14] border border-white/20 p-[5px] box-border">
+          <div className="absolute top-[68px] left-[22px] w-[42px] h-8 rounded-sm bg-tertiary-700/50 border border-tertiary/20! p-[5px] box-border">
             <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-0.5">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="bg-white/20 rounded-[2px]" />
+                <div key={i} className="bg-tertiary-700/90 rounded-[2px]" />
               ))}
             </div>
           </div>

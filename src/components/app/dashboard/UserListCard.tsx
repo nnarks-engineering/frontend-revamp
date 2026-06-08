@@ -32,14 +32,14 @@ export function UserListCard({ title, users, href, onViewMore, className }: User
   return (
     <Card
       className={cn(
-        "overflow-hidden bg-white flex flex-col",
+        "overflow-hidden bg-background flex flex-col p-4 @md:p-0",
         className,
       )}
     >
       <CardHeader
         decoration={RoundingLine2}
-        decorationClassName="absolute -top-3 left-0 text-primary-50 "
-        className="relative overflow-clip pb-3 bg-primary-100"
+        decorationClassName="absolute  -top-3 left-0 text-primary-bg-hover pointer-events-none "
+        className="relative overflow-clip pb-3 bg-primary-bg"
       >
         <h3 className="text-base font-bold text-foreground">{title}</h3>
       </CardHeader>
