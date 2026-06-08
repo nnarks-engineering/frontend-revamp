@@ -159,7 +159,9 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       </ModuleLayout>
 
       {/* Right panel */}
-      <aside className="w-full @4xl:w-64 shrink-0 flex flex-col gap-4 sticky top-0 self-start">
+      <div className="@container w-full @4xl:w-76 shrink-0">
+
+     <aside className="w-full @4xl:w-76 shrink-0 flex @max-md:flex-col gap-4 sticky top-0 self-start">
         <UserProfileCard/>
 
         <UserListCard
@@ -167,6 +169,8 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
           users={adminMembers}
         />
       </aside>
+      </div>
+
       </div>
       <InviteMemberDialog
         companyId={company.id}

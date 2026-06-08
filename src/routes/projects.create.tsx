@@ -51,7 +51,7 @@ function CreateProjectLayoutWrapper() {
         {/* Right side: Visual Panel (lg+ only, max-w-1/3) */}
         <div
           style={{ backgroundImage: `url(${realBuilding})`, backgroundSize: "cover", backgroundPosition: "center" }}
-          className="hidden lg:flex lg:w-1/3 bg-secondary relative overflow-hidden items-center justify-center"
+          className="hidden lg:flex lg:w-1/3 bg-secondary dark:opacity-80 relative overflow-hidden items-center justify-center"
         >
           <RoundingLine className="w-full h-full text-background absolute inset-0" />
         </div>

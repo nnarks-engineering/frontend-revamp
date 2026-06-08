@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/use-auth";
-import { X, Loader2 } from "lucide-react";
-import RoundingLine from "@/assets/svg/rounding-line.svg?react";
+import { Loader2 } from "lucide-react";
 
 interface EditProfileDrawerProps {
   open: boolean;
@@ -43,23 +42,10 @@ export function EditProfileDrawer({ open, onOpenChange }: EditProfileDrawerProps
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="p-0 sm:max-w-md w-full flex flex-col bg-background">
         <div className="h-full flex flex-col">
-          <div className="bg-tertiary-bg relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b border-tertiary-600/20">
-            <RoundingLine className="absolute z-0 -top-6 left-0 text-tertiary-bg-hover opacity-50 scale-x-[-1]" aria-hidden />
-            <div className="relative z-10 flex items-start justify-between gap-3">
-              <div>
-                <h2 className="text-3xl leading-none font-millik text-tertiary-fg">Edit Profile</h2>
-                <p className="text-tertiary-fg-hover mt-2 text-base">Update your personal details.</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => onOpenChange(false)}
-                className="p-2 -mr-2 rounded-lg text-tertiary-fg-hover/70 hover:text-tertiary-fg hover:bg-black/10 transition-colors"
-                aria-label="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+          <SheetHeader variant="tertiary">
+            <SheetTitle>Edit Profile</SheetTitle>
+            <SheetDescription>Update your personal details.</SheetDescription>
+          </SheetHeader>
 
           <div className="flex-1 overflow-auto p-6 space-y-6">
             <div className="space-y-5">

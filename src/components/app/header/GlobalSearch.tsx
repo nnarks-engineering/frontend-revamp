@@ -1,6 +1,6 @@
 import { getAllSearchableItems } from "@/app/nav-config";
 import { SearchHighlight } from "@/components/ui/search-highlight";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { cn } from "@/shared/lib/utils";
 import { useNavigate } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
@@ -75,26 +75,16 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
         </div>
       )}
 
-      <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetContent side="right" className="p-0">
+      <Sheet open={open} onOpenChange={(isOpen) => {
+        onOpenChange(isOpen);
+        if (!isOpen) setSearch("");
+      }}>
+        <SheetContent side="right" className="p-0" aria-describedby={undefined}>
           <div className="h-full flex flex-col">
-            <div className="bg-primary-bg px-5 pt-5 pb-4 border-b border-primary-200/50">
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <div>
-                  <h2 className="text-3xl leading-none font-millik text-primary-fg">Need help?</h2>
-                  <p className="text-primary-fg-hover mt-2 text-base">We've got everything you need right here.</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="p-2 rounded-lg text-primary-fg-hover hover:text-primary-fg hover:bg-white/60 transition-colors"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="relative group">
+            <SheetHeader variant="primary" withIllustration={false} className="px-5 pt-5 pb-4">
+              <SheetTitle>Need help?</SheetTitle>
+              <SheetDescription>We've got everything you need right here.</SheetDescription>
+              <div className="relative group mt-3">
                 <Search className="absolute group-focus-within:text-primary-fg transition-all group-focus-within:rotate-18 group-focus-within:scale-110 duration-500 left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70 pointer-events-none" />
                 <input
                   ref={inputRef}
@@ -116,7 +106,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                   </button>
                 )}
               </div>
-            </div>
+            </SheetHeader>
 
             <div className="flex-1 overflow-auto py-3 px-2">
               {!hasQuery && (

@@ -130,7 +130,7 @@ function AiChatPage() {
                 {/* Bubble */}
                 <div
                   className={cn(
-                    "px-4 py-3 rounded-2xl text-muted-foreground text-[14px] leading-relaxed max-w-[80%]",
+                    "px-4 py-3 rounded-2xl text-muted-foreground text-[14px] max-w-[80%] text-ellipsis overflow-hidden ",
                     msg.role === "user"
                       ? "bg-active-background  rounded-tr-sm"
                       : "bg-background border border-border/40 rounded-tl-sm"
