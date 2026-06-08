@@ -132,6 +132,22 @@ export interface AcceptProjectInvitationPayload {
   company_id: string;
 }
 
+export interface ReviewRead {
+  id: string;
+  subject_type: string;
+  subject_id: string;
+  reviewer_company_id: string;
+  acted_by_user_id: string;
+  reviewer_role: string;
+  reviewer_type: string;
+  stars: number;
+  status: string;
+  verified: boolean;
+  comment: string | null;
+  reviewed_at: string;
+  ai_confidence_score: number | null;
+}
+
 export interface ReviewSubmitPayload {
   company_id: string;
   reviewer_role: string;

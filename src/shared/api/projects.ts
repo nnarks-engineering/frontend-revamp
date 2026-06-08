@@ -17,6 +17,8 @@ import type {
   ProjectCreatePayload,
   ProjectDashboard,
   ProjectUpdatePayload,
+  ReviewRead,
+  ReviewSubmitPayload,
 } from "@/types/projects";
 
 export type { AIPlanTaskResponse, EvidenceRead, EvidenceSubmit, PageParams, PaginatedResponse };
@@ -100,6 +102,7 @@ export async function listMilestoneEvidence(
 ): Promise<EvidenceRead[]> {
   const res = await api.get<EvidenceRead[]>(
     PROJECT_ENDPOINTS.MILESTONE_EVIDENCE(projectId, milestoneId),
+    { params: { _project_id: projectId } }
   );
   return res.data;
 }
@@ -112,6 +115,20 @@ export async function submitMilestoneEvidence(
   const res = await api.post<EvidenceRead>(
     PROJECT_ENDPOINTS.MILESTONE_EVIDENCE(projectId, milestoneId),
     data,
+    { params: { _project_id: projectId } }
+  );
+  return res.data;
+}
+
+export async function submitMilestoneReview(
+  projectId: string,
+  milestoneId: string,
+  data: ReviewSubmitPayload,
+): Promise<ReviewRead> {
+  const res = await api.post<ReviewRead>(
+    PROJECT_ENDPOINTS.MILESTONE_REVIEWS(projectId, milestoneId),
+    data,
+    { params: { _project_id: projectId } }
   );
   return res.data;
 }

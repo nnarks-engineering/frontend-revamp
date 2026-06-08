@@ -112,6 +112,8 @@ export const PROJECT_ENDPOINTS = {
     `/projects/${projectId}/milestones/${milestoneId}`,
   MILESTONE_EVIDENCE: (projectId: string, milestoneId: string) =>
     `/projects/${projectId}/milestones/${milestoneId}/evidence`,
+  MILESTONE_REVIEWS: (projectId: string, milestoneId: string) =>
+    `/projects/${projectId}/milestones/${milestoneId}/reviews`,
   INVITE_MEMBER: (id: string) => `/projects/${id}/members/invite`,
   AI_PLAN: (id: string) => `/projects/${id}/ai-plan`,
   ACCEPT_INVITATION: "/projects/invitations/accept",

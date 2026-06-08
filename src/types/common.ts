@@ -21,17 +21,21 @@ export interface EvidenceRead {
   id: string;
   subject_type: string;
   subject_id: string;
-  submitted_by: string;
+  submitting_company_id: string;
+  submitted_by_user_id: string;
   evidence_type: string;
   file_url: string;
-  description: string | null;
-  created_at: string;
+  file_name: string;
+  verified: boolean;
+  verified_by_user_id: string | null;
+  notes: string | null;
 }
 
 export interface EvidenceSubmit {
+  company_id: string;
   evidence_type: string;
+  file_name: string;
   file_url: string;
-  description?: string;
 }
 
 export interface AIPlanTaskResponse {

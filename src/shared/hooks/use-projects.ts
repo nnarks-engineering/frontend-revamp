@@ -17,6 +17,7 @@ import {
     listMilestones,
     listProjects,
     submitMilestoneEvidence,
+    submitMilestoneReview,
     triggerAIPlan,
     updateMilestone,
     updateProject,
@@ -39,6 +40,8 @@ import type {
     ProjectCreatePayload,
     ProjectDashboard,
     ProjectUpdatePayload,
+    ReviewRead,
+    ReviewSubmitPayload,
 } from "@/types/projects";
 
 // ═══════════════════════════════════════════════════════════════════
@@ -191,6 +194,22 @@ export function useSubmitEvidence(projectId: string, milestoneId: string) {
             queryClient.invalidateQueries({
                 queryKey: ["projects", projectId, "milestones", milestoneId, "evidence"],
             });
+        },
+    });
+}
+
+/** Submit a review for a milestone. */
+export function useSubmitMilestoneReview(projectId: string, milestoneId: string) {
+    const queryClient = useQueryClient();
+
+    return useMutation<ReviewRead, Error, ReviewSubmitPayload>({
+        mutationFn: (data) => submitMilestoneReview(projectId, milestoneId, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["projects", projectId, "milestones", milestoneId, "reviews"],
+            });
+            queryClient.invalidateQueries({ queryKey: QUERY_KEYS.milestones(projectId) });
+            queryClient.invalidateQueries({ queryKey: QUERY_KEYS.project(projectId) });
         },
     });
 }

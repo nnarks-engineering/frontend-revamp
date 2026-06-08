@@ -25,7 +25,10 @@ export function useInviteCompanyMember(companyId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<CompanyMember, Error, CompanyMemberInvite>({
-    mutationFn: (data) => inviteCompanyMember(companyId, data),
+    mutationFn: (data) => {
+      console.log("Inviting member to company:", companyId, data);
+      return inviteCompanyMember(companyId, data);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.companyMembers(companyId) });
     },
