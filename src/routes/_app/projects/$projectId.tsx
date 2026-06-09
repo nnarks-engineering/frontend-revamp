@@ -1,94 +1,53 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { StatusBadge, EmptyState } from "@/components/app/shared";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { z } from "zod";
+import { EmptyState } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
-import { MOCK_PROJECTS } from "@/data/mock/projects";
-import { ChevronDown, ChevronRight, AlertCircle } from "lucide-react";
-import { useState } from "react";
-import type { Milestone } from "@/types/projects";
+import { useProject } from "@/shared/hooks/use-projects";
+import { AlertCircle, Plus } from "lucide-react";
+import {
+  ModuleLayout,
+  ModuleLayoutHeader,
+  ModuleLayoutHeaderContent,
+  ModuleLayoutTitle,
+  ModuleLayoutDescription,
+  ModuleLayoutHeaderActions,
+  ModuleLayoutToolbar,
+} from "@/components/ui/module-layout";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { ProjectOverviewTab } from "@/components/app/page/projects/detail/ProjectOverviewTab";
+import { ProjectMilestonesTab } from "@/components/app/page/projects/detail/ProjectMilestonesTab";
+import { ProjectMembersTab } from "@/components/app/page/projects/detail/ProjectMembersTab";
 
 export const Route = createFileRoute("/_app/projects/$projectId")({
+  validateSearch: z.object({
+    tab: z.enum(["overview", "milestones", "members"]).optional().default("overview"),
+  }),
   component: ProjectDetailPage,
 });
 
-function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
-  const [isExpanded, setIsExpanded] = useState(
-    m.status === "UNDER_REVIEW" || m.status === "IN_PROGRESS"
-  );
-
-  return (
-    <div className="flex flex-col border-b border-border/60 last:border-0">
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between px-2 py-4 -mx-2 rounded-md hover:bg-muted/40 transition-colors"
-      >
-        <div className="flex items-center gap-3">
-          {isExpanded ? (
-            <ChevronDown className="h-4 w-4 text-muted-foreground" />
-          ) : (
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-          )}
-          <span className="text-[15px] font-semibold text-foreground">
-            Milestone {index + 1} — {m.title}
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          {m.status === "UNDER_REVIEW" && <div className="h-2 w-2 rounded-full bg-warning" />}
-          {m.status === "APPROVED" && <div className="h-2 w-2 rounded-full bg-success" />}
-          {m.status === "IN_PROGRESS" && <div className="h-2 w-2 rounded-full bg-primary" />}
-          {m.status === "PENDING" && <div className="h-2 w-2 rounded-full border border-muted-foreground" />}
-          
-          <StatusBadge status={m.status} />
-        </div>
-      </button>
-
-      {isExpanded && (
-        <div className="animate-in slide-in-from-top-2 fade-in duration-200 pl-7 pr-2 pb-6 pt-2">
-          <div className="grid grid-cols-[120px_1fr] gap-y-3 text-[14px]">
-            <div className="text-muted-foreground">Amount:</div>
-            <div className="font-geist font-medium text-foreground">
-              ${m.budget_amount.toLocaleString()} <span className="font-normal text-muted-foreground text-[13px]">{(m.status !== "PENDING") && '(in escrow)'}</span>
-            </div>
-
-            <div className="text-muted-foreground">Submitted:</div>
-            <div className="text-foreground">{m.start_date}</div>
-
-            <div className="text-muted-foreground mt-2">Thread:</div>
-            <div className="mt-2 flex items-center justify-between">
-              <span className="text-muted-foreground text-[13px]">Created by {m.created_by}</span>
-              <div className="flex gap-3">
-                <Button variant="ghost" size="sm" className="text-destructive hover:bg-destructive/10 hover:text-destructive">
-                  Raise dispute
-                </Button>
-                <Button variant="secondary" size="sm">
-                  View thread
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-border/60">
-            {m.status === "UNDER_REVIEW" && (
-              <p className="text-[14px] text-foreground">
-                Nnarks is reviewing this milestone.
-                <br />
-                <span className="text-muted-foreground">Estimated: within 24 hours.</span>
-              </p>
-            )}
-            {m.status === "PENDING" && (
-              <Button variant="default" size="sm">
-                Fund Milestone
-              </Button>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+type TabKey = "overview" | "milestones" | "members";
 
 function ProjectDetailPage() {
   const { projectId } = Route.useParams();
-  const project = MOCK_PROJECTS.find(p => p.id === projectId);
+  const { tab } = Route.useSearch();
+  const navigate = useNavigate();
+
+  const setTab = (value: TabKey) => {
+    navigate({ to: ".", search: { tab: value } }).catch(() => {});
+  };
+
+  const { data: project, isLoading, error } = useProject(projectId);
+
+  console.log("PROJECT DETAIL DEBUG:", { projectId, project, isLoading, error });
+
+  if (isLoading) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -99,62 +58,56 @@ function ProjectDetailPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-12 w-full max-w-6xl mx-auto px-6 py-8 pb-20 h-full animate-in fade-in duration-500">
-      {/* LEFT: 30% Summary */}
-      <div className="flex flex-col gap-6 w-full md:w-[30%] shrink-0">
-        <div>
-          <h1 className="text-lg font-semibold text-foreground mb-1">{project.title}</h1>
-          <p className="text-[14px] text-muted-foreground leading-relaxed">
-            {project.description}
-          </p>
-        </div>
+    <div className="mx-auto p-6 @container h-full w-full max-w-6xl">
+      <ModuleLayout className="w-full flex-1 min-w-0 h-full">
+        <ModuleLayoutHeader variant="tertiary">
+          <RoundingLine className="absolute -top-3 right-0 scale-x-[-1] text-tertiary-bg-hover pointer-events-none" aria-hidden />
+          <div className="absolute -right-12 -top-12 w-32 h-32 bg-orange-10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl pointer-events-none" />
+          <ModuleLayoutHeaderContent>
+            <ModuleLayoutTitle>{project.title}</ModuleLayoutTitle>
+            <ModuleLayoutDescription>
+              {project.description}
+            </ModuleLayoutDescription>
+          </ModuleLayoutHeaderContent>
+          <ModuleLayoutHeaderActions>
+            <Button variant="tertiary" size="sm" className="gap-2">
+              <Plus className="w-4 h-4" />
+              Add Milestone
+            </Button>
+          </ModuleLayoutHeaderActions>
+        </ModuleLayoutHeader>
 
-        <div className="flex flex-col gap-3 text-[14px]">
-          <div className="flex justify-between border-b border-border/60 pb-2">
-            <span className="text-muted-foreground">Total budget</span>
-            <span className="font-geist font-medium text-foreground">${project.total_budget.toLocaleString()}</span>
-          </div>
-          <div className="flex justify-between border-b border-border/60 pb-2 mt-1">
-            <span className="text-muted-foreground">In escrow</span>
-            <span className="font-geist font-medium text-primary">${(project.wallet?.locked_balance || 0).toLocaleString()}</span>
-          </div>
-          <div className="flex justify-between border-b border-border/60 pb-2 mt-1">
-            <span className="text-muted-foreground">Created</span>
-            <span className="text-foreground">{new Date(project.start_date).toLocaleDateString()}</span>
-          </div>
-          <div className="flex justify-between border-b border-border/60 pb-2 mt-1">
-            <span className="text-muted-foreground">Status</span>
-            <StatusBadge status={project.status} />
-          </div>
+        <Tabs value={tab} onValueChange={(v) => setTab(v as TabKey)} className="px-6 pb-6">
+          <div className="border rounded-md">
+            <ModuleLayoutToolbar className="flex-wrap gap-2">
+              <TabsList variant="tertiary">
+                <TabsTrigger value="overview" className="gap-1.5 font-poppins">
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger value="milestones" className="gap-1.5 font-poppins">
+                  Milestones
+                </TabsTrigger>
+                <TabsTrigger value="members" className="gap-1.5 font-poppins">
+                  Members
+                </TabsTrigger>
+              </TabsList>
+            </ModuleLayoutToolbar>
 
-          <div className="mt-4">
-            <span className="block mb-3 text-[12px] font-semibold tracking-wider uppercase text-muted-foreground">Participants</span>
-            <div className="flex flex-col gap-2">
-              {project.members.map((m) => (
-                <div key={m.id} className="flex items-center gap-3 font-medium text-foreground text-[14px]">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary text-[11px]">
-                    {m.email.substring(0, 2).toUpperCase()}
-                  </div>
-                  {m.email}
-                  <StatusBadge status={m.role} className="ml-auto" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+            <TabsContent value="overview" className="m-0 border-t border-border/60">
+              <ProjectOverviewTab project={project} />
+            </TabsContent>
+            
+            <TabsContent value="milestones" className="m-0 border-t border-border/60">
+              <ProjectMilestonesTab project={project} />
+            </TabsContent>
 
-      {/* RIGHT: 70% Milestones */}
-      <div className="flex flex-col w-full md:w-[70%] pr-4">
-        <h2 className="text-[13px] font-semibold tracking-wider uppercase text-muted-foreground mb-4">
-          Milestones
-        </h2>
-        <div className="flex flex-col">
-          {project.milestones.map((m, i) => (
-            <MilestoneRow key={m.id} m={m} index={i} />
-          ))}
-        </div>
-      </div>
+            <TabsContent value="members" className="m-0 border-t border-border/60">
+              <ProjectMembersTab project={project} />
+            </TabsContent>
+          </div>
+        </Tabs>
+      </ModuleLayout>
     </div>
   );
 }

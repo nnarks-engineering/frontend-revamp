@@ -77,10 +77,15 @@ export function useUpdateProfile() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: ProfileUpdate) => updateMyProfile(data),
+    mutationFn: (data: ProfileUpdate) => {
+      console.log("Updating profile with data:", data);
+      return updateMyProfile(data)},
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
     },
+    onError: (error) => {
+      console.error("Error updating profile:", error);
+    }
   });
 }
 

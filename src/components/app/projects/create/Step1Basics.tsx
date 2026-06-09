@@ -1,6 +1,7 @@
 import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export function Step1Basics() {
@@ -21,9 +22,9 @@ export function Step1Basics() {
 
       <div className="space-y-6">
         <div className="space-y-3">
-          <label htmlFor="title" className="text-sm font-semibold text-foreground">
+          <Label htmlFor="title" className="text-sm font-semibold text-foreground">
             Project Name
-          </label>
+          </Label>
           <Input
             id="title"
             placeholder="e.g. Residential Building - East Legon"
@@ -34,9 +35,9 @@ export function Step1Basics() {
         </div>
 
         <div className="space-y-3">
-          <label htmlFor="description" className="text-sm font-semibold text-foreground">
+          <Label htmlFor="description" className="text-sm font-semibold text-foreground">
             Short Description
-          </label>
+          </Label>
           <Textarea
             id="description"
             placeholder="What is this project about? (2-3 lines)"
