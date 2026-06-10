@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { Industry } from "@/types/enums";
+import  { Industry,ProjectType } from "@/types/enums";
+
 
 export interface FormMilestone {
   id: string; // temporary ID for UI mapping
@@ -24,10 +25,9 @@ export interface CreateProjectState {
   region: string;
   city: string;
   siteAddress: string;
-
-  // Step 3: Category
-  isPartnered: boolean;
-  projectType: Industry | "";
+projectType: ProjectType;
+  // Step 3: Category 
+  industry: Industry;
   servicesNeeded: string[];
   additionalNotes: string;
 
@@ -67,8 +67,8 @@ const initialState: CreateProjectState = {
   region: "",
   city: "",
   siteAddress: "",
-  isPartnered: false,
-  projectType: "",
+  industry: Industry.Agriculture,
+  projectType: ProjectType.Solo,
   servicesNeeded: [],
   additionalNotes: "",
   totalBudget: 0,

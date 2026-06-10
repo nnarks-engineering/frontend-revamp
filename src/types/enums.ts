@@ -5,17 +5,27 @@
 
 /* ── Projects ── */
 
-export type Industry =
-  | "AGRICULTURE"
-  | "CONSTRUCTION"
-  | "TECHNOLOGY"
-  | "HEALTHCARE"
-  | "EDUCATION"
-  | "MANUFACTURING"
-  | "RETAIL"
-  | "OTHER";
 
-export type ProjectType = "INDIVIDUAL" | "PARTNERED";
+
+  export const Industry = {
+    Agriculture: "AGRICULTURE",
+    Construction: "CONSTRUCTION",
+    Technology: "TECHNOLOGY",
+    Healthcare: "HEALTHCARE",
+    Education: "EDUCATION",
+    Manufacturing: "MANUFACTURING",
+    Retail: "RETAIL",
+    Other: "OTHER",
+  } as const;
+
+export type Industry= (typeof Industry)[keyof typeof Industry];
+  
+export const ProjectType = {
+  Solo: "Solo",
+  Partnered: "Partnered",
+} as const;
+
+export type ProjectType = (typeof ProjectType)[keyof typeof ProjectType];
 
 export type ProjectStatus =
   | "DRAFT"

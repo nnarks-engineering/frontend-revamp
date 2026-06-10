@@ -1,7 +1,7 @@
 import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
 import {Info } from "lucide-react";
-import type{ Industry } from "@/types/enums";
+import {type Industry, ProjectType } from "@/types/enums";
 import { Combobox } from "@/components/ui/combobox";
 import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
 import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
@@ -37,7 +37,7 @@ const SERVICE_OPTIONS = [
 export function Step3Category() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
 
-  const isFormValid = state.projectType !== "" && state.servicesNeeded.length > 0;
+  const isFormValid = state.projectType !== undefined && state.servicesNeeded.length > 0;
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -57,21 +57,21 @@ export function Step3Category() {
           icon={SingleMan}
           title="Solo Project"
           description="I am funding and managing this project independently."
-          selected={!state.isPartnered}
-          onClick={() => updateState({ isPartnered: false })}
+          selected={state.projectType === ProjectType.Solo}
+          onClick={() => updateState({ projectType: ProjectType.Solo })}
         />
 
         <ProjectTypeButton
           icon={HandShake}
           title="Partnered Project"
           description="This project is co-managed with one or more partners."
-          selected={state.isPartnered}
-          onClick={() => updateState({ isPartnered: true })}
+          selected={state.projectType === ProjectType.Partnered}
+          onClick={() => updateState({ projectType: ProjectType.Partnered })}
         />
 
       </div>
 
-      {state.isPartnered && (
+      {state.projectType === ProjectType.Partnered && (
        <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." />
       )}
 
@@ -80,7 +80,7 @@ export function Step3Category() {
           label="What type of project is this?"
           placeholder="Select a category"
           value={state.projectType}
-          onChange={(val) => updateState({ projectType: val as Industry })}
+          onChange={(val) => updateState({ projectType: val as ProjectType })}
           options={PROJECT_TYPE_OPTIONS}
           required
           sortOrder="none"

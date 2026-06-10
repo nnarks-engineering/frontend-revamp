@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Loader2, CheckCircle2, ArrowRight, ClipboardList, Edit } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { DetailField } from "@/components/common/DetailField";
-import type { Industry } from "@/types/enums";
+import  {ProjectType } from "@/types/enums";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -66,8 +66,8 @@ if (!validCompanyId) return;
     owner_company_id: validCompanyId,
     title: state.title,
     description: combinedDescription,
-    industry: state.projectType.toLowerCase() as Industry,
-    project_type: state.isPartnered ,
+    industry: state.industry,
+    project_type: state.projectType,
     location_address: combinedLocation || "N/A",
     start_date: startDateObj.toISOString().split("T")[0],
     end_date: endDateObj.toISOString().split("T")[0],
@@ -80,12 +80,14 @@ if (!validCompanyId) return;
   try {
     console.log("Submitting payload:", payload);
     const newProject = await createProject.mutateAsync(payload);
+    console.log("", newProject);
     // ... milestones, invites, setIsSuccess
-  } catch (error: any) {
-    console.error("Status:", error?.response?.status);
-    console.error("Server error:", error?.response?.data);
+  } 
+  catch {
+    console.error("Server error:");
     console.table(payload); // now accessible here too
-  } finally {
+  } 
+  finally {
     setIsSubmitting(false);
   }
 };
@@ -226,7 +228,7 @@ if (!validCompanyId) return;
           />
           <DetailField
             label="Structure"
-            value={state.isPartnered ? "Partnered Project" : "Solo Project"}
+            value={state.projectType === ProjectType.Partnered ? "Partnered Project" : "Solo Project"}
           />
          
          <DetailField
@@ -278,7 +280,7 @@ if (!validCompanyId) return;
         </ReviewSection>
 
         {/* ── Partners ── */}
-        {state.isPartnered && (
+        {state.projectType === ProjectType.Partnered && (
           <ReviewSection title="Partners" goto={6}>
             <DetailField label="Partner Setup" value={state.partnerSelection} />
             {state.partnerEmails.length > 0 && (
@@ -345,10 +347,10 @@ function ReviewSection({
   children,
   goto,
 }: {
-  className?: string;
-  title: string;
-  children: React.ReactNode;
-  goto?: number;
+readonly  className?: string;
+readonly  title: string;
+readonly  children: React.ReactNode;
+readonly  goto?: number;
 }) {
 
 const { goToStep } = useCreateProjectForm();
