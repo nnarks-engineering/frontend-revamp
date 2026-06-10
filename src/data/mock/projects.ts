@@ -2,6 +2,7 @@
  * Mock project data using backend-aligned types.
  * Replace these with API calls when integrating the backend.
  */
+import { Industry, ProjectType } from "@/types/enums";
 import type { ProjectDashboard } from "@/types/projects";
 
 export const MOCK_PROJECTS: ProjectDashboard[] = [
@@ -11,8 +12,8 @@ export const MOCK_PROJECTS: ProjectDashboard[] = [
     title: "Lagos Logistics",
     description:
       "Complete overhaul of the routing API and driver-facing mobile application assets. Phased deliverables over 2 months.",
-    industry: "TECHNOLOGY",
-    project_type: "PARTNERED",
+    industry: Industry.Technology,
+    project_type: ProjectType.Partnered,
     status: "ACTIVE",
     location_address: "Victoria Island, Lagos",
     location_lat: 6.4281,
@@ -56,8 +57,8 @@ export const MOCK_PROJECTS: ProjectDashboard[] = [
     owner_company_id: "c-003",
     title: "API Integration",
     description: "RESTful API integration with third-party payment systems and automated reconciliation.",
-    industry: "TECHNOLOGY",
-    project_type: "PARTNERED",
+    industry: Industry.Technology,
+    project_type: ProjectType.Partnered,
     status: "ACTIVE",
     location_address: "East Legon, Accra",
     location_lat: 5.6354,
@@ -96,8 +97,8 @@ export const MOCK_PROJECTS: ProjectDashboard[] = [
     owner_company_id: "c-001",
     title: "Mobile App MVP",
     description: "Cross-platform mobile application for customer-facing escrow management and notifications.",
-    industry: "TECHNOLOGY",
-    project_type: "PARTNERED",
+    industry: Industry.Technology,
+    project_type: ProjectType.Partnered,
     status: "ACTIVE",
     location_address: "Osu, Accra",
     location_lat: 5.5560,
