@@ -67,7 +67,7 @@ if (!validCompanyId) return;
     title: state.title,
     description: combinedDescription,
     industry: state.projectType.toLowerCase() as Industry,
-    project_type: (state.isPartnered ? "partnered" : "individual") as "individual" | "partnered",
+    project_type: (state.isPartnered ? "PARTNERED" : "INDIVIDUAL").toUpperCase(),
     location_address: combinedLocation || "N/A",
     start_date: startDateObj.toISOString().split("T")[0],
     end_date: endDateObj.toISOString().split("T")[0],
