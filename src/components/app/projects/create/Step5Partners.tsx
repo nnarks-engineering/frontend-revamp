@@ -47,9 +47,10 @@ export function Step5Partners() {
       </div>
 
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 @lg:grid-cols-3 gap-4">
 
           <ProjectTypeButton
+          className="h-20 "
             onClick={() => updateState({ partnerSelection: "invite" })}
             selected={state.partnerSelection === "invite"}
             title="Invite my own supervisor"
@@ -61,6 +62,7 @@ export function Step5Partners() {
           />
 
           <ProjectTypeButton
+          className="h-20 "
             onClick={() => updateState({ partnerSelection: "later" })}
             selected={state.partnerSelection === "later"}
             title="Decide later"
@@ -72,6 +74,7 @@ export function Step5Partners() {
           />
 
           <ProjectTypeButton
+          className="h-20 "
             onClick={() => updateState({ partnerSelection: "verified" })}
             selected={state.partnerSelection === "verified"}
             title="Verified Nnarks partner"

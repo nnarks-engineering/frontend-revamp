@@ -20,6 +20,7 @@ export interface CreateProjectState {
 
   // Step 2: Location
   country: string;
+  countryCode: string;  
   region: string;
   city: string;
   siteAddress: string;
@@ -62,6 +63,7 @@ const initialState: CreateProjectState = {
   title: "",
   description: "",
   country: "",
+  countryCode: "",
   region: "",
   city: "",
   siteAddress: "",

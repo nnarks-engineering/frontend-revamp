@@ -38,6 +38,7 @@ export async function getProjectDashboard(id: string): Promise<ProjectDashboard>
 }
 
 export async function createProject(data: ProjectCreatePayload): Promise<Project> {
+  console.log("Creating project with data:", data);
   const res = await api.post<Project>(PROJECT_ENDPOINTS.LIST, data);
   return res.data;
 }

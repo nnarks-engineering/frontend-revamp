@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { CountryDropdown } from "@/components/ui/country-select";
 import { Info } from "lucide-react";
 import { Hint } from "../../shared/hint";
+import { Label } from "@/components/ui/label";
 
 export function Step2Location() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -25,21 +26,23 @@ export function Step2Location() {
       <div className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="space-y-3">
-            <label className="text-sm font-semibold text-foreground">
+            <Label className="text-sm font-semibold text-foreground">
               Country
-            </label>
-            <CountryDropdown
-              value={state.country}
-              onChange={(name) => updateState({ country: name })}
-              placeholder="Select a country"
-              className="h-12"
-            />
+            </Label>
+           <CountryDropdown
+  value={state.country}
+  onChange={(name) => updateState({ country: name })}
+  onCountryChange={(c) => updateState({ country: c.name, countryCode: c.alpha2.toLowerCase() })}
+  placeholder="Select a country"
+  className="h-12"
+/>
+    
           </div>
 
           <div className="space-y-3">
-            <label htmlFor="region" className="text-sm font-semibold text-foreground">
+            <Label htmlFor="region" className="text-sm font-semibold text-foreground">
               Region / State
-            </label>
+            </Label>
             <Input
               id="region"
               placeholder="e.g. Greater Accra"
@@ -51,9 +54,9 @@ export function Step2Location() {
         </div>
 
         <div className="space-y-3">
-          <label htmlFor="city" className="text-sm font-semibold text-foreground">
+          <Label htmlFor="city" className="">
             City / Town
-          </label>
+          </Label>
           <Input
             id="city"
             placeholder="e.g. Accra"
@@ -64,9 +67,9 @@ export function Step2Location() {
         </div>
 
         <div className="space-y-3">
-          <label htmlFor="siteAddress" className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <Label htmlFor="siteAddress" className="">
             Site Address <span className="text-muted-foreground font-normal">(optional)</span>
-          </label>
+          </Label>
           <Input
             id="siteAddress"
             placeholder="e.g. Plot 45, Boundary Road"

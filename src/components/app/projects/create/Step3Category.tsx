@@ -8,6 +8,8 @@ import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
 import HandShake from "@/assets/svg/handshake.svg?react";
 import SingleMan from "@/assets/svg/single.svg?react";
 import { Hint } from "../../shared/hint";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const PROJECT_TYPE_OPTIONS: { value: Industry; label: string }[] = [
   { value: "OTHER", label: "Market Research" },
@@ -70,7 +72,7 @@ export function Step3Category() {
       </div>
 
       {state.isPartnered && (
-       <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." className="bg-yellow-50 text-yellow-900 border-yellow-200" />
+       <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." />
       )}
 
       <div className="space-y-6 border-border/50">
@@ -97,15 +99,15 @@ export function Step3Category() {
         </p>
 
         <div className="space-y-3">
-          <label htmlFor="notes" className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <Label htmlFor="notes">
             Additional Notes <span className="text-muted-foreground font-normal">(optional)</span>
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             id="notes"
             placeholder="Any extra details we should know?"
             value={state.additionalNotes}
             onChange={(e) => updateState({ additionalNotes: e.target.value })}
-            className="w-full min-h-24 p-4 rounded-lg border border-border/60 bg-background text-base resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+            className=""
           />
         </div>
       </div>

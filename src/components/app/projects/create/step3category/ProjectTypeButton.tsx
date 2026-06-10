@@ -27,19 +27,19 @@ export function ProjectTypeButton({
       className={cn(
         "flex rounded-md transition-all  max-h-24  overflow-clip",
         selected
-          ? "border-primary bg-primary-bg ring-1 ring-offset-3 ring-active"
-          : "bg-gray-50 border-gray-200 hover:bg-gray-100 grayscale-100",
+          ? "border-primary bg-primary-bg ring-1 ring-offset-3 ring-offset-background  ring-active  hue-rotate-270"
+          : "bg-primary-bg border-gray-200  group",
         className
       )}
     >
       <div className={cn(
-        "h-full w-24 flex transition-colors bg-red-300",
+        "h-full w-24 flex transition-colors",
         selected ? "bg-primary-bg-hover text-white" : "bg-primary-bg-hover text-muted-foreground",
         iconClassName
       )}>
-        <Icon className="w-24 h-24" />
+        <Icon className="w-24 h-24 group-hover:scale-105 transition-transform" />
       </div>
-      <div className="text-left p-2">
+      <div className="text-left p-2 flex-1 flex flex-col justify-center">
         {title && <h3 className="font-semibold text-primary-fg mb-1 font-millik">{title}</h3>}
         {description && <p className="text-xs text-primary-fg-hover">{description}</p>}
       </div>

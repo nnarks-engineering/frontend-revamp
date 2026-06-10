@@ -74,7 +74,7 @@ export function Step6Timeline() {
 
           <div className="space-y-3">
             <label className={cn(
-              "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",
+              "flex items-start gap-3 p-4 rounded-md border cursor-pointer transition-all",
               state.agreedToPayments ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
             )}>
               <div className="flex h-5 items-center">

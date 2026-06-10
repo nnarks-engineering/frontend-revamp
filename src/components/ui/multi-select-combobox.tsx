@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useMediaQuery } from '@/shared/hooks/use-media-query'
 import { cn } from '@/shared/lib/utils'
 import { Avatar } from '../image/Image'
+import { Label } from './label'
 
 interface MultiSelectComboboxProps {
   readonly value?: string[]
@@ -62,7 +63,7 @@ function TriggerContent({
   return (
     <div className="flex flex-wrap gap-1">
       {displayOptions.map((option) => (
-        <Badge key={option.value} variant="secondary" className="text-xs px-2 py-0.5 h-6 text-primary-fg-hover rounded-md">
+        <Badge key={option.value} variant="secondary" className="text-xs px-2 py-0.5 h-6 text-primary-fg bg-primary-bg border-primary-bg-hover! rounded-sm ">
           {option.label}
           <span
             role="button"
@@ -202,10 +203,10 @@ export function MultiSelectCombobox({
     return (
       <div className={cn('space-y-2', className)}>
         {label && (
-          <label htmlFor={name} className="text-sm font-medium text-slate-900">
+          <Label htmlFor={name} className="">
             {label}
             {required && <span className="text-destructive ml-1">*</span>}
-          </label>
+          </Label>
         )}
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerTrigger asChild>
@@ -256,10 +257,10 @@ export function MultiSelectCombobox({
   return (
     <div className={cn('space-y-2', className)}>
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-slate-900">
+        <Label htmlFor={name} className="">
           {label}
           {required && <span className="text-destructive ml-1">*</span>}
-        </label>
+        </Label>
       )}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -268,7 +269,7 @@ export function MultiSelectCombobox({
             role="combobox"
             aria-expanded={open}
             className={cn(
-              'w-full justify-between min-h-9 py-0 border-border hover: h-auto',
+              'w-full justify-between min-h-9 py-0 border-border hover: h-auto px-1',
               error && 'border-destructive',
               disabled && 'cursor-not-allowed opacity-50'
             )}

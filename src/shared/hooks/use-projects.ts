@@ -78,11 +78,11 @@ export function useCreateProject() {
     const queryClient = useQueryClient();
 
     return useMutation<Project, Error, ProjectCreatePayload>({
-        mutationFn: createProject,
+        mutationFn: (data) => createProject(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.projects });
         },
-        onError: () => {console.error("Error creating project");}
+        onError: (e) => {console.error("Error creating project", e);}
     });
 }
 

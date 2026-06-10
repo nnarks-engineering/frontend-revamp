@@ -16,7 +16,8 @@ import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { VisuallyHidden } from './visually-hidden'
 import { useMediaQuery } from '@/shared/hooks/use-media-query'
-import { cn } from '@/shared/lib/utils' 
+import { cn } from '@/shared/lib/utils'
+import { Label } from './label'
 
 interface SimpleComboboxProps {
   readonly value?: string
@@ -109,7 +110,7 @@ export function Combobox({
       variant="outline"
       aria-expanded={open}
       className={cn(
-        'w-full justify-between border font-normal text-gray-500 border-gray-200 min-h-9 h-auto min-w-[12rem] max-w-full items-start py-2 text-left',
+        'w-full justify-between border border-input! font-normal text-foreground min-h-9 h-auto min-w-48 max-w-full items-start py-2 text-left',
         hasError
           ? 'border-destructive focus-within:border-destructive focus-within:ring-destructive/20'
           : 'border-input focus-within:border-ring',
@@ -127,12 +128,12 @@ export function Combobox({
               fullName={selectedOption.label}
             />
           )}
-          <span className="text-black whitespace-normal break-words min-w-0">
+          <span className=" whitespace-normal break-words min-w-0">
             {selectedOption.label}
           </span>
         </div>
       ) : currentValue ? (
-        <span className="text-black">{currentValue}</span>
+        <span className="">{currentValue}</span>
       ) : (
         <span>{placeholder}</span>
       )}
@@ -145,13 +146,13 @@ export function Combobox({
   return (
     <div className="space-y-2 w-full">
       {label && (
-        <label
+        <Label
           htmlFor={inputId}
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className=""
         >
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
-        </label>
+        </Label>
       )}
       {description && <p className="text-sm text-muted-foreground">{description}</p>}
       <div className="my-1">
