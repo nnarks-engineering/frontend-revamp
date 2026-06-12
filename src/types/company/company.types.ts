@@ -77,6 +77,7 @@ export interface CompanyInvitationRead {
     company_avatar_url: string | null;
     role: CompanyRole;
     email: string;
+    invite_token?: string;
     invited_at: string;
 }
 

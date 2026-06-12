@@ -152,7 +152,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                         variant="outline"
                         size="sm"
                         className="flex-1 text-xs h-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
-                        onClick={() => setConfirmAction({ type: "reject", token: (inv as any).invite_token || inv.id })}
+                        onClick={() => setConfirmAction({ type: "reject", token: inv.invite_token || inv.id })}
                         disabled={rejectMutation.isPending}
                       >
                         <X className="w-3.5 h-3.5 mr-1.5" />
@@ -161,7 +161,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                       <Button
                         size="sm"
                         className="flex-1 text-xs h-8"
-                        onClick={() => setConfirmAction({ type: "accept", token: (inv as any).invite_token || inv.id })}
+                        onClick={() => setConfirmAction({ type: "accept", token: inv.invite_token || inv.id })}
                         disabled={acceptMutation.isPending}
                       >
                         <Check className="w-3.5 h-3.5 mr-1.5" />
