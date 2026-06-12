@@ -7,9 +7,6 @@ import { toast } from "sonner";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { useMyInvitations, useAcceptCompanyInvitation, useRejectCompanyInvitation } from "@/shared/hooks/company/use-company-members";
-
-
-
 interface InvitationsDrawerProps {
   open: boolean;
   onClose: () => void;
@@ -57,8 +54,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-70 h-full w-full max-w-100 bg-white dark:bg-slate-950 shadow-2xl border-l border-border/50 transform transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 z-70 h-full w-full max-w-100 bg-white dark:bg-slate-950 shadow-2xl border-l border-border/50 transform transition-transform duration-300 ease-out ${ open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
@@ -172,14 +168,10 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                         Accept
                       </Button>
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  </div> )}
+              </div>); })}
         </div>
       </div>
-
       {/* Confirm Dialogs */}
       <ConfirmDialog
         open={confirmAction?.type === "accept"}
