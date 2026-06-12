@@ -41,8 +41,8 @@ const ROLE_META: Record<CompanyRole, { label: string; icon: React.ReactNode; col
   agent: { label: "Agent", icon: <ShieldCheck className="w-3.5 h-3.5" />, color: "text-violet-600" },
 };
 
-function getInitials(email: string) {
-  return (email.split("@")[0] ?? "").slice(0, 2).toUpperCase();
+function getInitials(name: string) {
+  return (name.split("@")[0] ?? "").slice(0, 2).toUpperCase();
 }
 
 function formatDate(dateStr: string | null) {
@@ -147,9 +147,18 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary shrink-0">
-                          {getInitials(member.email)}
+                          {getInitials(member.first_name || member.email)}
                         </div>
-                        <span className="text-foreground/80 truncate">{member.email}</span>
+                        <div className="flex flex-col">
+                          <span className="text-foreground/80 truncate font-medium">
+                            {member.first_name || member.last_name 
+                              ? `${member.first_name || ""} ${member.last_name || ""}`.trim() 
+                              : member.email}
+                          </span>
+                          {(member.first_name || member.last_name) && (
+                            <span className="text-[11px] text-muted-foreground truncate">{member.email}</span>
+                          )}
+                        </div>
                       </div>
                     </TableCell>
                     <TableCell>

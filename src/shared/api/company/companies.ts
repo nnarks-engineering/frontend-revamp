@@ -11,6 +11,7 @@ import type {
   CompanyMemberInvite,
   CompanyMemberUpdate,
   CompanyUpdate,
+  CompanyInvitationRead,
 } from "@/types/company/company.types";
 
 export type {
@@ -23,7 +24,8 @@ export type {
   CompanyMember,
   CompanyMemberInvite,
   CompanyMemberUpdate,
-  CompanyUpdate
+  CompanyUpdate,
+  CompanyInvitationRead
 };
 
 export async function createCompany(data: CompanyCreate): Promise<Company> {
@@ -62,8 +64,8 @@ export async function getInvitationDetails(
   return res.data;
 }
 
-export async function listMyInvitations(): Promise<unknown[]> {
-  const res = await api.get(COMPANY_ENDPOINTS.MY_INVITATIONS);
+export async function listMyInvitations(): Promise<CompanyInvitationRead[]> {
+  const res = await api.get<CompanyInvitationRead[]>(COMPANY_ENDPOINTS.MY_INVITATIONS);
   return res.data;
 }
 

@@ -14,7 +14,8 @@ import {
 
 } from "@/components/ui/module-layout";
 import { useDocuments } from "@/shared/hooks/project/use-documents";
-import type { DocumentItem,DocumentCategory } from "@/types/document/document.types";
+import type { DocumentCategory } from "@/types";
+import type { DocumentItem } from "@/types/document/document.types";
 
 /**
  * Documents page client — two-panel layout (sidebar filter + file list).

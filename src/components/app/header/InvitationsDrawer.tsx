@@ -98,25 +98,24 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
             </div>
           )}
 
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {invitations.map((inv: any) => {
-            const isExpanded = expandedId === inv.member.id;
+          {invitations.map((inv) => {
+            const isExpanded = expandedId === inv.id;
             return (
               <div
-                key={inv.member.id}
+                key={inv.id}
                 className="rounded-xl border border-border/60 bg-muted/20 overflow-hidden transition-all duration-200 hover:border-primary/30"
               >
                 {/* Summary Row */}
                 <button
                   type="button"
-                  onClick={() => setExpandedId(isExpanded ? null : inv.member.id)}
+                  onClick={() => setExpandedId(isExpanded ? null : inv.id)}
                   className="w-full flex items-center gap-3 p-3.5 text-left transition-colors hover:bg-muted/40"
                 >
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    {inv.company.avatar_url ? (
+                    {inv.company_avatar_url ? (
                       <img
-                        src={inv.company.avatar_url}
-                        alt={inv.company.name}
+                        src={inv.company_avatar_url}
+                        alt={inv.company_name || "Company"}
                         className="w-full h-full rounded-xl object-cover"
                       />
                     ) : (
@@ -125,10 +124,10 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[13px] font-semibold text-foreground truncate">
-                      {inv.company.name || "Unnamed Company"}
+                      {inv.company_name || "Unnamed Company"}
                     </p>
                     <p className="text-[11px] text-muted-foreground mt-0.5">
-                      Invited as <span className="capitalize font-medium text-foreground">{inv.member.role}</span>
+                      Invited as <span className="capitalize font-medium text-foreground">{inv.role}</span>
                     </p>
                   </div>
                   {isExpanded ? (
@@ -138,23 +137,17 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                   )}
                 </button>
 
-                {/* Expanded Details */}
                 {isExpanded && (
                   <div className="px-3.5 pb-3.5 pt-1 space-y-3 border-t border-border/40 animate-in slide-in-from-top-2 duration-200">
-                    {inv.company.description && (
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {inv.company.description}
-                      </p>
-                    )}
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div>
                         <span className="text-muted-foreground">Role</span>
-                        <p className="font-medium capitalize text-foreground">{inv.member.role}</p>
+                        <p className="font-medium capitalize text-foreground">{inv.role}</p>
                       </div>
                       <div>
                         <span className="text-muted-foreground">Invited</span>
                         <p className="font-medium text-foreground">
-                          {new Date(inv.member.invited_at).toLocaleDateString()}
+                          {new Date(inv.invited_at).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
@@ -163,7 +156,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                         variant="outline"
                         size="sm"
                         className="flex-1 text-xs h-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
-                        onClick={() => setConfirmAction({ type: "reject", token: inv.member.invite_token })}
+                        onClick={() => setConfirmAction({ type: "reject", token: (inv as any).invite_token || inv.id })}
                         disabled={rejectMutation.isPending}
                       >
                         <X className="w-3.5 h-3.5 mr-1.5" />
@@ -172,7 +165,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
                       <Button
                         size="sm"
                         className="flex-1 text-xs h-8"
-                        onClick={() => setConfirmAction({ type: "accept", token: inv.member.invite_token })}
+                        onClick={() => setConfirmAction({ type: "accept", token: (inv as any).invite_token || inv.id })}
                         disabled={acceptMutation.isPending}
                       >
                         <Check className="w-3.5 h-3.5 mr-1.5" />

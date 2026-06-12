@@ -79,8 +79,8 @@ export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) 
               <AnimatedTooltip
                 items={activeMembers.slice(0, 5).map((member) => ({
                   id: member.id,
-                  name: member.email,
-                  designation: member.email || "Me",
+                  name: member.first_name || member.last_name ? `${member.first_name || ""} ${member.last_name || ""}`.trim() : member.email,
+                  designation: member.role || "Member",
                   image: `https://dekhbwnxmhgsvndwpiox.supabase.co/storage/v1/object/public/events/27c527de-8757-4a85-a6a5-1e5698b5360e/nominations/1778082356002.webp`,
                 }))}
               />

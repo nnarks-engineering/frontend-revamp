@@ -63,7 +63,7 @@ function InboxIndexPage() {
     }
   };
 
-  const threads = sessionsData?.items || [];
+  const threads = sessionsData?.data || [];
   const currentMessages = messagesData || [];
 
   return (

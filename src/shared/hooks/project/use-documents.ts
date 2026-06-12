@@ -5,7 +5,9 @@
 
 import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
 
-import type { DocumentItem,DocumentCategory } from "@/types/document/document.types";
+import type { DocumentCategory } from "@/types";
+import type { DocumentItem } from "@/types/document/document.types";
+
 
 // ── Query keys ──────────────────────────────────────────────────────
 
@@ -21,7 +23,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-1",
     name: "Employment Letter",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "EMPLOYMENT_LETTER",
     size_bytes: 20_971_520,
     url: "#",
@@ -31,7 +33,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-2",
     name: "AUP",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "OTHER",
     size_bytes: 20_971_520,
     url: "#",
@@ -41,7 +43,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-3",
     name: "Personal Commitment",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "CONTRACT",
     size_bytes: 20_971_520,
     url: "#",
@@ -51,7 +53,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-4",
     name: "Salary Review",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "PAY_SLIP",
     size_bytes: 20_971_520,
     url: "#",
@@ -61,7 +63,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-5",
     name: "Contract",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "CONTRACT",
     size_bytes: 20_971_520,
     url: "#",
@@ -71,7 +73,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-6",
     name: "Employment Letter",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "EMPLOYMENT_LETTER",
     size_bytes: 20_971_520,
     url: "#",
@@ -81,7 +83,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-7",
     name: "Salary Review",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "PAY_SLIP",
     size_bytes: 20_971_520,
     url: "#",
@@ -91,7 +93,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-8",
     name: "Personal Commitment",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "CONTRACT",
     size_bytes: 20_971_520,
     url: "#",
@@ -101,7 +103,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-9",
     name: "Contract",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "CONTRACT",
     size_bytes: 20_971_520,
     url: "#",
@@ -111,7 +113,7 @@ const MOCK_DOCUMENTS: DocumentItem[] = [
   {
     id: "doc-10",
     name: "Monthly Invoice",
-    file_type: "PDF",
+    file_type: "pdf",
     category: "INVOICE",
     size_bytes: 15_728_640,
     url: "#",

@@ -19,7 +19,9 @@ import {
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
 import { useVendors } from "@/shared/hooks/vendor/use-vendors";
-import type { VendorItem, VendorServiceCategory } from "@/types/vendor/vendor.types";
+import type { VendorServiceCategory } from "@/types";
+import type { VendorItem } from "@/types/vendor/vendor.types";
+
 
 /**
  * Vendors / Marketplace page client — dashboard flow.

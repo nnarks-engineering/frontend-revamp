@@ -61,10 +61,24 @@ export interface CompanyMember {
     status: CompanyMemberStatus;
     invite_token: string | null;
     invited_at: string;
+    invite_expires_at: string | null;
     joined_at: string | null;
+    first_name: string | null;
+    last_name: string | null;
+    username: string | null;
 }
 
 export type CompanyMemberRead = CompanyMember;
+
+export interface CompanyInvitationRead {
+    id: string;
+    company_id: string;
+    company_name: string | null;
+    company_avatar_url: string | null;
+    role: CompanyRole;
+    email: string;
+    invited_at: string;
+}
 
 /* ── Member invite / update DTOs ── */
 export interface CompanyMemberInvite {
@@ -89,6 +103,11 @@ export interface AgentConfigRead {
     user_id: string;
     extra_instructions: string | null;
     temperature: number | null;
+    llm_model: {
+        value: string;
+        label: string;
+        status: string;
+    } | null;
     tool_overrides: ToolOverride[];
     is_active: boolean;
 }
@@ -96,6 +115,7 @@ export interface AgentConfigRead {
 export interface AgentConfigUpdate {
     extra_instructions?: string | null;
     temperature?: number | null;
+    llm_model_value?: string | null;
     tool_overrides?: ToolOverride[] | null;
     is_active?: boolean | null;
 }
@@ -103,6 +123,7 @@ export interface AgentConfigUpdate {
 export interface AgentUserCreate {
     name: string;
     email: string;
+    llm_model_value?: string | null;
 }
 
 export interface AgentUserRead {
