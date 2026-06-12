@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 
 import i18n from "@/app/i18n/i18n";
 import { router } from "@/app/router/router";
-import { ActiveCompanyProvider } from "@/shared/contexts/active-company-context";
+import { ActiveCompanyProvider } from "@/shared/contexts/company/active-company-context";
 import { queryClient } from "@/shared/lib/query-client";
 
 export function AppProviders() {

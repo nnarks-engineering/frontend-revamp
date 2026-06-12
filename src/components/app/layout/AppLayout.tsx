@@ -9,7 +9,7 @@ import { AppHeader } from "@/components/app/header/AppHeader";
 import { SidebarSubNavBar } from "@/components/app/navigation/SidebarSubNavBar";
 import { LocationBanner } from "@/components/app/shared";
 import { SidebarNav } from "@/components/app/sidebar/SidebarNav";
-import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/right-panel-context";
+import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/ui/right-panel-context";
 import { cn } from "@/shared/lib/utils";
 
 

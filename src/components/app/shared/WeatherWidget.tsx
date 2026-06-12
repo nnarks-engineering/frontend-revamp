@@ -22,8 +22,8 @@ import thunderstormsSvg from "@meteocons/svg/fill/thunderstorms-rain.svg";
 import { motion } from "framer-motion";
 import { Droplets, MapPin, Wind } from "lucide-react";
 
-import { useLocationPreference } from "@/shared/hooks/use-location-preference";
-import { useWeather, type WeatherCondition } from "@/shared/hooks/use-weather";
+import { useLocationPreference } from "@/shared/hooks/core/use-location-preference";
+import { useWeather, type WeatherCondition } from "@/shared/hooks/core/use-weather";
 import { cn } from "@/shared/lib/utils";
 
 // ─── Condition → SVG asset map ────────────────────────────────────────────────

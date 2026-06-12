@@ -19,7 +19,7 @@ import {
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useProjects } from "@/shared/hooks/use-projects";
+import { useProjects } from "@/shared/hooks/project/use-projects";
 import type { ProjectListTab } from "@/types/project-list";
 
 import { PROJECT_TABS, PROJECTS_PAGE_SIZE, CREATE_PROJECT_ROUTE } from "./constants";

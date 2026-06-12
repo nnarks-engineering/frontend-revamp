@@ -1,8 +1,9 @@
 import { Users, X } from "lucide-react";
 
-import type { ChatSession } from "@/types/messaging";
+import type { ChatSession } from "@/types/messaging/messaging.types";
 
 import { Avatar } from "./Avatar";
+
 
 interface ParticipantsOverlayProps {
   thread: ChatSession;

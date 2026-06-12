@@ -1,6 +1,6 @@
 import type { Currencies } from "@/shared/constants/common";
 
-import type { DurationUnit } from "../shared.enums";
+import type { DurationUnit } from "../shared/shared.enums";
 
 import type { Industry, ProjectType } from "./project.enums";
 

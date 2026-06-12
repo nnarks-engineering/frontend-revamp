@@ -1,7 +1,7 @@
 
 // ── Payloads ─────────────────────────────────────────────────────────────────
 
-import type { FileType } from "../shared.enums";
+import type { DocumentFileType } from "../shared/shared.enums";
 
 import type { ProjectMilestoneStatus } from "./project.enums";
 
@@ -39,7 +39,7 @@ export interface MilestoneResponse {
   start_date: string;
   end_date: string;
   estimated_duration: number | null;
-  required_evidence_types: FileType[];
+  required_evidence_types: DocumentFileType[];
   created_by: string;
   created_by_company_id: string;
 }

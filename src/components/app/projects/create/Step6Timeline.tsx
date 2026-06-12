@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
-import type { DurationUnit } from "@/types/shared.enums";
+import type { DurationUnit } from "@/types/shared/shared.enums";
 
 import { useCreateProjectForm } from "./CreateProjectContext";
 

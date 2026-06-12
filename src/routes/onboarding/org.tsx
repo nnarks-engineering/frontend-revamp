@@ -8,18 +8,18 @@ import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
 import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { VendorProfileStep } from "@/components/onboarding/VendorProfileStep";
 import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
-import { useCurrentUser } from "@/shared/hooks/use-auth";
+import { useCurrentUser } from "@/shared/hooks/auth/use-auth";
 import {
     useSkipOnboarding,
     useSubmitPersonalInfo,
     useSubmitVendorProfile,
-} from "@/shared/hooks/use-onboarding";
+} from "@/shared/hooks/onboarding/use-onboarding";
 import { requireOnboarding } from "@/shared/middleware"
-import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types/onboarding";
+import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types";
 import type {
     PersonalInfoFormValues,
     VendorProfileFormValues,
-} from "@/types/onboarding";
+} from "@/types";
 
 
 // ── Route definition ──────────────────────────────────────────────────

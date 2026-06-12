@@ -8,8 +8,8 @@ import {
   useSendMagicLink,
   useVerifyMagicLink,
   useVerifyPasswordSignup,
-} from "@/shared/hooks/use-auth"
-import { useSubmitPersonalInfo } from "@/shared/hooks/use-onboarding"
+} from "@/shared/hooks/auth/use-auth"
+import { useSubmitPersonalInfo } from "@/shared/hooks/onboarding/use-onboarding"
 import { getApiError } from "@/shared/lib/api-error"
 
 import { AuthHeader } from "../shared/AuthHeader"

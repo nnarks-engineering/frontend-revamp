@@ -10,7 +10,7 @@ import {
 
 import RoundingLine2 from "@/assets/svg/rounding-line2.svg?react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useProjects } from "@/shared/hooks/use-projects";
+import { useProjects } from "@/shared/hooks/project/use-projects";
 import { cn } from "@/shared/lib/utils";
 import { ProjectStatus, type ProjectResponse } from "@/types/projects";
 

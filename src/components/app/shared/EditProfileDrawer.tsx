@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/use-auth";
+import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/auth/use-auth";
 
 
 interface EditProfileDrawerProps {

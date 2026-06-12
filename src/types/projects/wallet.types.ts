@@ -1,4 +1,4 @@
-import type { Currency } from "@/types/shared.enums";
+import type { Currency } from "@/types/shared/shared.enums";
 
 export interface ProjectWalletResponse {
   id: string;

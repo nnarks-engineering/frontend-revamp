@@ -7,8 +7,8 @@ import {
 
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { Button } from "@/components/ui/button";
-import { useMyServices } from "@/shared/hooks/use-services";
-import type { Service } from "@/types/services";
+import { useMyServices } from "@/shared/hooks/service/use-services";
+import type { Service } from "@/types/service/service.types";
 
 import { MiniCalendar } from "./MiniCalendar";
 import { ServiceSlideCard } from "./ServicesCard";

@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { GlobalSearch } from "@/components/app/header/GlobalSearch";
 import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
-import { useMyInvitations } from "@/shared/hooks/use-company-members";
+import { useMyInvitations } from "@/shared/hooks/company/use-company-members";
 
 
 

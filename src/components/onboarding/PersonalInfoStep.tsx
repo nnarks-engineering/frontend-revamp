@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
-import type { PersonalInfoFormValues } from "@/types/onboarding";
+import type { PersonalInfoFormValues } from "@/types";
 
 
 

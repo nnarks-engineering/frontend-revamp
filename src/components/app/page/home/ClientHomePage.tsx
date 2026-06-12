@@ -4,7 +4,7 @@ import { ClientAnnouncementsPanel } from "@/components/app/dashboard";
 import { WeatherWidget, UserProfileCard } from "@/components/app/shared";
 import { Card } from "@/components/ui/card";
 import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
-import { useRightPanel } from "@/shared/hooks/use-right-panel";
+import { useRightPanel } from "@/shared/hooks/core/use-right-panel";
 
 import { TeamActionCard } from "../../shared/TeamInviteOrMessageCard";
 

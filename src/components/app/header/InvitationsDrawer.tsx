@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
-import { useMyInvitations, useAcceptCompanyInvitation, useRejectCompanyInvitation } from "@/shared/hooks/use-company-members";
+import { useMyInvitations, useAcceptCompanyInvitation, useRejectCompanyInvitation } from "@/shared/hooks/company/use-company-members";
 
 
 
@@ -57,14 +57,14 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-[70] h-full w-full max-w-[400px] bg-white dark:bg-slate-950 shadow-2xl border-l border-border/50 transform transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 z-70 h-full w-full max-w-100 bg-white dark:bg-slate-950 shadow-2xl border-l border-border/50 transform transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
         <div className="h-14 flex items-center justify-between px-5 border-b border-border/50">
           <div className="flex items-center gap-2.5">
-            <Mail className="w-[18px] h-[18px] text-primary" />
+            <Mail className="size-4.5 text-primary" />
             <h2 className="text-[15px] font-semibold text-foreground">Invitations</h2>
             {invitations.length > 0 && (
               <span className="text-[11px] font-semibold text-white bg-primary rounded-full w-5 h-5 flex items-center justify-center">
@@ -73,6 +73,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
             )}
           </div>
           <button
+          type="button"
             onClick={onClose}
             className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-all"
           >
@@ -107,6 +108,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
               >
                 {/* Summary Row */}
                 <button
+                  type="button"
                   onClick={() => setExpandedId(isExpanded ? null : inv.member.id)}
                   className="w-full flex items-center gap-3 p-3.5 text-left transition-colors hover:bg-muted/40"
                 >

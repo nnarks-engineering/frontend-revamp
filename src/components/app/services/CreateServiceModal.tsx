@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createService } from "@/shared/api/services";
+import { createService } from "@/shared/api/service/services";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import { cn } from "@/shared/lib/utils";
 

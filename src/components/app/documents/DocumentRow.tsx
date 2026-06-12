@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
-import type { DocumentItem } from "@/types/documents";
+import type { DocumentItem } from "@/types/document/document.types";
 
 import { DocumentFileIcon } from "./DocumentFileIcon";
 

@@ -3,7 +3,7 @@ import { BadgeCheck, Star, MapPin } from "lucide-react";
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { Image } from "@/components/image/Image";
 import { cn } from "@/shared/lib/utils";
-import type { VendorItem } from "@/types/vendors";
+import type { VendorItem } from "@/types/vendor/vendor.types";
 
 interface VendorCardProps {
   vendor: VendorItem;
@@ -25,7 +25,7 @@ export function VendorCard({ vendor, onClick, className }: VendorCardProps) {
       )}
     >
       {/* ── Banner ────────────────────────────────────────────────── */}
-      <div className="relative h-28 shrink-0 overflow-hidden bg-gradient-to-br from-primary/80 to-primary/40">
+      <div className="relative h-28 shrink-0 overflow-hidden bg-linear-to-br from-primary/80 to-primary/40">
         {vendor.banner_url ? (
           <img
             src={vendor.banner_url}
@@ -36,7 +36,7 @@ export function VendorCard({ vendor, onClick, className }: VendorCardProps) {
           <RoundingLine className="absolute -top-6 left-0 text-white/10 scale-x-[-1] pointer-events-none" />
         )}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
 
         {/* Verified badge */}
         {vendor.is_verified && (

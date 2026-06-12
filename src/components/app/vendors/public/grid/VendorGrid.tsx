@@ -1,7 +1,7 @@
 import { Loader2 } from "lucide-react";
 
 import { EmptyState } from "@/components/app/shared";
-import type { VendorItem } from "@/types/vendors";
+import type { VendorItem } from "@/types/vendor/vendor.types";
 
 import { VendorCard } from "../cards/VendorCard";
 

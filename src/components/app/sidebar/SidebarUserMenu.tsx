@@ -10,8 +10,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
-import { usePermissions } from "@/shared/hooks/use-permissions";
+import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/auth/use-auth";
+import { usePermissions } from "@/shared/hooks/auth/use-permissions";
 
 import { CompanySubMenu } from "./CompanySwitcher";
 import { useCompanySwitcher } from "./useCompanySwitcher";

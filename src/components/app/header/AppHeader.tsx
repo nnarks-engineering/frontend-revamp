@@ -5,7 +5,7 @@ import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
-import { useMyInvitations } from "@/shared/hooks/use-company-members";
+import { useMyInvitations } from "@/shared/hooks/company/use-company-members";
 import { cn } from "@/shared/lib/utils";
 
 

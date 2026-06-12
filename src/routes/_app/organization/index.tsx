@@ -5,9 +5,9 @@ import { PlusCircle } from "lucide-react";
 
 import { CreateServiceModal } from "@/components/app/services/CreateServiceModal";
 import { Button } from "@/components/ui/button";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { useMyServices } from "@/shared/hooks/use-services";
+import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useMyServices } from "@/shared/hooks/service/use-services";
 
 
 export const Route = createFileRoute("/_app/organization/")({

@@ -9,9 +9,9 @@ import {
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { AnimatedTooltip } from "@/components/common/animated-tooltip";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import { useCompanyMembers } from "@/shared/hooks/company/use-company-members";
 import { cn } from "@/shared/lib/utils";
-import { CompanyMemberStatus } from "@/types/enums";
+import { CompanyMemberStatus } from "@/types";
 
 
 

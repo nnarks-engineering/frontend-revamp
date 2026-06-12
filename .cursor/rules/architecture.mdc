@@ -14,7 +14,14 @@ src/
     shared.types.ts           # types used across 2+ modules
     index.ts                  # global barrel export
   hooks/
-    use-{domain}.ts
+    {domain}/
+      use-{domain}.ts
+  api/
+    {domain}/
+      {domain}.ts
+  contexts/
+    {domain}/
+      {domain}.context.tsx
   components/
     {domain}/
       {ComponentName}.tsx
@@ -31,15 +38,14 @@ src/
 
 ### Interfaces
 - PascalCase
-- Suffix with intent:
+- **Module Prefix Convention**: All domain-specific interfaces, enums, and props MUST be prefixed with the domain/module name (e.g., `CompanyMember`, `ProjectMember`, `CompanyRole`). This prevents naming collisions across modules.
 - Suffix with intent:
   - `*Payload`   — data sent TO the API (POST/PUT body)
   - `*Response`  — data received FROM the API
   - `*State`     — local component/form state
-  - `*Props`     — React component props
+  - `*Props`     — React component props (e.g., `CompanyMemberListProps`, not `MemberListProps`)
   - `*Config`    — configuration objects
   - `*Options`   — dropdown/select option shapes
-- **Module Prefix Convention**: All domain-specific interfaces and enums MUST be prefixed with the domain/module name (e.g., `ProjectResponse`, `ProjectMemberRole`). This prevents naming collisions across modules.
 - Extend instead of redeclaring:
 ```typescript
 // ✅

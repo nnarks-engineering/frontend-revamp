@@ -18,7 +18,7 @@ import {
   ModuleLayoutToolbar,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useProject } from "@/shared/hooks/use-projects";
+import { useProject } from "@/shared/hooks/project/use-projects";
 
 export const Route = createFileRoute("/_app/projects/$projectId")({
   validateSearch: z.object({

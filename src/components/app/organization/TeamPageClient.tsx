@@ -20,15 +20,16 @@ import {
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/use-auth";
-import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+// import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/auth/use-auth";
+import { useCompanyMembers } from "@/shared/hooks/company/use-company-members";
 import type { UserListItem } from "@/types/common";
-import type { Company } from "@/types/companies";
+import type { Company } from "@/types/company/company.types";
 
 import { InvitationsTab } from "./InvitationsTab";
 import { InviteMemberDialog } from "./InviteMemberDialog";
 import { MembersTab } from "./MembersTab";
 import { RolesTab } from "./RolesTab";
+
 
 interface TeamPageClientProps {
   readonly company: Company;
@@ -75,7 +76,7 @@ export function TeamPageClient({ company }: TeamPageClientProps) {
       .slice(0, 5).filter((m) => m.role === "admin")
       .map((m) => ({
         id: m.id,
-        name: m.email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+        name: m.email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c:string) => c.toUpperCase()),
         handle: m.email,
       }));
   }, [membersData]);

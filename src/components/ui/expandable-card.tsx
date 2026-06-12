@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
 
-import { useOutsideClick } from "@/shared/hooks/use-outside-click";
+import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 
 export function ExpandableCardDemo() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
@@ -103,6 +103,7 @@ export function ExpandableCardDemo() {
                     layoutId={`button-${active.title}-${id}`}
                     href={active.ctaLink}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
                   >
                     {active.ctaText}

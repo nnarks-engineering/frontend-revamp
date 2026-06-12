@@ -4,16 +4,18 @@
  */
 export * from "./auth";
 export * from "./common";
-export * from "./companies";
-export * from "./enums";
+export * from "./company";
+export * from "./document";
 export * from "./kyc";
 export * from "./landing";
 export * from "./messaging";
-export * from "./notifications";
+export * from "./notification";
+export * from "./onboarding";
 export * from "./projects";
-export * from "./proposals";
-export * from "./schedules";
-export * from "./services";
-export * from "./users";
+export * from "./proposal";
+export * from "./schedule";
+export * from "./service";
+export * from "./user";
+export * from "./vendor";
 export * from "./wallet";
-
+export * from "./shared/shared.enums";

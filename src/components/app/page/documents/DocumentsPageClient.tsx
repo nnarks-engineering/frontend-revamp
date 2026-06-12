@@ -13,8 +13,8 @@ import {
   ModuleLayoutDescription,
 
 } from "@/components/ui/module-layout";
-import { useDocuments } from "@/shared/hooks/use-documents";
-import type { DocumentCategory, DocumentItem } from "@/types/documents";
+import { useDocuments } from "@/shared/hooks/project/use-documents";
+import type { DocumentItem,DocumentCategory } from "@/types/document/document.types";
 
 /**
  * Documents page client — two-panel layout (sidebar filter + file list).

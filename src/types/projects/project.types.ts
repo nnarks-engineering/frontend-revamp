@@ -1,9 +1,9 @@
-import type { Currency } from "../shared.enums";
+import type { Currency } from "../shared/shared.enums";
 
 import type { MemberResponse } from "./member.types";
 import type { MilestoneResponse } from "./milestone.types";
 import type { AddressBase, Coordinates, ProjectBase } from "./project.base";
-import type { Industry,ProjectStatus,ProjectType } from "./project.enums";
+import type { Industry, ProjectStatus, ProjectType } from "./project.enums";
 import type { ProjectWalletResponse } from "./wallet.types";
 
 // ── Payloads (sent TO the API) ───────────────────────────────────────────────

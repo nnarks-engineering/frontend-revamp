@@ -16,9 +16,9 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { useCreateProject } from "@/shared/hooks/use-projects";
+import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCreateProject } from "@/shared/hooks/project/use-projects";
 import { cn } from "@/shared/lib/utils";
 import  {ProjectType } from "@/types/projects";
 

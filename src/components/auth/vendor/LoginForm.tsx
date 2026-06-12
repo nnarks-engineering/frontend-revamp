@@ -9,7 +9,7 @@ import { z } from "zod"
 import {
   useLoginWithPassword,
   useSendMagicLink,
-} from "@/shared/hooks/use-auth"
+} from "@/shared/hooks/auth/use-auth"
 import { getApiError } from "@/shared/lib/api-error"
 
 import { AuthHeader } from "../shared/AuthHeader"

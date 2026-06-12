@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/command'
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { useMediaQuery } from '@/shared/hooks/use-media-query'
+import { useMediaQuery } from '@/shared/hooks/core/use-media-query'
 import { cn } from '@/shared/lib/utils'
 
 import { Avatar } from '../image/Image'

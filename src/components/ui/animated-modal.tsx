@@ -10,7 +10,7 @@ import {
 
 import { AnimatePresence, motion } from "motion/react";
 
-import { useOutsideClick } from "@/shared/hooks/use-outside-click";
+import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 import { cn } from "@/shared/lib/utils";
 
 interface ModalContextType {
@@ -52,6 +52,7 @@ export const ModalTrigger = ({
   const { setOpen } = useModal();
   return (
     <button
+    type="button"
       className={cn(
         "px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden",
         className
@@ -99,7 +100,7 @@ export const ModalBody = ({
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50"
+          className="fixed perspective-midrange transform-3d inset-0 h-full w-full  flex items-center justify-center z-50"
         >
           <Overlay />
 
@@ -197,6 +198,7 @@ const CloseIcon = () => {
   const { setOpen } = useModal();
   return (
     <button
+    type="button"
       onClick={() => setOpen(false)}
       className="absolute top-4 right-4 group"
     >
@@ -212,6 +214,7 @@ const CloseIcon = () => {
         strokeLinejoin="round"
         className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
       >
+        <title>Close</title>
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
         <path d="M6 6l12 12" />

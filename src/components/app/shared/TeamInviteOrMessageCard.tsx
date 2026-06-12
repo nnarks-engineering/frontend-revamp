@@ -8,11 +8,11 @@ import NoMembersSvg from "@/assets/svg/no-users.svg?react"
 import { Image } from "@/components/image/Image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCompanyMembers } from "@/shared/hooks/company/use-company-members";
 import { cn } from "@/shared/lib/utils";
-import { CompanyMemberStatus } from "@/types/enums";
+import { CompanyMemberStatus } from "@/types";
 
 interface TeamActionCardProps {
   className?: string;

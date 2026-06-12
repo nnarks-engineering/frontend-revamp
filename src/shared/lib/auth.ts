@@ -8,15 +8,16 @@
 
 import type { QueryClient } from "@tanstack/react-query";
 
-import { listMyCompanies } from "@/shared/api/companies";
-import { getMyProfile } from "@/shared/api/users";
-import type { TokenPair } from "@/types/auth";
+import { listMyCompanies } from "@/shared/api/company/companies";
+import { getMyProfile } from "@/shared/api/user/users";
+import type { TokenPair } from "@/types";
+import { UserType } from "@/types/shared/shared.enums";
 
 import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
 
 
 export type { TokenPair };
-export type UserType = "vendor" | "client";
+export { UserType };
 
 const USER_TYPE_CHANGE_EVENT = "nnarks_user_type_changed";
 
@@ -57,7 +58,7 @@ export function getStoredUserType(): UserType {
   }
 
   const raw = localStorage.getItem(STORAGE_KEYS.USER_TYPE);
-  return raw === "client" ? "client" : "vendor";
+  return raw === UserType.client ? UserType.client : UserType.vendor;
 }
 
 function dispatchUserTypeChange() {
@@ -104,9 +105,9 @@ export function hasUserTypeAccess(
 /** Check backend to see if onboarding is complete (has profile and company). */
 export async function checkOnboardingComplete(
   queryClient: QueryClient,
-  userType: UserType = "vendor",
+  userType: UserType = UserType.vendor,
 ): Promise<boolean> {
-  if (userType === "client") {
+  if (userType === UserType.client) {
     return true;
   }
 

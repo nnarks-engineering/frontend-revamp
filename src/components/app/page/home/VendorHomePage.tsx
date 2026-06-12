@@ -11,9 +11,9 @@ import {
   VendorAnnouncementsSliderPanel,
   WelcomeBanner,
 } from "@/components/app/dashboard";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { useRightPanel } from "@/shared/hooks/use-right-panel";
+import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useRightPanel } from "@/shared/hooks/core/use-right-panel";
 
 import { UPCOMING_DATES } from "./constants";
 

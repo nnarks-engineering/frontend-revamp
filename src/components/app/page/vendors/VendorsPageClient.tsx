@@ -18,8 +18,8 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import { useVendors } from "@/shared/hooks/use-vendors";
-import type { VendorServiceCategory, VendorItem } from "@/types/vendors";
+import { useVendors } from "@/shared/hooks/vendor/use-vendors";
+import type { VendorItem, VendorServiceCategory } from "@/types/vendor/vendor.types";
 
 /**
  * Vendors / Marketplace page client — dashboard flow.
@@ -85,7 +85,7 @@ export function VendorsPageClient() {
         </ModuleLayoutHeader>
 
         {/* ── Content: sidebar + grid ── */}
-        <div className="flex flex-col @2xl:flex-row min-h-[500px]">
+        <div className="flex flex-col @2xl:flex-row min-h-125">
           {/* Sidebar filter */}
           <aside className="shrink-0 @2xl:w-56 @2xl:border-r border-b @2xl:border-b-0 border-border/40 p-3 @2xl:py-4">
             <VendorServiceFilter

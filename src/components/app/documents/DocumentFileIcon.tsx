@@ -3,34 +3,34 @@ import { FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-
 import ExcelSvg from "@/assets/svg/excel.svg?react";
 import PdfSvg from "@/assets/svg/pdf.svg?react";
 import { cn } from "@/shared/lib/utils";
-import type { DocumentFileType } from "@/types/enums";
+import { DocumentFileType } from "@/types";
 
 /**
  * Returns a color and icon for each document file type (fallback).
  */
 function getFileTypeMeta(fileType: DocumentFileType) {
   switch (fileType) {
-    case "PDF":
+    case DocumentFileType.pdf:
       return { color: "text-red-600 bg-red-50", label: "PDF", Icon: File };
-    case "IMAGE":
+    case DocumentFileType.image:
       return { color: "text-blue-600 bg-blue-50", label: "IMG", Icon: FileImage };
-    case "VIDEO":
+    case DocumentFileType.video:
       return { color: "text-purple-600 bg-purple-50", label: "VID", Icon: FileVideo };
-    case "AUDIO":
+    case DocumentFileType.audio:
       return { color: "text-amber-600 bg-amber-50", label: "AUD", Icon: FileAudio };
-    case "SPREADSHEET":
+    case DocumentFileType.spreadsheet:
       return { color: "text-emerald-600 bg-emerald-50", label: "XLS", Icon: Sheet };
-    case "WORD":
+    case DocumentFileType.word:
       return { color: "text-blue-700 bg-blue-50", label: "DOC", Icon: FileType2 };
-    case "TEXT":
+    case DocumentFileType.text:
     default:
       return { color: "text-slate-600 bg-slate-50", label: "TXT", Icon: File };
   }
 }
 
 interface DocumentFileIconProps {
-  fileType: DocumentFileType;
-  className?: string;
+  readonly fileType: DocumentFileType;
+  readonly className?: string;
 }
 
 /**
@@ -38,11 +38,11 @@ interface DocumentFileIconProps {
  * Uses dedicated SVGs for PDF and Excel, and a fallback silhouette for the rest.
  */
 export function DocumentFileIcon({ fileType, className }: DocumentFileIconProps) {
-  if (fileType === "PDF") {
+  if (fileType === DocumentFileType.pdf) {
     return <PdfSvg className={cn("shrink-0 size-8", className)} />;
   }
 
-  if (fileType === "SPREADSHEET") {
+  if (fileType === DocumentFileType.spreadsheet) {
     return <ExcelSvg className={cn("shrink-0 size-8", className)} />;
   }
 
@@ -57,6 +57,7 @@ export function DocumentFileIcon({ fileType, className }: DocumentFileIconProps)
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <title>{label} file icon</title>
         <path
           d="M4 0C1.79086 0 0 1.79086 0 4V52C0 54.2091 1.79086 56 4 56H40C42.2091 56 44 54.2091 44 52V14L30 0H4Z"
           fill="currentColor"

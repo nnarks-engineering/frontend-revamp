@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { useInviteCompanyMember } from "@/shared/hooks/use-company-members";
-import type { CompanyRole } from "@/types/enums";
+import { useInviteCompanyMember } from "@/shared/hooks/company/use-company-members";
+import type { CompanyRole } from "@/types";
 
 interface InviteMemberDialogProps {
   companyId: string;

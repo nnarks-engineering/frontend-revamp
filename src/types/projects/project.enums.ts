@@ -74,3 +74,11 @@ export const ProjectReviewerType = {
   ai: "ai",
 } as const;
 export type ProjectReviewerType = (typeof ProjectReviewerType)[keyof typeof ProjectReviewerType];
+
+export const ProjectFileType = {
+  image: "image",
+  video: "video",
+  document: "document",
+  audio: "audio",
+} as const;
+export type ProjectFileType = (typeof ProjectFileType)[keyof typeof ProjectFileType];

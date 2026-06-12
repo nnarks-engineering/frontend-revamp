@@ -1,4 +1,4 @@
-import type { Currency } from "../shared.enums";
+import type { Currency } from "../shared/shared.enums";
 
 import type { Industry, ProjectStatus, ProjectType } from "./project.enums";
 
@@ -11,7 +11,7 @@ export interface AddressBase {
   region: string;
   postal_code?: string;
   country_code: string;
-} 
+}
 
 export interface AddressResponse extends AddressBase {
   country_name: string;

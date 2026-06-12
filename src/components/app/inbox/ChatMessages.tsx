@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
-import type { ChatSession, Message } from "@/types/messaging";
+import type { ChatSession, Message } from "@/types/messaging/messaging.types";
 
 import { Avatar } from "./Avatar";
+
 
 interface ChatMessagesProps {
   thread: ChatSession | null;

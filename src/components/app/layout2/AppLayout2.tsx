@@ -10,7 +10,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   RightPanelProvider,
   useRightPanelContext,
-} from "@/shared/contexts/right-panel-context";
+} from "@/shared/contexts/ui/right-panel-context";
 import { cn } from "@/shared/lib/utils";
 
 

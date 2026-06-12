@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
-import type { VendorServiceCategory, ServiceCategoryFilterItem } from "@/types/vendors";
+import type { VendorServiceCategory, ServiceCategoryFilterItem } from "@/types/vendor/vendor.types";
 
 /** Default service categories. Extend as the backend evolves. */
 export const VENDOR_SERVICE_CATEGORIES: ServiceCategoryFilterItem[] = [

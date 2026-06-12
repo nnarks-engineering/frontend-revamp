@@ -14,8 +14,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { acceptCompanyInvitation } from "@/shared/api/companies";
-import { useInvitationDetails, useRejectCompanyInvitation } from "@/shared/hooks/use-company-members";
+import { acceptCompanyInvitation } from "@/shared/api/company/companies";
+import { useInvitationDetails, useRejectCompanyInvitation } from "@/shared/hooks/company/use-company-members";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import { requireAuth } from "@/shared/middleware";
 

@@ -1,4 +1,4 @@
-import type { FileType } from "../shared.enums";
+import type { DocumentFileType } from "../shared/shared.enums";
 
 import type { ProjectReviewStatus, ProjectReviewerType } from "./project.enums";
 
@@ -6,7 +6,7 @@ import type { ProjectReviewStatus, ProjectReviewerType } from "./project.enums";
 
 export interface EvidenceSubmitPayload {
   company_id: string;
-  evidence_type: FileType;
+  evidence_type: DocumentFileType;
   file_url: string;
   file_name: string;
 }
@@ -26,7 +26,7 @@ export interface EvidenceResponse {
   subject_id: string;
   submitting_company_id: string;
   submitted_by_user_id: string;
-  evidence_type: FileType;
+  evidence_type: DocumentFileType;
   file_url: string;
   file_name: string;
   verified: boolean;

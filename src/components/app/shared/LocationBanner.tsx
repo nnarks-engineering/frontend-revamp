@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Lock, MapPin, X } from "lucide-react";
 
-import { useLocationPreference } from "@/shared/hooks/use-location-preference";
+import { useLocationPreference } from "@/shared/hooks/core/use-location-preference";
 
 /**
  * LocationBanner — shown after login when location preference is "pending" or

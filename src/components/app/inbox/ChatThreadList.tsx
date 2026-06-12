@@ -1,8 +1,9 @@
 import NoUsersSvg from "@/assets/svg/no-users.svg?react";
 import { cn } from "@/shared/lib/utils";
-import type { ChatSession } from "@/types/messaging";
+import type { ChatSession } from "@/types/messaging/messaging.types";
 
 import { Avatar } from "./Avatar";
+
 
 interface ChatThreadListProps {
   threads: ChatSession[];

@@ -14,7 +14,7 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import { useProjects } from "@/shared/hooks/use-projects";
+import { useProjects } from "@/shared/hooks/project/use-projects";
 import { ProjectStatus, type ProjectResponse } from "@/types/projects";
 
 function getPriority(project: ProjectResponse) {

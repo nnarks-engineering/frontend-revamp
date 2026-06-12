@@ -29,11 +29,11 @@ import {
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useProjects } from "@/shared/hooks/use-projects";
-import { useWallet, useWalletTransactions } from "@/shared/hooks/use-wallet";
-import type { TxType } from "@/types/enums";
-import type { WalletTransaction } from "@/types/wallet";
+import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
+import { useProjects } from "@/shared/hooks/project/use-projects";
+import { useWallet, useWalletTransactions } from "@/shared/hooks/wallet/use-wallet";
+import type { TxType } from "@/types";
+import type { WalletTransaction } from "@/types/wallet/wallet.types";
 
 import { PayoutAccountCard } from "./WalletBalanceCard";
 

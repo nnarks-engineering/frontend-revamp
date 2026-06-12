@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from '@tanstack/react-router';
 import { Bot, Loader2, Send, Sparkles, History } from "lucide-react";
 
-import { useRightPanel } from "@/shared/hooks/use-right-panel";
+import { useRightPanel } from "@/shared/hooks/core/use-right-panel";
 import { cn } from "@/shared/lib/utils";
 
 interface ChatMessage {

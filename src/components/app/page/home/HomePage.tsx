@@ -1,4 +1,4 @@
-import { usePermissions } from "@/shared/hooks/use-permissions";
+import { usePermissions } from "@/shared/hooks/auth/use-permissions";
 
 import { ClientHomePage } from "./ClientHomePage";
 import { VendorHomePage } from "./VendorHomePage";

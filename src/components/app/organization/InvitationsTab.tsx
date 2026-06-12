@@ -19,8 +19,8 @@ import {
   useCompanyMembers,
   useRemoveCompanyMember,
   useResendCompanyInvitation,
-} from "@/shared/hooks/use-company-members";
-import type { CompanyMemberStatus } from "@/types/enums";
+} from "@/shared/hooks/company/use-company-members";
+import type { CompanyMemberStatus } from "@/types";
 
 
 const PAGE_SIZE = 10;

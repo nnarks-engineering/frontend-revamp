@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 
 import { SectionHeader } from "@/components/ui/section-header";
-import { useOutsideClick } from "@/shared/hooks/use-outside-click";
+import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 
 import { Section } from "../../Section";
 
@@ -35,10 +35,10 @@ export default function StructureSection() {
   return (
     <Section id="structure" className="relative py-24 bg-white dark:bg-background-space overflow-hidden" maxWidth="8xl">
       {/* Background Accents */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -ml-64 -mb-64" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-primary/5 rounded-full blur-[120px] -ml-64 -mb-64" />
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+      <div className="max-w-350 mx-auto px-4 md:px-8">
         {/* Header */}
         <SectionHeader
           title={t("landing:structure.title")}
@@ -76,13 +76,13 @@ export default function StructureSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-[1px] z-[100]"
+                className="fixed inset-0 bg-black/50 backdrop-blur-[1px] z-100"
               />
-              <div className="fixed inset-0 grid place-items-center z-[101] p-4">
+              <div className="fixed inset-0 grid place-items-center z-101 p-4">
                 <motion.div
                   layoutId={`card-${active.id}-${id}`}
                   ref={ref}
-                  className="relative w-full max-w-[900px] max-h-[90vh] overflow-hidden bg-white flex flex-col md:flex-row shadow-2xl"
+                  className="relative w-full max-w-225 max-h-[90vh] overflow-hidden bg-white flex flex-col md:flex-row shadow-2xl"
                 >
                   {/* Close Button */}
                   <button
@@ -101,9 +101,9 @@ export default function StructureSection() {
                       alt={t(`landing:structure.items.${active.key}.title` as any)}
                       className="h-full w-full object-cover"
                     />
-                    
+
                     {/* Expanded Pill */}
-                    <motion.div 
+                    <motion.div
                       layoutId={`pill-${active.id}-${id}`}
                       className="absolute bottom-6 left-6 flex items-center bg-white/90 backdrop-blur-md rounded-full p-2 pr-6 shadow-xl"
                     >
@@ -123,21 +123,21 @@ export default function StructureSection() {
 
                   {/* Right: Content */}
                   <div className="w-full md:w-7/12 p-8 md:p-12 pb-0 md:pb-0 overflow-y-auto">
-                    <motion.span 
+                    <motion.span
                       layoutId={`subtitle-${active.id}-${id}`}
                       className="inline-block text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4"
                     >
                       {t(`landing:structure.items.${active.key}.subtitle` as any)}
                     </motion.span>
-                    
-                    <motion.h3 
+
+                    <motion.h3
                       layoutId={`title-${active.id}-${id}`}
                       className="text-3xl md:text-4xl font-millik leading-tight text-foreground mb-6"
                     >
                       {t(`landing:structure.items.${active.key}.title` as any)}
                     </motion.h3>
-                    
-                    <motion.p 
+
+                    <motion.p
                       layoutId={`description-${active.id}-${id}`}
                       className="text-muted-foreground  mb-8 leading-relaxed"
                     >
@@ -149,11 +149,11 @@ export default function StructureSection() {
                         {(() => {
                           const features = (t as any)(`landing:structure.items.${active.key}.features`, { returnObjects: true });
                           return Array.isArray(features) ? features.map((feature, i) => (
-                            <motion.div 
+                            <motion.div
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.3 + i * 0.1 }}
-                              key={i} 
+                              key={i}
                               className="flex items-start  gap-3 p-4 0 md:odd:border-r md:nth-[1]:border-b md:nth-[2]:border-b border-dashed !border-primary/50"
                             >
                               {/* <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" /> */}
@@ -164,7 +164,7 @@ export default function StructureSection() {
                       </div>
                     </div>
 
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.6 }}

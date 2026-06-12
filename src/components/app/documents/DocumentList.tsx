@@ -1,7 +1,7 @@
 import { Loader2 } from "lucide-react";
 
 import { EmptyState } from "@/components/app/shared";
-import type { DocumentItem } from "@/types/documents";
+import type { DocumentItem } from "@/types";
 
 import { DocumentRow } from "./DocumentRow";
 

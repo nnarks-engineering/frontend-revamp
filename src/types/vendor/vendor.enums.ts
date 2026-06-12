@@ -1,0 +1,16 @@
+export const VendorServiceCategory = {
+  ALL: "ALL",
+  CONSTRUCTION: "CONSTRUCTION",
+  ENGINEERING: "ENGINEERING",
+  ARCHITECTURE: "ARCHITECTURE",
+  PLUMBING: "PLUMBING",
+  ELECTRICAL: "ELECTRICAL",
+  INTERIOR_DESIGN: "INTERIOR_DESIGN",
+  LANDSCAPING: "LANDSCAPING",
+  PROJECT_MANAGEMENT: "PROJECT_MANAGEMENT",
+  CONSULTING: "CONSULTING",
+  IT_SERVICES: "IT_SERVICES",
+  LOGISTICS: "LOGISTICS",
+  OTHER: "OTHER",
+} as const;
+export type VendorServiceCategory = (typeof VendorServiceCategory)[keyof typeof VendorServiceCategory];

@@ -16,10 +16,10 @@ import {
   ModuleLayoutToolbar,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSessions, useMessages, useSendMessage } from "@/shared/hooks/use-messaging";
+import { useSessions, useMessages, useSendMessage } from "@/shared/hooks/messaging/use-messaging";
 import { cn } from "@/shared/lib/utils";
-import type { SessionType } from "@/types/enums";
-import type { ChatSession } from "@/types/messaging";
+import type { SessionType } from "@/types";
+import type { ChatSession } from "@/types/messaging/messaging.types";
 
 export const Route = createFileRoute("/_app/inbox/")({
   component: InboxIndexPage,

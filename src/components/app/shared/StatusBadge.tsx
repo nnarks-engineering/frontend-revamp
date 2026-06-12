@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils";
-import type { TxStatus, ProposalStatus } from "@/types/enums";
+import type { TxStatus, ProposalStatus } from "@/types";
 import { ProjectStatus, ProjectMilestoneStatus, ProjectMemberRole } from "@/types/projects";
 
 type BadgeStatus = ProjectStatus | ProjectMilestoneStatus | ProjectMemberRole | TxStatus | ProposalStatus | string;

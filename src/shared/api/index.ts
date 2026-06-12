@@ -5,16 +5,16 @@
  *   import { sendMagicLink, getMe, ... } from "@/shared/api";
  */
 
-export * from "./auth";
-export * from "./companies";
-export * from "./kyc";
-export * from "./messaging";
-export * from "./notifications";
-export * from "./onboarding";
-export * from "./projects";
-export * from "./proposals";
-export * from "./schedules";
-export * from "./services";
-export * from "./users";
-export * from "./wallet";
+export * from "./auth/auth";
+export * from "./company/companies";
+export * from "./company/kyc";
+export * from "./messaging/messaging";
+export * from "./notification/notifications";
+export * from "./onboarding/onboarding";
+export * from "./project/projects";
+export * from "./project/proposals";
+export * from "./project/schedules";
+export * from "./service/services";
+export * from "./user/users";
+export * from "./wallet/wallet";
 
