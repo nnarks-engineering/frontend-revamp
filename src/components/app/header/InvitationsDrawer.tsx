@@ -97,6 +97,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
             </div>
           )}
 
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {invitations.map((inv: any) => {
             const isExpanded = expandedId === inv.member.id;
             return (

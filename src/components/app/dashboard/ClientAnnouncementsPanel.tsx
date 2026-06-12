@@ -3,8 +3,8 @@ import { ChevronRight } from "lucide-react";
 import ContractorImg from "@/assets/img/landing/contractor.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";
 import DiasporaImg from "@/assets/img/landing/diaspora.webp";
-
 import type { AnnouncementItem } from "@/types/common";
+
 import { AnnouncementItemCard } from "./AnnouncementItemCard";
 
 const ANNOUNCEMENTS: AnnouncementItem[] = [

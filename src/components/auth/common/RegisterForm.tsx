@@ -6,10 +6,10 @@ import { ArrowRight, Check } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
+import { Button } from "@/components/ui/button"
 import { CountryDropdown } from "@/components/ui/country-select"
 import { Label } from "@/components/ui/label"
 
-import { Button } from "@/components/ui/button"
 
 import { AuthHeader } from "../shared/AuthHeader"
 import { FormField } from "../shared/FormField"
