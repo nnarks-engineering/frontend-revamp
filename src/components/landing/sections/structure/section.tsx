@@ -1,13 +1,20 @@
 import { useState, useId, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { useOutsideClick } from "@/shared/hooks/use-outside-click";
-import { structureData, type StructureItem } from "./locals";
-import { StructureCard } from "./card";
-import { X, ArrowRight } from "lucide-react";
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
-import { SectionHeader } from "@/components/ui/section-header";
+
 import { Link } from "@tanstack/react-router";
+import { X, ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useTranslation } from "react-i18next";
+
+import { SectionHeader } from "@/components/ui/section-header";
+import { useOutsideClick } from "@/shared/hooks/use-outside-click";
+
+import { Section } from "../../Section";
+
+import { StructureCard } from "./card";
+import { structureData, type StructureItem } from "./locals";
+
+
+
 
 export default function StructureSection() {
   const { t } = useTranslation(["landing"]);

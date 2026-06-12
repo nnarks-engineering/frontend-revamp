@@ -1,7 +1,8 @@
 import * as React from "react";
+
 import { Check, ChevronsUpDown, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { cn } from "@/shared/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -16,13 +17,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/shared/lib/utils";
 
 export function LanguageSwitcher() {
   const [open, setOpen] = React.useState(false);
   const { i18n, t } = useTranslation("common");
 
   // Get supported languages from i18n resources or fallback to defaults
-  const supportedLanguages = (t("languages.supported", { returnObjects: true }) as any[]) || [
+  const supportedLanguages = (t("languages.supported", { returnObjects: true }) as Array<{ code: string; name: string; nativeName: string }>) || [
     { code: "en", name: "English", nativeName: "English" },
     { code: "fr", name: "French", nativeName: "Français" },
     { code: "es", name: "Spanish", nativeName: "Español" },

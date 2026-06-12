@@ -1,5 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ProjectListTab } from "@/types/project-list";
+
 import { PROJECT_TABS } from "./constants";
 
 interface ProjectsStatusTabsProps {

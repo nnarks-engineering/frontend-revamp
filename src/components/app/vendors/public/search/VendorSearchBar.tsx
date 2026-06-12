@@ -1,5 +1,6 @@
-import { cn } from "@/shared/lib/utils";
 import { Search } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface VendorSearchBarProps {
   value: string;

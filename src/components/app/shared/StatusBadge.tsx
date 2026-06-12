@@ -1,27 +1,28 @@
 import { cn } from "@/shared/lib/utils";
-import type { ProjectStatus, MilestoneStatus, MemberRole, TxStatus, ProposalStatus } from "@/types/enums";
+import type { TxStatus, ProposalStatus } from "@/types/enums";
+import { ProjectStatus, ProjectMilestoneStatus, ProjectMemberRole } from "@/types/projects";
 
-type BadgeStatus = ProjectStatus | MilestoneStatus | MemberRole | TxStatus | ProposalStatus | string;
+type BadgeStatus = ProjectStatus | ProjectMilestoneStatus | ProjectMemberRole | TxStatus | ProposalStatus | string;
 
 const STATUS_STYLES: Record<string, string> = {
   // Project statuses
-  DRAFT: "bg-muted/60 text-muted-foreground",
-  PRE_PROJECT: "bg-secondary/15 text-secondary-700",
-  ACTIVE: "bg-success/10 text-success",
-  PAUSED: "bg-warning/10 text-warning",
-  COMPLETED: "bg-primary/10 text-primary",
-  ARCHIVED: "bg-muted/60 text-muted-foreground",
+  [ProjectStatus.draft]: "bg-muted/60 text-muted-foreground",
+  [ProjectStatus.pre_project]: "bg-secondary/15 text-secondary-700",
+  [ProjectStatus.active]: "bg-success/10 text-success",
+  [ProjectStatus.paused]: "bg-warning/10 text-warning",
+  [ProjectStatus.completed]: "bg-primary/10 text-primary",
+  [ProjectStatus.archived]: "bg-muted/60 text-muted-foreground",
   // Milestone statuses
-  PENDING: "bg-muted/60 text-muted-foreground",
-  IN_PROGRESS: "bg-primary/10 text-primary",
-  UNDER_REVIEW: "bg-warning/10 text-warning",
-  APPROVED: "bg-success/10 text-success",
-  FAILED: "bg-destructive/10 text-destructive",
-  SKIPPED: "bg-muted/60 text-muted-foreground",
+  [ProjectMilestoneStatus.pending]: "bg-muted/60 text-muted-foreground",
+  [ProjectMilestoneStatus.in_progress]: "bg-primary/10 text-primary",
+  [ProjectMilestoneStatus.under_review]: "bg-warning/10 text-warning",
+  [ProjectMilestoneStatus.approved]: "bg-success/10 text-success",
+  [ProjectMilestoneStatus.failed]: "bg-destructive/10 text-destructive",
+  [ProjectMilestoneStatus.skipped]: "bg-muted/60 text-muted-foreground",
   // Member roles
-  OWNER: "bg-primary/10 text-primary",
-  PARTNER: "bg-secondary/15 text-secondary-700",
-  SUPERVISOR: "bg-warning/10 text-warning",
+  [ProjectMemberRole.owner]: "bg-primary/10 text-primary",
+  [ProjectMemberRole.partner]: "bg-secondary/15 text-secondary-700",
+  [ProjectMemberRole.supervisor]: "bg-warning/10 text-warning",
   // Proposal statuses
   ACCEPTED: "bg-success/10 text-success",
   REJECTED: "bg-destructive/10 text-destructive",
@@ -33,6 +34,9 @@ const STATUS_LABELS: Record<string, string> = {
   PRE_PROJECT: "Pre-project",
   IN_PROGRESS: "In progress",
   UNDER_REVIEW: "Under review",
+  [ProjectStatus.pre_project]: "Pre-project",
+  [ProjectMilestoneStatus.in_progress]: "In progress",
+  [ProjectMilestoneStatus.under_review]: "Under review",
 };
 
 interface StatusBadgeProps {

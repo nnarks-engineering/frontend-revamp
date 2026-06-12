@@ -1,19 +1,21 @@
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+
+import { Link } from "@tanstack/react-router";
 import {
   motion,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 // Import images from personas
-import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+import AgricultureImg from "@/assets/img/landing/agriculture.webp";
 import ContractorImg from "@/assets/img/landing/contractor.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";
-import AgricultureImg from "@/assets/img/landing/agriculture.webp";
-import { Link } from "@tanstack/react-router";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+
 
 interface ParallaxProps {
   children: React.ReactNode;

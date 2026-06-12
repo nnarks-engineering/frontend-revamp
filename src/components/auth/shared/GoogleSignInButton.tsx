@@ -1,5 +1,6 @@
-import { SubmitButton } from "./SubmitButton"
 import { useTranslation } from "react-i18next"
+
+import { SubmitButton } from "./SubmitButton"
 
 interface GoogleSignInButtonProps {
   label?: string

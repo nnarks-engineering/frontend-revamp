@@ -1,11 +1,15 @@
+import * as React from "react";
+
+import { useForm } from "@tanstack/react-form";
+import { Building2 } from "lucide-react";
+import { z } from "zod";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
 import type { VendorProfileFormValues } from "@/types/onboarding";
-import { useForm } from "@tanstack/react-form";
-import { Building2 } from "lucide-react";
-import * as React from "react";
-import { z } from "zod";
+
+
 
 // ── Validation ────────────────────────────────────────────────────────
 const vendorProfileSchema = z.object({

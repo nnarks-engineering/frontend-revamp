@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
-import { queryClient } from "@/shared/lib/query-client";
+
 import { QUERY_KEYS } from "@/shared/lib/constants";
+import { queryClient } from "@/shared/lib/query-client";
 
 export const ACTIVE_COMPANY_KEY = "nnarks_active_company_id";
 

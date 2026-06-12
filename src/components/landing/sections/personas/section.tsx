@@ -1,16 +1,18 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Section } from "../../Section";
-import { FeatureCard } from "../../FeatureCard";
+import { useTranslation } from "react-i18next";
 
-// Import images for the pain points / personas
-import NurseImg from "@/assets/img/landing/nurse-london.png";
-import EngineerImg from "@/assets/img/landing/engineer-ny.png";
-import TeacherImg from "@/assets/img/landing/teacher-toronto.png";
-import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
 import AgricultureImg from "@/assets/img/landing/agriculture.webp";
 import ContractorImg from "@/assets/img/landing/contractor.webp";
-import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+import EngineerImg from "@/assets/img/landing/engineer-ny.png";
+import NurseImg from "@/assets/img/landing/nurse-london.png";
+import TeacherImg from "@/assets/img/landing/teacher-toronto.png";
+
+import { FeatureCard } from "../../FeatureCard";
+import { Section } from "../../Section";
+
+// Import images for the pain points / personas
 
 const PersonasSection = () => {
   const { t } = useTranslation(["landing", "common"]);

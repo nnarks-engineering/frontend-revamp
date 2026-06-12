@@ -1,14 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
 import {
   getWallet,
   listTransactions,
   initiateDeposit,
   confirmDeposit,
 } from "@/shared/api/wallet";
-import { QUERY_KEYS } from "@/shared/lib/constants";
 import { isAuthenticated } from "@/shared/lib/auth";
-import type { Currency } from "@/types/enums";
+import { QUERY_KEYS } from "@/shared/lib/constants";
 import type { PageParams } from "@/types/common";
+import type { Currency } from "@/types/enums";
 
 /** Fetch the wallet for a company. */
 export function useWallet(companyId: string | null, currency?: Currency) {

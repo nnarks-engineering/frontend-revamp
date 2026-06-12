@@ -1,4 +1,5 @@
 import TopDrawing from "@/assets/drawing-coils.svg?react";
+
 import { Section } from "../../Section";
 
 export default function RegulationSection() {

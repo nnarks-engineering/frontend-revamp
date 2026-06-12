@@ -7,6 +7,7 @@ export * from "./common";
 export * from "./companies";
 export * from "./enums";
 export * from "./kyc";
+export * from "./landing";
 export * from "./messaging";
 export * from "./notifications";
 export * from "./projects";

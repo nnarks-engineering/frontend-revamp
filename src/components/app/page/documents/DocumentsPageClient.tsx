@@ -1,6 +1,10 @@
 import { useState, useMemo } from "react";
-import { useDocuments } from "@/shared/hooks/use-documents";
+
+import { Upload } from "lucide-react";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { DocumentCategoryFilter, DocumentList, DOCUMENT_CATEGORIES } from "@/components/app/documents";
+import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -9,9 +13,7 @@ import {
   ModuleLayoutDescription,
 
 } from "@/components/ui/module-layout";
-import { Button } from "@/components/ui/button";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { Upload } from "lucide-react";
+import { useDocuments } from "@/shared/hooks/use-documents";
 import type { DocumentCategory, DocumentItem } from "@/types/documents";
 
 /**
@@ -29,10 +31,10 @@ export function DocumentsPageClient() {
     [activeCategory],
   );
 
-  const handleDownload = (doc: DocumentItem) => {
+  const handleDownload = (_doc: DocumentItem) => {
     // TODO: Replace with actual download logic
-    // window.open(doc.url, "_blank");
-    console.log("Download:", doc.name, doc.url);
+    // window.open(_doc.url, "_blank");
+    // console.log("Download:", _doc.name, _doc.url);
   };
 
   return (

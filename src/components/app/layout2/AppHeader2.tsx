@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
+
+import { Link } from "@tanstack/react-router";
+import { Bell, BrainCircuit, Search, Menu } from "lucide-react";
+import { createPortal } from "react-dom";
+
 import { GlobalSearch } from "@/components/app/header/GlobalSearch";
 import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/use-company-members";
-import { Link } from "@tanstack/react-router";
-import { Bell, BrainCircuit, Search, Menu } from "lucide-react";
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+
+
 
 export function AppHeader2({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const [searchOpen, setSearchOpen] = useState(false);

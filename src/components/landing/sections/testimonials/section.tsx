@@ -1,11 +1,15 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import LandingBigTrustedBusinessCard from "./big-card";
-import LandingSmallTrustedBusinessCard from "./small-card";
+import { useTranslation } from "react-i18next";
+
+import EngineerImage1 from "@/assets/landing/nnarks-engineer1.webp";
 import CalBankLogo from "@/assets/products/calbank.png";
 import HubtelLogo from "@/assets/products/hubtel.png";
-import EngineerImage1 from "@/assets/landing/nnarks-engineer1.webp";
+
+import { Section } from "../../Section";
+
+import LandingBigTrustedBusinessCard from "./big-card";
+import LandingSmallTrustedBusinessCard from "./small-card";
+
 
 export default function TestimonialsSection() {
   const { t } = useTranslation("landing");

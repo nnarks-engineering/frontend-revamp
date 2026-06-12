@@ -1,7 +1,10 @@
-import { cn } from "@/shared/lib/utils";
 import { Download } from "lucide-react";
-import { DocumentFileIcon } from "./DocumentFileIcon";
+
+import { cn } from "@/shared/lib/utils";
 import type { DocumentItem } from "@/types/documents";
+
+import { DocumentFileIcon } from "./DocumentFileIcon";
+
 
 /**
  * Formats bytes into a human-readable size string (KB, MB, GB).

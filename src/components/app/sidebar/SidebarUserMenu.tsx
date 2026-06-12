@@ -1,3 +1,6 @@
+import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
+
+import { AppearanceSubMenu, useFontSize } from "@/components/common/ThemeSwitcher";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,11 +12,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/use-auth";
 import { usePermissions } from "@/shared/hooks/use-permissions";
-import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
-import { UserAvatar } from "./UserAvatar";
+
 import { CompanySubMenu } from "./CompanySwitcher";
 import { useCompanySwitcher } from "./useCompanySwitcher";
-import { AppearanceSubMenu, useFontSize } from "@/components/common/ThemeSwitcher";
+import { UserAvatar } from "./UserAvatar";
+
 
 export function SidebarUserMenu() {
   const { data: user } = useCurrentUser();

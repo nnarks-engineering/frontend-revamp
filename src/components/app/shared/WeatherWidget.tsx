@@ -5,8 +5,6 @@
  * Icons: Meteocons animated SVGs via @meteocons/svg (https://meteocons.com)
  */
 
-import { motion } from "framer-motion";
-import { Droplets, MapPin, Wind } from "lucide-react";
 
 // ─── Meteocons static imports ─────────────────────────────────────────────────
 // All 10 condition icons imported at build time — no dynamic imports, no effects.
@@ -21,6 +19,8 @@ import partlyCloudyNightSvg from "@meteocons/svg/fill/partly-cloudy-night.svg";
 import rainSvg from "@meteocons/svg/fill/rain.svg";
 import snowSvg from "@meteocons/svg/fill/snow.svg";
 import thunderstormsSvg from "@meteocons/svg/fill/thunderstorms-rain.svg";
+import { motion } from "framer-motion";
+import { Droplets, MapPin, Wind } from "lucide-react";
 
 import { useLocationPreference } from "@/shared/hooks/use-location-preference";
 import { useWeather, type WeatherCondition } from "@/shared/hooks/use-weather";

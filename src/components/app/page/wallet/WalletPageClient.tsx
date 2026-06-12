@@ -1,12 +1,22 @@
 import { useMemo, useState } from "react";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useWallet, useWalletTransactions } from "@/shared/hooks/use-wallet";
-import { useProjects } from "@/shared/hooks/use-projects";
-import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
-import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
+
+import {
+  ArrowDownLeft,
+  ArrowUpRight,
+  Search,
+  ListFilter,
+  Loader2,
+  CreditCard,
+  TrendingUp,
+} from "lucide-react";
+
+import NoMoneySvg from "@/assets/svg/no-money.svg?react";
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { StatusBadge, EmptyState } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -18,20 +28,13 @@ import {
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
-import { StatusBadge, EmptyState } from "@/components/app/shared";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import NoMoneySvg from "@/assets/svg/no-money.svg?react";
-import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  Search,
-  ListFilter,
-  Loader2,
-  CreditCard,
-  TrendingUp,
-} from "lucide-react";
-import type { WalletTransaction } from "@/types/wallet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
+import { useProjects } from "@/shared/hooks/use-projects";
+import { useWallet, useWalletTransactions } from "@/shared/hooks/use-wallet";
 import type { TxType } from "@/types/enums";
+import type { WalletTransaction } from "@/types/wallet";
+
 import { PayoutAccountCard } from "./WalletBalanceCard";
 
 type TabKey = "all" | "deposits" | "releases" | "transfers";

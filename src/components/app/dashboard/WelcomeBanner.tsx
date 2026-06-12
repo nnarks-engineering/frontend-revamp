@@ -1,8 +1,9 @@
+import { format } from "date-fns";
+
+import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { WeatherWidget } from "@/components/app/shared";
 import { Card, CardHeader } from "@/components/ui/card";
 import { useCurrentProfile } from "@/shared/hooks/use-auth";
-import { format } from "date-fns";
-import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 
 export function WelcomeBanner() {
   const { data: profile } = useCurrentProfile();

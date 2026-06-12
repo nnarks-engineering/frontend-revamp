@@ -1,9 +1,10 @@
 
-import { useTranslation } from "react-i18next"
 import { useNavigate } from "@tanstack/react-router"
+import { useTranslation } from "react-i18next"
+
+import SucessIcon from "@/assets/svg/sucess.svg?react"
 
 import { SubmitButton } from "./SubmitButton"
-import SucessIcon from "@/assets/svg/sucess.svg?react"
 
 export function SuccessView() {
   const { t } = useTranslation(["common"])

@@ -1,8 +1,11 @@
-import {
-  useCompanyMembers,
-  useRemoveCompanyMember,
-  useUpdateCompanyMember,
-} from "@/shared/hooks/use-company-members";
+import { useState } from "react";
+
+import { ShieldCheck, UserX, Crown, Users} from "lucide-react";
+import { toast } from "sonner";
+
+import NoUsersSvg from "@/assets/svg/no-users.svg?react";
+import { EmptyState, Pagination } from "@/components/app/shared";
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -11,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableBody,
@@ -19,15 +23,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { CompanyRole } from "@/types/enums";
-import { ShieldCheck, UserX, Crown, Users} from "lucide-react";
-import { toast } from "sonner";
-import { ConfirmDialog } from "@/components/common/ConfirmDialog";
-import { useState } from "react";
-import { StatusBadge } from "@/components/ui/status-badge";
-import { EmptyState, Pagination } from "@/components/app/shared";
-
-import NoUsersSvg from "@/assets/svg/no-users.svg?react";
+import {
+  useCompanyMembers,
+  useRemoveCompanyMember,
+  useUpdateCompanyMember,
+} from "@/shared/hooks/use-company-members";
+import type { CompanyRole, CompanyMemberStatus } from "@/types/enums";
 
 const PAGE_SIZE = 10;
 
@@ -64,7 +65,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
 
   const [memberToRemove, setMemberToRemove] = useState<string | null>(null);
 
-  const activeMembers = members.filter((m) => m.status === "active");
+  const activeMembers = members.filter((m) => m.status === CompanyMemberStatus.active);
 
   const filtered = search.trim()
     ? activeMembers.filter((m) => m.email.toLowerCase().includes(search.toLowerCase()))

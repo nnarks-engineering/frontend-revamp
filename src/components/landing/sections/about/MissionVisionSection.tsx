@@ -1,11 +1,14 @@
 import { Target, Telescope } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Section } from "../../Section";
-import { MissionVisionCard } from "./MissionVisionCard";
+
 
 import MissionImg from "@/assets/img/landing/mission.webp";
 import VisionImg from "@/assets/img/landing/vission.webp";
 import RoneOne from "@/assets/img/rope-one.webp"
+
+import { Section } from "../../Section";
+
+import { MissionVisionCard } from "./MissionVisionCard";
 
 
 

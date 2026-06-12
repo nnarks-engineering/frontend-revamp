@@ -1,7 +1,14 @@
-import { useCreateProjectForm } from "./CreateProjectContext";
+import { Link } from "@tanstack/react-router";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
+import type { DurationUnit } from "@/types/shared.enums";
+
+import { useCreateProjectForm } from "./CreateProjectContext";
+
+
 
 export function Step6Timeline() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -55,8 +62,8 @@ export function Step6Timeline() {
               />
               <select
                 value={state.durationUnit}
-                onChange={(e) => updateState({ durationUnit: e.target.value as any })}
-                className="h-12 px-4 rounded-r-lg border border-border/60 bg-muted/20 text-base focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all min-w-[120px]"
+                onChange={(e) => updateState({ durationUnit: e.target.value as DurationUnit })}
+                className="h-12 px-4 rounded-r-lg border border-border/60 bg-muted/20 text-base focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all min-w-30"
               >
                 <option value="days">Days</option>
                 <option value="weeks">Weeks</option>
@@ -73,12 +80,12 @@ export function Step6Timeline() {
           <h3 className="text-lg font-bold text-foreground">Expectations & Compliance</h3>
 
           <div className="space-y-3">
-            <label className={cn(
+            <Label className={cn(
               "flex items-start gap-3 p-4 rounded-md border cursor-pointer transition-all",
               state.agreedToPayments ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
             )}>
               <div className="flex h-5 items-center">
-                <input
+                <Input
                   type="checkbox"
                   checked={state.agreedToPayments}
                   onChange={(e) => updateState({ agreedToPayments: e.target.checked })}
@@ -88,14 +95,14 @@ export function Step6Timeline() {
               <div className="flex flex-col">
                 <span className="font-medium text-foreground text-sm">I understand payments are released per milestone</span>
               </div>
-            </label>
+            </Label>
 
-            <label className={cn(
+            <Label className={cn(
               "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",
               state.agreedToDisputes ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
             )}>
               <div className="flex h-5 items-center">
-                <input
+                <Input
                   type="checkbox"
                   checked={state.agreedToDisputes}
                   onChange={(e) => updateState({ agreedToDisputes: e.target.checked })}
@@ -104,17 +111,17 @@ export function Step6Timeline() {
               </div>
               <div className="flex flex-col">
                 <span className="font-medium text-foreground text-sm">
-                  I agree to dispute resolution via <a href="#" className="text-primary hover:underline">Nnarks Terms</a>
+                  I agree to dispute resolution via <Link to="." hash='#' className="text-primary hover:underline">Nnarks Terms</Link>
                 </span>
               </div>
-            </label>
+            </Label>
 
-            <label className={cn(
+            <Label className={cn(
               "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all",
               state.agreedToSupervision ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
             )}>
               <div className="flex h-5 items-center">
-                <input
+                <Input
                   type="checkbox"
                   checked={state.agreedToSupervision}
                   onChange={(e) => updateState({ agreedToSupervision: e.target.checked })}
@@ -124,7 +131,7 @@ export function Step6Timeline() {
               <div className="flex flex-col">
                 <span className="font-medium text-foreground text-sm">I acknowledge supervision reports affect payments</span>
               </div>
-            </label>
+            </Label>
           </div>
         </div>
       </div>

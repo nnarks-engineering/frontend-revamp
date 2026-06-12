@@ -1,18 +1,23 @@
 import * as React from "react"
+
 import { type AnyFieldApi } from "@tanstack/react-form"
 import { Eye, EyeOff } from "lucide-react"
-import { Label } from "@/components/ui/label"
+
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { cn } from "@/shared/lib/utils"
 
 interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string
-  field: AnyFieldApi
+ readonly label: string
+ readonly field: AnyFieldApi
 }
 
 export function FormField({ label, field, className, type, ...props }: FormFieldProps) {
   const isPassword = type === "password"
   const [showPassword, setShowPassword] = React.useState(false)
+  const passwordInputType = showPassword ? "text" : "password"
+
+
 
   return (
     <div className={cn("space-y-2.5", className)}>
@@ -24,7 +29,7 @@ export function FormField({ label, field, className, type, ...props }: FormField
           value={field.state.value}
           onBlur={field.handleBlur}
           onChange={(e) => field.handleChange(e.target.value)}
-          type={isPassword ? (showPassword ? "text" : "password") : type}
+          type={isPassword ? passwordInputType : type}
           className={cn(
             field.state.meta.errors.length > 0 && "border-destructive focus-visible:ring-destructive",
             isPassword && "pr-10"

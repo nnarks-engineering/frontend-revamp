@@ -1,9 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+
+import { createFileRoute } from "@tanstack/react-router";
+import { Sparkles } from "lucide-react";
+
 import { PageHeader, FilterTabs } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
 import { MOCK_ARTICLES } from "@/data/mock/advisory";
-import { Sparkles } from "lucide-react";
+
 
 export const Route = createFileRoute("/_app/advisory")({
   component: AdvisoryPage,

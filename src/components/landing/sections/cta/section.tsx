@@ -1,12 +1,16 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import MarqueeSection from "./tilted-marquee";
-import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
-import { LinkPreview } from "@/components/ui/link-preview";
+import { useTranslation } from "react-i18next";
+
+
 import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
+import { Button } from "@/components/ui/button";
+import { LinkPreview } from "@/components/ui/link-preview";
+
+import { Section } from "../../Section";
+
+import MarqueeSection from "./tilted-marquee";
 
 export default function CtaSection() {
   const { t } = useTranslation(["landing"]);

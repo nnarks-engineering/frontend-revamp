@@ -1,4 +1,4 @@
-import type { ProjectStatus } from "@/types/enums";
+import type { ProjectStatus } from "@/types/projects";
 
 export type ProjectListTab = "active" | "pending" | "completed";
 

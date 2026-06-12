@@ -1,17 +1,21 @@
 import * as React from "react"
+
 import { useForm } from "@tanstack/react-form"
-import { z } from "zod"
-import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, Check } from "lucide-react"
-import { SubmitButton } from "./SubmitButton"
+import { useTranslation } from "react-i18next"
+import { z } from "zod"
+
+import { CountryDropdown } from "@/components/ui/country-select"
+import { Label } from "@/components/ui/label"
+
+import { Button } from "../ui/button"
+
+import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"
 import { GoogleSignInButton } from "./GoogleSignInButton"
-import { AuthHeader } from "./AuthHeader"
 import { OTPInput } from "./OTPInput"
-import { Label } from "@/components/ui/label"
-import { CountryDropdown } from "@/components/ui/country-select"
-import { Button } from "../ui/button"
+import { SubmitButton } from "./SubmitButton"
 
 const detailsSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -56,7 +60,7 @@ export function RegisterForm() {
   const handleVerifyOtp = async () => {
     setIsVerifying(true)
     // Mock verification
-    console.log("Verifying OTP:", otp.join(""))
+
     await new Promise(resolve => setTimeout(resolve, 1500))
     setIsVerifying(false)
     setStep(3)
@@ -169,7 +173,7 @@ export function RegisterForm() {
             </div>
           </div>
 
-          <GoogleSignInButton onClick={() => console.log("Google register")} />
+          <GoogleSignInButton onClick={() => {}} />
         </form>
       )}
 

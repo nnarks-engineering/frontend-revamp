@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { useTranslation } from "react-i18next";
+
 import FamilyManImage from "@/assets/landing/family-man.webp";
 import CalBankLogo from "@/assets/products/calbank.png";
 

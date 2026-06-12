@@ -1,11 +1,12 @@
 import { useRef } from "react";
+
+import { ArrowRight } from "lucide-react";
 import {
   motion,
   useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const flags = [

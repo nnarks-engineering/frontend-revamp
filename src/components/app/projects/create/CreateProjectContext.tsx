@@ -1,78 +1,30 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import  { Industry,ProjectType } from "@/types/enums";
 
-
-export interface FormMilestone {
-  id: string; // temporary ID for UI mapping
-  title: string;
-  description: string;
-  budget_amount: number;
-}
-
-export interface FormPartner {
-  id: string; // temporary ID
-  email: string;
-}
-
-export interface CreateProjectState {
-  // Step 1: Basics
-  title: string;
-  description: string;
-
-  // Step 2: Location
-  country: string;
-  countryCode: string;  
-  region: string;
-  city: string;
-  siteAddress: string;
-projectType: ProjectType;
-  // Step 3: Category 
-  industry: Industry;
-  servicesNeeded: string[];
-  additionalNotes: string;
-
-  // Step 4: Budget & Milestones
-  totalBudget: number;
-  currency: string;
-  milestones: FormMilestone[];
-
-  // Step 5: Partners & Supervision
-  partnerEmails: FormPartner[];
-  partnerSelection: "verified" | "invite" | "later";
-  supervisionRequired: boolean;
-
-  // Step 6: Timeline & Expectations
-  startDate: string;
-  estimatedDuration: number | "";
-  durationUnit: "days" | "weeks" | "months";
-  agreedToPayments: boolean;
-  agreedToDisputes: boolean;
-  agreedToSupervision: boolean;
-}
-
-export interface CreateProjectContextValue {
-  state: CreateProjectState;
-  updateState: (updates: Partial<CreateProjectState>) => void;
-  currentStep: number;
-  nextStep: () => void;
-  prevStep: () => void;
-  goToStep: (step: number) => void;
-}
+import { Industry, ProjectType } from "@/types/projects";
+import type { CreateProjectState, CreateProjectContextValue } from "@/types/projects";
 
 const initialState: CreateProjectState = {
   title: "",
   description: "",
   country: "",
-  countryCode: "",
-  region: "",
-  city: "",
-  siteAddress: "",
-  industry: Industry.Agriculture,
-  projectType: ProjectType.Solo,
+  location_address: {
+    street_line_1: "",
+    street_line_2: "",
+    city: "",
+    region: "",
+    postal_code: "",
+    country_code: "",
+  },
+  location_coordinates: {
+    lat: null,
+    lng: null,
+  },
+  industry: Industry.agriculture,
+  projectType: ProjectType.individual,
   servicesNeeded: [],
   additionalNotes: "",
   totalBudget: 0,
-  currency: "GHS", // Defaulting to GHS or USD
+  currency: "ghs",
   milestones: [],
   partnerEmails: [],
   partnerSelection: "later",
@@ -110,8 +62,6 @@ export function CreateProjectProvider({ children }: { children: ReactNode }) {
 
 export function useCreateProjectForm() {
   const ctx = useContext(CreateProjectContext);
-  if (!ctx) {
-    throw new Error("useCreateProjectForm must be used within CreateProjectProvider");
-  }
+  if (!ctx) throw new Error("useCreateProjectForm must be used within CreateProjectProvider");
   return ctx;
 }

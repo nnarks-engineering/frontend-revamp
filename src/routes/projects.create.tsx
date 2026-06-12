@@ -1,3 +1,7 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { X } from "lucide-react";
+
+import realBuilding from "@/assets/landing/real-building.png";
 import NnarksLogo from "@/assets/nnarks-logo.svg?react";
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { CreateProjectProvider, useCreateProjectForm } from "@/components/app/projects/create/CreateProjectContext";
@@ -8,11 +12,9 @@ import { Step4Budget } from "@/components/app/projects/create/Step4Budget";
 import { Step5Partners } from "@/components/app/projects/create/Step5Partners";
 import { Step6Timeline } from "@/components/app/projects/create/Step6Timeline";
 import { Step7Review } from "@/components/app/projects/create/Step7Review";
-import { requireAuth } from "@/shared/middleware";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { X } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import realBuilding from "@/assets/landing/real-building.png";
+import { requireAuth } from "@/shared/middleware";
+
 
 export const Route = createFileRoute('/projects/create')({
   beforeLoad: ({ context }) => requireAuth({ context }),
@@ -36,7 +38,7 @@ function CreateProjectLayout() {
     <div
       className={cn(
         "h-dvh w-full flex font-poppins overflow-hidden",
-        currentStep === 7 ? "bg-background" : "bg-background",
+        currentStep === 7 ? "bg-background! " : "bg-background",
       )}
     >
       {/* Left Form Area */}
@@ -106,10 +108,11 @@ function CreateProjectWizard() {
                   className={cn(
                     "h-1.5 rounded-full transition-all duration-300",
                     step === currentStep
-                      ? "w-8 bg-primary"
-                      : step < currentStep
-                        ? "w-4 bg-primary/40"
-                        : "w-4 bg-muted dark:bg-muted-foreground",
+                      && "w-8 bg-primary",
+                      step < currentStep
+                        && "w-4 bg-primary/40",
+                        step > currentStep
+                          && "w-4 bg-muted dark:bg-muted-foreground",
                   )}
                 />
               ))}

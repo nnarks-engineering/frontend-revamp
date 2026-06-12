@@ -41,3 +41,9 @@ export interface VendorItem {
   is_verified: boolean;
   joined_at: string;
 }
+
+export interface ServiceCategoryFilterItem {
+  id: VendorServiceCategory;
+  label: string;
+  icon: React.ElementType;
+}

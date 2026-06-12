@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+
 import { AnimatePresence, motion } from "motion/react";
+
 import { useOutsideClick } from "@/shared/hooks/use-outside-click";
 
 export function ExpandableCardDemo() {

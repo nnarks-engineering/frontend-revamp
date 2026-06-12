@@ -24,23 +24,22 @@ import {
 } from "@/shared/api/projects";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import type {
-    EvidenceRead,
-    EvidenceSubmit,
     PageParams,
     PaginatedResponse,
 } from "@/types/common";
-
 import type {
-    AcceptProjectInvitationPayload,
+    AcceptInvitationPayload,
     InviteMemberPayload,
-    Milestone,
+    MilestoneResponse,
     MilestoneCreatePayload,
     MilestoneUpdatePayload,
-    Project,
+    ProjectResponse,
     ProjectCreatePayload,
-    ProjectDashboard,
+    ProjectDashboardResponse,
     ProjectUpdatePayload,
-    ReviewRead,
+    EvidenceResponse,
+    EvidenceSubmitPayload,
+    ReviewResponse,
     ReviewSubmitPayload,
 } from "@/types/projects";
 
@@ -51,9 +50,9 @@ import type {
 /** Paginated list of the current user's projects. */
 export function useProjects(
     params: PageParams = {},
-    options?: Omit<UseQueryOptions<PaginatedResponse<Project>>, "queryKey" | "queryFn">,
+    options?: Omit<UseQueryOptions<PaginatedResponse<ProjectResponse>>, "queryKey" | "queryFn">,
 ) {
-    return useQuery<PaginatedResponse<Project>>({
+    return useQuery<PaginatedResponse<ProjectResponse>>({
         queryKey: [...QUERY_KEYS.projects, params],
         queryFn: () => listProjects(params),
         ...options,
@@ -63,9 +62,9 @@ export function useProjects(
 /** Full project dashboard — includes members, milestones, wallet. */
 export function useProject(
     id: string,
-    options?: Omit<UseQueryOptions<ProjectDashboard>, "queryKey" | "queryFn">,
+    options?: Omit<UseQueryOptions<ProjectDashboardResponse>, "queryKey" | "queryFn">,
 ) {
-    return useQuery<ProjectDashboard>({
+    return useQuery<ProjectDashboardResponse>({
         queryKey: QUERY_KEYS.project(id),
         queryFn: () => getProjectDashboard(id),
         enabled: Boolean(id),
@@ -77,12 +76,12 @@ export function useProject(
 export function useCreateProject() {
     const queryClient = useQueryClient();
 
-    return useMutation<Project, Error, ProjectCreatePayload>({
+    return useMutation<ProjectResponse, Error, ProjectCreatePayload>({
         mutationFn: (data) => createProject(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.projects });
         },
-        onError: (e) => {console.error("Error creating project", e);}
+        onError: (e) => { console.error("Error creating project", e); }
     });
 }
 
@@ -90,7 +89,7 @@ export function useCreateProject() {
 export function useUpdateProject(projectId: string) {
     const queryClient = useQueryClient();
 
-    return useMutation<Project, Error, ProjectUpdatePayload>({
+    return useMutation<ProjectResponse, Error, ProjectUpdatePayload>({
         mutationFn: (data) => updateProject(projectId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.projects });
@@ -120,7 +119,7 @@ export function useInviteMember(projectId: string) {
 export function useAcceptInvitation() {
     const queryClient = useQueryClient();
 
-    return useMutation<void, Error, AcceptProjectInvitationPayload>({
+    return useMutation<void, Error, AcceptInvitationPayload>({
         mutationFn: (payload) => acceptInvitation(payload),
         onSuccess: () => {
             // The user is now a project member — refresh the full list
@@ -136,9 +135,9 @@ export function useAcceptInvitation() {
 /** List all milestones for a project. */
 export function useMilestones(
     projectId: string,
-    options?: Omit<UseQueryOptions<Milestone[]>, "queryKey" | "queryFn">,
+    options?: Omit<UseQueryOptions<MilestoneResponse[]>, "queryKey" | "queryFn">,
 ) {
-    return useQuery<Milestone[]>({
+    return useQuery<MilestoneResponse[]>({
         queryKey: QUERY_KEYS.milestones(projectId),
         queryFn: () => listMilestones(projectId),
         enabled: Boolean(projectId),
@@ -150,7 +149,7 @@ export function useMilestones(
 export function useCreateMilestone(projectId: string) {
     const queryClient = useQueryClient();
 
-    return useMutation<Milestone, Error, MilestoneCreatePayload>({
+    return useMutation<MilestoneResponse, Error, MilestoneCreatePayload>({
         mutationFn: (data) => createMilestone(projectId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.milestones(projectId) });
@@ -163,7 +162,7 @@ export function useCreateMilestone(projectId: string) {
 export function useUpdateMilestone(projectId: string, milestoneId: string) {
     const queryClient = useQueryClient();
 
-    return useMutation<Milestone, Error, MilestoneUpdatePayload>({
+    return useMutation<MilestoneResponse, Error, MilestoneUpdatePayload>({
         mutationFn: (data) => updateMilestone(projectId, milestoneId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.milestones(projectId) });
@@ -178,7 +177,7 @@ export function useUpdateMilestone(projectId: string, milestoneId: string) {
 
 /** List evidence submitted for a milestone. */
 export function useMilestoneEvidence(projectId: string, milestoneId: string) {
-    return useQuery<EvidenceRead[]>({
+    return useQuery<EvidenceResponse[]>({
         queryKey: ["projects", projectId, "milestones", milestoneId, "evidence"],
         queryFn: () => listMilestoneEvidence(projectId, milestoneId),
         enabled: Boolean(projectId) && Boolean(milestoneId),
@@ -189,7 +188,7 @@ export function useMilestoneEvidence(projectId: string, milestoneId: string) {
 export function useSubmitEvidence(projectId: string, milestoneId: string) {
     const queryClient = useQueryClient();
 
-    return useMutation<EvidenceRead, Error, EvidenceSubmit>({
+    return useMutation<EvidenceResponse, Error, EvidenceSubmitPayload>({
         mutationFn: (data) => submitMilestoneEvidence(projectId, milestoneId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({
@@ -203,7 +202,7 @@ export function useSubmitEvidence(projectId: string, milestoneId: string) {
 export function useSubmitMilestoneReview(projectId: string, milestoneId: string) {
     const queryClient = useQueryClient();
 
-    return useMutation<ReviewRead, Error, ReviewSubmitPayload>({
+    return useMutation<ReviewResponse, Error, ReviewSubmitPayload>({
         mutationFn: (data) => submitMilestoneReview(projectId, milestoneId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({

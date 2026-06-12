@@ -1,6 +1,7 @@
+import { useNavigate } from "@tanstack/react-router";
+
 import { PageHeader } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "@tanstack/react-router";
 
 export function CreateProjectPage() {
   const navigate = useNavigate({ from: "/projects/create" });

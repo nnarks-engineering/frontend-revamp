@@ -29,7 +29,8 @@ const AssetsSvg = () => {
       timerRefs.current.push(t);
     });
 
-    return () => timerRefs.current.forEach(clearTimeout);
+    const refs = timerRefs.current;
+    return () => refs.forEach(clearTimeout);
   }, []);
 
   const style = (id: AnimId): React.CSSProperties => {

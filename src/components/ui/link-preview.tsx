@@ -1,12 +1,14 @@
-import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
-import { encode } from "qss";
 import React from "react";
+
+import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import {
   AnimatePresence,
   motion,
   useMotionValue,
   useSpring,
 } from "motion/react";
+import { encode } from "qss";
+
 import { cn } from "@/shared/lib/utils";
 
 type LinkPreviewProps = {
@@ -55,11 +57,6 @@ export const LinkPreview = ({
   }
 
   const [isOpen, setOpen] = React.useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
@@ -86,11 +83,9 @@ React.useEffect(() => {
 
   return (
     <>
-      {isMounted ? (
-        <div className="hidden">
-          <img src={src} width={width} height={height} alt="hidden image" />
-        </div>
-      ) : null}
+      <div className="hidden">
+        <img src={src} width={width} height={height} alt="hidden image" />
+      </div>
 
       <HoverCardPrimitive.Root
         openDelay={50}

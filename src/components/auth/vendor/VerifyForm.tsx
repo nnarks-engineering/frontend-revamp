@@ -1,6 +1,7 @@
+import * as React from "react"
+
 import { Link } from "@tanstack/react-router"
 import { ArrowRight, RefreshCw } from "lucide-react"
-import * as React from "react"
 import { toast } from "sonner"
 
 import {
@@ -9,9 +10,12 @@ import {
     useVerifyPasswordSignup,
 } from "@/shared/hooks/use-auth"
 import { getApiError } from "@/shared/lib/api-error"
-import { AuthHeader } from "./AuthHeader"
-import { OTPInput } from "./OTPInput"
-import { SubmitButton } from "./SubmitButton"
+
+import { AuthHeader } from "../shared/AuthHeader"
+import { OTPInput } from "../shared/OTPInput"
+import { SubmitButton } from "../shared/SubmitButton"
+
+
 
 interface VendorVerifyFormProps {
   /** Destination email — shown in the description */
@@ -36,14 +40,20 @@ export function VendorVerifyForm({ email, token, flow }: VendorVerifyFormProps) 
   const [otp, setOtp] = React.useState(["", "", "", "", "", ""])
   const isOtpComplete = otp.every((d) => d !== "")
 
-  // ── Auto-verify when a magic-link token arrives in the URL ──────────
-  // Only applies to the pure magic-link flow (no explicit flow param).
-  React.useEffect(() => {
-    if (!isSignupFlow && token && !verifyMagicLink.isPending && !verifyMagicLink.isSuccess) {
-      verifyMagicLink.mutate({ token })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token])
+const hasAutoVerified = React.useRef(false);
+
+React.useEffect(() => {
+  if (
+    !isSignupFlow &&
+    token &&
+    !verifyMagicLink.isPending &&
+    !verifyMagicLink.isSuccess &&
+    !hasAutoVerified.current
+  ) {
+    hasAutoVerified.current = true;
+    verifyMagicLink.mutate({ token });
+  }
+}, [isSignupFlow, token, verifyMagicLink]);
 
   // ── Resend ────────────────────────────────────────────────────────────
   function handleResend() {

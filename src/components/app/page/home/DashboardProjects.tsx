@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Plus, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useProjects } from "@/shared/hooks/use-projects";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { CREATE_PROJECT_ROUTE } from "@/components/app/page/projects/shared/constants";
 import { ProjectCard } from "@/components/app/page/projects/shared/ProjectCard";
 import { EmptyState } from "@/components/app/shared";
-import { CREATE_PROJECT_ROUTE } from "@/components/app/page/projects/shared/constants";
+import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -13,17 +14,17 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import type { Project } from "@/types/projects";
+import { useProjects } from "@/shared/hooks/use-projects";
+import { ProjectStatus } from "@/types/projects";
 
-function getPriority(project: Project) {
-  switch (project.status?.toUpperCase()) {
-    case "ACTIVE":
+function getPriority(project: ProjectResponse) {
+  switch (project.status) {
+    case ProjectStatus.active:
       return 1;
-    case "PRE_PROJECT":
-    case "DRAFT":
+    case ProjectStatus.pre_project:
+    case ProjectStatus.draft:
       return 2;
-    case "COMPLETED":
+    case ProjectStatus.completed:
       return 3;
     default:
       return 4;

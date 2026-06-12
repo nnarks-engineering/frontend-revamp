@@ -1,7 +1,9 @@
 import React from "react";
-import { cn } from "@/shared/lib/utils";
+
 import type { LucideIcon } from "lucide-react";
+
 import NoDataSvg from "@/assets/svg/no-data.svg?react";
+import { cn } from "@/shared/lib/utils";
 
 interface EmptyStateProps {
   icon?: LucideIcon;

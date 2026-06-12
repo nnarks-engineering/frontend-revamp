@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { cn } from "@/shared/lib/utils";
+
 import { Armchair } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+
 import LineJoinedDotSvg from "@/assets/svg/line-joined-dotes.svg?react"
+import { cn } from "@/shared/lib/utils";
 
 interface Industry {
   id: string;
@@ -125,24 +127,25 @@ export default function IndustriesSection() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const startAutoPlay = () => {
-    stopAutoPlay();
-    autoPlayRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % industries.length);
-    }, 3500);
-  };
-
-  const stopAutoPlay = () => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-      autoPlayRef.current = null;
-    }
-  };
-
   useEffect(() => {
-    if (!isHovering) startAutoPlay();
-    else stopAutoPlay();
-    return () => stopAutoPlay();
+    let interval: ReturnType<typeof setInterval> | null = null;
+    
+    if (!isHovering) {
+      interval = setInterval(() => {
+        setActiveIndex((prev) => (prev + 1) % industries.length);
+      }, 3500);
+      autoPlayRef.current = interval;
+    } else {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+        autoPlayRef.current = null;
+      }
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
   }, [isHovering]);
 
   return (

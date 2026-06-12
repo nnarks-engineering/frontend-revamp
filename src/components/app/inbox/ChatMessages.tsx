@@ -1,8 +1,11 @@
-import { cn } from "@/shared/lib/utils";
-import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Avatar } from "./Avatar";
+
+import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 import type { ChatSession, Message } from "@/types/messaging";
+
+import { Avatar } from "./Avatar";
 
 interface ChatMessagesProps {
   thread: ChatSession | null;

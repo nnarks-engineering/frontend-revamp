@@ -1,5 +1,6 @@
-import { cn } from "@/shared/lib/utils";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+
+import { cn } from "@/shared/lib/utils";
 
 export const InfiniteMovingCards = ({
   items,

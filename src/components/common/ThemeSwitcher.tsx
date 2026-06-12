@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+
+import { Moon, Sun, SunMoon } from "lucide-react";
+import { useTheme } from "next-themes";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,9 +17,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/shared/lib/utils";
-import { Moon, Sun, SunMoon } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+
 
 // ── Font-size hook (shared logic, reusable anywhere) ──────────────────────────
 export function useFontSize() {

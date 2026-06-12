@@ -1,15 +1,17 @@
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { Section } from "../../Section";
-import StoryWorld from "@/assets/img/story-world.webp";
-import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback } from "react";
 
+import useEmblaCarousel from "embla-carousel-react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
 // Story Images
-import NurseLondon from "@/assets/img/landing/nurse-london.png";
 import EngineerNY from "@/assets/img/landing/engineer-ny.png";
+import NurseLondon from "@/assets/img/landing/nurse-london.png";
 import TeacherToronto from "@/assets/img/landing/teacher-toronto.png";
+import StoryWorld from "@/assets/img/story-world.webp";
+
+import { Section } from "../../Section";
 
 const images = [NurseLondon, EngineerNY, TeacherToronto];
 

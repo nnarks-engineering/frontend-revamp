@@ -1,9 +1,12 @@
-import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, resolvePageTitle, type NavItem } from "@/app/nav-config";
-import { cn } from "@/shared/lib/utils";
+import { useState } from "react";
+
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { useState } from "react";
+
+import { findBestMatchId, isOwnedBy, resolveVerticalSidebarItems, resolvePageTitle, type NavItem } from "@/app/nav-config";
+import { cn } from "@/shared/lib/utils";
+
 
 interface SidebarNavProps {
   onClose?: () => void;

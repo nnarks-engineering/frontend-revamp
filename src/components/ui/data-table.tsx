@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import {
   flexRender,
   getCoreRowModel,
@@ -14,9 +16,8 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsUpDown } from "lucide-react";
-import * as React from "react";
+
 import { Button } from "@/components/ui/button";
-import { cn } from "@/shared/lib/utils";
 import {
   Table,
   TableBody,
@@ -25,6 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/shared/lib/utils";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -128,6 +130,7 @@ export function DataTable<TData>({
     pageSize: pageSizeOptions[0] ?? 10,
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable<TData>({
     data,
     columns,

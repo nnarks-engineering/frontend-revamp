@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import NarksIcon from "@/assets/nnarks-logo-sm.svg?react";
 
 interface Wallet {

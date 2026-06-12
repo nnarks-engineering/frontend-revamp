@@ -1,12 +1,18 @@
-import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
-import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
-import { cn } from "@/shared/lib/utils";
+import { useEffect, useState } from "react";
+
 import { Link } from "@tanstack/react-router";
 import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
-import { useEffect, useState } from "react";
-import { InvitationsDrawer } from "./InvitationsDrawer";
+
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
+import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/use-company-members";
+import { cn } from "@/shared/lib/utils";
+
+
 import { TopNavBar } from "../navigation/TopNavBar";
+
+import { InvitationsDrawer } from "./InvitationsDrawer";
+
 
 interface AppHeaderProps {
   isSidebarOpen: boolean;

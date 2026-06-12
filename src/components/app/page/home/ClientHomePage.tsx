@@ -1,12 +1,16 @@
+import { Megaphone } from "lucide-react";
+
 import { ClientAnnouncementsPanel } from "@/components/app/dashboard";
 import { WeatherWidget, UserProfileCard } from "@/components/app/shared";
+import { Card } from "@/components/ui/card";
+import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
+
+import { TeamActionCard } from "../../shared/TeamInviteOrMessageCard";
+
 import { CLIENT_STATS } from "./constants";
 import { DashboardProjects } from "./DashboardProjects";
-import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
-import { Card } from "@/components/ui/card";
-import { Megaphone } from "lucide-react";
-import { TeamActionCard } from "../../shared/TeamInviteOrMessageCard";
+
 
 export function ClientHomePage() {
   useRightPanel(<ClientAnnouncementsPanel />, { openOnMount: true, icon: Megaphone });

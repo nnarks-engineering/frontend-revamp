@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Card, CardContent } from "@/components/ui/card";
+
 import { DetailField } from "@/components/common/DetailField";
-import type { Project } from "@/types/projects";
+import { Card, CardContent } from "@/components/ui/card";
 import { StatusBadge } from "@/components/ui/status-badge";
+import type { ProjectResponse } from "@/types/projects";
 
 interface ProjectCardProps {
-  readonly project: Project;
+  readonly project: ProjectResponse;
 }
 
 function formatMoney(amount: number, currency: string) {
@@ -45,7 +46,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             />
             <DetailField
               label="Budget"
-              value={<span className="font-medium text-foreground">{formatMoney(project.total_budget, project.currency)}</span>}
+              value={<span className="font-medium text-foreground">{formatMoney(Number(project.total_budget), project.currency)}</span>}
             />
             <DetailField
               label="Start Date"

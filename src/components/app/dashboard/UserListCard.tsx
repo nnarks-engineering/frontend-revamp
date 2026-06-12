@@ -1,16 +1,11 @@
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+
+import RoundingLine2 from "@/assets/svg/rounding-line2.svg?react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/shared/lib/utils";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import RoundingLine2 from "@/assets/svg/rounding-line2.svg?react";
-
-export interface UserListItem {
-  readonly id: string;
-  readonly name: string;
-  readonly handle?: string;
-  readonly avatarUrl?: string;
-}
+import type { UserListItem } from "@/types/common";
 
 interface UserListCardProps {
   readonly title: string;

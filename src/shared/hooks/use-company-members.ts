@@ -1,3 +1,5 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import {
   inviteCompanyMember,
   listCompanyMembers,
@@ -11,7 +13,6 @@ import {
 } from "@/shared/api/companies";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import type { CompanyMember, CompanyMemberInvite, CompanyMemberUpdate } from "@/types/companies";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useCompanyMembers(companyId?: string) {
   return useQuery({
@@ -26,7 +27,7 @@ export function useInviteCompanyMember(companyId: string) {
 
   return useMutation<CompanyMember, Error, CompanyMemberInvite>({
     mutationFn: (data) => {
-      console.log("Inviting member to company:", companyId, data);
+
       return inviteCompanyMember(companyId, data);
     },
     onSuccess: () => {

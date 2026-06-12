@@ -1,9 +1,12 @@
 import * as React from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/use-auth";
+
 import { Loader2 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/use-auth";
+
 
 interface EditProfileDrawerProps {
   open: boolean;
@@ -14,16 +17,19 @@ export function EditProfileDrawer({ open, onOpenChange }: EditProfileDrawerProps
   const { data: profile } = useCurrentProfile();
   const updateProfile = useUpdateProfile();
 
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [otherNames, setOtherNames] = React.useState("");
+  const [firstName, setFirstName] = React.useState(profile?.first_name || "");
+  const [lastName, setLastName] = React.useState(profile?.last_name || "");
+  const [otherNames, setOtherNames] = React.useState(profile?.other_names || "");
 
+  // Update local state when drawer opens with a new profile
+  const prevOpenRef = React.useRef(open);
   React.useEffect(() => {
-    if (open && profile) {
+    if (open && !prevOpenRef.current && profile) {
       setFirstName(profile.first_name || "");
       setLastName(profile.last_name || "");
       setOtherNames(profile.other_names || "");
     }
+    prevOpenRef.current = open;
   }, [open, profile]);
 
   const handleSave = () => {

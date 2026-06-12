@@ -1,10 +1,11 @@
+import { Link, useRouterState } from "@tanstack/react-router";
+import { AnimatePresence, motion } from "framer-motion";
+
 import {
     resolveActiveTabId,
     resolveHorizontalTabs,
 } from "@/app/nav-config";
 import { cn } from "@/shared/lib/utils";
-import { Link, useRouterState } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "framer-motion";
 
 export function SubNavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });

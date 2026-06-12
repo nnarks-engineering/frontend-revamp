@@ -1,7 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { listMyCompanies } from "@/shared/api/companies";
 import { isAuthenticated } from "@/shared/lib/auth";
 import { QUERY_KEYS } from "@/shared/lib/constants";
-import { useQuery } from "@tanstack/react-query";
 
 export function useMyCompanies() {
     return useQuery({

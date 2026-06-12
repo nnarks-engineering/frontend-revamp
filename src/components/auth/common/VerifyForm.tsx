@@ -1,7 +1,9 @@
+import * as React from "react"
+
 import { Link } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
-import * as React from "react"
 import { useTranslation } from "react-i18next"
+
 import { AuthHeader } from "./AuthHeader"
 import { OTPInput } from "./OTPInput"
 import { SubmitButton } from "./SubmitButton"
@@ -34,7 +36,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
 
     try {
       // Mock API call
-      console.log("Verifying code:", otp.join(""), "for email:", email)
+
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       setIsSuccess(true)
@@ -80,7 +82,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
             <button
               type="button"
               className="font-semibold text-primary hover:underline transition-colors"
-              onClick={() => console.log("Resending code to:", email)}
+              onClick={() => {}}
             >
               {t("common:auth.resendCode")}
             </button>

@@ -1,6 +1,8 @@
-import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { useEffect, useRef, useState, createContext, useContext } from "react";
 import type * as React from "react";
+
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+
 import { cn } from "@/shared/lib/utils";
 
 type TabsVariant = "default" | "tertiary" | "primary";

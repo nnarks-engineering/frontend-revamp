@@ -1,4 +1,5 @@
-import { cn } from "@/shared/lib/utils";
+import { useState, useRef, useEffect } from "react";
+
 import {
   Sparkles,
   X,
@@ -6,7 +7,8 @@ import {
   Bot,
   Loader2,
 } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface AiPanelProps {
   isOpen: boolean;

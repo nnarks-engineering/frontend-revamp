@@ -55,14 +55,14 @@ export async function deleteCompany(id: string): Promise<void> {
 
 export async function getInvitationDetails(
   invite_token: string,
-): Promise<any> {
+): Promise<unknown> {
   const res = await api.get(COMPANY_ENDPOINTS.ACCEPT_INVITATION, {
     params: { invite_token },
   });
   return res.data;
 }
 
-export async function listMyInvitations(): Promise<any[]> {
+export async function listMyInvitations(): Promise<unknown[]> {
   const res = await api.get(COMPANY_ENDPOINTS.MY_INVITATIONS);
   return res.data;
 }

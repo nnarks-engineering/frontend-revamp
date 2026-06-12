@@ -11,6 +11,18 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
+## Type Organization Architecture
+
+This project strictly follows domain-driven type organization to ensure scalability:
+
+1. **Domain Isolation**: Types are separated by domain under `src/types/{domain}/` (e.g., `src/types/projects/`).
+2. **Sub-concerns**: Each domain splits types into `{domain}.types.ts` (API models), `{domain}.enums.ts` (constants), and `{domain}.form.ts` (UI state).
+3. **Module Prefix**: All domain-specific types and enums must be prefixed with the domain name to prevent cross-module collisions (e.g., `ProjectResponse`, `ProjectMemberRole`).
+4. **Shared Types**: Any type used by 2 or more domains is moved to `src/types/shared.enums.ts` or `src/types/shared.types.ts`.
+5. **Barrel Exports**: Each domain folder must have an `index.ts` file that exports its internal files. The root `src/types/index.ts` then re-exports all domains.
+
+For full architectural rules, see `.cursor/rules/architecture.mdc` and `LINT_CHECKS.md`.
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:

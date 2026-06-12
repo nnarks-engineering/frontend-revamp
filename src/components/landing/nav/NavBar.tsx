@@ -1,27 +1,17 @@
 import { useState, useEffect, useRef } from 'react'
+
 import { Link, useLocation } from '@tanstack/react-router'
-import { Menu, X, ChevronDown, ShieldCheck, MapPin, Users, FileCheck, Shield, Building2, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { cn } from '@/shared/lib/utils'
-import Logo from '@/assets/nnarks-logo-sm.svg?react'
-import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { Menu, X, ChevronDown, ShieldCheck, MapPin, Users, FileCheck, Shield, Building2, Phone } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { LinkPreview } from '@/components/ui/link-preview'
+
 import EngineerImage from "@/assets/landing/nnarks-engineer.webp";
+import Logo from '@/assets/nnarks-logo-sm.svg?react'
 import { AppearanceDropdown, useFontSize } from '@/components/common/ThemeSwitcher'
-
-export interface NavSubItem {
-    labelKey: string
-    descriptionKey?: string
-    href: string
-    icon: React.ElementType
-}
-
-export interface NavMainItem {
-    labelKey: string
-    href?: string
-    items?: NavSubItem[]
-}
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { LinkPreview } from '@/components/ui/link-preview'
+import { cn } from '@/shared/lib/utils'
+import type { NavMainItem, NavbarProps } from '@/types/landing'
 
 export const navigationStructure: NavMainItem[] = [
     {
@@ -55,11 +45,6 @@ export const navigationStructure: NavMainItem[] = [
 ]
 
 const HERO_PAGES = ['/']
-
-export interface NavbarProps {
-    signInText?: string
-    ctaText?: string
-}
 
 export function DesktopDropdown({ item, isLinkActive }: { item: NavMainItem, isLinkActive: (href: string) => boolean }) {
     const { t } = useTranslation(['landing'])
@@ -145,7 +130,7 @@ export function DesktopDropdown({ item, isLinkActive }: { item: NavMainItem, isL
     )
 }
 
-export const Navbar: React.FC<NavbarProps> = ({}) => {
+export const Navbar: React.FC<NavbarProps> = () => {
     const { t } = useTranslation(['common', 'landing'])
     const signInText = t('common:auth.login')
     const ctaText = t('common:auth.register')
@@ -163,11 +148,13 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
     useEffect(() => {
         const heroPage = HERO_PAGES.includes(pathname)
 
+        /* eslint-disable react-hooks/set-state-in-effect */
         if (!heroPage) {
             setScrolledPast(true)
         } else {
             setScrolledPast(window.scrollY > 80)
         }
+        /* eslint-enable react-hooks/set-state-in-effect */
 
         setVisible(true)
         lastScrollY.current = window.scrollY

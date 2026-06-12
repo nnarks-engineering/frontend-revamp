@@ -3,59 +3,17 @@
  * When integrating the API, these will come from the server verbatim.
  */
 
-/* ── Projects ── */
-
-
-
-  export const Industry = {
-    Agriculture: "AGRICULTURE",
-    Construction: "CONSTRUCTION",
-    Technology: "TECHNOLOGY",
-    Healthcare: "HEALTHCARE",
-    Education: "EDUCATION",
-    Manufacturing: "MANUFACTURING",
-    Retail: "RETAIL",
-    Other: "OTHER",
-  } as const;
-
-export type Industry= (typeof Industry)[keyof typeof Industry];
-  
-export const ProjectType = {
-  Solo: "Solo",
-  Partnered: "Partnered",
-} as const;
-
-export type ProjectType = (typeof ProjectType)[keyof typeof ProjectType];
-
-export type ProjectStatus =
-  | "DRAFT"
-  | "PRE_PROJECT"
-  | "ACTIVE"
-  | "PAUSED"
-  | "COMPLETED"
-  | "ARCHIVED";
-
-export type MemberRole = "OWNER" | "PARTNER" | "SUPERVISOR";
-
-export type MemberStatus = "PENDING" | "ACTIVE" | "REMOVED";
-
-export type MilestoneStatus =
-  | "PENDING"
-  | "IN_PROGRESS"
-  | "UNDER_REVIEW"
-  | "APPROVED"
-  | "FAILED"
-  | "SKIPPED";
-
-export type MilestoneCreatedBy = "USER" | "AI";
-
-export type EvidenceType = "IMAGE" | "VIDEO" | "DOCUMENT" | "AUDIO";
-
 /* ── Companies ── */
 
 export type CompanyRole = "owner" | "admin" | "member" | "viewer" | "agent";
 
-export type CompanyMemberStatus = "pending" | "active" | "removed" | "left";
+export const CompanyMemberStatus = {
+  pending: "pending",
+  active: "active",
+  removed: "removed",
+  left: "left",
+} as const;
+export type CompanyMemberStatus = (typeof CompanyMemberStatus)[keyof typeof CompanyMemberStatus];
 
 export type PartnershipTier = "none" | "verified" | "nnarks_partner";
 

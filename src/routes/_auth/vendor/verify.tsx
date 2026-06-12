@@ -1,6 +1,7 @@
-import { VendorVerifyForm } from "@/components/auth/VendorVerifyForm"
 import { createFileRoute } from "@tanstack/react-router"
 import { z } from "zod"
+
+import { VendorVerifyForm } from "@/components/auth/vendor/VerifyForm"
 
 const searchSchema = z.object({
   email: z.string().optional(),

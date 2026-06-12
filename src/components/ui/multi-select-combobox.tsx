@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
+
 import { CheckIcon, ChevronDownIcon, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { Badge } from './badge'
+
+
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -16,7 +18,10 @@ import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { useMediaQuery } from '@/shared/hooks/use-media-query'
 import { cn } from '@/shared/lib/utils'
+
 import { Avatar } from '../image/Image'
+
+import { Badge } from './badge'
 import { Label } from './label'
 
 interface MultiSelectComboboxProps {
@@ -174,11 +179,9 @@ export function MultiSelectCombobox({
   const [selectedValues, setSelectedValues] = useState<string[]>(value || defaultValue || [])
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
-  useEffect(() => {
-    if (value !== undefined) {
-      setSelectedValues(value)
-    }
-  }, [value])
+  if (value !== undefined && value !== selectedValues && JSON.stringify(value) !== JSON.stringify(selectedValues)) {
+    setSelectedValues(value)
+  }
 
   const handleSelect = (optionValue: string) => {
     const newSelectedValues = selectedValues.includes(optionValue)

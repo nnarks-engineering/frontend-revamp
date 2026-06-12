@@ -1,10 +1,13 @@
 import React from "react";
-import { useCurrentProfile } from "@/shared/hooks/use-auth";
-import { Card } from "@/components/ui/card";
-import { Image } from "@/components/image/Image";
+
 import { BadgeCheck,Edit2 } from "lucide-react";
+
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
+import { Image } from "@/components/image/Image";
+import { Card } from "@/components/ui/card";
+import { useCurrentProfile } from "@/shared/hooks/use-auth";
 import { cn, getColorClass } from '@/shared/lib/utils';
+
 import { EditProfileDrawer } from "./EditProfileDrawer";
 
 

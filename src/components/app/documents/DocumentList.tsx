@@ -1,7 +1,9 @@
 import { Loader2 } from "lucide-react";
-import { DocumentRow } from "./DocumentRow";
+
 import { EmptyState } from "@/components/app/shared";
 import type { DocumentItem } from "@/types/documents";
+
+import { DocumentRow } from "./DocumentRow";
 
 interface DocumentListProps {
   documents: DocumentItem[];

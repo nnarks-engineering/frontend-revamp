@@ -1,8 +1,8 @@
-import { useCreateProjectForm, type FormMilestone } from "./CreateProjectContext";
+import { currencies } from "country-data-list";
+import { Info, Plus, Trash2, AlertTriangle } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Info, Plus, Trash2, AlertTriangle } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -10,8 +10,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import type { Currencies } from "@/shared/constants/common";
 import { cn } from "@/shared/lib/utils";
+import type { FormMilestone } from "@/types/projects";
+
 import { Hint } from "../../shared/hint";
+
+import { useCreateProjectForm } from "./CreateProjectContext";
+
+
+
 
 export function Step4Budget() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -85,17 +94,17 @@ export function Step4Budget() {
             </label>
             <Select
               value={state.currency}
-              onValueChange={(val) => updateState({ currency: val })}
+              onValueChange={(val:Currencies) => updateState({ currency: val })}
             >
               <SelectTrigger className="h-12 text-base">
                 <SelectValue placeholder="Currency" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="GHS">GHS</SelectItem>
-                <SelectItem value="USD">USD</SelectItem>
-                <SelectItem value="EUR">EUR</SelectItem>
-                <SelectItem value="GBP">GBP</SelectItem>
-                <SelectItem value="NGN">NGN</SelectItem>
+                {Object.keys(currencies).map((currency) => (
+                  <SelectItem key={currency} value={currency}>
+                    {currency.toUpperCase()}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -205,7 +214,7 @@ export function Step4Budget() {
                         placeholder="Description of deliverables..."
                         value={milestone.description}
                         onChange={(e) => updateMilestone(milestone.id, { description: e.target.value })}
-                        className="bg-background resize-none min-h-[80px]"
+                        className="bg-background resize-none min-h-20"
                       />
                     </div>
                   </div>

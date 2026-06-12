@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/shared/lib/utils";
 

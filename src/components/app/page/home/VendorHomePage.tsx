@@ -1,3 +1,7 @@
+import { useMemo } from "react";
+
+import { Megaphone } from "lucide-react";
+
 import {
   DashboardTopStrip,
   DashboardVideo,
@@ -10,9 +14,9 @@ import {
 import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { useRightPanel } from "@/shared/hooks/use-right-panel";
-import { useMemo } from "react";
+
 import { UPCOMING_DATES } from "./constants";
-import { Megaphone } from "lucide-react";
+
 
 export function VendorHomePage() {
   useRightPanel(<VendorAnnouncementsSliderPanel />, { openOnMount: true, icon: Megaphone });

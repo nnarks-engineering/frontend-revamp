@@ -1,3 +1,5 @@
+import { ArrowLeftRight, Building2, Plus } from "lucide-react";
+
 import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
@@ -7,9 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/shared/lib/utils";
 import { getInitials } from "@/shared/lib/initials";
-import { ArrowLeftRight, Building2, Plus } from "lucide-react";
+import { cn } from "@/shared/lib/utils";
+
 import { useCompanySwitcher } from "./useCompanySwitcher";
 
 // ── Company avatar (reusable independently) ───────────────────────────────────

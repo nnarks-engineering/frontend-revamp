@@ -1,7 +1,11 @@
 "use client";
-import { useCallback, useEffect, forwardRef, useState } from "react";
+import { useCallback, forwardRef, useState } from "react";
 
 // shadcn
+import { countries } from "country-data-list";
+import { ChevronDown, CheckIcon, Globe } from "lucide-react";
+import { CircleFlag } from "react-circle-flags";
+
 import {
   Command,
   CommandEmpty,
@@ -15,16 +19,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-// utils
 import { cn } from "@/shared/lib/utils";
 
 // assets
-import { ChevronDown, CheckIcon, Globe } from "lucide-react";
-import { CircleFlag } from "react-circle-flags";
 
 // data
-import { countries } from "country-data-list";
 
 // Country interface
 export interface Country {
@@ -73,20 +72,12 @@ const CountryDropdownComponent = (
     undefined
   );
 
-  useEffect(() => {
-    if (value) {
-      const initialCountry = options.find(
-        (country) => country.name.toLowerCase() === value.toLowerCase() || country.alpha2.toLowerCase() === value.toLowerCase()
-      );
-      if (initialCountry) {
-        setSelectedCountry(initialCountry);
-      } else {
-        setSelectedCountry(undefined);
-      }
-    } else {
-      setSelectedCountry(undefined);
-    }
-  }, [value, options]);
+  // Derive selected country from value and options
+  const derivedCountry = value
+    ? options.find((c) => c.name.toLowerCase() === value.toLowerCase() || c.alpha2.toLowerCase() === value.toLowerCase())
+    : undefined;
+  
+  const activeCountry = selectedCountry !== undefined ? selectedCountry : derivedCountry;
 
   const handleSelect = useCallback(
     (country: Country) => {
@@ -112,18 +103,18 @@ const CountryDropdownComponent = (
         disabled={disabled}
         {...props}
       >
-        {selectedCountry ? (
+        {activeCountry ? (
           <div className="flex items-center flex-grow w-0 gap-2 overflow-hidden">
             <div className="inline-flex items-center justify-center w-5 h-5 shrink-0 overflow-hidden rounded-full border border-border/50">
               <CircleFlag
               
-                countryCode={selectedCountry.alpha2.toLowerCase()}
+                countryCode={activeCountry.alpha2.toLowerCase()}
                 height={20}
               />
             </div>
             {slim === false && (
               <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-                {selectedCountry.name}
+                {activeCountry.name}
               </span>
             )}
           </div>
@@ -168,7 +159,7 @@ const CountryDropdownComponent = (
                     <CheckIcon
                       className={cn(
                         "h-4 w-4 shrink-0",
-                        option.name === selectedCountry?.name
+                        option.name === activeCountry?.name
                           ? "opacity-100"
                           : "opacity-0"
                       )}

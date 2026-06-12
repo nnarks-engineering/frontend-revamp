@@ -1,12 +1,14 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
+
+import CtaBg from "@/assets/img/vibrant_abstract_cta_bg-primary.jpg";
+import { CallToAction } from "@/components/landing/CallToAction";
 import Navbar from "@/components/landing/nav/NavBar";
+import JoinSection from "@/components/landing/sections/about/JoinSection";
 import ForWhoSection from "@/components/landing/sections/built-for-details/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import PersonasSection from "@/components/landing/sections/personas/section";
-import JoinSection from "@/components/landing/sections/about/JoinSection";
-import { CallToAction } from "@/components/landing/CallToAction";
-import { useTranslation } from "react-i18next";
-import CtaBg from "@/assets/img/vibrant_abstract_cta_bg-primary.jpg";
+
 
 export const Route = createLazyFileRoute("/_landing/built-for")({
   component: BuiltForPage,

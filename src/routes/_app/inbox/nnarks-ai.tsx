@@ -1,7 +1,10 @@
-import { cn } from "@/shared/lib/utils";
+import { useEffect, useRef, useState } from "react";
+
 import { createFileRoute } from '@tanstack/react-router';
 import { Bot, Loader2, Send, Sparkles } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+
+import { cn } from "@/shared/lib/utils";
+
 
 interface ChatMessage {
   id: string;

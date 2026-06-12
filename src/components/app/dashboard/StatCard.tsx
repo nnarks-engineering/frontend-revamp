@@ -1,6 +1,7 @@
-import { cn } from "@/shared/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, TrendingDown, TrendingUp } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface StatCardProps {
   readonly value: string | number;

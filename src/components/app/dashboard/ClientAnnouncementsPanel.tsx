@@ -1,7 +1,9 @@
 import { ChevronRight } from "lucide-react";
+
 import ContractorImg from "@/assets/img/landing/contractor.webp";
-import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+
 import { AnnouncementItemCard, type AnnouncementItem } from "./AnnouncementItemCard";
 
 const ANNOUNCEMENTS: AnnouncementItem[] = [

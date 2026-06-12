@@ -1,37 +1,36 @@
+import * as React from "react"
+
 import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
-import * as React from "react"
 import { toast } from "sonner"
 import { z } from "zod"
 
 import {
-  useRequestPasswordSignup,
+  useLoginWithPassword,
   useSendMagicLink,
 } from "@/shared/hooks/use-auth"
 import { getApiError } from "@/shared/lib/api-error"
-import { AuthHeader } from "./AuthHeader"
-import { FormField } from "./FormField"
-import { SubmitButton } from "./SubmitButton"
+
+import { AuthHeader } from "../shared/AuthHeader"
+import { FormField } from "../shared/FormField"
+import { SubmitButton } from "../shared/SubmitButton"
+
+
+
+
+// ─── Schemas ────────────────────────────────────────────────────────────────
 
 const magicSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.email({ message: "Enter a valid email address" }),
 })
 
-const passwordSchema = z
-  .object({
-    name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-    email: z.email({ message: "Enter a valid email address" }),
-    password: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  })
+const passwordSchema = z.object({
+  email: z.email({ message: "Enter a valid email address" }),
+  password: z.string().min(1, { message: "Password is required" }),
+})
+
+// ─── Mode toggle ─────────────────────────────────────────────────────────────
 
 type Mode = "magic" | "password"
 
@@ -71,20 +70,19 @@ function ModeToggle({ mode, onChange }: ModeToggleProps) {
   )
 }
 
+// ─── Magic-link sub-form ─────────────────────────────────────────────────────
+
 function MagicLinkForm() {
   const navigate = useNavigate()
   const sendMagicLink = useSendMagicLink()
 
   const form = useForm({
-    defaultValues: { name: "", email: "" },
+    defaultValues: { email: "" },
     validators: { onChange: magicSchema },
     onSubmit: async ({ value }) => {
       try {
         await sendMagicLink.mutateAsync({ email: value.email })
-        navigate({
-          to: "/verify",
-          search: { email: value.email, flow: "magic", name: value.name },
-        })
+        navigate({ to: "/vendor/verify", search: { email: value.email } })
       } catch (error) {
         toast.error(getApiError(error))
       }
@@ -100,27 +98,15 @@ function MagicLinkForm() {
       }}
       className="space-y-5 animate-in slide-in-from-right-4 duration-300"
     >
-      <form.Field name="name">
-        {(field) => (
-          <FormField
-            label="Your name"
-            field={field}
-            type="text"
-            placeholder="Jane Doe"
-            autoComplete="name"
-            autoFocus
-          />
-        )}
-      </form.Field>
-
       <form.Field name="email">
         {(field) => (
           <FormField
-            label="Email"
+            label="Work email"
             field={field}
             type="email"
-            placeholder="name@email.com"
+            placeholder="you@company.com"
             autoComplete="email"
+            autoFocus
           />
         )}
       </form.Field>
@@ -130,11 +116,11 @@ function MagicLinkForm() {
           <SubmitButton
             loading={isSubmitting || sendMagicLink.isPending}
             disabled={!canSubmit}
-            loadingText="Sending link..."
+            loadingText="Sending link…"
           >
             <Mail className="mr-2 h-4 w-4" />
             Send magic link
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className=" h-4 w-4" />
           </SubmitButton>
         )}
       </form.Subscribe>
@@ -142,19 +128,20 @@ function MagicLinkForm() {
   )
 }
 
+// ─── Password sub-form ───────────────────────────────────────────────────────
+
 function PasswordForm() {
-  const requestSignup = useRequestPasswordSignup()
-  const navigate = useNavigate()
+  const login = useLoginWithPassword()
 
   const form = useForm({
-    defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
+    defaultValues: { email: "", password: "" },
     validators: { onChange: passwordSchema },
     onSubmit: async ({ value }) => {
       try {
-        await requestSignup.mutateAsync({ email: value.email, password: value.password })
-        navigate({
-          to: "/verify",
-          search: { email: value.email, flow: "signup", name: value.name },
+        await login.mutateAsync({
+          email: value.email,
+          password: value.password,
+          userType: "vendor",
         })
       } catch (error) {
         toast.error(getApiError(error))
@@ -171,27 +158,15 @@ function PasswordForm() {
       }}
       className="space-y-5 animate-in slide-in-from-right-4 duration-300"
     >
-      <form.Field name="name">
-        {(field) => (
-          <FormField
-            label="Your name"
-            field={field}
-            type="text"
-            placeholder="Jane Doe"
-            autoComplete="name"
-            autoFocus
-          />
-        )}
-      </form.Field>
-
       <form.Field name="email">
         {(field) => (
           <FormField
-            label="Email"
+            label="Work email"
             field={field}
             type="email"
-            placeholder="name@email.com"
+            placeholder="you@company.com"
             autoComplete="email"
+            autoFocus
           />
         )}
       </form.Field>
@@ -202,20 +177,8 @@ function PasswordForm() {
             label="Password"
             field={field}
             type="password"
-            placeholder="........"
-            autoComplete="new-password"
-          />
-        )}
-      </form.Field>
-
-      <form.Field name="confirmPassword">
-        {(field) => (
-          <FormField
-            label="Confirm password"
-            field={field}
-            type="password"
-            placeholder="........"
-            autoComplete="new-password"
+            placeholder="••••••••"
+            autoComplete="current-password"
           />
         )}
       </form.Field>
@@ -223,11 +186,11 @@ function PasswordForm() {
       <form.Subscribe selector={(s) => [s.canSubmit, s.isSubmitting] as const}>
         {([canSubmit, isSubmitting]) => (
           <SubmitButton
-            loading={isSubmitting || requestSignup.isPending}
+            loading={isSubmitting || login.isPending}
             disabled={!canSubmit}
-            loadingText="Creating account..."
+            loadingText="Signing in…"
           >
-            Create account
+            Sign in
             <ArrowRight className="h-4 w-4" />
           </SubmitButton>
         )}
@@ -236,14 +199,16 @@ function PasswordForm() {
   )
 }
 
-export function ClientRegisterForm() {
+// ─── Main component ──────────────────────────────────────────────────────────
+
+export function VendorLoginForm() {
   const [mode, setMode] = React.useState<Mode>("magic")
 
   return (
     <div className="space-y-6">
       <AuthHeader
-        title="Create your client account"
-        description="Get started quickly with just your name and email. No organization setup required."
+        title="Sign in to your vendor account"
+        description="Welcome back. Enter your email to receive a magic link, or sign in with your password."
       />
 
       <ModeToggle mode={mode} onChange={setMode} />
@@ -251,22 +216,22 @@ export function ClientRegisterForm() {
       {mode === "magic" ? <MagicLinkForm /> : <PasswordForm />}
 
       <p className="text-center text-sm text-muted-foreground">
-        Already have an account?{" "}
-        <Link
-          to="/login"
-          className="font-semibold text-primary hover:underline transition-colors"
-        >
-          Sign in
-        </Link>
-      </p>
-
-      <p className="text-center text-sm text-muted-foreground">
-        Offering services?{" "}
+        Don't have an account?{" "}
         <Link
           to="/vendor/register"
           className="font-semibold text-primary hover:underline transition-colors"
         >
           Create a vendor account
+        </Link>
+      </p>
+
+      <p className="text-center text-sm text-muted-foreground">
+        Looking to hire?{" "}
+        <Link
+          to="/login"
+          className="font-semibold text-primary hover:underline transition-colors"
+        >
+          Client sign in
         </Link>
       </p>
     </div>

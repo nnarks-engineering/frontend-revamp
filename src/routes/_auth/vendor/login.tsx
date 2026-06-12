@@ -1,6 +1,7 @@
-import { VendorLoginForm } from "@/components/auth/VendorLoginForm"
-import { requireGuest } from "@/shared/middleware"
 import { createFileRoute } from "@tanstack/react-router"
+
+import { VendorLoginForm } from "@/components/auth/vendor/LoginForm"
+import { requireGuest } from "@/shared/middleware"
 
 type LoginSearch = {
   returnTo?: string

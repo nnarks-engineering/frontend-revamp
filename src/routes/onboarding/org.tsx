@@ -1,24 +1,25 @@
-import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 
-import { useCurrentUser } from "@/shared/hooks/use-auth";
-import {
-    useSkipOnboarding,
-    useSubmitPersonalInfo,
-    useSubmitVendorProfile,
-} from "@/shared/hooks/use-onboarding";
-import type {
-    PersonalInfoFormValues,
-    VendorProfileFormValues,
-} from "@/types/onboarding";
-import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types/onboarding";
+import { createFileRoute } from "@tanstack/react-router";
+
 
 import { OnboardingNav } from "@/components/onboarding/OnboardingNav";
 import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
 import { PersonalInfoStep } from "@/components/onboarding/PersonalInfoStep";
 import { VendorProfileStep } from "@/components/onboarding/VendorProfileStep";
 import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
+import { useCurrentUser } from "@/shared/hooks/use-auth";
+import {
+    useSkipOnboarding,
+    useSubmitPersonalInfo,
+    useSubmitVendorProfile,
+} from "@/shared/hooks/use-onboarding";
 import { requireOnboarding } from "@/shared/middleware"
+import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types/onboarding";
+import type {
+    PersonalInfoFormValues,
+    VendorProfileFormValues,
+} from "@/types/onboarding";
 
 
 // ── Route definition ──────────────────────────────────────────────────

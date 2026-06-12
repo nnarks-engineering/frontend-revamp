@@ -1,4 +1,5 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+
 import Navbar from "@/components/landing/nav/NavBar";
 import LandingFooter from "@/components/landing/sections/footer/section";
 

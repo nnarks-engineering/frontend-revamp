@@ -1,38 +1,22 @@
-import { useCreateProjectForm } from "./CreateProjectContext";
-import { Button } from "@/components/ui/button";
 import {Info } from "lucide-react";
-import {type Industry, ProjectType } from "@/types/enums";
-import { Combobox } from "@/components/ui/combobox";
-import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
-import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
+
 import HandShake from "@/assets/svg/handshake.svg?react";
 import SingleMan from "@/assets/svg/single.svg?react";
-import { Hint } from "../../shared/hint";
+import { Button } from "@/components/ui/button";
+import { Combobox } from "@/components/ui/combobox";
 import { Label } from "@/components/ui/label";
+import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
 import { Textarea } from "@/components/ui/textarea";
+import { INDUSTRY_OPTIONS, SERVICE_OPTIONS } from "@/shared/constants/project";
+import {type Industry, ProjectType } from "@/types/projects";
 
-const PROJECT_TYPE_OPTIONS: { value: Industry; label: string }[] = [
-  { value: "OTHER", label: "Market Research" },
-  { value: "CONSTRUCTION", label: "Construction & Real Estate" },
-  { value: "AGRICULTURE", label: "Agriculture & Agribusiness" },
-  { value: "MANUFACTURING", label: "Manufacturing & Fabrication" },
-  { value: "OTHER", label: "Transport & Logistics" },
-  { value: "OTHER", label: "Energy & Utilities" },
-  { value: "RETAIL", label: "Fashion & Apparel" },
-  { value: "EDUCATION", label: "Education & Training" },
-  { value: "AGRICULTURE", label: "Food & Edibles" },
-  { value: "OTHER", label: "Beauty & Wellness" },
-  { value: "TECHNOLOGY", label: "ICT & Technology" },
-  { value: "HEALTHCARE", label: "Healthcare & Medical" },
-  { value: "OTHER", label: "Other Services" },
-];
+import { Hint } from "../../shared/hint";
 
-const SERVICE_OPTIONS = [
-  { value: "construction", label: "Construction / Execution" },
-  { value: "supply", label: "Supply of materials" },
-  { value: "equipment", label: "Equipment / machinery" },
-  { value: "consulting", label: "Consulting / advisory" },
-];
+import { useCreateProjectForm } from "./CreateProjectContext";
+import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
+
+
+
 
 export function Step3Category() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -57,21 +41,21 @@ export function Step3Category() {
           icon={SingleMan}
           title="Solo Project"
           description="I am funding and managing this project independently."
-          selected={state.projectType === ProjectType.Solo}
-          onClick={() => updateState({ projectType: ProjectType.Solo })}
+          selected={state.projectType === ProjectType.individual}
+          onClick={() => updateState({ projectType: ProjectType.individual })}
         />
 
         <ProjectTypeButton
           icon={HandShake}
           title="Partnered Project"
           description="This project is co-managed with one or more partners."
-          selected={state.projectType === ProjectType.Partnered}
-          onClick={() => updateState({ projectType: ProjectType.Partnered })}
+          selected={state.projectType === ProjectType.partnered}
+          onClick={() => updateState({ projectType: ProjectType.partnered })}
         />
 
       </div>
 
-      {state.projectType === ProjectType.Partnered && (
+      {state.projectType === ProjectType.partnered && (
        <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." />
       )}
 
@@ -79,9 +63,9 @@ export function Step3Category() {
         <Combobox
           label="What type of project is this?"
           placeholder="Select a category"
-          value={state.projectType}
-          onChange={(val) => updateState({ projectType: val as ProjectType })}
-          options={PROJECT_TYPE_OPTIONS}
+          value={state.industry}
+          onChange={(val) => updateState({ industry: val as Industry })}
+          options={INDUSTRY_OPTIONS}
           required
           sortOrder="none"
         />

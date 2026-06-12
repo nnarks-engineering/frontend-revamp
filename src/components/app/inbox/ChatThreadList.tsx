@@ -1,7 +1,8 @@
-import { cn } from "@/shared/lib/utils";
-import { Avatar } from "./Avatar";
-import type { ChatSession } from "@/types/messaging";
 import NoUsersSvg from "@/assets/svg/no-users.svg?react";
+import { cn } from "@/shared/lib/utils";
+import type { ChatSession } from "@/types/messaging";
+
+import { Avatar } from "./Avatar";
 
 interface ChatThreadListProps {
   threads: ChatSession[];

@@ -1,15 +1,18 @@
-import { Card } from "@/components/ui/card";
-import TeamIllustration from "@/assets/svg/no-message.svg?react";
-import { cn } from "@/shared/lib/utils";
+import { useMemo } from "react";
+
+import { Link } from "@tanstack/react-router";
 import { MessageSquare, ChevronRight, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import TeamIllustration from "@/assets/svg/no-message.svg?react";
+import NoMembersSvg from "@/assets/svg/no-users.svg?react"
 import { Image } from "@/components/image/Image";
-import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { useActiveCompany } from "@/shared/contexts/active-company-context";
 import { useMyCompanies } from "@/shared/hooks/use-companies";
-import { Link } from "@tanstack/react-router";
-import { useMemo } from "react";
-import NoMembersSvg from "@/assets/svg/no-users.svg?react"
+import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import { cn } from "@/shared/lib/utils";
+import { CompanyMemberStatus } from "@/types/enums";
 
 interface TeamActionCardProps {
   className?: string;
@@ -26,7 +29,7 @@ export function TeamActionCard({ className }: TeamActionCardProps) {
 
   const { data: members = [], isLoading } = useCompanyMembers(activeCompany?.id);
 
-  const activeMembers = members.filter((m) => m.status === "active");
+  const activeMembers = members.filter((m) => m.status === CompanyMemberStatus.active);
   const pendingCount = members.filter((m) => m.status === "pending").length;
   const totalCount = members.length;
 

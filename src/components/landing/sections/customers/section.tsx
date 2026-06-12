@@ -1,8 +1,13 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import LandingUserGallery from "./galary";
-import { Section } from "../../Section";
+import { useTranslation } from "react-i18next";
+
 import NnarksRibbonSvg from "@/assets/next_ribbon_text.svg?react"
+
+import { Section } from "../../Section";
+
+import LandingUserGallery from "./galary";
+
+
 
 const CustomersSection = () => {
   const { t } = useTranslation("landing");

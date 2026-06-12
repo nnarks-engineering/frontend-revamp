@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
-import { cn } from "@/shared/lib/utils";
-import { ArrowRight, type LucideIcon } from "lucide-react";
 import {type ReactNode } from "react";
+
+import { motion } from "framer-motion";
+import { ArrowRight, type LucideIcon } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface FeatureCardProps {
   title: string;

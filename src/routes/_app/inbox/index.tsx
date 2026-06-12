@@ -1,10 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { cn } from "@/shared/lib/utils";
-import { ChatThreadList } from "@/components/app/inbox/ChatThreadList";
+
+import { createFileRoute } from "@tanstack/react-router";
+
+import NoMessageSvg from "@/assets/svg/no-message.svg?react";
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { ChatMessages } from "@/components/app/inbox/ChatMessages";
+import { ChatThreadList } from "@/components/app/inbox/ChatThreadList";
 import { ParticipantsOverlay } from "@/components/app/inbox/ParticipantsOverlay";
-import { useSessions, useMessages, useSendMessage } from "@/shared/hooks/use-messaging";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -14,10 +16,10 @@ import {
   ModuleLayoutToolbar,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { useSessions, useMessages, useSendMessage } from "@/shared/hooks/use-messaging";
+import { cn } from "@/shared/lib/utils";
 import type { SessionType } from "@/types/enums";
 import type { ChatSession } from "@/types/messaging";
-import NoMessageSvg from "@/assets/svg/no-message.svg?react";
 
 export const Route = createFileRoute("/_app/inbox/")({
   component: InboxIndexPage,

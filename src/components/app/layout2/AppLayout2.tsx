@@ -1,15 +1,19 @@
 import { useState } from "react";
+
+import { Outlet, useRouterState } from "@tanstack/react-router";
+import { PanelRightOpen } from "lucide-react";
+import { ThemeProvider } from "next-themes";
+
 import { resolveVerticalSidebarItems } from "@/app/nav-config-si";
 import { LocationBanner } from "@/components/app/shared";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   RightPanelProvider,
   useRightPanelContext,
 } from "@/shared/contexts/right-panel-context";
 import { cn } from "@/shared/lib/utils";
-import { Outlet, useRouterState } from "@tanstack/react-router";
-import { PanelRightOpen } from "lucide-react";
-import { ThemeProvider } from "next-themes";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+
+
 import { AppHeader2 } from "./AppHeader2";
 import { IconRail } from "./IconRail";
 import { SubNavPanel } from "./SubNavPanel";

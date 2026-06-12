@@ -1,7 +1,7 @@
 import { StatusBadge } from "@/components/app/shared";
-import type { ProjectDashboard } from "@/types/projects";
+import type { ProjectDashboardResponse } from "@/types/projects";
 
-export function ProjectOverviewTab({ project }: { project: ProjectDashboard }) {
+export function ProjectOverviewTab({ project }: { project: ProjectDashboardResponse }) {
   return (
     <div className="flex flex-col gap-6 w-full max-w-3xl p-6">
       <div className="flex flex-col gap-3 text-[14px]">
@@ -14,7 +14,7 @@ export function ProjectOverviewTab({ project }: { project: ProjectDashboard }) {
         <div className="flex justify-between border-b border-border/60 pb-2 mt-1">
           <span className="text-muted-foreground">In escrow</span>
           <span className="font-geist font-medium text-primary">
-            {project.currency} {(project.wallet?.locked_balance || 0).toLocaleString()}
+            {project.currency} {Number(project.wallet?.locked_balance || 0).toLocaleString()}
           </span>
         </div>
         <div className="flex justify-between border-b border-border/60 pb-2 mt-1">

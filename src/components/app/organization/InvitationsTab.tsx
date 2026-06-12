@@ -1,13 +1,12 @@
 import { useState } from "react";
-import {
-  useCompanyMembers,
-  useRemoveCompanyMember,
-  useResendCompanyInvitation,
-} from "@/shared/hooks/use-company-members";
-import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/ui/status-badge";
+
+import { RefreshCw, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+
 import { EmptyState, Pagination } from "@/components/app/shared";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+import { Button } from "@/components/ui/button";
+import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableBody,
@@ -16,9 +15,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  useCompanyMembers,
+  useRemoveCompanyMember,
+  useResendCompanyInvitation,
+} from "@/shared/hooks/use-company-members";
 import type { CompanyMemberStatus } from "@/types/enums";
-import { RefreshCw, Trash2 } from "lucide-react";
-import { toast } from "sonner";
+
 
 const PAGE_SIZE = 10;
 

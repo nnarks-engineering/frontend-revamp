@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+
 import { EmptyState, StatusBadge } from "@/components/app/shared";
 import {
   Table,
@@ -8,11 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import type { Project } from "@/types/projects";
+import type { ProjectResponse } from "@/types/projects";
 
 interface ProjectsTableProps {
-  projects: readonly Project[];
+  projects: readonly ProjectResponse[];
   isLoading: boolean;
 }
 
@@ -92,7 +92,7 @@ export function ProjectsTable({ projects, isLoading }: ProjectsTableProps) {
                   {project.project_type.toLowerCase()}
                 </TableCell>
                 <TableCell className="font-medium text-foreground">
-                  {formatMoney(project.total_budget, project.currency)}
+                  {formatMoney(Number(project.total_budget), project.currency)}
                 </TableCell>
                 <TableCell className="text-muted-foreground">
                   {formatDate(project.start_date)} - {formatDate(project.end_date)}

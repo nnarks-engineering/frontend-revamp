@@ -1,15 +1,18 @@
-import { useMyServices } from "@/shared/hooks/use-services";
-import type { Service } from "@/types/services";
 import { useNavigate } from "@tanstack/react-router";
 import {
   CheckCircle2,
   Shield,
   ShieldAlert,
 } from "lucide-react";
-import { MiniCalendar } from "./MiniCalendar";
-import { Button } from "@/components/ui/button";
-import { ServiceSlideCard } from "./ServicesCard";
+
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { Button } from "@/components/ui/button";
+import { useMyServices } from "@/shared/hooks/use-services";
+import type { Service } from "@/types/services";
+
+import { MiniCalendar } from "./MiniCalendar";
+import { ServiceSlideCard } from "./ServicesCard";
+
 
 // ── helpers ──────────────────────────────────────────────────────────────
 

@@ -1,3 +1,9 @@
+import { useCallback, useEffect, useState } from "react";
+
+import { Outlet, useRouterState } from "@tanstack/react-router";
+import { PanelRightOpen } from "lucide-react";
+import { ThemeProvider } from "next-themes";
+
 import { resolveVerticalSidebarItems } from "@/app/nav-config";
 import { AppHeader } from "@/components/app/header/AppHeader";
 import { SidebarSubNavBar } from "@/components/app/navigation/SidebarSubNavBar";
@@ -5,10 +11,8 @@ import { LocationBanner } from "@/components/app/shared";
 import { SidebarNav } from "@/components/app/sidebar/SidebarNav";
 import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/right-panel-context";
 import { cn } from "@/shared/lib/utils";
-import { Outlet, useRouterState } from "@tanstack/react-router";
-import { PanelRightOpen } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import { ThemeProvider } from "next-themes";
+
+
 
 // ─── Outer shell — just provides the right-panel context ─────────────────────
 

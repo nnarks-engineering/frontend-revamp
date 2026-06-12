@@ -1,12 +1,7 @@
-import { cn } from "@/shared/lib/utils";
 import { FileText, Receipt, ScrollText, FileBarChart, FileSearch, Files } from "lucide-react";
-import type { DocumentCategory } from "@/types/documents";
 
-export interface CategoryFilterItem {
-  id: DocumentCategory;
-  label: string;
-  icon: React.ElementType;
-}
+import { cn } from "@/shared/lib/utils";
+import type { DocumentCategory, CategoryFilterItem } from "@/types/documents";
 
 /** Default category list — extend as needed when the backend adds more. */
 export const DOCUMENT_CATEGORIES: CategoryFilterItem[] = [

@@ -1,8 +1,9 @@
-import { cn } from "@/shared/lib/utils";
-import { Image } from "@/components/image/Image";
 import { BadgeCheck, Star, MapPin } from "lucide-react";
-import type { VendorItem } from "@/types/vendors";
+
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
+import { Image } from "@/components/image/Image";
+import { cn } from "@/shared/lib/utils";
+import type { VendorItem } from "@/types/vendors";
 
 interface VendorCardProps {
   vendor: VendorItem;

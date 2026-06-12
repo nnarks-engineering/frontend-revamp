@@ -1,13 +1,13 @@
-import { useCreateProjectForm } from "./CreateProjectContext";
-import { Button } from "@/components/ui/button";
-import { useCreateProject } from "@/shared/hooks/use-projects";
-import { useActiveCompany } from "@/shared/contexts/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { useState } from "react";
-import { Loader2, CheckCircle2, ArrowRight, ClipboardList, Edit } from "lucide-react";
+
 import { useNavigate } from "@tanstack/react-router";
+import { Loader2, CheckCircle2, ArrowRight, ClipboardList, Edit } from "lucide-react";
+import { CircleFlag } from "react-circle-flags";
+import { toast } from "sonner";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { DetailField } from "@/components/common/DetailField";
-import  {ProjectType } from "@/types/enums";
+import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -16,9 +16,13 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { useActiveCompany } from "@/shared/contexts/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/use-companies";
+import { useCreateProject } from "@/shared/hooks/use-projects";
 import { cn } from "@/shared/lib/utils";
-import { CircleFlag } from "react-circle-flags";
+import  {ProjectType } from "@/types/projects";
+
+import { useCreateProjectForm } from "./CreateProjectContext";
 
 export function Step7Review() {
   const { state, prevStep } = useCreateProjectForm();
@@ -30,7 +34,7 @@ export function Step7Review() {
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, _] = useState(false);
+const [isSuccess, setIsSuccess] = useState(false);
 
 const handleSubmit = async () => {
 // Prefer the company the user is actually a member of
@@ -38,12 +42,7 @@ const validCompanyId =
   companies?.find((c) => c.id === activeCompanyId)?.id  // active company if they're a member
   ?? companies?.[0]?.id;                                  // fallback to first known membership
 
-if (!validCompanyId) return;
-
-  // ── Build these BEFORE try so catch can reference them ──
-  const combinedLocation = [state.siteAddress, state.city, state.region, state.country]
-    .filter(Boolean)
-    .join(", ");
+if (!validCompanyId) return toast.error("you are not a member of this organization");
 
   const startDateObj = new Date(state.startDate);
   const endDateObj = new Date(state.startDate);
@@ -62,31 +61,35 @@ if (!validCompanyId) return;
     `Partner Setup: ${state.partnerSelection}`,
   ].join("\n");
 
-  const payload = {
-    owner_company_id: validCompanyId,
-    title: state.title,
-    description: combinedDescription,
-    industry: state.industry,
-    project_type: state.projectType,
-    location_address: combinedLocation || "N/A",
-    start_date: startDateObj.toISOString().split("T")[0],
-    end_date: endDateObj.toISOString().split("T")[0],
-    total_budget: Number(state.totalBudget),
-    currency: state.currency || "GHS",
-  };
+const payload = {
+  owner_company_id: validCompanyId,
+  title: state.title,
+  description: combinedDescription,
+  industry: state.industry,
+  project_type: state.projectType,
+  location_address: state.location_address,           // ← object now
+  location_coordinates: {                             // ← new field
+    lat: state.location_coordinates.lat ?? 0,
+    lng: state.location_coordinates.lng ?? 0,
+  },
+  start_date: startDateObj.toISOString().split("T")[0],
+  end_date: endDateObj.toISOString().split("T")[0],
+  total_budget: Number(state.totalBudget),
+  currency: state.currency.toLocaleLowerCase() || "ghs",
+};
 
   setIsSubmitting(true);
 
   try {
-    console.log("Submitting payload:", payload);
-    const newProject = await createProject.mutateAsync(payload);
-    console.log("", newProject);
+   await createProject.mutateAsync(payload);
+
+setIsSuccess(true);
     // ... milestones, invites, setIsSuccess
-  } 
+  }
   catch {
     console.error("Server error:");
-    console.table(payload); // now accessible here too
-  } 
+    console.error("Payload:", payload);
+  }
   finally {
     setIsSubmitting(false);
   }
@@ -211,16 +214,34 @@ if (!validCompanyId) return;
         {/* ── Project Name & Location ── */}
         <ReviewSection title="Project Name & Location" goto={1}>
           <DetailField label="Project Title" value={state.title} />
-          <DetailField label="Site Address" value={state.siteAddress} />
-          <DetailField label="City" value={state.city} />
-          <DetailField label="Region" value={state.region} />
-          <DetailField label="Country" value={(<div className="flex items-center gap-2"><CircleFlag countryCode={state.countryCode} className="size-6" height={10} /><span>{state.country}</span></div>)} />
           <DetailField label="Description" value={state.description} containerClassName="@md:col-span-2" />
         </ReviewSection>
 
+        <ReviewSection title="Project Name & Location" goto={2}>
+  <DetailField label="Project Title" value={state.title} />
+  <DetailField label="Street" value={state.location_address.street_line_1} />
+  <DetailField label="City" value={state.location_address.city} />
+  <DetailField label="Region" value={state.location_address.region} />
+  <DetailField label="Postal Code" value={state.location_address.postal_code} />
+  <DetailField
+    label="Country"
+    value={
+      state.country ? (
+        <div className="flex items-center gap-2">
+          <div className="inline-flex items-center justify-center w-5 h-5 shrink-0 overflow-hidden rounded-full border border-border/50">
+            <CircleFlag countryCode={state.location_address.country_code} height={20} />
+          </div>
+          <span>{state.country}</span>
+        </div>
+      ) : undefined
+    }
+  />
+  <DetailField label="Description" value={state.description} containerClassName="md:col-span-2" />
+</ReviewSection>
+
         {/* ── Category & Scope ── */}
         <ReviewSection title="Category & Scope"  goto={3}>
-          <DetailField label="Project Type" value={state.projectType} /> 
+          <DetailField label="Project Type" value={state.projectType} />
           <DetailField
             label="Additional Notes"
             value={state.additionalNotes}
@@ -228,9 +249,9 @@ if (!validCompanyId) return;
           />
           <DetailField
             label="Structure"
-            value={state.projectType === ProjectType.Partnered ? "Partnered Project" : "Solo Project"}
+            value={state.projectType}
           />
-         
+
          <DetailField
   label="Services Needed"
   containerClassName="@md:col-span-2"
@@ -280,7 +301,7 @@ if (!validCompanyId) return;
         </ReviewSection>
 
         {/* ── Partners ── */}
-        {state.projectType === ProjectType.Partnered && (
+        {state.projectType === ProjectType.partnered && (
           <ReviewSection title="Partners" goto={6}>
             <DetailField label="Partner Setup" value={state.partnerSelection} />
             {state.partnerEmails.length > 0 && (

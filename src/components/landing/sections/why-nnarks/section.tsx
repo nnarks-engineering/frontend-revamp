@@ -1,11 +1,13 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
 import GhanaImage from "@/assets/landing/ghana.webp"
 import PapaerPlaneSvg from "@/assets/paper_plane_line.svg?react"
 import WhyNnarksIllustration from "@/assets/why-nnarks-illustration.svg?react"
+
+import { Section } from "../../Section";
 
 export default function WhyNnarksSection() {
   const { t } = useTranslation(["landing"]);

@@ -1,5 +1,7 @@
-import { cn } from "@/shared/lib/utils";
 import React from "react";
+
+import { cn } from "@/shared/lib/utils";
+
 import { Avatar } from "./Avatar";
 
 interface Participant {

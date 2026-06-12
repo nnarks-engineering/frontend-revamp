@@ -1,13 +1,14 @@
 
 import { useForm } from "@tanstack/react-form"
-import { z } from "zod"
-import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
-import { SubmitButton } from "./SubmitButton"
+import { useTranslation } from "react-i18next"
+import { z } from "zod"
+
+import { AuthHeader } from "./AuthHeader"
 import { FormField } from "./FormField"
 import { GoogleSignInButton } from "./GoogleSignInButton"
-import { AuthHeader } from "./AuthHeader"
+import { SubmitButton } from "./SubmitButton"
 
 const emailSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -26,7 +27,7 @@ export function LoginForm() {
     },
     onSubmit: async ({ value }) => {
       // Mock sending OTP
-      console.log("Sending OTP to:", value.email)
+
       navigate({ to: "/verify", search: { email: value.email } })
     },
   })
@@ -89,7 +90,7 @@ export function LoginForm() {
             </div>
           </div>
 
-          <GoogleSignInButton onClick={() => console.log("Google login")} />
+          <GoogleSignInButton onClick={() => {}} />
       </form>
 
       <p className="text-center text-sm text-muted-foreground mt-4">

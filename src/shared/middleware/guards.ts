@@ -1,6 +1,8 @@
 import { redirect } from "@tanstack/react-router";
-import type { RouterContext } from "./types";
+
 import { checkOnboardingComplete, getStoredUserType } from "@/shared/lib/auth";
+
+import type { RouterContext } from "./types";
 
 type ContextArgs = {
   context: RouterContext;

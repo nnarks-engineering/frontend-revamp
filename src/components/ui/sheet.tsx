@@ -1,9 +1,10 @@
 import * as React from "react";
+
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
-import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 
+import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { cn } from "@/shared/lib/utils";
 
 const Sheet = DialogPrimitive.Root;

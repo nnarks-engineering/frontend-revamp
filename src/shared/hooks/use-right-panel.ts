@@ -1,5 +1,6 @@
-import { useRightPanelContext } from "@/shared/contexts/right-panel-context";
 import { type ComponentType, type DependencyList, type ReactNode, useEffect } from "react";
+
+import { useRightPanelContext } from "@/shared/contexts/right-panel-context";
 
 /**
  * Register content in the app-level right panel from any page component.

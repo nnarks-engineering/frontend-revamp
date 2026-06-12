@@ -1,6 +1,7 @@
-import { cn } from "@/shared/lib/utils";
 import { Info } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface HintProps {
   title?: string;

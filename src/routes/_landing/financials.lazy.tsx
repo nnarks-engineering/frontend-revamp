@@ -1,8 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+
 import Navbar from "@/components/landing/nav/NavBar";
-import PricingTagSection from "@/components/landing/sections/pricing/section";
 import CtaSection from "@/components/landing/sections/cta/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
+import PricingTagSection from "@/components/landing/sections/pricing/section";
 
 export const Route = createLazyFileRoute("/_landing/financials")({
   component: FinancialsPage,

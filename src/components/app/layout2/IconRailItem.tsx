@@ -1,12 +1,14 @@
-import { isOwnedBy, type NavItem } from "@/app/nav-config-si";
-import { cn } from "@/shared/lib/utils";
-import { Link, useRouterState } from "@tanstack/react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useRouterState } from "@tanstack/react-router";
+
+import { isOwnedBy, type NavItem } from "@/app/nav-config-si";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/shared/lib/utils";
+
 
 interface IconRailItemProps {
   item: NavItem;
@@ -37,7 +39,6 @@ export function IconRailItem({ item, subPanelOpen = false }: Readonly<IconRailIt
         {(item.children ?? []).map((child) => (
           <li key={child.id}>
             <Link
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               to={child.to as never}
               className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-foreground/80 hover:bg-muted/60 hover:text-foreground transition-colors duration-100"
             >
@@ -62,7 +63,6 @@ export function IconRailItem({ item, subPanelOpen = false }: Readonly<IconRailIt
     <Tooltip delayDuration={150} open={suppressTooltip ? false : undefined}>
       <TooltipTrigger asChild>
         <Link
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           to={item.to as never}
           aria-label={item.label}
           className={buttonClass}

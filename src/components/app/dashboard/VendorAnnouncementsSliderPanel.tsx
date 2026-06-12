@@ -1,6 +1,8 @@
-import { cn } from "@/shared/lib/utils";
-import { ArrowLeft, ArrowRight, Megaphone, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import { ArrowLeft, ArrowRight, Megaphone, Sparkles } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface AnnouncementItem {
   id: number;

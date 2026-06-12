@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+
+import { Users } from "lucide-react";
 import {
     motion,
     useTransform,
@@ -8,7 +10,6 @@ import {
     useMotionValue,
     useSpring,
 } from "motion/react";
-import { Users } from "lucide-react";
 
 interface TooltipItem {
     id: number | string;

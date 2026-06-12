@@ -1,5 +1,6 @@
 
 import { useCallback, useSyncExternalStore } from "react";
+
 import type { WeatherLocation } from "./use-weather";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -104,7 +105,7 @@ export function useLocationPreference() {
   const reset = useCallback(() => writeStorage({ status: "pending" }), []);
 
   const location: WeatherLocation | undefined =
-    pref.status === "granted" && pref.lat != null && pref.lon != null
+    pref.status === "granted" && pref.lat !== null && pref.lon !== null
       ? { lat: pref.lat, lon: pref.lon }
       : undefined;
 

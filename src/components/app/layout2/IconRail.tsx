@@ -1,8 +1,10 @@
-import { getAllTopLevelItems } from "@/app/nav-config-si";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
-import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { Link } from "@tanstack/react-router";
+
+import { getAllTopLevelItems } from "@/app/nav-config-si";
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
+import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
 import { IconRailItem } from "./IconRailItem";
 
 interface IconRailProps {

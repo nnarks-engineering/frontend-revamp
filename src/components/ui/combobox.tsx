@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
+
 import { CheckIcon, ChevronDownIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { Avatar } from '../image/Image'
+
+
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -14,10 +16,13 @@ import {
 } from '@/components/ui/command'
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { VisuallyHidden } from './visually-hidden'
 import { useMediaQuery } from '@/shared/hooks/use-media-query'
 import { cn } from '@/shared/lib/utils'
+
+import { Avatar } from '../image/Image'
+
 import { Label } from './label'
+import { VisuallyHidden } from './visually-hidden'
 
 interface SimpleComboboxProps {
   readonly value?: string
@@ -71,11 +76,9 @@ export function Combobox({
   const hasError = !!error
 
   // Update internal value when defaultValue changes
-  useEffect(() => {
-    if (value === undefined) {
-      setInternalValue(defaultValue)
-    }
-  }, [defaultValue, value])
+  if (value === undefined && internalValue !== defaultValue && internalValue === '') {
+    setInternalValue(defaultValue)
+  }
 
   const handleSelect = (selectedLabel: string): void => {
     const selectedOption = options.find(

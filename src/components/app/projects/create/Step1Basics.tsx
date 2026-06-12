@@ -1,8 +1,9 @@
-import { useCreateProjectForm } from "./CreateProjectContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+
+import { useCreateProjectForm } from "./CreateProjectContext";
 
 export function Step1Basics() {
   const { state, updateState, nextStep } = useCreateProjectForm();

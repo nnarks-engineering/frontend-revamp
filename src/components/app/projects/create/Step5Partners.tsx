@@ -1,9 +1,15 @@
-import { useCreateProjectForm, type FormPartner } from "./CreateProjectContext";
+import { Plus, Trash2, ShieldCheck, Mail, Clock } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Trash2, ShieldCheck, Mail, Clock } from "lucide-react";
+import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
+import type { FormPartner } from "@/types/projects";
+
+import { useCreateProjectForm, } from "./CreateProjectContext";
 import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
+
+
 
 export function Step5Partners() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
@@ -90,9 +96,9 @@ export function Step5Partners() {
         {state.partnerSelection === "invite" && (
           <div className="p-5 rounded-xl border border-border/60 bg-muted/20 space-y-4 animate-in fade-in">
             <div className="flex items-center justify-between">
-              <label className="text-sm font-semibold text-foreground">
+              <Label className="text-sm font-semibold text-foreground">
                 Partner Email Addresses
-              </label>
+              </Label>
               <Button onClick={addPartner} variant="outline" size="sm" className="gap-2">
                 <Plus className="w-4 h-4" /> Add Another
               </Button>
@@ -128,7 +134,7 @@ export function Step5Partners() {
         <div className="pt-6 border-t border-border/50 space-y-4">
           <h3 className="text-lg font-bold text-foreground">Project supervision</h3>
 
-          <label className={cn(
+          <Label className={cn(
             "flex items-start gap-3 p-4 rounded-lg cursor-pointer transition-all",
             state.supervisionRequired ? "border-primary bg-primary/5" : "border-border/60 hover:border-border bg-background"
           )}>
@@ -146,7 +152,7 @@ export function Step5Partners() {
                 Supervision increases execution, progress and trust.
               </span>
             </div>
-          </label>
+          </Label>
         </div>
       </div>
 

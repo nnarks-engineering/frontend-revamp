@@ -1,5 +1,5 @@
-import { useMyCompanies } from "@/shared/hooks/use-companies";
 import { useActiveCompany } from "@/shared/contexts/active-company-context";
+import { useMyCompanies } from "@/shared/hooks/use-companies";
 
 export function useCompanySwitcher() {
     const { data: companies = [] } = useMyCompanies();

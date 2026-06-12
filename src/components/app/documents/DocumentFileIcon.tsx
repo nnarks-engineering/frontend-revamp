@@ -1,8 +1,9 @@
+import { FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-react";
+
+import ExcelSvg from "@/assets/svg/excel.svg?react";
+import PdfSvg from "@/assets/svg/pdf.svg?react";
 import { cn } from "@/shared/lib/utils";
 import type { DocumentFileType } from "@/types/enums";
-import { FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-react";
-import PdfSvg from "@/assets/svg/pdf.svg?react";
-import ExcelSvg from "@/assets/svg/excel.svg?react";
 
 /**
  * Returns a color and icon for each document file type (fallback).

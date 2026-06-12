@@ -1,8 +1,9 @@
 "use client"
 
-import { cn } from "@/shared/lib/utils"
 import { Check, Clock, X, AlertTriangle, Minus, Ban, Play, Calendar, Crown, ShieldCheck, User } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+
+import { cn } from "@/shared/lib/utils"
 
 type StatusVariant =
     | 'active'

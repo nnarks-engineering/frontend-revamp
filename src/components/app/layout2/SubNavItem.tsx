@@ -1,10 +1,14 @@
-import {type NavItem } from "@/app/nav-config-si";
-import { cn } from "@/shared/lib/utils";
+import { useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 import { ChevronRight } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {type NavItem } from "@/app/nav-config-si";
+import { cn } from "@/shared/lib/utils";
+
+
 
 interface SubNavItemProps {
   item: NavItem;
@@ -35,7 +39,6 @@ export function SubNavItem({ item, depth = 0 }: Readonly<SubNavItemProps>) {
   if (!hasChildren) {
     return (
       <Link
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         to={item.to as never}
         className={cn(itemBase, isDirectlyActive ? activeLeafClass : inactiveClass)}
       >

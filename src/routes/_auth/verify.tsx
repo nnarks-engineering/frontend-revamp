@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { ClientVerifyForm } from "@/components/auth/ClientVerifyForm"
 import { z } from "zod"
+
+import { ClientVerifyForm } from "@/components/auth/client/VerifyForm"
 
 const searchSchema = z.object({
   email: z.string().optional(),

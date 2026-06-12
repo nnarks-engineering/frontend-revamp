@@ -1,7 +1,7 @@
 import { StatusBadge } from "@/components/app/shared";
-import type { ProjectDashboard } from "@/types/projects";
+import type { ProjectDashboardResponse } from "@/types/projects";
 
-export function ProjectMembersTab({ project }: { project: ProjectDashboard }) {
+export function ProjectMembersTab({ project }: { project: ProjectDashboardResponse }) {
   if (!project.members || project.members.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">

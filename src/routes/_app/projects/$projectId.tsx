@@ -1,9 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { AlertCircle, Plus } from "lucide-react";
 import { z } from "zod";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { ProjectMembersTab } from "@/components/app/page/projects/detail/ProjectMembersTab";
+import { ProjectMilestonesTab } from "@/components/app/page/projects/detail/ProjectMilestonesTab";
+import { ProjectOverviewTab } from "@/components/app/page/projects/detail/ProjectOverviewTab";
 import { EmptyState } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
-import { useProject } from "@/shared/hooks/use-projects";
-import { AlertCircle, Plus } from "lucide-react";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -14,10 +18,7 @@ import {
   ModuleLayoutToolbar,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { ProjectOverviewTab } from "@/components/app/page/projects/detail/ProjectOverviewTab";
-import { ProjectMilestonesTab } from "@/components/app/page/projects/detail/ProjectMilestonesTab";
-import { ProjectMembersTab } from "@/components/app/page/projects/detail/ProjectMembersTab";
+import { useProject } from "@/shared/hooks/use-projects";
 
 export const Route = createFileRoute("/_app/projects/$projectId")({
   validateSearch: z.object({
@@ -37,9 +38,9 @@ function ProjectDetailPage() {
     navigate({ to: ".", search: { tab: value } }).catch(() => {});
   };
 
-  const { data: project, isLoading, error } = useProject(projectId);
+  const { data: project, isLoading } = useProject(projectId);
 
-  console.log("PROJECT DETAIL DEBUG:", { projectId, project, isLoading, error });
+  // console.log("PROJECT DETAIL DEBUG:", { projectId, project, isLoading, error });
 
   if (isLoading) {
     return (

@@ -1,11 +1,15 @@
+import * as React from "react";
+
+import { useForm } from "@tanstack/react-form";
+import { User } from "lucide-react";
+import { z } from "zod";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/shared/lib/utils";
 import type { PersonalInfoFormValues } from "@/types/onboarding";
-import { useForm } from "@tanstack/react-form";
-import { User } from "lucide-react";
-import * as React from "react";
-import { z } from "zod";
+
+
 
 // ── Validation ────────────────────────────────────────────────────────
 const personalInfoSchema = z.object({
@@ -26,10 +30,10 @@ const personalInfoSchema = z.object({
 
 // ── Sub-components ────────────────────────────────────────────────────
 interface FieldWrapperProps {
-  label: string;
-  hint?: string;
-  error?: string;
-  children: React.ReactNode;
+readonly  label: string;
+readonly  hint?: string;
+readonly  error?: string;
+readonly  children: React.ReactNode;
 }
 
 function FieldWrapper({ label, hint, error, children }: FieldWrapperProps) {

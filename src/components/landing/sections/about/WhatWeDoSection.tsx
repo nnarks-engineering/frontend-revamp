@@ -1,9 +1,11 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Section } from "../../Section";
 import { ShieldCheck, Eye, CheckCircle2, Smartphone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+
 import illustration from "@/assets/img/landing/illustration.webp";
+import { Button } from "@/components/ui/button";
+
+import { Section } from "../../Section";
 
 export default function WhatWeDoSection() {
   const { t } = useTranslation(["landing"]);

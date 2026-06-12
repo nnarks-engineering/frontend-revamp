@@ -1,7 +1,8 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+
 import Navbar from "@/components/landing/nav/NavBar";
-import FeaturesSection from "@/components/landing/sections/features/section";
 import CtaSection from "@/components/landing/sections/cta/section";
+import FeaturesSection from "@/components/landing/sections/features/section";
 import LandingFooter from "@/components/landing/sections/footer/section";
 
 export const Route = createLazyFileRoute("/_landing/features")({

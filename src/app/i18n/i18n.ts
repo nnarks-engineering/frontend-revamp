@@ -1,23 +1,17 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import "./i18n-types";
+import { initReactI18next } from "react-i18next";
 
-// English (default) — also drives type inference via resources.ts
 import commonEn from "../../locales/en/common.json";
 import landingEn from "../../locales/en/landing.json";
-
-// French
-import commonFr from "../../locales/fr/common.json";
-import landingFr from "../../locales/fr/landing.json";
-
-// Spanish
 import commonEs from "../../locales/es/common.json";
 import landingEs from "../../locales/es/landing.json";
-
-// Chinese
+import commonFr from "../../locales/fr/common.json";
+import landingFr from "../../locales/fr/landing.json";
 import commonZh from "../../locales/zh/common.json";
 import landingZh from "../../locales/zh/landing.json";
+
+import "./i18n-types";
 
 i18n
   .use(LanguageDetector)

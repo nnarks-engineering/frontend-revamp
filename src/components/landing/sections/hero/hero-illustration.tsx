@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import realBuilding from "@/assets/landing/real-building.png"
 
 // ─────────────────────────────────────────────────────────────────────────────

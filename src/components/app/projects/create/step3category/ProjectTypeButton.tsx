@@ -1,5 +1,6 @@
-import { cn } from "@/shared/lib/utils";
 import type { LucideIcon } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface SelectionCardProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | LucideIcon;

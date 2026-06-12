@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { listServices } from "@/shared/api/services";
 import { QUERY_KEYS } from "@/shared/lib/constants";
-import { useQuery } from "@tanstack/react-query";
 
 export function useMyServices(companyId?: string) {
   return useQuery({

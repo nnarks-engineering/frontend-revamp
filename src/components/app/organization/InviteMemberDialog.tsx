@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+
 import { Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { useInviteCompanyMember } from "@/shared/hooks/use-company-members";
-import type { CompanyRole } from "@/types/enums";
+
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useInviteCompanyMember } from "@/shared/hooks/use-company-members";
+import type { CompanyRole } from "@/types/enums";
 
 interface InviteMemberDialogProps {
   companyId: string;

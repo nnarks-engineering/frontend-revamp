@@ -1,8 +1,3 @@
-import { AnimatedTooltip } from "@/components/common/animated-tooltip";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useCompanyMembers } from "@/shared/hooks/use-company-members";
-import { cn } from "@/shared/lib/utils";
-
 import { Link } from "@tanstack/react-router";
 import {
   ChevronRight,
@@ -10,7 +5,15 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
+
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
+import { AnimatedTooltip } from "@/components/common/animated-tooltip";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import { cn } from "@/shared/lib/utils";
+import type { CompanyMemberStatus } from "@/types/enums";
+
+
 
 
 
@@ -41,7 +44,7 @@ interface TeamMembersCardProps {
 export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) {
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
 
-  const activeMembers = members.filter((m) => m.status === "active");
+  const activeMembers = members.filter((m) => m.status === CompanyMemberStatus.active);
   const pendingCount = members.filter((m) => m.status === "pending").length;
 
   return (

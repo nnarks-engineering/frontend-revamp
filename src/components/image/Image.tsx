@@ -1,5 +1,7 @@
-import { User } from 'lucide-react';
 import * as React from 'react';
+
+import { User } from 'lucide-react';
+
 import { cn, getColorClass } from '@/shared/lib/utils';
 
 interface ImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {

@@ -40,7 +40,7 @@ const AUTH_ENDPOINT_PATHS = new Set(Object.values(AUTH_ENDPOINTS));
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getAccessToken();
-  const isAuthEndpoint = config.url != null && AUTH_ENDPOINT_PATHS.has(config.url as typeof AUTH_ENDPOINTS[keyof typeof AUTH_ENDPOINTS]);
+  const isAuthEndpoint = config.url !== null && AUTH_ENDPOINT_PATHS.has(config.url as typeof AUTH_ENDPOINTS[keyof typeof AUTH_ENDPOINTS]);
   if (token && config.headers && !isAuthEndpoint) {
     config.headers.Authorization = `Bearer ${token}`;
   }

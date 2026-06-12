@@ -1,8 +1,9 @@
-import { getAllTopLevelItems, isOwnedBy } from "@/app/nav-config";
-import { cn } from "@/shared/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+
+import { getAllTopLevelItems, isOwnedBy } from "@/app/nav-config";
+import { cn } from "@/shared/lib/utils";
 
 function NavIcon({ icon }: Readonly<{ icon?: LucideIcon }>) {
   if (!icon) return null;
@@ -23,7 +24,6 @@ export function TopNavBar() {
           return (
             <Link
               key={item.id}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               to={item.to as never}
               className={cn(
                 "relative flex items-center justify-center sm:justify-end gap-1.5 pb-1 mx-3 text-xs font-normal",

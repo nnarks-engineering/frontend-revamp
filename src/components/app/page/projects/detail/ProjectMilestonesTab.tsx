@@ -1,12 +1,14 @@
 import { useState } from "react";
+
 import { ChevronDown, ChevronRight } from "lucide-react";
+
 import { StatusBadge } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
-import type { Milestone, ProjectDashboard } from "@/types/projects";
+import { ProjectMilestoneStatus, type MilestoneResponse, type ProjectDashboardResponse } from "@/types/projects";
 
-function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
+function MilestoneRow({ m, index }: { m: MilestoneResponse; index: number }) {
   const [isExpanded, setIsExpanded] = useState(
-    m.status === "UNDER_REVIEW" || m.status === "IN_PROGRESS"
+    m.status === ProjectMilestoneStatus.under_review || m.status === ProjectMilestoneStatus.in_progress
   );
 
   return (
@@ -27,10 +29,10 @@ function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
           </span>
         </div>
         <div className="flex items-center gap-3">
-          {m.status === "UNDER_REVIEW" && <div className="h-2 w-2 rounded-full bg-warning" />}
-          {m.status === "APPROVED" && <div className="h-2 w-2 rounded-full bg-success" />}
-          {m.status === "IN_PROGRESS" && <div className="h-2 w-2 rounded-full bg-primary" />}
-          {m.status === "PENDING" && <div className="h-2 w-2 rounded-full border border-muted-foreground" />}
+          {m.status === ProjectMilestoneStatus.under_review && <div className="h-2 w-2 rounded-full bg-warning" />}
+          {m.status === ProjectMilestoneStatus.approved && <div className="h-2 w-2 rounded-full bg-success" />}
+          {m.status === ProjectMilestoneStatus.in_progress && <div className="h-2 w-2 rounded-full bg-primary" />}
+          {m.status === ProjectMilestoneStatus.pending && <div className="h-2 w-2 rounded-full border border-muted-foreground" />}
 
           <StatusBadge status={m.status} />
         </div>
@@ -41,7 +43,7 @@ function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
           <div className="grid grid-cols-[120px_1fr] gap-y-3 text-[14px]">
             <div className="text-muted-foreground">Amount:</div>
             <div className="font-geist font-medium text-foreground">
-              ${Number(m.budget_amount).toLocaleString()} <span className="font-normal text-muted-foreground text-[13px]">{(m.status !== "PENDING") && '(in escrow)'}</span>
+              ${Number(m.budget_amount).toLocaleString()} <span className="font-normal text-muted-foreground text-[13px]">{(m.status !== ProjectMilestoneStatus.pending) && '(in escrow)'}</span>
             </div>
 
             <div className="text-muted-foreground">Submitted:</div>
@@ -62,14 +64,14 @@ function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
           </div>
 
           <div className="mt-6 pt-4 border-t border-border/60">
-            {m.status === "UNDER_REVIEW" && (
+            {m.status === ProjectMilestoneStatus.under_review && (
               <p className="text-[14px] text-foreground">
                 Nnarks is reviewing this milestone.
                 <br />
                 <span className="text-muted-foreground">Estimated: within 24 hours.</span>
               </p>
             )}
-            {m.status === "PENDING" && (
+            {m.status === ProjectMilestoneStatus.pending && (
               <Button variant="default" size="sm">
                 Fund Milestone
               </Button>
@@ -81,7 +83,7 @@ function MilestoneRow({ m, index }: { m: Milestone; index: number }) {
   );
 }
 
-export function ProjectMilestonesTab({ project }: { project: ProjectDashboard }) {
+export function ProjectMilestonesTab({ project }: { project: ProjectDashboardResponse }) {
   if (!project.milestones || project.milestones.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">

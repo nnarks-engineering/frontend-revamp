@@ -1,7 +1,7 @@
 import "react-i18next";
 import "i18next";
-import common from "../../locales/en/common.json";
-import landing from "../../locales/en/landing.json";
+import type common from "../../locales/en/common.json";
+import type landing from "../../locales/en/landing.json";
 
 declare module "react-i18next" {
   interface CustomTypeOptions {

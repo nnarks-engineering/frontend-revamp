@@ -1,5 +1,7 @@
 
 
+import axios from "axios";
+
 import { api } from "@/shared/lib/api-client";
 import { clearTokens, getAccessToken, storeTokens } from "@/shared/lib/auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "@/shared/lib/constants";
@@ -11,7 +13,6 @@ import type {
   PasswordSignupVerifyRequest,
   TokenPair,
 } from "@/types/auth";
-import axios from "axios";
 
 export type {
   MagicLinkRequest, MagicLoginResponse, MagicVerifyRequest,

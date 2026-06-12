@@ -1,6 +1,7 @@
+import * as React from "react"
+
 import { Link } from "@tanstack/react-router"
 import { ArrowRight, RefreshCw } from "lucide-react"
-import * as React from "react"
 import { toast } from "sonner"
 
 import {
@@ -10,9 +11,10 @@ import {
 } from "@/shared/hooks/use-auth"
 import { useSubmitPersonalInfo } from "@/shared/hooks/use-onboarding"
 import { getApiError } from "@/shared/lib/api-error"
-import { AuthHeader } from "./AuthHeader"
-import { OTPInput } from "./OTPInput"
-import { SubmitButton } from "./SubmitButton"
+
+import { AuthHeader } from "../shared/AuthHeader"
+import { OTPInput } from "../shared/OTPInput"
+import { SubmitButton } from "../shared/SubmitButton"
 
 interface ClientVerifyFormProps {
   readonly email?: string
@@ -81,13 +83,7 @@ export function ClientVerifyForm({ email, token, flow, name }: ClientVerifyFormP
     if (!isSignupFlow && token && !verifyMagicLink.isPending && !verifyMagicLink.isSuccess) {
       verifyMagicLink.mutate({ token })
     }
-  }, [
-    isSignupFlow,
-    token,
-    verifyMagicLink.isPending,
-    verifyMagicLink.isSuccess,
-    verifyMagicLink.mutate,
-  ])
+  }, [isSignupFlow, token, verifyMagicLink])
 
   function handleResend() {
     if (!email) return

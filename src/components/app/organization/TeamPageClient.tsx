@@ -1,18 +1,14 @@
 import { useState, useMemo } from "react";
+
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import type { Company } from "@/types/companies";
 import { Plus, ListFilter, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MembersTab } from "./MembersTab";
-import { RolesTab } from "./RolesTab";
-import { InvitationsTab } from "./InvitationsTab";
-import { InviteMemberDialog } from "./InviteMemberDialog";
+
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { UserProfileCard } from "@/components/app/shared/UserProfileCard";
 import { UserListCard } from "@/components/app/dashboard/UserListCard";
 import type { UserListItem } from "@/components/app/dashboard/UserListCard";
+import { UserProfileCard } from "@/components/app/shared/UserProfileCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -24,8 +20,15 @@ import {
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // import { useCurrentUser, useCurrentProfile } from "@/shared/hooks/use-auth";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
+import type { Company } from "@/types/companies";
+
+import { InvitationsTab } from "./InvitationsTab";
+import { InviteMemberDialog } from "./InviteMemberDialog";
+import { MembersTab } from "./MembersTab";
+import { RolesTab } from "./RolesTab";
 
 interface TeamPageClientProps {
   readonly company: Company;

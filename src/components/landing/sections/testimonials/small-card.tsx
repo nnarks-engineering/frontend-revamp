@@ -1,6 +1,8 @@
-import { Quote } from "lucide-react";
-import { AnimatedTooltip } from "../../animated-tooltip";
 import { useState } from "react";
+
+import { Quote } from "lucide-react";
+
+import { AnimatedTooltip } from "../../animated-tooltip";
 
 interface LandingSmallTrustedBusinessCardProps {
   name: string;
@@ -35,13 +37,13 @@ const LandingSmallTrustedBusinessCard = ({
   const isWide = !!featureImage;
   const videoId = videoUrl ? getYouTubeId(videoUrl) : null;
   const [playing, setPlaying] = useState(false);
+  const [thumbError, setThumbError] = useState(false);
 
   // ── Video card variant ──────────────────────────────────────────────────────
   if (videoId) {
-    const [thumbError, setThumbError] = useState(false);
-const thumbnail = thumbError
-  ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-  : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    const thumbnail = thumbError
+      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
     return (
       <div  className={`${gradientClass}  relative  overflow-hidden flex flex-col border group

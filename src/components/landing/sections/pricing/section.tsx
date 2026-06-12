@@ -1,11 +1,13 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
 import NnarksImage from "@/assets/landing/old-man.webp";
 import PaperPlaneSvg from "@/assets/paper_plane_line.svg?react";
 import BrickPattern from "@/assets/payment-method.svg?react";
+
+import { Section } from "../../Section";
 
 export default function PricingTagSection() {
   const { t } = useTranslation(["landing"]);

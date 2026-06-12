@@ -1,8 +1,12 @@
 import { useState } from "react";
+
+import { useNavigate } from "@tanstack/react-router";
 import { Plus, Search, ListFilter } from "lucide-react";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
+import { EmptyState } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -14,14 +18,13 @@ import {
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { ProjectCard } from "./ProjectCard";
-import { EmptyState } from "@/components/app/shared";
-import { PROJECT_TABS, PROJECTS_PAGE_SIZE, CREATE_PROJECT_ROUTE } from "./constants";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useProjects } from "@/shared/hooks/use-projects";
-import { useProjectTabCounts, useProjectTabFilter } from "./hooks/use-project-tab-filter";
 import type { ProjectListTab } from "@/types/project-list";
-import { useNavigate } from "@tanstack/react-router";
+
+import { PROJECT_TABS, PROJECTS_PAGE_SIZE, CREATE_PROJECT_ROUTE } from "./constants";
+import { useProjectTabCounts, useProjectTabFilter } from "./hooks/use-project-tab-filter";
+import { ProjectCard } from "./ProjectCard";
 
 export function ProjectsCardModule() {
   const [tab, setTab] = useState<ProjectListTab>("active");

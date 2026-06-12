@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+
 import { motion, AnimatePresence } from "framer-motion";
-import { Section } from "../../Section";
+import { useTranslation } from "react-i18next";
+
 
 // Import project images
 import AboutUs from "@/assets/img/landing/about-us.webp";
@@ -9,6 +10,8 @@ import Agriculture from "@/assets/img/landing/agriculture.webp";
 import Contractor from "@/assets/img/landing/contractor.webp";
 import Contributors from "@/assets/img/landing/contributors.webp";
 import Diaspora from "@/assets/img/landing/diaspora.webp";
+
+import { Section } from "../../Section";
 
 const images = [AboutUs, Contractor, Diaspora, Contributors, Agriculture];
 

@@ -4,6 +4,7 @@
  */
 
 import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
+
 import type { VendorItem, VendorServiceCategory } from "@/types/vendors";
 
 // ── Query keys ──────────────────────────────────────────────────────

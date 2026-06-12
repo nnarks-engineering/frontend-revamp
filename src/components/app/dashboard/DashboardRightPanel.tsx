@@ -1,5 +1,5 @@
-import { ArrowUpRight, Calendar, ChevronRight, Clock } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, Calendar, ChevronRight, Clock } from "lucide-react";
 
 // Mock Data adapted for Nnarks context
 const UPCOMING_EVENTS = [

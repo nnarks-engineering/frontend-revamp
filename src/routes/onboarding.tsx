@@ -1,7 +1,8 @@
+import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
+
 import NnarksLogo from "@/assets/nnarks-logo.svg?react"
 import RoundingLine from "@/assets/svg/rounding-line.svg?react"
 import { requireOnboarding } from '@/shared/middleware'
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/onboarding')({
   beforeLoad: ({ context }) => requireOnboarding({ context }),

@@ -15,15 +15,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
 import {
-  clearStoredUserType,
-  isAuthenticated,
-  checkOnboardingComplete,
-  setStoredUserType,
-  type UserType,
-} from "@/shared/lib/auth";
-import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
-
-import {
   loginWithPassword,
   logout,
   requestPasswordSignup,
@@ -31,8 +22,15 @@ import {
   verifyMagicLink,
   verifyPasswordSignup,
 } from "@/shared/api/auth";
-
 import { getMe, getMyProfile, updateMyProfile } from "@/shared/api/users";
+import {
+  clearStoredUserType,
+  isAuthenticated,
+  checkOnboardingComplete,
+  setStoredUserType,
+  type UserType,
+} from "@/shared/lib/auth";
+import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 import type {
   MagicLinkRequest,
   MagicVerifyRequest,
@@ -78,7 +76,7 @@ export function useUpdateProfile() {
 
   return useMutation({
     mutationFn: (data: ProfileUpdate) => {
-      console.log("Updating profile with data:", data);
+
       return updateMyProfile(data)},
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });

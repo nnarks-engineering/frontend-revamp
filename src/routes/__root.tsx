@@ -1,5 +1,6 @@
-import type { RouterContext } from "@/shared/middleware";
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+
+import type { RouterContext } from "@/shared/middleware";
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: () => (

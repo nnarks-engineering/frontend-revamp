@@ -35,3 +35,9 @@ export interface DocumentUploadPayload {
   category: DocumentCategory;
   file: File;
 }
+
+export interface CategoryFilterItem {
+  id: DocumentCategory;
+  label: string;
+  icon: React.ElementType;
+}

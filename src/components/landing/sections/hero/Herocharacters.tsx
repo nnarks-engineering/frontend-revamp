@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import OldManImage from "@/assets/landing/old-man.webp";
-import NnarksEngineerImage from "@/assets/landing/nnarks-engineer.webp";
+
 import ClockImage from "@/assets/landing/clock-it-man.webp";
+import NnarksEngineerImage from "@/assets/landing/nnarks-engineer.webp";
+import OldManImage from "@/assets/landing/old-man.webp";
 
 const CARDS = [
   {

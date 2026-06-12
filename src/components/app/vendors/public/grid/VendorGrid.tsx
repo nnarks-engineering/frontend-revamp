@@ -1,7 +1,9 @@
 import { Loader2 } from "lucide-react";
-import { VendorCard } from "../cards/VendorCard";
+
 import { EmptyState } from "@/components/app/shared";
 import type { VendorItem } from "@/types/vendors";
+
+import { VendorCard } from "../cards/VendorCard";
 
 interface VendorGridProps {
   vendors: VendorItem[];

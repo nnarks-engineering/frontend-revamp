@@ -1,4 +1,3 @@
-import { cn } from "@/shared/lib/utils";
 import {
   Building2,
   Wrench,
@@ -13,13 +12,9 @@ import {
   Truck,
   Layers,
 } from "lucide-react";
-import type { VendorServiceCategory } from "@/types/vendors";
 
-export interface ServiceCategoryFilterItem {
-  id: VendorServiceCategory;
-  label: string;
-  icon: React.ElementType;
-}
+import { cn } from "@/shared/lib/utils";
+import type { VendorServiceCategory, ServiceCategoryFilterItem } from "@/types/vendors";
 
 /** Default service categories. Extend as the backend evolves. */
 export const VENDOR_SERVICE_CATEGORIES: ServiceCategoryFilterItem[] = [

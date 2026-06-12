@@ -1,8 +1,8 @@
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { useTranslation } from "react-i18next";
 
-import HubtelLogo from "@/assets/products/hubtel.png";
 import CalBankLogo from "@/assets/products/calbank.png";
+import HubtelLogo from "@/assets/products/hubtel.png";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 const partners = [
   {

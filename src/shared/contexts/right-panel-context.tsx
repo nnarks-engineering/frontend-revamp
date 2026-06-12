@@ -7,26 +7,7 @@ import {
     type ComponentType,
 } from "react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface RightPanelState {
-  /**
-   * Content registered by the current page.
-   * `null` means "no page content" → AppLayout falls back to the AI Panel.
-   */
-  content: ReactNode;
-  /** Icon shown on the collapsed FAB. Falls back to PanelRightOpen in the layout. */
-  icon: ComponentType<{ className?: string }> | null;
-  isOpen: boolean;
-}
-
-export interface RightPanelContextValue extends RightPanelState {
-  setContent: (content: ReactNode, icon?: ComponentType<{ className?: string }>) => void;
-  clearContent: () => void;
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-}
+import type { RightPanelState, RightPanelContextValue } from "@/types/common";
 
 // ─── Context ──────────────────────────────────────────────────────────────────
 

@@ -1,19 +1,24 @@
-import { SubmitButton } from "@/components/auth/SubmitButton";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/shared/lib/utils";
 import { ArrowLeft, SkipForward } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { cn } from "@/shared/lib/utils";
+
+import { SubmitButton } from "../auth/shared/SubmitButton";
+
+
+
+
 interface OnboardingNavProps {
-  currentStep: number;
-  totalSteps: number;
-  isLastStep: boolean;
-  isSubmitting: boolean;
-  canGoBack: boolean;
-  canSkip: boolean;
-  onBack: () => void;
-  onNext: () => void;
-  onSkip: () => void;
-  className?: string;
+ readonly currentStep: number;
+ readonly totalSteps: number;
+ readonly isLastStep: boolean;
+ readonly isSubmitting: boolean;
+ readonly canGoBack: boolean;
+ readonly canSkip: boolean;
+ readonly onBack: () => void;
+ readonly onNext: () => void;
+ readonly onSkip: () => void;
+ readonly className?: string;
 }
 
 export function OnboardingNav({

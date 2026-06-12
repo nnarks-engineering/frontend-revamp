@@ -1,7 +1,3 @@
-import { useProjects } from "@/shared/hooks/use-projects";
-import { cn } from "@/shared/lib/utils";
-import type { Project } from "@/types/projects";
-import type { ProjectStatus } from "@/types/enums";
 import { Link } from "@tanstack/react-router";
 import {
   Briefcase,
@@ -11,18 +7,22 @@ import {
   FolderOpen,
   MapPin,
 } from "lucide-react";
+
 import RoundingLine2 from "@/assets/svg/rounding-line2.svg?react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useProjects } from "@/shared/hooks/use-projects";
+import { cn } from "@/shared/lib/utils";
+import { ProjectStatus, type ProjectResponse } from "@/types/projects";
 
 // ── Status helpers ──────────────────────────────────────────────────────
 
 const STATUS_MAP: Record<ProjectStatus, { label: string; dot: string }> = {
-  DRAFT:       { label: "Draft",       dot: "bg-slate-400" },
-  PRE_PROJECT: { label: "Pre-project", dot: "bg-amber-400" },
-  ACTIVE:      { label: "Active",      dot: "bg-emerald-500" },
-  PAUSED:      { label: "Paused",      dot: "bg-amber-500" },
-  COMPLETED:   { label: "Completed",   dot: "bg-primary" },
-  ARCHIVED:    { label: "Archived",    dot: "bg-muted-foreground" },
+  [ProjectStatus.draft]:       { label: "Draft",       dot: "bg-slate-400" },
+  [ProjectStatus.pre_project]: { label: "Pre-project", dot: "bg-amber-400" },
+  [ProjectStatus.active]:      { label: "Active",      dot: "bg-emerald-500" },
+  [ProjectStatus.paused]:      { label: "Paused",      dot: "bg-amber-500" },
+  [ProjectStatus.completed]:   { label: "Completed",   dot: "bg-primary" },
+  [ProjectStatus.archived]:    { label: "Archived",    dot: "bg-muted-foreground" },
 };
 
 function statusMeta(status: ProjectStatus) {
@@ -51,7 +51,7 @@ function formatCurrency(amount: number, currency: string) {
 
 // ── Sub-components ──────────────────────────────────────────────────────
 
-function ProjectRow({ project }: { project: Project }) {
+function ProjectRow({ project }: { project: ProjectResponse }) {
   const { label, dot } = statusMeta(project.status);
 
   return (
@@ -80,7 +80,7 @@ function ProjectRow({ project }: { project: Project }) {
           {project.location_address && (
             <span className="flex items-center gap-0.5 truncate max-w-[120px]">
               <MapPin className="w-3 h-3 shrink-0" />
-              {project.location_address}
+              {project.location_address?.city || project.location_address?.street_line_1}
             </span>
           )}
           <span className="flex items-center gap-0.5">
@@ -88,7 +88,7 @@ function ProjectRow({ project }: { project: Project }) {
             {formatDate(project.start_date)}
           </span>
           <span className="font-semibold text-foreground/70">
-            {formatCurrency(project.total_budget, project.currency)}
+            {formatCurrency(Number(project.total_budget), project.currency)}
           </span>
         </div>
       </div>

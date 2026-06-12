@@ -1,5 +1,3 @@
-import { Section } from "../../Section";
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
   Building2,
@@ -9,6 +7,9 @@ import {
   ShieldCheck,
   Eye,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+import { Section } from "../../Section";
 
 const FeatureCard = ({
   icon,

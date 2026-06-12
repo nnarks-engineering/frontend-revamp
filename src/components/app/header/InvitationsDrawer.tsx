@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { createPortal } from "react-dom";
+
 import { Building2, Check, X, ChevronDown, ChevronUp, Loader2, Mail } from "lucide-react";
+import { createPortal } from "react-dom";
+import { toast } from "sonner";
+
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { useMyInvitations, useAcceptCompanyInvitation, useRejectCompanyInvitation } from "@/shared/hooks/use-company-members";
-import { toast } from "sonner";
-import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+
+
 
 interface InvitationsDrawerProps {
   open: boolean;
@@ -93,7 +97,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
             </div>
           )}
 
-          {invitations.map((inv: any) => {
+          {invitations.map((inv: { company: { name: string, avatar_url?: string, description?: string }, member: { id: string, role: string, invited_at: string, invite_token: string } }) => {
             const isExpanded = expandedId === inv.member.id;
             return (
               <div

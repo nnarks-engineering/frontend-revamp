@@ -1,6 +1,7 @@
-import { cn } from "@/shared/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
 
 interface EntityItem {
   id: string;

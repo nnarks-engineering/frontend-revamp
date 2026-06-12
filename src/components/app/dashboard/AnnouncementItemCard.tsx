@@ -1,13 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-export interface AnnouncementItem {
-  readonly id: number;
-  readonly date: string;
-  readonly title: string;
-  readonly description: string;
-  readonly image: string;
-  readonly link: string;
-}
+import type { AnnouncementItem } from "@/types/common";
 
 interface AnnouncementItemCardProps {
   readonly announcement: AnnouncementItem;

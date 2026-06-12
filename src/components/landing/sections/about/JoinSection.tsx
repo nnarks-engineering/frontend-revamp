@@ -1,13 +1,14 @@
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { Section } from "../../Section";
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Existing high-quality images
 import ContractorImg from "@/assets/img/landing/contractor.webp";
-import DiasporaImg from "@/assets/img/landing/diaspora.webp";
 import ContributorsImg from "@/assets/img/landing/contributors.webp";
+import DiasporaImg from "@/assets/img/landing/diaspora.webp";
+
+import { Section } from "../../Section";
 
 export default function JoinSection() {
   const { t } = useTranslation(["landing"]);

@@ -1,4 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
+
+import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
+import FaqImage from "@/assets/landing/faq.webp";
+import GhanaImage from "@/assets/landing/ghana.webp"
 import Navbar from "@/components/landing/nav/NavBar";
 import LandingFooter from "@/components/landing/sections/footer/section";
 import {
@@ -7,10 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import FaqImage from "@/assets/landing/faq.webp";
-import GhanaImage from "@/assets/landing/ghana.webp"
-import DrawingCoilsSvg from "@/assets/drawing-coils.svg?react";
-import { useTranslation } from "react-i18next";
+
 
 export const Route = createLazyFileRoute("/_landing/faqs")({
   component: FAQsPage,

@@ -1,6 +1,11 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { acceptCompanyInvitation } from "@/shared/api/companies";
+import { useState } from "react";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { Loader2, CheckCircle2, AlertCircle, Building2 } from "lucide-react";
+import { toast } from "sonner";
+
+import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,13 +14,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { QUERY_KEYS } from "@/shared/lib/constants";
-import { Loader2, CheckCircle2, AlertCircle, Building2 } from "lucide-react";
-import { useState } from "react";
-import { requireAuth } from "@/shared/middleware";
+import { acceptCompanyInvitation } from "@/shared/api/companies";
 import { useInvitationDetails, useRejectCompanyInvitation } from "@/shared/hooks/use-company-members";
-import { toast } from "sonner";
-import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+import { QUERY_KEYS } from "@/shared/lib/constants";
+import { requireAuth } from "@/shared/middleware";
+
+
 
 type AcceptInviteSearch = {
   token: string;

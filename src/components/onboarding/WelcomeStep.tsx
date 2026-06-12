@@ -1,6 +1,7 @@
+import { ArrowRight } from "lucide-react";
+
 import NnarksLogo from "@/assets/nnarks-logo.svg?react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 interface WelcomeStepProps {
   userName?: string;

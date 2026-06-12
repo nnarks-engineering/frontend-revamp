@@ -1,16 +1,18 @@
 import * as React from "react"
+
 import { Link } from "@tanstack/react-router"
 import { useTranslation } from "react-i18next"
+
+import realBuilding from "@/assets/landing/real-building.png"
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react"
+import LogoText from "@/assets/nnarks-logo.svg?react"
 import FaceBookIcon from "@/assets/svg/facebook.svg?react";
 import InstagramIcon from "@/assets/svg/instagram.svg?react";
 import LinkedInIcon from "@/assets/svg/linked-in.svg?react";
+import RoundingLine from "@/assets/svg/rounding-line.svg?react"
 import TiktokIcon from "@/assets/svg/tiktok.svg?react";
 import { LinkPreview } from "@/components/ui/link-preview";
-import LogoText from "@/assets/nnarks-logo.svg?react"
 
-import realBuilding from "@/assets/landing/real-building.png"
-import RoundingLine from "@/assets/svg/rounding-line.svg?react"
 
 
 interface AuthLayoutProps {

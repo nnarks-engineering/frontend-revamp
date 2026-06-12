@@ -1,8 +1,10 @@
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+
 import TopDrawing from "@/assets/drawing-coils.svg?react";
 import IllustrationImg from "@/assets/img/landing/illustration.webp";
 import BottomDrawing from "@/assets/svg/bottom-drawing.svg?react";
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+
 import { Section } from "../../Section";
 
 export default function ProblemSection() {

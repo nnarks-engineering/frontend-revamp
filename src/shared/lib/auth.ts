@@ -6,11 +6,14 @@
  * interceptor in `api-client.ts`.
  */
 
-import type { TokenPair } from "@/types/auth";
-import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
-import { getMyProfile } from "@/shared/api/users";
-import { listMyCompanies } from "@/shared/api/companies";
 import type { QueryClient } from "@tanstack/react-query";
+
+import { listMyCompanies } from "@/shared/api/companies";
+import { getMyProfile } from "@/shared/api/users";
+import type { TokenPair } from "@/types/auth";
+
+import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
+
 
 export type { TokenPair };
 export type UserType = "vendor" | "client";

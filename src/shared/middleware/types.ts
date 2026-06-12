@@ -6,4 +6,5 @@ export interface RouterContext {
   auth: {
     isAuthenticated: () => boolean;
   };
+  "types": ["vite/client", "node"];
 }

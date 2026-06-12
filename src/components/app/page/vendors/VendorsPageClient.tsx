@@ -1,11 +1,15 @@
 import { useState, useMemo } from "react";
-import { useVendors } from "@/shared/hooks/use-vendors";
+
+import { Store, Plus } from "lucide-react";
+
+import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import {
   VendorServiceFilter,
   VendorGrid,
   VendorSearchBar,
   VENDOR_SERVICE_CATEGORIES,
 } from "@/components/app/vendors/public";
+import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
   ModuleLayoutHeader,
@@ -14,9 +18,7 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import { Button } from "@/components/ui/button";
-import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { Store, Plus } from "lucide-react";
+import { useVendors } from "@/shared/hooks/use-vendors";
 import type { VendorServiceCategory, VendorItem } from "@/types/vendors";
 
 /**
@@ -45,9 +47,9 @@ export function VendorsPageClient() {
     );
   }, [vendors, searchQuery]);
 
-  const handleVendorClick = (vendor: VendorItem) => {
+  const handleVendorClick = (_vendor: VendorItem) => {
     // TODO: Navigate to vendor detail page
-    console.log("View vendor:", vendor.slug);
+    // console.log("View vendor:", _vendor.slug);
   };
 
   return (
