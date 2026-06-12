@@ -5,10 +5,10 @@ import { ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
-import { AuthHeader } from "./AuthHeader"
-import { FormField } from "./FormField"
-import { GoogleSignInButton } from "./GoogleSignInButton"
-import { SubmitButton } from "./SubmitButton"
+import { AuthHeader } from "../shared/AuthHeader"
+import { FormField } from "../shared/FormField"
+import { GoogleSignInButton } from "../shared/GoogleSignInButton"
+import { SubmitButton } from "../shared/SubmitButton"
 
 const emailSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),

@@ -9,13 +9,13 @@ import { z } from "zod"
 import { CountryDropdown } from "@/components/ui/country-select"
 import { Label } from "@/components/ui/label"
 
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 
-import { AuthHeader } from "./AuthHeader"
-import { FormField } from "./FormField"
-import { GoogleSignInButton } from "./GoogleSignInButton"
-import { OTPInput } from "./OTPInput"
-import { SubmitButton } from "./SubmitButton"
+import { AuthHeader } from "../shared/AuthHeader"
+import { FormField } from "../shared/FormField"
+import { GoogleSignInButton } from "../shared/GoogleSignInButton"
+import { OTPInput } from "../shared/OTPInput"
+import { SubmitButton } from "../shared/SubmitButton"
 
 const detailsSchema = z.object({
   fullName: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -230,7 +230,7 @@ export function RegisterForm() {
         <div className="space-y-6 animate-in slide-in-from-right-4 duration-300">
           <OTPInput
             value={otp}
-            onChange={(i, val) => {
+            onChange={(i: number, val: string) => {
               const newOtp = [...otp]
               newOtp[i] = val
               setOtp(newOtp)

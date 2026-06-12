@@ -43,7 +43,8 @@ function AcceptCompanyInvitationPage() {
   const [hasAccepted, setHasAccepted] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
 
-  const { data: details, isLoading, isError: isFetchError, error: fetchError } = useInvitationDetails(token);
+  const { data, isLoading, isError: isFetchError, error: fetchError } = useInvitationDetails(token);
+  const details = data as any;
 
   const acceptMutation = useMutation({
     mutationFn: acceptCompanyInvitation,

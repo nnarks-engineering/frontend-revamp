@@ -97,7 +97,7 @@ export function InvitationsDrawer({ open, onClose }: InvitationsDrawerProps) {
             </div>
           )}
 
-          {invitations.map((inv: { company: { name: string, avatar_url?: string, description?: string }, member: { id: string, role: string, invited_at: string, invite_token: string } }) => {
+          {invitations.map((inv: any) => {
             const isExpanded = expandedId === inv.member.id;
             return (
               <div

@@ -75,7 +75,7 @@ const payload = {
   start_date: startDateObj.toISOString().split("T")[0],
   end_date: endDateObj.toISOString().split("T")[0],
   total_budget: Number(state.totalBudget),
-  currency: state.currency.toLocaleLowerCase() || "ghs",
+  currency: (state.currency.toLowerCase() || "ghs") as any, // Cast to avoid TS error
 };
 
   setIsSubmitting(true);

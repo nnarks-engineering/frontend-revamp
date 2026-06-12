@@ -5,7 +5,7 @@ import { Plus, ListFilter, Search } from "lucide-react";
 
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { UserListCard } from "@/components/app/dashboard/UserListCard";
-import type { UserListItem } from "@/components/app/dashboard/UserListCard";
+import type { UserListItem } from "@/types/common";
 import { UserProfileCard } from "@/components/app/shared/UserProfileCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

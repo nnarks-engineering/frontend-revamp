@@ -4,10 +4,10 @@ import { Link } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
-import { AuthHeader } from "./AuthHeader"
-import { OTPInput } from "./OTPInput"
-import { SubmitButton } from "./SubmitButton"
-import { SuccessView } from "./SuccessView"
+import { AuthHeader } from "../shared/AuthHeader"
+import { OTPInput } from "../shared/OTPInput"
+import { SubmitButton } from "../shared/SubmitButton"
+import { SuccessView } from "../shared/SuccessView"
 
 interface VerifyFormProps {
   email?: string

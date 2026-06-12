@@ -105,7 +105,7 @@ export function useLocationPreference() {
   const reset = useCallback(() => writeStorage({ status: "pending" }), []);
 
   const location: WeatherLocation | undefined =
-    pref.status === "granted" && pref.lat !== null && pref.lon !== null
+    pref.status === "granted" && pref.lat !== undefined && pref.lon !== undefined
       ? { lat: pref.lat, lon: pref.lon }
       : undefined;
 

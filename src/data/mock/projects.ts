@@ -12,8 +12,8 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
     title: "Lagos Logistics",
     description:
       "Complete overhaul of the routing API and driver-facing mobile application assets. Phased deliverables over 2 months.",
-    industry: Industry.Technology,
-    project_type: ProjectType.Partnered,
+    industry: Industry.technology,
+    project_type: ProjectType.partnered,
     status: "active",
     location_address: {
       street_line_1: "Victoria Island, Lagos",
@@ -21,7 +21,8 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
       city: "Lagos",
       region: "Lagos",
       postal_code: "",
-      country_code: "ng"
+      country_code: "ng",
+      country_name: "Nigeria"
     },
     location_coordinates: {
       lat: 6.4281,
@@ -30,7 +31,7 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
     start_date: "2026-02-10",
     end_date: "2026-04-10",
     total_budget: "4200",
-    currency: "USD",
+    currency: "usd",
     wallet_id: "w-001",
     chat_session_id: "cs-001",
     members: [
@@ -59,15 +60,15 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
         estimated_duration: 12, required_evidence_types: ["document"], created_by: "USER", created_by_company_id: "c-001",
       },
     ],
-    wallet: { id: "w-001", owner_id: "p-001", owner_type: "PROJECT", currency: "USD", available_balance: "840", locked_balance: "840" },
+    wallet: { id: "w-001", owner_id: "p-001", owner_type: "PROJECT", currency: "usd", available_balance: "840", locked_balance: "840" },
   },
   {
     id: "p-002",
     owner_company_id: "c-003",
     title: "API Integration",
     description: "RESTful API integration with third-party payment systems and automated reconciliation.",
-    industry: Industry.Technology,
-    project_type: ProjectType.Partnered,
+    industry: Industry.technology,
+    project_type: ProjectType.partnered,
     status: "active",
     location_address: {
       street_line_1: "East Legon, Accra",
@@ -75,7 +76,8 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
       city: "Accra",
       region: "Greater Accra",
       postal_code: "",
-      country_code: "gh"
+      country_code: "gh",
+      country_name: "Ghana"
     },
     location_coordinates: {
       lat: 5.6354,
@@ -84,7 +86,7 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
     start_date: "2026-02-15",
     end_date: "2026-04-15",
     total_budget: "1800",
-    currency: "USD",
+    currency: "usd",
     wallet_id: "w-002",
     chat_session_id: "cs-002",
     members: [
@@ -108,15 +110,15 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
         estimated_duration: 22, required_evidence_types: ["document"], created_by: "USER", created_by_company_id: "c-003",
       },
     ],
-    wallet: { id: "w-002", owner_id: "p-002", owner_type: "PROJECT", currency: "USD", available_balance: "1800", locked_balance: "900" },
+    wallet: { id: "w-002", owner_id: "p-002", owner_type: "PROJECT", currency: "usd", available_balance: "1800", locked_balance: "900" },
   },
   {
     id: "p-003",
     owner_company_id: "c-001",
     title: "Mobile App MVP",
     description: "Cross-platform mobile application for customer-facing escrow management and notifications.",
-    industry: Industry.Technology,
-    project_type: ProjectType.Partnered,
+    industry: Industry.technology,
+    project_type: ProjectType.partnered,
     status: "active",
     location_address: {
       street_line_1: "Osu, Accra",
@@ -124,7 +126,8 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
       city: "Accra",
       region: "Greater Accra",
       postal_code: "",
-      country_code: "gh"
+      country_code: "gh",
+      country_name: "Ghana"
     },
     location_coordinates: {
       lat: 5.5560,
@@ -133,7 +136,7 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
     start_date: "2026-01-28",
     end_date: "2026-05-28",
     total_budget: "9500",
-    currency: "USD",
+    currency: "usd",
     wallet_id: "w-003",
     chat_session_id: "cs-003",
     members: [
@@ -163,6 +166,6 @@ export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
         estimated_duration: 29, required_evidence_types: ["document"], created_by: "AI", created_by_company_id: "c-001",
       },
     ],
-    wallet: { id: "w-003", owner_id: "p-003", owner_type: "PROJECT", currency: "USD", available_balance: "3000", locked_balance: "3000" },
+    wallet: { id: "w-003", owner_id: "p-003", owner_type: "PROJECT", currency: "usd", available_balance: "3000", locked_balance: "3000" },
   },
 ];

@@ -316,7 +316,7 @@ export function WalletPageClient() {
                       {project.title}
                     </span>
                     <span className="text-xs font-medium font-geist text-muted-foreground">
-                      {formatFull(project.total_budget, project.currency)}
+                      {formatFull(Number(project.total_budget) || 0, project.currency)}
                     </span>
                   </div>
                 ))}

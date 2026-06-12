@@ -28,7 +28,8 @@ import {
   useRemoveCompanyMember,
   useUpdateCompanyMember,
 } from "@/shared/hooks/use-company-members";
-import type { CompanyRole, CompanyMemberStatus } from "@/types/enums";
+import type { CompanyRole } from "@/types/enums";
+import { CompanyMemberStatus } from "@/types/enums";
 
 const PAGE_SIZE = 10;
 

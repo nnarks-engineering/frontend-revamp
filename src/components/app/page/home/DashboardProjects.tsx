@@ -15,7 +15,7 @@ import {
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
 import { useProjects } from "@/shared/hooks/use-projects";
-import { ProjectStatus } from "@/types/projects";
+import { ProjectStatus, type ProjectResponse } from "@/types/projects";
 
 function getPriority(project: ProjectResponse) {
   switch (project.status) {
