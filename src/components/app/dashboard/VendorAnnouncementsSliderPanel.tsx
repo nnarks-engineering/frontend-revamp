@@ -47,11 +47,11 @@ export function VendorAnnouncementsSliderPanel() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    const timer = globalThis.setInterval(() => {
       setIndex((prev) => (prev + 1) % ANNOUNCEMENTS.length);
     }, 6500);
 
-    return () => window.clearInterval(timer);
+    return () => globalThis.clearInterval(timer);
   }, []);
 
   const active = ANNOUNCEMENTS[index];

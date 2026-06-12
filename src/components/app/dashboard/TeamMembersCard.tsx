@@ -11,7 +11,7 @@ import { AnimatedTooltip } from "@/components/common/animated-tooltip";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useCompanyMembers } from "@/shared/hooks/use-company-members";
 import { cn } from "@/shared/lib/utils";
-import type { CompanyMemberStatus } from "@/types/enums";
+import { CompanyMemberStatus } from "@/types/enums";
 
 
 
@@ -45,7 +45,7 @@ export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) 
   const { data: members = [], isLoading } = useCompanyMembers(companyId);
 
   const activeMembers = members.filter((m) => m.status === CompanyMemberStatus.active);
-  const pendingCount = members.filter((m) => m.status === "pending").length;
+  const pendingCount = members.filter((m) => m.status === CompanyMemberStatus.pending).length;
 
   return (
     <Card className={cn("bg-white rounded-2xl p- overflow-visible shadow-xs border border-border/40 h-fit flex flex-col", className)}>
