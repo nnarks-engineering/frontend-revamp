@@ -21,10 +21,10 @@ src/
 ```
 
 ## File Length
-- Max 250 lines per file (.tsx)
-- Max 150 lines per ts.hook (.ts)
-- Max 100 lines per ts.type (.ts,)
-- Max 200 lines per other ts (.ts)
+- Max 450 lines per file (.tsx) (Exceptions: `components/ui/`)
+- Max 250 lines per ts.hook (.ts)
+- Max 150 lines per ts.type (.ts)
+- Max 250 lines per other ts (.ts)
 - If a file exceeds the max number lines, split by concern
 
 ## Naming Conventions

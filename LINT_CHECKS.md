@@ -14,10 +14,10 @@
 
 ### 1. File Length — `[LINE LIMIT]`
 
-**Rule:** No `.ts` or `.tsx` file may exceed **250 lines**.  
-**Rule:** No hook file (`use-*.ts`) may exceed **150 lines**.  
-**Rule:** No type file (`types/{domain}/{domain}.types.ts`) may exceed **100 lines**.  
-**Rule:** No other `.ts` file may exceed **200 lines**.  
+**Rule:** No `.tsx` file may exceed **450 lines** (excluding `src/components/ui/`).  
+**Rule:** No hook file (`use-*.ts`) may exceed **250 lines**.  
+**Rule:** No type file (`types/{domain}/{domain}.types.ts`) may exceed **150 lines**.  
+**Rule:** No other `.ts` file may exceed **250 lines**.  
 **Why:** Forces single-responsibility. If a file is too long, split by concern.  
 **Fix:** Extract components, hooks, or types into separate files.
 

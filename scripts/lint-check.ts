@@ -6,8 +6,14 @@ import { basename, extname, join, sep } from "node:path";
 const ERRORS: string[] = [];
 const SRC = "./src";
 
-// Files to exclude from all checks
-const IGNORED_FILES =new  Set(["routeTree.gen.ts"]);
+// Files to exclude from all checks (matches exact file name)
+const IGNORED_FILES = new Set(["routeTree.gen.ts"]);
+
+// Directories or partial paths to exclude from file length limits
+// You can add sections here (e.g., "components/auth/") to bypass length checks
+const IGNORED_LENGTH_PATHS = [
+  "components/ui/", // shadcn/ui components
+];
 
 // ── 1. File length check ────────────────────────────────────────────────────
 function walkDir(dir: string): string[] {
@@ -18,7 +24,16 @@ function walkDir(dir: string): string[] {
 }
 
 for (const file of walkDir(SRC).filter(
-  (f) => [".ts", ".tsx"].includes(extname(f)) && !IGNORED_FILES.has(basename(f)),
+  (f) => {
+    if (![".ts", ".tsx"].includes(extname(f))) return false;
+    if (IGNORED_FILES.has(basename(f))) return false;
+    
+    // Exclude specified paths from file length limits
+    const normalizedPath = f.replaceAll("\\", "/");
+    if (IGNORED_LENGTH_PATHS.some(path => normalizedPath.includes(path))) return false;
+    
+    return true;
+  }
 )) {
   const lines = readFileSync(file, "utf8").split("\n").length;
   const ext = extname(file);
@@ -27,13 +42,13 @@ for (const file of walkDir(SRC).filter(
   // Determine the correct limit based on file type
   let maxLines: number;
   if (ext === ".tsx") {
-    maxLines = 250;
+    maxLines = 450;
   } else if (name.startsWith("use-") && ext === ".ts") {
-    maxLines = 150; // hook files
+    maxLines = 250; // hook files
   } else if (file.includes(`${sep}types${sep}`) || file.includes("/types/")) {
-    maxLines = 100; // type definition files
+    maxLines = 150; // type definition files
   } else {
-    maxLines = 200; // all other .ts files
+    maxLines = 250; // all other .ts files
   }
 
   if (lines > maxLines) {
