@@ -80,11 +80,11 @@ for (const file of walkDir(SRC).filter(
   }
 }
 
-// ── 4. ESLint ────────────────────────────────────────────────────────────────
+// ── 4. Biome Lint ────────────────────────────────────────────────────────────
 try {
-  execSync("npx eslint ./src --ext .ts,.tsx --max-warnings 0", { stdio: "inherit" });
+  execSync("npx @biomejs/biome lint ./src", { stdio: "inherit" });
 } catch {
-  ERRORS.push("[ESLINT] ESLint reported errors");
+  ERRORS.push("[BIOME] Biome reported lint errors");
 }
 
 // ── 5. TypeScript ────────────────────────────────────────────────────────────

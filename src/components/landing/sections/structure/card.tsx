@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import { FeatureCard } from "../../FeatureCard";
 
-import { type StructureItem } from "./locals";
+import type { StructureItem } from "./locals";
 
 interface StructureCardProps {
   item: StructureItem;

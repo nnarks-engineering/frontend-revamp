@@ -5,7 +5,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
-import {type NavItem } from "@/app/nav-config-si";
+import type {NavItem } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";
 
 

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { type AnyFieldApi } from "@tanstack/react-form"
+import type { AnyFieldApi } from "@tanstack/react-form"
 import { Eye, EyeOff } from "lucide-react"
 
 import { Input } from "@/components/ui/input"

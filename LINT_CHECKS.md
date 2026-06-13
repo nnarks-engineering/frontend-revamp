@@ -5,7 +5,7 @@
 | Command                         | What it does                                        |
 | ------------------------------- | --------------------------------------------------- |
 | `npx tsx scripts/lint-check.ts` | Run all checks manually                             |
-| `pnpm lint:fix`                 | Auto-fix ESLint issues                              |
+| `pnpm lint:fix`                 | Auto-fix Biome issues and organize imports          |
 | `git push`                      | Triggers all checks automatically via pre-push hook |
 
 ---
@@ -63,22 +63,22 @@ export type DurationUnit = (typeof DurationUnit)[keyof typeof DurationUnit];
 
 ---
 
-### 4. ESLint — `[ESLINT]`
+### 4. Biome (Linting & Imports) — `[BIOME]`
 
-**Rule:** Zero warnings allowed (`--max-warnings 0`).  
+**Rule:** Zero errors allowed.  
 **Key rules enforced:**
 
 | Rule                                          | Effect                                            |
 | --------------------------------------------- | ------------------------------------------------- |
-| `unused-imports/no-unused-imports`            | Error on unused imports                           |
-| `unused-imports/no-unused-vars`               | Warn on unused vars (prefix `_` to ignore)        |
-| `import/order`                                | Enforces: React → third-party → `@/` → relative   |
-| `no-restricted-syntax` on `TSEnumDeclaration` | Blocks TypeScript enums                           |
-| `import/no-default-export`                    | Warns outside route/page/config files             |
-| `@typescript-eslint/consistent-type-imports`  | Forces `import type` for type-only imports        |
-| `no-console`                                  | Warns on `console.log`; allows `warn` and `error` |
+| `correctness/noUnusedImports`                 | Error on unused imports                           |
+| `correctness/noUnusedVariables`               | Warn on unused vars                               |
+| `assist/source/organizeImports`               | Organizes imports                                 |
+| `suspicious/noRestrictedSyntax`               | Blocks TypeScript enums                           |
+| `style/noDefaultExport`                       | Warns outside route/page/config files             |
+| `style/useImportType`                         | Forces `import type` for type-only imports        |
+| `suspicious/noConsole`                        | Warns on `console.log`                            |
 
-**Fix:** Run `pnpm lint:fix` to auto-fix what ESLint can, then resolve remaining manually.
+**Fix:** Run `pnpm lint:fix` to auto-fix what Biome can, then resolve remaining manually.
 
 ---
 

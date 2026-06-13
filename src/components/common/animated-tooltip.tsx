@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import type React from "react";
+import { useState, useRef } from "react";
 
 import { Users } from "lucide-react";
 import {
