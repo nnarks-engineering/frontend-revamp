@@ -9,9 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { getInitials } from "@/shared/lib/initials";
 import { cn } from "@/shared/lib/utils";
-import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 
 
 // ── Company avatar (reusable independently) ───────────────────────────────────

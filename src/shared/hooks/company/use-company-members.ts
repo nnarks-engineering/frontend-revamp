@@ -27,7 +27,7 @@ export function useInviteCompanyMember(companyId: string) {
 
   return useMutation<CompanyMember, Error, CompanyMemberInvite>({
     mutationFn: (data) => {
-console.log("Inviting member with data:", data); // Debug log
+// console.log("Inviting member with data:", data); // Debug log
       return inviteCompanyMember(companyId, data);
     },
     onSuccess: () => {

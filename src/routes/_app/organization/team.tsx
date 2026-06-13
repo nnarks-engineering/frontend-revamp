@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import { createFileRoute } from "@tanstack/react-router";
 
 import { TeamPageClient } from "@/components/app/organization/TeamPageClient";

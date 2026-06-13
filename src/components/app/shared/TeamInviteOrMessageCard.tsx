@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 
 import { Link } from "@tanstack/react-router";
 import { MessageSquare, ChevronRight, Loader2 } from "lucide-react";
@@ -8,8 +7,8 @@ import NoMembersSvg from "@/assets/svg/no-users.svg?react"
 import { Image } from "@/components/image/Image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useCompanyMembers } from "@/shared/hooks/company/use-company-members";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { cn } from "@/shared/lib/utils";
 import { CompanyMemberStatus } from "@/types";
 

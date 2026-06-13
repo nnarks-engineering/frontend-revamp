@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { createFileRoute } from "@tanstack/react-router";
 import { PlusCircle } from "lucide-react";
@@ -20,7 +20,7 @@ function OrganizationPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="max-w-[1400px] mx-auto pb-12 px-6">
+    <div className="max-w-350 mx-auto pb-12 px-6">
       <div className="flex items-center justify-between py-8">
         <div>
           <h1 className="text-2xl font-bold text-foreground">Organization Services</h1>
