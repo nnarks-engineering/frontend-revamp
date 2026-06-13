@@ -79,8 +79,9 @@ export function canAccessPath(pathname: string): boolean {
 
   traverse(allItems);
 
-  if (matchedItem && matchedItem.userTypes) {
-    return hasUserTypeAccess(matchedItem.userTypes);
+  const match = matchedItem as NavItem | null;
+  if (match && match.userTypes) {
+    return hasUserTypeAccess(match.userTypes);
   }
   
   // Default to true if the route is not defined in the nav config,

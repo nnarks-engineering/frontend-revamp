@@ -115,14 +115,14 @@ src/
 
 ## Naming Conventions (human-enforced)
 
-| Thing                           | Convention                 | Example                                   |
-| ------------------------------- | -------------------------- | ----------------------------------------- |
-| Interface                       | PascalCase + intent suffix | `ProjectCreatePayload`, `ProjectResponse` |
-| Domain Type/Enum                | Module Prefix              | `ProjectMemberRole`, `ProjectStatus`      |
-| Const object (enum replacement) | PascalCase singular        | `DurationUnit`, `ProjectType`             |
-| Primitive constant              | SCREAMING_SNAKE_CASE       | `MAX_FILE_SIZE`                           |
-| Hook file                       | `use-{domain}.ts`          | `use-projects.ts`                         |
-| Hook function                   | `use{Domain}`              | `useProjects`                             |
+| Thing                           | Convention                        | Example                                     |
+| ------------------------------- | --------------------------------- | ------------------------------------------- |
+| Interface                       | Domain Name + intent suffix       | `ProjectCreatePayload`, `UserResponse`    |
+| Const object (enum replacement) | Domain Name + PascalCase singular | `ProjectStatus`, `DurationUnit`           |
+| Domain Type                     | Domain Name Prefix                | `ProjectMemberRole`, `ProjectStatus`        |
+| Primitive constant              | PascalCase singular               | `MaxSize`, `DefaultLimit`                             |
+| Hook file                       | `use-{domain}.ts`                 | `use-projects.ts`                           |
+| Hook function                   | `use{Domain}`                     | `useProjects`                               |
 
 **Interface suffixes:**
 
