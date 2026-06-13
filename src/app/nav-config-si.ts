@@ -58,6 +58,36 @@ export function getVisibleTopLevelItems(): NavItem[] {
 
 // ─── Route helpers ────────────────────────────────────────────────────────────
 
+export function canAccessPath(pathname: string): boolean {
+  const allItems = NAV_GROUPS.flatMap((group) => group.items);
+  let matchedItem: NavItem | null = null;
+  let maxMatchLength = -1;
+
+  function traverse(items: NavItem[]) {
+    for (const item of items) {
+      if (pathname === item.to || pathname.startsWith(item.to + "/")) {
+        if (item.to.length > maxMatchLength) {
+          maxMatchLength = item.to.length;
+          matchedItem = item;
+        }
+      }
+      if (item.children) {
+        traverse(item.children);
+      }
+    }
+  }
+
+  traverse(allItems);
+
+  if (matchedItem && matchedItem.userTypes) {
+    return hasUserTypeAccess(matchedItem.userTypes);
+  }
+  
+  // Default to true if the route is not defined in the nav config,
+  // or doesn't have explicit userTypes.
+  return true;
+}
+
 export function isUnder(pathname: string, base: string): boolean {
   return pathname === base || pathname.startsWith(base + "/");
 }

@@ -27,12 +27,15 @@ export function useInviteCompanyMember(companyId: string) {
 
   return useMutation<CompanyMember, Error, CompanyMemberInvite>({
     mutationFn: (data) => {
-
+console.log("Inviting member with data:", data); // Debug log
       return inviteCompanyMember(companyId, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.companyMembers(companyId) });
     },
+    onError:(error)=>{
+      console.error("Error inviting member:", error);
+    }
   });
 }
 

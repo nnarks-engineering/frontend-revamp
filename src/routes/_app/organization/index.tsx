@@ -5,8 +5,7 @@ import { PlusCircle } from "lucide-react";
 
 import { CreateServiceModal } from "@/components/app/services/CreateServiceModal";
 import { Button } from "@/components/ui/button";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useMyServices } from "@/shared/hooks/service/use-services";
 
 
@@ -15,12 +14,7 @@ export const Route = createFileRoute("/_app/organization/")({
 });
 
 function OrganizationPage() {
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId } = useActiveCompany();
-  const activeCompany = useMemo(
-    () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
-    [companies, activeCompanyId]
-  );
+  const { activeCompany } = useCurrentCompany();
 
   const { data: services = [], isLoading } = useMyServices(activeCompany?.id);
   const [isModalOpen, setIsModalOpen] = useState(false);

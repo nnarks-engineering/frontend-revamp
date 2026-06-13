@@ -3,8 +3,7 @@ import { useMemo } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { TeamPageClient } from "@/components/app/organization/TeamPageClient";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 
 type TeamSearch = {
   tab: "members" | "roles" | "invitations";
@@ -26,13 +25,7 @@ export const Route = createFileRoute("/_app/organization/team")({
 });
 
 function OrganizationTeamPage() {
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId } = useActiveCompany();
-  
-  const activeCompany = useMemo(
-    () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
-    [companies, activeCompanyId]
-  );
+  const { activeCompany } = useCurrentCompany();
 
   if (!activeCompany) {
     return (

@@ -10,11 +10,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { getInitials } from "@/shared/lib/initials";
 import { cn } from "@/shared/lib/utils";
 import type { Company } from "@/types/company/company.types";
+
 
 
 interface Props {
@@ -23,11 +23,7 @@ interface Props {
 
 export function SidebarCompanySwitcher({ isCollapsed }: Props) {
   const navigate = useNavigate();
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId: activeId, setActiveCompanyId } = useActiveCompany();
-
-  const activeCompany: Company | null =
-    companies.find((c) => c.id === activeId) ?? companies[0] ?? null;
+  const { companies, activeCompany, setActiveCompanyId } = useCurrentCompany();
 
   const handleSelect = (company: Company) => {
     setActiveCompanyId(company.id);

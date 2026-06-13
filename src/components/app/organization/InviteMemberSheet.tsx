@@ -8,19 +8,19 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { useInviteCompanyMember } from "@/shared/hooks/company/use-company-members";
-import type { CompanyRole } from "@/types";
+import { CompanyRole} from "@/types";
 
 interface InviteMemberDialogProps {
-  companyId: string;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+ readonly companyId: string;
+ readonly open: boolean;
+ readonly onOpenChange: (open: boolean) => void;
 }
 
 export function InviteMemberDialog({ companyId, open, onOpenChange }: InviteMemberDialogProps) {
   const inviteMutation = useInviteCompanyMember(companyId);
 
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState<CompanyRole>("member");
+  const [role, setRole] = useState<CompanyRole>(CompanyRole.member);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleInvite = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -32,7 +32,7 @@ export function InviteMemberDialog({ companyId, open, onOpenChange }: InviteMemb
       {
         onSuccess: () => {
           setEmail("");
-          setRole("member");
+          setRole(CompanyRole.member);
           onOpenChange(false);
           toast.success("Invitation sent successfully");
         },
@@ -51,12 +51,12 @@ export function InviteMemberDialog({ companyId, open, onOpenChange }: InviteMemb
         onOpenChange(isOpen);
         if (!isOpen) {
           setEmail("");
-          setRole("member");
+          setRole(CompanyRole.member);
           setErrorMsg("");
         }
       }}
     >
-      
+
       <SheetContent side="right" className="p-0 sm:max-w-md w-full flex flex-col" aria-describedby={undefined}>
         <div className="h-full flex flex-col">
           <SheetHeader>
@@ -89,27 +89,13 @@ disabled={inviteMutation.isPending}
   <SelectValue placeholder="Select role" />
 </SelectTrigger>
 <SelectContent >
-  <SelectItem value="admin">Admin</SelectItem>
-  <SelectItem value="member">Member</SelectItem>
-  <SelectItem value="viewer">Viewer</SelectItem>
+  <SelectItem value={CompanyRole.admin}>Admin</SelectItem>
+  <SelectItem value={CompanyRole.member}>Member</SelectItem>
+  <SelectItem value={CompanyRole.viewer}>Viewer</SelectItem>
+  <SelectItem value={CompanyRole.agent}>Agent</SelectItem>
 </SelectContent>
 
 </Select>
-
-              {/* <div className="space-y-1.5">
-                <label htmlFor="invite-role" className="text-sm font-medium text-foreground">Role</label>
-                <select
-                  id="invite-role"
-                  className="w-full h-10 px-3 text-sm rounded-lg border border-border bg-background outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value as CompanyRole)}
-                  disabled={inviteMutation.isPending}
-                >
-                  <option value="admin">Admin</option>
-                  <option value="member">Member</option>
-                  <option value="viewer">Viewer</option>
-                </select>
-              </div> */}
             </form>
           </div>
 

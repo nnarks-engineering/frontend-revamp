@@ -11,8 +11,7 @@ import {
   VendorAnnouncementsSliderPanel,
   WelcomeBanner,
 } from "@/components/app/dashboard";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useRightPanel } from "@/shared/hooks/core/use-right-panel";
 
 import { UPCOMING_DATES } from "./constants";
@@ -21,12 +20,7 @@ import { UPCOMING_DATES } from "./constants";
 export function VendorHomePage() {
   useRightPanel(<VendorAnnouncementsSliderPanel />, { openOnMount: true, icon: Megaphone });
 
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId } = useActiveCompany();
-  const activeCompany = useMemo(
-    () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
-    [companies, activeCompanyId],
-  );
+  const { activeCompany } = useCurrentCompany();
 
   return (
     <div className="max-w-350 mx-auto pb-12 space-y-5">

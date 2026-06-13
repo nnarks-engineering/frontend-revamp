@@ -1,5 +1,6 @@
 import { redirect } from "@tanstack/react-router";
 
+import { canAccessPath } from "@/app/nav-config-si";
 import { checkOnboardingComplete, getStoredUserType } from "@/shared/lib/auth";
 
 import type { RouterContext } from "./types";
@@ -28,6 +29,11 @@ export function requireAuth({ context, location }: ContextArgs): void {
       to: getLoginRoute(location?.pathname),
       search: location ? { returnTo: encodeURIComponent(location.href) } : undefined,
     });
+  }
+
+  // Enforce path access based on user role
+  if (location && !canAccessPath(location.pathname)) {
+    throw redirect({ to: "/home" });
   }
 }
 

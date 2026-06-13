@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { PanelRightOpen } from "lucide-react";
@@ -9,6 +9,7 @@ import { AppHeader } from "@/components/app/header/AppHeader";
 import { SidebarSubNavBar } from "@/components/app/navigation/SidebarSubNavBar";
 import { LocationBanner } from "@/components/app/shared";
 import { SidebarNav } from "@/components/app/sidebar/SidebarNav";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { RightPanelProvider, useRightPanelContext } from "@/shared/contexts/ui/right-panel-context";
 import { cn } from "@/shared/lib/utils";
 
@@ -48,17 +49,23 @@ function AppLayoutInner() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const closeAllOverlaysOnMobile = useCallback(() => {
-    if (isSmallScreen) {
-      closeRightPanel();
-    }
-  }, [isSmallScreen, closeRightPanel]);
-
   const noopToggleSidebar = useCallback(() => undefined, []);
 
-  const mobileTopOffsetClass = isSmallScreen && hasSubItems
-    ? "max-lg:top-24 max-lg:h-[calc(100dvh-6rem)]"
-    : "max-lg:top-14 max-lg:h-[calc(100dvh-3.5rem)]";
+  // Sync panel open state across screen-size transitions
+  const prevSmallRef = useRef(isSmallScreen);
+  useEffect(() => {
+    const wasSmall = prevSmallRef.current;
+    prevSmallRef.current = isSmallScreen;
+
+    // Mobile → Desktop: re-open if there's content
+    if (wasSmall && !isSmallScreen && rightPanelContent) {
+      openRightPanel();
+    }
+    // Desktop → Mobile: close so user sees the FAB instead
+    if (!wasSmall && isSmallScreen && isRightPanelOpen) {
+      closeRightPanel();
+    }
+  }, [isSmallScreen, rightPanelContent, isRightPanelOpen, openRightPanel, closeRightPanel]);
 
   const canShowRightPanelFab = isSmallScreen && !!rightPanelContent && !isRightPanelOpen;
 
@@ -101,35 +108,29 @@ function AppLayoutInner() {
               <LocationBanner />
               <Outlet />
             </div>
+            {/* Desktop right panel — inline, hidden on mobile */}
             <div
-          className={cn(
-            "shrink-0 overflow-hidden mt-4  rounded-tl-2xl transition-all duration-300 ease-in-out",
-            "max-lg:fixed max-lg:right-0 max-lg:z-40",
-            mobileTopOffsetClass,
-            isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
-          )}
-        >
-          {rightPanelContent}
-        </div>
+              className={cn(
+                "shrink-0 overflow-hidden mt-4 rounded-tl-2xl transition-all duration-300 ease-in-out",
+                "max-lg:hidden",
+                isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
+              )}
+            >
+              {rightPanelContent}
+            </div>
           </main>
         </div>
-
-        {/* Right panel — page-registered content only */}
-
       </div>
 
-      {/* Mobile overlay backdrop — sits below the header */}
-      {isSmallScreen && isRightPanelOpen && (
-        <button
-          type="button"
-          aria-label="Close right panel"
-          className={cn(
-            "fixed inset-x-0 bottom-0 bg-black/40 backdrop-blur-[2px] z-30 lg:hidden animate-in fade-in duration-200",
-            isSmallScreen && hasSubItems ? "top-24" : "top-14",
-          )}
-          onClick={closeAllOverlaysOnMobile}
-        />
-      )}
+      {/* Mobile right panel — rendered as a Sheet (portal with proper z-index) */}
+      <Sheet
+        open={isSmallScreen && isRightPanelOpen && !!rightPanelContent}
+        onOpenChange={(open) => { if (!open) closeRightPanel(); }}
+      >
+        <SheetContent side="right" className="p-0 w-80 max-w-[85vw]">
+          {rightPanelContent}
+        </SheetContent>
+      </Sheet>
 
       {canShowRightPanelFab && (
         <button

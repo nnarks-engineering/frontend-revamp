@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { PanelRightOpen } from "lucide-react";
@@ -45,8 +45,33 @@ function AppLayout2Inner() {
   const subItems = resolveVerticalSidebarItems(pathname);
   const hasSubItems = !!subItems?.length;
 
-  const canShowFab = !!rightPanelContent && !isRightPanelOpen;
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsSmallScreen(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Sync panel open state across screen-size transitions
+  const prevSmallRef = useRef(isSmallScreen);
+  useEffect(() => {
+    const wasSmall = prevSmallRef.current;
+    prevSmallRef.current = isSmallScreen;
+
+    // Mobile → Desktop: re-open if there's content
+    if (wasSmall && !isSmallScreen && rightPanelContent) {
+      openRightPanel();
+    }
+    // Desktop → Mobile: close so user sees the FAB instead
+    if (!wasSmall && isSmallScreen && isRightPanelOpen) {
+      closeRightPanel();
+    }
+  }, [isSmallScreen, rightPanelContent, isRightPanelOpen, openRightPanel, closeRightPanel]);
+
+  const canShowFab = isSmallScreen && !!rightPanelContent && !isRightPanelOpen;
 
   return (
     <div className="h-dvh fixed font-poppins @container inset-0 flex overflow-hidden bg-background">
@@ -73,11 +98,11 @@ function AppLayout2Inner() {
             <Outlet />
           </div>
 
-          {/* Right panel (registered by pages via context) */}
+          {/* Desktop right panel — inline, hidden on mobile */}
           <div
             className={cn(
-              "shrink-0 overflow-hidden transition-all duration-300 ease-in-out z-40",
-              "absolute lg:static right-0 top-0 bottom-0 bg-background lg:bg-transparent shadow-2xl lg:shadow-none border-l border-border/50",
+              "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+              "hidden lg:block border-l border-border/50",
               isRightPanelOpen && rightPanelContent ? "w-80" : "w-0",
             )}
           >
@@ -86,26 +111,26 @@ function AppLayout2Inner() {
         </div>
       </div>
 
-      {/* ── Right panel FAB (mobile / when panel is hidden) ───────────── */}
+      {/* ── Mobile right panel — rendered as a Sheet (portal) ─────────── */}
+      <Sheet
+        open={isSmallScreen && isRightPanelOpen && !!rightPanelContent}
+        onOpenChange={(open) => { if (!open) closeRightPanel(); }}
+      >
+        <SheetContent side="right" className="p-0 w-80 max-w-[85vw]">
+          {rightPanelContent}
+        </SheetContent>
+      </Sheet>
+
+      {/* ── Right panel FAB (mobile only, when panel is collapsed) ──── */}
       {canShowFab && (
         <button
           type="button"
           onClick={openRightPanel}
-          className="fixed bottom-4 right-4 z-40 h-11 w-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 active:scale-95 transition-all"
+          className="fixed bottom-4 right-4 z-40 lg:hidden h-11 w-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 active:scale-95 transition-all"
           aria-label="Open panel"
         >
           {FabIcon ? <FabIcon className="h-5 w-5 mx-auto" /> : <PanelRightOpen className="h-5 w-5 mx-auto" />}
         </button>
-      )}
-
-      {/* ── Overlay backdrop ──────────────────────────────────────────── */}
-      {isRightPanelOpen && (
-        <button
-          type="button"
-          aria-label="Close panel"
-          className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-30 lg:hidden animate-in fade-in duration-200"
-          onClick={closeRightPanel}
-        />
       )}
 
       {/* ── Mobile Navigation Drawer ───────────────────────────────────── */}

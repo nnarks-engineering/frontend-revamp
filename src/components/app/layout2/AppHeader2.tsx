@@ -8,6 +8,7 @@ import { GlobalSearch } from "@/components/app/header/GlobalSearch";
 import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/company/use-company-members";
+import { getStoredUserType, UserType } from "@/shared/lib/auth";
 
 
 
@@ -66,19 +67,21 @@ export function AppHeader2({ onMenuToggle }: { onMenuToggle?: () => void }) {
       </Link>
 
       {/* Notifications / Invitations */}
-      <button
-        type="button"
-        className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
-        aria-label="Notifications"
-        onClick={() => setInvitationsOpen(true)}
-      >
-        <Bell className="w-4.5 h-4.5" />
-        {invitations.length > 0 && (
-          <span className="absolute top-1 right-1 min-w-4 h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-background px-1">
-            {invitations.length}
-          </span>
-        )}
-      </button>
+      {getStoredUserType() === UserType.vendor && (
+        <button
+          type="button"
+          className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+          aria-label="Notifications"
+          onClick={() => setInvitationsOpen(true)}
+        >
+          <Bell className="w-4.5 h-4.5" />
+          {invitations.length > 0 && (
+            <span className="absolute top-1 right-1 min-w-4 h-4 flex items-center justify-center text-[10px] font-bold text-white bg-destructive rounded-full ring-2 ring-background px-1">
+              {invitations.length}
+            </span>
+          )}
+        </button>
+      )}
 
       {/* User menu */}
       <SidebarUserMenu />

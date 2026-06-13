@@ -26,7 +26,7 @@ import type { UserListItem } from "@/types/common";
 import type { Company } from "@/types/company/company.types";
 
 import { InvitationsTab } from "./InvitationsTab";
-import { InviteMemberDialog } from "./InviteMemberDialog";
+import { InviteMemberDialog } from "./InviteMemberSheet";
 import { MembersTab } from "./MembersTab";
 import { RolesTab } from "./RolesTab";
 

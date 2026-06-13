@@ -8,8 +8,7 @@ import NoMembersSvg from "@/assets/svg/no-users.svg?react"
 import { Image } from "@/components/image/Image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useCompanyMembers } from "@/shared/hooks/company/use-company-members";
 import { cn } from "@/shared/lib/utils";
 import { CompanyMemberStatus } from "@/types";
@@ -19,13 +18,7 @@ interface TeamActionCardProps {
 }
 
 export function TeamActionCard({ className }: TeamActionCardProps) {
-  const { data: companies = [] } = useMyCompanies();
-  const { activeCompanyId } = useActiveCompany();
-
-  const activeCompany = useMemo(
-    () => companies.find((c) => c.id === activeCompanyId) ?? companies[0] ?? null,
-    [companies, activeCompanyId],
-  );
+  const { activeCompany } = useCurrentCompany();
 
   const { data: members = [], isLoading } = useCompanyMembers(activeCompany?.id);
 

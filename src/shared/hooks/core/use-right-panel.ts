@@ -38,13 +38,12 @@ export function useRightPanel(
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, deps);
 
-    // Auto-open on mount; always clear on unmount
+    // Auto-open on mount (desktop only); always clear on unmount
     useEffect(() => {
-        if (openOnMount) open();
+        if (openOnMount && window.innerWidth >= 1024) open();
         return () => clearContent();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return { isOpen, toggle, open, close };
 }
-

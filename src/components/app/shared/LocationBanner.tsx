@@ -22,8 +22,8 @@ export function LocationBanner() {
           transition={{ duration: 0.25, ease: "easeOut" }}
           className={
             status === "browser-blocked"
-              ? "flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-4"
-              : "flex items-center gap-3 bg-primary/5 border border-primary/15 rounded-xl px-4 py-3 mb-4"
+              ? "flex items-center gap-3 bg-amber-50 border border-amber-200 px-4 py-3 mb-4"
+              : "flex items-center gap-3 bg-primary/5 border border-primary/15 px-4 py-3 mb-4"
           }
         >
           <div
@@ -67,12 +67,14 @@ export function LocationBanner() {
             {status === "browser-blocked" ? (
               <>
                 <button
+                type="button"
                   onClick={reset}
                   className="px-3 py-1.5 text-[12px] font-semibold text-amber-800 bg-amber-100 border border-amber-200 rounded-lg hover:bg-amber-200 transition-colors"
                 >
                   Try again
                 </button>
                 <button
+                                type="button"
                   onClick={deny}
                   className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
                   aria-label="Dismiss"
@@ -83,12 +85,16 @@ export function LocationBanner() {
             ) : (
               <>
                 <button
+                                type="button"
+
                   onClick={grant}
                   className="px-3 py-1.5 text-[12px] font-semibold text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Allow
                 </button>
                 <button
+                                type="button"
+
                   onClick={deny}
                   className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
                   aria-label="Dismiss"

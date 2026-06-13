@@ -16,8 +16,7 @@ import {
   ModuleLayoutDescription,
   ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
-import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
-import { useMyCompanies } from "@/shared/hooks/company/use-companies";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useCreateProject } from "@/shared/hooks/project/use-projects";
 import { cn } from "@/shared/lib/utils";
 import  {ProjectType } from "@/types/projects";
@@ -26,8 +25,7 @@ import { useCreateProjectForm } from "./CreateProjectContext";
 
 export function Step7Review() {
   const { state, prevStep } = useCreateProjectForm();
-  const { activeCompanyId } = useActiveCompany();
-  const { data: companies } = useMyCompanies();
+  const { activeCompany, companies } = useCurrentCompany();
   const navigate = useNavigate();
 
   const createProject = useCreateProject();
@@ -37,10 +35,7 @@ export function Step7Review() {
 const [isSuccess, setIsSuccess] = useState(false);
 
 const handleSubmit = async () => {
-// Prefer the company the user is actually a member of
-const validCompanyId =
-  companies?.find((c) => c.id === activeCompanyId)?.id  // active company if they're a member
-  ?? companies?.[0]?.id;                                  // fallback to first known membership
+const validCompanyId = activeCompany?.id;
 
 if (!validCompanyId) return toast.error("you are not a member of this organization");
 

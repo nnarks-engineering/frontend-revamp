@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCurrentProfile, useCurrentUser, useLogout } from "@/shared/hooks/auth/use-auth";
 import { usePermissions } from "@/shared/hooks/auth/use-permissions";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 
 import { CompanySubMenu } from "./CompanySwitcher";
-import { useCompanySwitcher } from "./useCompanySwitcher";
 import { UserAvatar } from "./UserAvatar";
 
 
@@ -25,7 +25,8 @@ export function SidebarUserMenu() {
   const logout = useLogout();
 
   const { fontSize, setFontSize } = useFontSize();
-  const { activeCompany } = useCompanySwitcher();
+    const { activeCompany } = useCurrentCompany();
+
 
   const displayName =
     profile?.first_name && profile?.last_name

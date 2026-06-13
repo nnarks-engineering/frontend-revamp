@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/shared/lib/initials";
 import { cn } from "@/shared/lib/utils";
+import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 
-import { useCompanySwitcher } from "./useCompanySwitcher";
 
 // ── Company avatar (reusable independently) ───────────────────────────────────
 interface CompanyAvatarProps {
@@ -35,7 +35,9 @@ export function CompanyAvatar({ name, className }: Readonly<CompanyAvatarProps>)
 
 // ── Dropdown submenu variant (for use inside a DropdownMenu) ──────────────────
 export function CompanySubMenu() {
-  const { companies, activeCompany, setActiveCompanyId } = useCompanySwitcher();
+  const { activeCompany, companies,setActiveCompanyId } = useCurrentCompany();
+
+
 
   if (companies.length === 0) return null;
 
@@ -82,7 +84,7 @@ export function CompanySubMenu() {
 
 // ── Standalone list variant (for use outside a DropdownMenu, e.g. a settings page) ──
 export function CompanyList() {
-  const { companies, activeCompany, setActiveCompanyId } = useCompanySwitcher();
+  const { activeCompany, companies,setActiveCompanyId } = useCurrentCompany();
 
   return (
     <div className="flex flex-col gap-1">
