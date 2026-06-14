@@ -1,4 +1,3 @@
-import { currencies } from "country-data-list";
 import { Info, Plus, Trash2, AlertTriangle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -11,13 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { Currencies } from "@/shared/constants/common";
 import { cn } from "@/shared/lib/utils";
 import type { FormMilestone } from "@/types/projects";
 
 import { Hint } from "../../shared/hint";
 
 import { useCreateProjectForm } from "./CreateProjectContext";
+import { Currency } from "@/types";
 
 
 
@@ -94,13 +93,13 @@ export function Step4Budget() {
             </label>
             <Select
               value={state.currency}
-              onValueChange={(val:Currencies) => updateState({ currency: val })}
+              onValueChange={(val: Currency) => updateState({ currency: val })}
             >
               <SelectTrigger className="h-12 text-base">
                 <SelectValue placeholder="Currency" />
               </SelectTrigger>
               <SelectContent>
-                {Object.keys(currencies).map((currency) => (
+                {Object.values(Currency).map((currency) => (
                   <SelectItem key={currency} value={currency}>
                     {currency.toUpperCase()}
                   </SelectItem>
