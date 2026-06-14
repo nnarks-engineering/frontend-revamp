@@ -86,8 +86,8 @@ export function TeamMembersCard({ companyId, className }: TeamMembersCardProps) 
               />
             </div>
             <Link
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              to={"/organization/team" as any}
+              to="/organization/team"
+              search={{ tab: "members", q: "", page: 1 }}
               className="flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
             >
               Manage

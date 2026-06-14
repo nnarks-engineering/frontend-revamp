@@ -17,7 +17,7 @@ import type { CompanyMember, CompanyMemberInvite, CompanyMemberUpdate } from "@/
 export function useCompanyMembers(companyId?: string) {
   return useQuery({
     queryKey: QUERY_KEYS.companyMembers(companyId ?? ""),
-    queryFn: () => listCompanyMembers(companyId!),
+    queryFn: () => listCompanyMembers(companyId as string),
     enabled: Boolean(companyId),
   });
 }

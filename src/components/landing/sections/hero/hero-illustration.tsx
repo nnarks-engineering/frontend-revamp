@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import realBuilding from "@/assets/landing/real-building.png"
 
@@ -104,7 +104,7 @@ const HeroIllustration = () => {
   const [started,     setStarted]     = useState(false);
   const [linesReady,  setLinesReady]  = useState(false);
 
-  const computeLines = () => {
+  const computeLines = useCallback(() => {
     const container = containerRef.current;
     const plane     = planeRef.current;
     const logo      = logoRef.current;
@@ -147,7 +147,7 @@ const HeroIllustration = () => {
       d2: `M ${l2x},${l2y} H ${b2x} V ${b2y}`,
     });
     setLinesReady(true);
-  };
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => {

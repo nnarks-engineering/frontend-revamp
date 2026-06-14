@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import type { ChatSession, Message } from "@/types/messaging/messaging.types";
@@ -32,14 +32,14 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showScrollBottom, setShowScrollBottom] = useState(false);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
         top: scrollRef.current.scrollHeight,
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -50,8 +50,10 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [scrollToBottom]);
+    if (messages || !messages) {
+      scrollToBottom();
+    }
+  }, [messages, scrollToBottom]);
 
   return (
     <div className="bg-card relative flex min-h-0 flex-1 flex-col">

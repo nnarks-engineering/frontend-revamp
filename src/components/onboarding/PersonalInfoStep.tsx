@@ -58,7 +58,7 @@ export const PersonalInfoStep = React.forwardRef<
 >(function PersonalInfoStep({ onSubmit }, ref) {
   const form = useForm({
     defaultValues: { firstName: "", lastName: "", otherNames: "" },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: bypassed
     validators: { onChange: personalInfoSchema as any },
     onSubmit: async ({ value }) => {
       await onSubmit({

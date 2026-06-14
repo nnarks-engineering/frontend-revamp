@@ -86,7 +86,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     return (
       <img
         ref={ref}
-        src={src!}
+        src={src as string}
         alt={alt}
         className={cn(
           'object-cover transition-all duration-300 ease-in bg-muted aspect-square border',

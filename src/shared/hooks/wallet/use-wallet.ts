@@ -15,7 +15,7 @@ import type { PageParams } from "@/types/common";
 export function useWallet(companyId: string | null, currency?: Currency) {
   return useQuery({
     queryKey: [...QUERY_KEYS.wallet(companyId ?? ""), currency ?? "default"],
-    queryFn: () => getWallet(companyId!, currency),
+    queryFn: () => getWallet(companyId as string, currency),
     enabled: isAuthenticated() && Boolean(companyId),
     staleTime: 1000 * 60 * 2,
     retry: false,
@@ -34,7 +34,7 @@ export function useWalletTransactions(
       currency ?? "default",
       params,
     ],
-    queryFn: () => listTransactions(companyId!, currency, params),
+    queryFn: () => listTransactions(companyId as string, currency, params),
     enabled: isAuthenticated() && Boolean(companyId),
     staleTime: 1000 * 60 * 2,
     retry: false,

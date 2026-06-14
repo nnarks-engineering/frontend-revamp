@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Calendar, ChevronRight, Clock } from "lucide-react";
 
+import type { RoutePath } from "@/types/router";
+
 // Mock Data adapted for Nnarks context
-const UPCOMING_EVENTS = [
+const UPCOMING_EVENTS: { id: number; title: string; desc: string; date: string; image: string; link: RoutePath }[] = [
   {
     id: 1,
     title: "Project Milestone: Backend API",
@@ -21,14 +23,14 @@ const UPCOMING_EVENTS = [
   },
 ];
 
-const PENDING_EVENTS = [
+const PENDING_EVENTS: { id: number; title: string; desc: string; date: string; urgent: boolean; link: RoutePath }[] = [
   {
     id: 3,
     title: "KYC Verification Needed",
     desc: "Please submit your documents to unlock higher limits.",
     date: "Pending since Yesterday",
     urgent: true,
-    link: "/settings",
+    link: "/organization",
   },
   {
     id: 4,
@@ -39,6 +41,7 @@ const PENDING_EVENTS = [
     link: "/projects",
   },
 ];
+
 
 export function DashboardRightPanel() {
   return (
@@ -78,8 +81,7 @@ export function DashboardRightPanel() {
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{event.desc}</p>
 
                   <Link
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    to={event.link as any}
+                    to={event.link}
                     className="mt-1 text-[11px] font-semibold text-primary flex items-center group-hover:underline"
                   >
                     Read More <ChevronRight className="w-3 h-3 ml-0.5" />
@@ -112,8 +114,7 @@ export function DashboardRightPanel() {
                     {event.date}
                   </span>
                   <Link
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    to={event.link as any}
+                    to={event.link}
                     className="w-6 h-6 rounded-full bg-primary/5 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                   >
                     <ArrowUpRight className="w-3.5 h-3.5" />

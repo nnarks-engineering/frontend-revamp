@@ -59,6 +59,7 @@
   "overrides": [
     {
       "includes": [
+        "src/routeTree.gen.ts",
         "src/routes/**/*.{ts,tsx}",
         "src/pages/**/*.{ts,tsx}",
         "src/components/landing/**/*.{ts,tsx}",

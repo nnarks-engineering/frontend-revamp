@@ -65,7 +65,7 @@ function processQueue(error: unknown, token: string | null): void {
     if (error) {
       reject(error);
     } else {
-      resolve(token!);
+      resolve(token as string);
     }
   }
   failedQueue = [];

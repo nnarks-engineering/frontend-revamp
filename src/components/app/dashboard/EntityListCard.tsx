@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
+import type { RoutePath } from "@/types/router";
 
 interface EntityItem {
   id: string;
@@ -17,7 +18,7 @@ interface EntityGroup {
 
 interface EntityListCardProps {
   title: string;
-  viewAllLink?: string;
+  viewAllLink?: RoutePath;
   groups: EntityGroup[];
   className?: string;
 }
@@ -36,8 +37,7 @@ export function EntityListCard({ title, viewAllLink, groups, className }: Entity
         </h3>
         {viewAllLink && (
           <Link
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            to={viewAllLink as any}
+            to={viewAllLink}
             className="flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
           >
             View All

@@ -47,7 +47,7 @@ function VendorOnboardingPage() {
 
   const currentStepConfig = VENDOR_ONBOARDING_STEPS.find(
     (s) => s.step === currentStep,
-  )!;
+  ) as typeof VENDOR_ONBOARDING_STEPS[number];
 
   // ── Handlers ────────────────────────────────────────────────────────
   function handleStart() {

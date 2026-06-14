@@ -6,6 +6,7 @@ import {
     resolveHorizontalTabs,
 } from "@/app/nav-config";
 import { cn } from "@/shared/lib/utils";
+import type { RoutePath } from "@/types/router";
 
 export function SubNavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -29,8 +30,7 @@ export function SubNavBar() {
               return (
                 <Link
                   key={tab.id}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  to={tab.to as any}
+                  to={tab.to as RoutePath}
                   className={cn(
                     "relative h-full flex items-center px-3.5 text-[13px] font-medium whitespace-nowrap",
                     "transition-colors duration-150 select-none",

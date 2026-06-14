@@ -56,8 +56,8 @@ function ProjectRow({ project }: { project: ProjectResponse }) {
 
   return (
     <Link
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      to={"/projects" as any}
+      to="/projects"
+      search={{ tab: "active" }}
       className="flex items-start gap-3 p-3 rounded-xl bg-muted/20 hover:bg-muted/40 transition-colors group"
     >
       {/* Icon */}
@@ -133,8 +133,8 @@ export function ProjectsCard({ className }: ProjectsCardProps) {
           <h3 className="text-[15px] font-bold text-foreground">Active Projects</h3>
         </div>
         <Link
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          to={"/projects" as any}
+          to="/projects"
+          search={{ tab: "active" }}
           className="flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
         >
           View All

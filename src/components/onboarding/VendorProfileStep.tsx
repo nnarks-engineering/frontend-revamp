@@ -54,7 +54,7 @@ export const VendorProfileStep = React.forwardRef<
 >(function VendorProfileStep({ onSubmit }, ref) {
   const form = useForm({
     defaultValues: { companyName: "", description: "" },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: bypassed
     validators: { onChange: vendorProfileSchema as any },
     onSubmit: async ({ value }) => {
       await onSubmit(value);

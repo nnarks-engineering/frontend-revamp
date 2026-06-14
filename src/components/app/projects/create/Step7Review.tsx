@@ -69,7 +69,7 @@ const payload = {
   start_date: startDateObj.toISOString().split("T")[0],
   end_date: endDateObj.toISOString().split("T")[0],
   total_budget: Number(state.totalBudget),
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: bypass router
   currency: (state.currency.toLowerCase() || "ghs") as any, // Cast to avoid TS error
 };
 

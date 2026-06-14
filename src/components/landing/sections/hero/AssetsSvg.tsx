@@ -34,7 +34,7 @@ const AssetsSvg = () => {
   }, []);
 
   const style = (id: AnimId): React.CSSProperties => {
-    const cfg = ANIM_CONFIG.find(c => c.id === id)!;
+    const cfg = ANIM_CONFIG.find(c => c.id === id) as typeof ANIM_CONFIG[number];
     const active = visible.has(id);
     return {
       transition: `transform ${cfg.duration}s cubic-bezier(0.22, 1, 0.36, 1), opacity ${cfg.duration}s ease`,

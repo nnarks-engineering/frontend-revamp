@@ -30,16 +30,16 @@ export function useSessions(sessionType?: SessionType, params?: PageParams) {
 
 export function useSession(id?: string) {
   return useQuery({
-    queryKey: messagingKeys.sessionDetail(id!),
-    queryFn: () => getSession(id!),
+    queryKey: messagingKeys.sessionDetail(id as string),
+    queryFn: () => getSession(id as string),
     enabled: !!id,
   });
 }
 
 export function useMessages(sessionId?: string, beforeId?: string, limit?: number) {
   return useQuery({
-    queryKey: [...messagingKeys.messages(sessionId!), { beforeId, limit }] as const,
-    queryFn: () => listMessages(sessionId!, beforeId, limit),
+    queryKey: [...messagingKeys.messages(sessionId as string), { beforeId, limit }] as const,
+    queryFn: () => listMessages(sessionId as string, beforeId, limit),
     enabled: !!sessionId,
     // Typically refetch interval is good for chat, but we can rely on manual refetch or invalidate for now
     refetchInterval: 5000,

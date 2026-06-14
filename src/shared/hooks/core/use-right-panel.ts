@@ -35,14 +35,13 @@ export function useRightPanel(
     // Keep content in sync with deps
     useEffect(() => {
         setContent(content, icon);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // biome-ignore lint/correctness/useExhaustiveDependencies: Dynamic dependencies
     }, deps);
 
     // Auto-open on mount (desktop only); always clear on unmount
     useEffect(() => {
         if (openOnMount && window.innerWidth >= 1024) open();
         return () => clearContent();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [openOnMount, open, clearContent]);
 
     return { isOpen, toggle, open, close };
