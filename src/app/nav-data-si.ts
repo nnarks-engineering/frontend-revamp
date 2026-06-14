@@ -102,7 +102,7 @@ export const NAV_GROUPS: NavGroup[] = [
             label: "Contributors",
             icon: faUserGroup,
             to: "/organization/team",
-            userTypes: ["vendor","client"],
+            userTypes: ["vendor"],
           },
           {
             id: "wallet-bank-integration",
