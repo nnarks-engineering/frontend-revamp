@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Link } from "@tanstack/react-router";
-import { Bell, BrainCircuit, Search, Menu } from "lucide-react";
+import { Bell,Search, Menu } from "lucide-react";
 import { createPortal } from "react-dom";
 
 import { GlobalSearch } from "@/components/app/header/GlobalSearch";
