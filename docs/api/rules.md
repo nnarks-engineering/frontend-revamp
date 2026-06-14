@@ -1,0 +1,6 @@
+# API and Hook Rules
+
+## TanStack Query Connections
+- **Centralized Keys:** Always use centralized query keys from `QUERY_KEYS` when defining `useQuery` or `useMutation` to ensure cache consistency.
+- **Custom Hook Wrappers:** Do not use `useQuery` or `useMutation` directly inside UI components. Always wrap them in a domain-specific custom hook (e.g., `useProjects()`) located in `src/shared/hooks/{domain}/`.
+- **API Call Extraction:** Place the raw Axios/Fetch API calls inside `src/shared/api/{domain}/`. The custom hook should then call this API function.

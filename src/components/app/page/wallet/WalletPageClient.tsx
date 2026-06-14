@@ -12,7 +12,8 @@ import {
 
 import NoMoneySvg from "@/assets/svg/no-money.svg?react";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
-import { StatusBadge, EmptyState } from "@/components/app/shared";
+import { EmptyState } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -108,7 +109,7 @@ function TransactionRow({ tx, currency }: { tx: WalletTransaction; currency: str
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <StatusBadge status={tx.status} />
+        <StatusBadge variant={tx.status} />
         <span
           className={`text-sm font-semibold font-geist tabular-nums ${
             isCredit ? "text-emerald-600" : "text-foreground"

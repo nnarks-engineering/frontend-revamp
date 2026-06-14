@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import type { ProjectDashboardResponse } from "@/types/projects";
 
 export function ProjectMembersTab({ project }: { project: ProjectDashboardResponse }) {
@@ -23,7 +23,7 @@ export function ProjectMembersTab({ project }: { project: ProjectDashboardRespon
               <span className="uppercase tracking-wider font-semibold text-[10px]">{m.status}</span>
             </div>
           </div>
-          <StatusBadge status={m.role} className="ml-auto" />
+          <StatusBadge variant={m.role} className="ml-auto" />
         </div>
       ))}
     </div>

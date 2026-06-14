@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { DetailField } from "@/components/common/DetailField";
 import { Card, CardContent } from "@/components/ui/card";
+import { ProgressDots } from "@/components/app/shared";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { ProjectResponse } from "@/types/projects";
 

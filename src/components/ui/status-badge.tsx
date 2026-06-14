@@ -31,6 +31,16 @@ type StatusVariant =
     | 'owner'
     | 'admin'
     | 'member'
+    | 'pre_project'
+    | 'paused'
+    | 'in_progress'
+    | 'under_review'
+    | 'failed'
+    | 'skipped'
+    | 'partner'
+    | 'supervisor'
+    | 'accepted'
+    | 'expired'
 
 interface StatusConfig {
     icon: LucideIcon
@@ -241,6 +251,86 @@ const statusConfigs: Record<StatusVariant, StatusConfig> = {
     borderColor: "border-sky-600/50!",
     bgColor: "bg-sky-50",
     defaultText: "Member",
+  },
+  pre_project: {
+    icon: Clock,
+    iconBgColor: "bg-slate-400",
+    textColor: "text-slate-700",
+    borderColor: "border-slate-400/50!",
+    bgColor: "bg-slate-100",
+    defaultText: "Pre-project",
+  },
+  paused: {
+    icon: AlertTriangle,
+    iconBgColor: "bg-orange-500",
+    textColor: "text-orange-900",
+    borderColor: "border-orange-500/50!",
+    bgColor: "bg-orange-50",
+    defaultText: "Paused",
+  },
+  in_progress: {
+    icon: Play,
+    iconBgColor: "bg-blue-500",
+    textColor: "text-blue-900",
+    borderColor: "border-blue-500/50!",
+    bgColor: "bg-blue-50",
+    defaultText: "In Progress",
+  },
+  under_review: {
+    icon: Clock,
+    iconBgColor: "bg-amber-400",
+    textColor: "text-amber-900",
+    borderColor: "border-amber-400/50!",
+    bgColor: "bg-amber-50",
+    defaultText: "Under Review",
+  },
+  failed: {
+    icon: X,
+    iconBgColor: "bg-red-600",
+    textColor: "text-red-900",
+    borderColor: "border-red-600/50!",
+    bgColor: "bg-red-50",
+    defaultText: "Failed",
+  },
+  skipped: {
+    icon: Minus,
+    iconBgColor: "bg-gray-400",
+    textColor: "text-gray-700",
+    borderColor: "border-gray-300/50!",
+    bgColor: "bg-gray-100",
+    defaultText: "Skipped",
+  },
+  partner: {
+    icon: User,
+    iconBgColor: "bg-indigo-600",
+    textColor: "text-indigo-900",
+    borderColor: "border-indigo-600/50!",
+    bgColor: "bg-indigo-50",
+    defaultText: "Partner",
+  },
+  supervisor: {
+    icon: ShieldCheck,
+    iconBgColor: "bg-fuchsia-600",
+    textColor: "text-fuchsia-900",
+    borderColor: "border-fuchsia-600/50!",
+    bgColor: "bg-fuchsia-50",
+    defaultText: "Supervisor",
+  },
+  accepted: {
+    icon: Check,
+    iconBgColor: "bg-green-600",
+    textColor: "text-green-900",
+    borderColor: "border-green-600/50!",
+    bgColor: "bg-green-50",
+    defaultText: "Accepted",
+  },
+  expired: {
+    icon: Clock,
+    iconBgColor: "bg-gray-400",
+    textColor: "text-gray-700",
+    borderColor: "border-gray-300/50!",
+    bgColor: "bg-gray-100",
+    defaultText: "Expired",
   },
 }
 

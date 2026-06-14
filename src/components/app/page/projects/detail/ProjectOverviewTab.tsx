@@ -1,4 +1,4 @@
-import { StatusBadge } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import type { ProjectDashboardResponse } from "@/types/projects";
 
 export function ProjectOverviewTab({ project }: { project: ProjectDashboardResponse }) {
@@ -27,7 +27,7 @@ export function ProjectOverviewTab({ project }: { project: ProjectDashboardRespo
         </div>
         <div className="flex justify-between border-b border-border/60 pb-2 mt-1">
           <span className="text-muted-foreground">Status</span>
-          <StatusBadge status={project.status} />
+          <StatusBadge variant={project.status} />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import NoUsersSvg from "@/assets/svg/no-users.svg?react";
 import { EmptyState, Pagination } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableBody,
@@ -166,7 +166,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
                         {role.icon}
                         {role.label}
                       </div> */}
-                       <StatusBadge variant={role.label} size="sm" />
+                       <StatusBadge variant={member.role} size="sm" />
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {formatDate(member.joined_at)}

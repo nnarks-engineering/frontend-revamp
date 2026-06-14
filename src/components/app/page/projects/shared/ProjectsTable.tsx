@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
-import { EmptyState, StatusBadge } from "@/components/app/shared";
+import { Pagination, EmptyState } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableBody,
@@ -86,7 +87,7 @@ export function ProjectsTable({ projects, isLoading }: ProjectsTableProps) {
                   </p>
                 </TableCell>
                 <TableCell>
-                  <StatusBadge status={project.status} />
+                  <StatusBadge variant={project.status} />
                 </TableCell>
                 <TableCell className="text-muted-foreground capitalize">
                   {project.project_type.toLowerCase()}

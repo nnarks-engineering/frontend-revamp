@@ -134,7 +134,7 @@ export function InvitationsTab({ companyId, search, page, onPageChange }: Invita
                   <TableCell className="text-muted-foreground capitalize">{member.role}</TableCell>
                   <TableCell className="text-muted-foreground">{formatDate(member.invited_at)}</TableCell>
                   <TableCell>
-                    <StatusBadge variant={statusVariant(member.status)} size="sm" />
+                    <StatusBadge variant={member.status} />
                   </TableCell>
                   <TableCell className="text-right">
                     {member.status === "pending" && (

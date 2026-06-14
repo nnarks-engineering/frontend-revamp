@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { PageHeader, StatusBadge } from "@/components/app/shared";
+import { PageHeader } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
 import { MOCK_TRUST_CIRCLES } from "@/data/mock/trust-circles";
 
@@ -40,7 +41,7 @@ function TrustCirclesPage() {
               ${circle.pooled.toLocaleString()}
             </div>
             <div className="flex items-center gap-2">
-              <StatusBadge status={circle.status === "Active" ? "ACTIVE" : "PENDING"} />
+              <StatusBadge variant={circle.status === "Active" ? "ACTIVE" : "PENDING"} />
               {circle.voteOpen && (
                 <span className="text-[13px] text-muted-foreground">· vote open</span>
               )}

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { ChevronDown, ChevronRight } from "lucide-react";
 
-import { StatusBadge } from "@/components/app/shared";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
 import { ProjectMilestoneStatus, type MilestoneResponse, type ProjectDashboardResponse } from "@/types/projects";
 
@@ -34,7 +34,7 @@ function MilestoneRow({ m, index }: { m: MilestoneResponse; index: number }) {
           {m.status === ProjectMilestoneStatus.in_progress && <div className="h-2 w-2 rounded-full bg-primary" />}
           {m.status === ProjectMilestoneStatus.pending && <div className="h-2 w-2 rounded-full border border-muted-foreground" />}
 
-          <StatusBadge status={m.status} />
+          <StatusBadge variant={m.status} />
         </div>
       </button>
 
