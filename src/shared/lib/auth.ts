@@ -10,13 +10,13 @@ import type { QueryClient } from "@tanstack/react-query";
 
 import { listMyCompanies } from "@/shared/api/company/companies";
 import { getMyProfile } from "@/shared/api/user/users";
-import type { TokenPair } from "@/types";
+import type { AuthTokenPair } from "@/types";
 import { UserType } from "@/types/shared/shared.enums";
 
 import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
 
 
-export type { TokenPair };
+export type { AuthTokenPair };
 export { UserType };
 
 const USER_TYPE_CHANGE_EVENT = "nnarks_user_type_changed";
@@ -31,7 +31,7 @@ export function getRefreshToken(): string | null {
 }
 
 // ── Write ────────────────────────────────────────────────────────────
-export function storeTokens(pair: TokenPair): void {
+export function storeTokens(pair: AuthTokenPair): void {
   localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, pair.access_token);
   localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, pair.refresh_token);
   localStorage.setItem(STORAGE_KEYS.ACCESS_EXPIRES, pair.access_token_expires_at);

@@ -2,7 +2,7 @@
  * Auth types — mirrors backend TokenPair and auth request/response schemas.
  */
 
-export interface TokenPair {
+export interface AuthTokenPair {
     access_token: string;
     refresh_token: string;
     token_type: "bearer";
@@ -10,24 +10,24 @@ export interface TokenPair {
     refresh_token_expires_at: string;
 }
 
-export interface MagicLinkRequest {
+export interface AuthMagicLinkRequest {
     email: string;
 }
 
-export interface MagicVerifyRequest {
+export interface AuthMagicVerifyRequest {
     token?: string;
     code?: string;
 }
 
-export interface PasswordSignupRequest {
+export interface AuthPasswordSignupRequest {
     email: string;
     password: string;
 }
 
-export interface PasswordSignupVerifyRequest {
+export interface AuthPasswordSignupVerifyRequest {
     code: string;
 }
 
-export interface MagicLoginResponse {
+export interface AuthMagicLoginResponse {
     message: string;
 }

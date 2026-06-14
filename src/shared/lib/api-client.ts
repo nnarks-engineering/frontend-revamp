@@ -24,7 +24,7 @@ import {
   getAccessToken,
   getRefreshToken,
   storeTokens,
-  type TokenPair,
+  type AuthTokenPair,
 } from "./auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "./constants";
 
@@ -116,7 +116,7 @@ api.interceptors.response.use(
     try {
       // Call the refresh endpoint directly with a plain axios call
       // (not through `api`) to avoid interceptor loops.
-      const { data } = await axios.post<TokenPair>(
+      const { data } = await axios.post<AuthTokenPair>(
         `${API_BASE_URL}${AUTH_ENDPOINTS.REFRESH}`,
         { refresh_token: refreshToken },
         { headers: { "Content-Type": "application/json" } },

@@ -6,36 +6,36 @@ import { api } from "@/shared/lib/api-client";
 import { clearTokens, getAccessToken, storeTokens } from "@/shared/lib/auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "@/shared/lib/constants";
 import type {
-  MagicLinkRequest,
-  MagicLoginResponse,
-  MagicVerifyRequest,
-  PasswordSignupRequest,
-  PasswordSignupVerifyRequest,
-  TokenPair,
+  AuthMagicLinkRequest,
+  AuthMagicLoginResponse,
+  AuthMagicVerifyRequest,
+  AuthPasswordSignupRequest,
+  AuthPasswordSignupVerifyRequest,
+  AuthTokenPair,
 } from "@/types";
 
 export type {
-  MagicLinkRequest, MagicLoginResponse, MagicVerifyRequest,
-  PasswordSignupRequest,
-  PasswordSignupVerifyRequest, TokenPair
+  AuthMagicLinkRequest, AuthMagicLoginResponse, AuthMagicVerifyRequest,
+  AuthPasswordSignupRequest,
+  AuthPasswordSignupVerifyRequest, AuthTokenPair
 };
 
 
-export async function sendMagicLink(data: MagicLinkRequest): Promise<MagicLoginResponse> {
-  const res = await api.post<MagicLoginResponse>(AUTH_ENDPOINTS.MAGIC_SEND, data);
+export async function sendMagicLink(data: AuthMagicLinkRequest): Promise<AuthMagicLoginResponse> {
+  const res = await api.post<AuthMagicLoginResponse>(AUTH_ENDPOINTS.MAGIC_SEND, data);
   return res.data;
 }
 
-export async function verifyMagicLink(data: MagicVerifyRequest): Promise<TokenPair> {
-  const res = await api.post<TokenPair>(AUTH_ENDPOINTS.MAGIC_VERIFY, data);
+export async function verifyMagicLink(data: AuthMagicVerifyRequest): Promise<AuthTokenPair> {
+  const res = await api.post<AuthTokenPair>(AUTH_ENDPOINTS.MAGIC_VERIFY, data);
   storeTokens(res.data);
   return res.data;
 }
 
 export async function requestPasswordSignup(
-  data: PasswordSignupRequest,
-): Promise<MagicLoginResponse> {
-  const res = await api.post<MagicLoginResponse>(
+  data: AuthPasswordSignupRequest,
+): Promise<AuthMagicLoginResponse> {
+  const res = await api.post<AuthMagicLoginResponse>(
     AUTH_ENDPOINTS.PASSWORD_SIGNUP_REQUEST,
     data,
   );
@@ -43,9 +43,9 @@ export async function requestPasswordSignup(
 }
 
 export async function verifyPasswordSignup(
-  data: PasswordSignupVerifyRequest,
-): Promise<TokenPair> {
-  const res = await api.post<TokenPair>(
+  data: AuthPasswordSignupVerifyRequest,
+): Promise<AuthTokenPair> {
+  const res = await api.post<AuthTokenPair>(
     AUTH_ENDPOINTS.PASSWORD_SIGNUP_VERIFY,
     data,
   );
@@ -57,12 +57,12 @@ export async function verifyPasswordSignup(
 export async function loginWithPassword(
   email: string,
   password: string,
-): Promise<TokenPair> {
+): Promise<AuthTokenPair> {
   const formData = new URLSearchParams();
   formData.append("username", email);
   formData.append("password", password);
 
-  const res = await api.post<TokenPair>(AUTH_ENDPOINTS.PASSWORD_LOGIN, formData, {
+  const res = await api.post<AuthTokenPair>(AUTH_ENDPOINTS.PASSWORD_LOGIN, formData, {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
 
@@ -70,8 +70,8 @@ export async function loginWithPassword(
   return res.data;
 }
 
-export async function refreshTokens(refreshToken: string): Promise<TokenPair> {
-  const res = await axios.post<TokenPair>(
+export async function refreshTokens(refreshToken: string): Promise<AuthTokenPair> {
+  const res = await axios.post<AuthTokenPair>(
     `${API_BASE_URL}${AUTH_ENDPOINTS.REFRESH}`,
     { refresh_token: refreshToken },
     { headers: { "Content-Type": "application/json" } },

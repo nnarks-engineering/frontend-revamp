@@ -31,10 +31,10 @@ import {
 } from "@/shared/lib/auth";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
 import type {
-  MagicLinkRequest,
-  MagicVerifyRequest,
-  PasswordSignupRequest,
-  PasswordSignupVerifyRequest, ProfileRead, ProfileUpdate, UserRead
+  AuthMagicLinkRequest,
+  AuthMagicVerifyRequest,
+  AuthPasswordSignupRequest,
+  AuthPasswordSignupVerifyRequest, ProfileRead, ProfileUpdate, UserRead
 } from "@/types";
 import { UserType as UserTypeEnum } from "@/types/shared/shared.enums";
 import type { UserType } from "@/types/shared/shared.enums";
@@ -95,7 +95,7 @@ export function useUpdateProfile() {
 /** Send magic link / OTP. */
 export function useSendMagicLink() {
   return useMutation({
-    mutationFn: (data: MagicLinkRequest) => sendMagicLink(data),
+    mutationFn: (data: AuthMagicLinkRequest) => sendMagicLink(data),
   });
 }
 
@@ -110,7 +110,7 @@ export function useVerifyMagicLink(options?: VerifyAuthOptions) {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (data: MagicVerifyRequest) => verifyMagicLink(data),
+    mutationFn: (data: AuthMagicVerifyRequest) => verifyMagicLink(data),
     onSuccess: async () => {
       const userType = options?.userType ?? UserTypeEnum.vendor;
 
@@ -136,7 +136,7 @@ export function useVerifyMagicLink(options?: VerifyAuthOptions) {
 /** Request a password-based signup. */
 export function useRequestPasswordSignup() {
   return useMutation({
-    mutationFn: (data: PasswordSignupRequest) => requestPasswordSignup(data),
+    mutationFn: (data: AuthPasswordSignupRequest) => requestPasswordSignup(data),
   });
 }
 
@@ -146,7 +146,7 @@ export function useVerifyPasswordSignup(options?: VerifyAuthOptions) {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (data: PasswordSignupVerifyRequest) => verifyPasswordSignup(data),
+    mutationFn: (data: AuthPasswordSignupVerifyRequest) => verifyPasswordSignup(data),
     onSuccess: async () => {
       const userType = options?.userType ?? UserTypeEnum.vendor;
 
