@@ -9,6 +9,7 @@ import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/company/use-company-members";
 import { getStoredUserType, UserType } from "@/shared/lib/auth";
+import LynnLogo from "@/assets/lynn-ai.svg?react";
 
 
 
@@ -63,7 +64,7 @@ export function AppHeader2({ onMenuToggle }: { onMenuToggle?: () => void }) {
         className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
         aria-label="Nnarks AI"
       >
-        <BrainCircuit className="w-4.5 h-4.5" />
+        <LynnLogo className="w-4.5 h-4.5" />
       </Link>
 
       {/* Notifications / Invitations */}

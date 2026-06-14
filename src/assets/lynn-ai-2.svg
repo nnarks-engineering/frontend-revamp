@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Abstract "L" built from angular shards, echoing the parent mark's diagonal cuts -->
+  <polygon points="40,20 90,20 90,140 170,140 170,180 40,180" fill="#5ecbe2"/>
+  <!-- Light facet cutting across the L -->
+  <polygon points="90,20 120,20 90,140 60,140" fill="#b9e4f1"/>
+  <!-- Simple orange dot, a quiet "spark" at the foot of the L -->
+  <circle cx="150" cy="160" r="16" fill="#f7941d"/>
+</svg>
