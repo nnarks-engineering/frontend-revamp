@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-
 import { Link } from "@tanstack/react-router";
 import { Bell, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";

@@ -1,34 +1,33 @@
-import { useMemo, useState } from "react";
-
 import {
   ArrowDownLeft,
   ArrowUpRight,
-  Search,
+  CreditCard,
   ListFilter,
   Loader2,
-  CreditCard,
+  Search,
   TrendingUp,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 
 import NoMoneySvg from "@/assets/svg/no-money.svg?react";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { EmptyState } from "@/components/app/shared";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { MinimalStatCard } from "@/components/ui/minimal-stat-card";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
+  ModuleLayoutHeaderActions,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
   ModuleLayoutToolbar,
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
 } from "@/components/ui/module-layout";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useActiveCompany } from "@/shared/contexts/company/active-company-context";
 import { useProjects } from "@/shared/hooks/project/use-projects";
@@ -302,7 +301,7 @@ export function WalletPageClient() {
           />
 
           {/* Quick Project Budget Overview */}
-          {projectsData && projectsData.items && projectsData.items.length > 0 && (
+          {projectsData?.items && projectsData.items.length > 0 && (
             <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary-50 to-background p-5 space-y-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />

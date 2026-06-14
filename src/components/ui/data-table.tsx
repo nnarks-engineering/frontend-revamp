@@ -1,21 +1,20 @@
-import * as React from "react";
-
 import {
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
   type PaginationState,
   type RowSelectionState,
   type SortingState,
   type TableOptions,
+  useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ChevronsUpDown } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronsUpDown, ChevronUp } from "lucide-react";
+import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import {

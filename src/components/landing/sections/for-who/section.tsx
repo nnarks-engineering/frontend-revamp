@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import {
@@ -8,6 +6,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 // Import images from personas

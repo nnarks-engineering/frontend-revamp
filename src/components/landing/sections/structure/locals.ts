@@ -1,4 +1,4 @@
-import { Users, Zap, Sparkles, LineChart, type LucideIcon } from "lucide-react";
+import { LineChart, type LucideIcon, Sparkles, Users, Zap } from "lucide-react";
 
 export interface StructureItem {
   id: string;

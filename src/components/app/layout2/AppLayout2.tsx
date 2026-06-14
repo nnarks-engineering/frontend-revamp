@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { PanelRightOpen } from "lucide-react";
 import { ThemeProvider } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
 import { resolveVerticalSidebarItems } from "@/app/nav-config-si";
 import { LocationBanner } from "@/components/app/shared";

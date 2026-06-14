@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
 
 import { motion } from "motion/react";
+import React from "react";
 
 import {
   Modal,
@@ -49,7 +49,7 @@ export function AnimatedModalDemo() {
             <div className="flex justify-center items-center">
               {images.map((image, idx) => (
                 <motion.div
-                  key={"images" + idx}
+                  key={`images${idx}`}
                   style={{
                     rotate: rotations[idx],
                   }}

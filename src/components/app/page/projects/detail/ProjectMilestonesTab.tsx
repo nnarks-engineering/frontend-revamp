@@ -1,10 +1,8 @@
-import { useState } from "react";
-
 import { ChevronDown, ChevronRight } from "lucide-react";
-
-import { StatusBadge } from "@/components/ui/status-badge";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ProjectMilestoneStatus, type MilestoneResponse, type ProjectDashboardResponse } from "@/types/projects";
+import { StatusBadge } from "@/components/ui/status-badge";
+import { type MilestoneResponse, type ProjectDashboardResponse, ProjectMilestoneStatus } from "@/types/projects";
 
 function MilestoneRow({ m, index }: { m: MilestoneResponse; index: number }) {
   const [isExpanded, setIsExpanded] = useState(

@@ -1,4 +1,4 @@
-import { ShieldCheck, Crown, Users, Settings } from "lucide-react";
+import { Crown, Settings, ShieldCheck, Users } from "lucide-react";
 
 export function RolesTab() {
   const roles = [

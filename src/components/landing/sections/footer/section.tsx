@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-
-import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import NnarksLogoSm from "@/assets/nnarks-logo.svg?react";
+import NnarksLogo from "@/assets/nnarks-logo-sm.svg?react";
 import FaceBookIcon from "@/assets/svg/facebook.svg?react";
 import InstagramIcon from "@/assets/svg/instagram.svg?react";
 import LinkedInIcon from "@/assets/svg/linked-in.svg?react";

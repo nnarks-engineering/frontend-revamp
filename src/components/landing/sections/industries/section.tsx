@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
 
 import { Armchair } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 import LineJoinedDotSvg from "@/assets/svg/line-joined-dotes.svg?react"
 import { cn } from "@/shared/lib/utils";

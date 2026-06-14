@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Eye, CheckCircle2, Smartphone } from "lucide-react";
+import { CheckCircle2, Eye, ShieldCheck, Smartphone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import illustration from "@/assets/img/landing/illustration.webp";

@@ -41,8 +41,7 @@ export function CreateServiceModal({ companyId, open, onOpenChange }: CreateServ
       onOpenChange(false);
       form.reset();
     },
-    onError: (error) => {
-      console.error(error);
+    onError: (_error) => {
       toast.error("Failed to create service");
     },
   });

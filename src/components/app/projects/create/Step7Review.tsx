@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import { useNavigate } from "@tanstack/react-router";
-import { Loader2, CheckCircle2, ArrowRight, ClipboardList, Edit } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardList, Edit, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { CircleFlag } from "react-circle-flags";
 import { toast } from "sonner";
 
@@ -10,11 +9,11 @@ import { DetailField } from "@/components/common/DetailField";
 import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
+  ModuleLayoutHeaderActions,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
 import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useCreateProject } from "@/shared/hooks/project/use-projects";
@@ -83,8 +82,6 @@ setIsSuccess(true);
     // ... milestones, invites, setIsSuccess
   }
   catch {
-    console.error("Server error:");
-    console.error("Payload:", payload);
   }
   finally {
     setIsSubmitting(false);

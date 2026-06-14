@@ -1,6 +1,5 @@
-import React from "react";
-
 import { BadgeCheck,Edit2 } from "lucide-react";
+import React from "react";
 
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { Image } from "@/components/image/Image";

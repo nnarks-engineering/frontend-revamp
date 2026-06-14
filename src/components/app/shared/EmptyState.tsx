@@ -1,6 +1,5 @@
-import type React from "react";
-
 import type { LucideIcon } from "lucide-react";
+import type React from "react";
 
 import NoDataSvg from "@/assets/svg/no-data.svg?react";
 import { cn } from "@/shared/lib/utils";

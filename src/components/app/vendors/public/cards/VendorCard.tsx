@@ -1,4 +1,4 @@
-import { BadgeCheck, Star, MapPin } from "lucide-react";
+import { BadgeCheck, MapPin, Star } from "lucide-react";
 
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { Image } from "@/components/image/Image";

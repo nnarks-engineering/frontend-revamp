@@ -1,7 +1,7 @@
 "use client"
 
-import { Check, Clock, X, AlertTriangle, Minus, Ban, Play, Calendar, Crown, ShieldCheck, User } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { AlertTriangle, Ban, Calendar, Check, Clock, Crown, Minus, Play, ShieldCheck, User, X } from "lucide-react"
 
 import { cn } from "@/shared/lib/utils"
 

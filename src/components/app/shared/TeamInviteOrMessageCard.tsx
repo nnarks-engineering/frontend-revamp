@@ -1,6 +1,6 @@
 
 import { Link } from "@tanstack/react-router";
-import { MessageSquare, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronRight, Loader2, MessageSquare } from "lucide-react";
 
 import TeamIllustration from "@/assets/svg/no-message.svg?react";
 import NoMembersSvg from "@/assets/svg/no-users.svg?react"

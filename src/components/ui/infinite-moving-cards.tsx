@@ -84,7 +84,7 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <li
             className="flex items-center justify-center w-auto h-20 px-8"
-            key={typeof item.name === 'string' ? item.name + '-' + idx : idx}
+            key={typeof item.name === 'string' ? `${item.name}-${idx}` : idx}
           >
             {item.quote}
           </li>

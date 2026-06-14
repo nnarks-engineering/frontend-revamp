@@ -1,6 +1,5 @@
-import { useState } from "react";
-
 import { Quote } from "lucide-react";
+import { useState } from "react";
 
 import { AnimatedTooltip } from "../../animated-tooltip";
 

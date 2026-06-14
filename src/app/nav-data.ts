@@ -1,8 +1,8 @@
 import {
   Bell,
   Brain,
-  CreditCard,
   Cpu,
+  CreditCard,
   FileText,
   FolderOpen,
   Gavel,

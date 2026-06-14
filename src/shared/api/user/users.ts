@@ -5,12 +5,12 @@ import type {
   AgentSettingsUpdate,
   ProfileRead,
   ProfileUpdate,
+  UsernameAvailability,
   UserRead,
   UserUpdate,
-  UsernameAvailability,
 } from "@/types";
 
-export type { AgentSettingsRead, AgentSettingsUpdate, ProfileRead, ProfileUpdate, UserRead, UserUpdate, UsernameAvailability };
+export type { AgentSettingsRead, AgentSettingsUpdate, ProfileRead, ProfileUpdate, UsernameAvailability, UserRead, UserUpdate };
 
 // ── API calls ────────────────────────────────────────────────────────
 

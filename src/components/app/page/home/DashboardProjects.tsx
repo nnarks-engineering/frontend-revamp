@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Plus, ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { CREATE_PROJECT_ROUTE } from "@/components/app/page/projects/shared/constants";
@@ -8,14 +8,14 @@ import { EmptyState } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
+  ModuleLayoutHeaderActions,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
 import { useProjects } from "@/shared/hooks/project/use-projects";
-import { ProjectStatus, type ProjectResponse } from "@/types/projects";
+import { type ProjectResponse, ProjectStatus } from "@/types/projects";
 
 function getPriority(project: ProjectResponse) {
   switch (project.status) {

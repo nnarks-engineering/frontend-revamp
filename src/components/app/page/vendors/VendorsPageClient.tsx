@@ -1,22 +1,21 @@
-import { useState, useMemo } from "react";
-
-import { Store, Plus } from "lucide-react";
+import { Plus, Store } from "lucide-react";
+import { useMemo, useState } from "react";
 
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import {
-  VendorServiceFilter,
+  VENDOR_SERVICE_CATEGORIES,
   VendorGrid,
   VendorSearchBar,
-  VENDOR_SERVICE_CATEGORIES,
+  VendorServiceFilter,
 } from "@/components/app/vendors/public";
 import { Button } from "@/components/ui/button";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
+  ModuleLayoutHeaderActions,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
 } from "@/components/ui/module-layout";
 import { useVendors } from "@/shared/hooks/vendor/use-vendors";
 import type { VendorServiceCategory } from "@/types";

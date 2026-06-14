@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 
 import { useIsomorphicLayoutEffect } from 'framer-motion'
+import { useState } from 'react'
 
 type UseMediaQueryOptions = {
   defaultValue?: boolean

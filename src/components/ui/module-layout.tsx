@@ -1,6 +1,5 @@
-import * as React from "react"
-
 import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react"
 
 import { cn } from "@/shared/lib/utils"
 
@@ -109,13 +108,13 @@ ModuleLayoutToolbarRight.displayName = "ModuleLayoutToolbarRight"
 
 export {
   ModuleLayout,
-  ModuleLayoutHeader,
-  ModuleLayoutHeaderDecorations,
-  ModuleLayoutHeaderContent,
-  ModuleLayoutTitle,
   ModuleLayoutDescription,
+  ModuleLayoutHeader,
   ModuleLayoutHeaderActions,
+  ModuleLayoutHeaderContent,
+  ModuleLayoutHeaderDecorations,
   ModuleLayoutTabsContainer,
+  ModuleLayoutTitle,
   ModuleLayoutToolbar,
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,

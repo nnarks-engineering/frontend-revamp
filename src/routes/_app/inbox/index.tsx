@@ -1,6 +1,5 @@
-import { useState } from "react";
-
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 import NoMessageSvg from "@/assets/svg/no-message.svg?react";
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
@@ -9,14 +8,14 @@ import { ChatThreadList } from "@/components/app/inbox/ChatThreadList";
 import { ParticipantsOverlay } from "@/components/app/inbox/ParticipantsOverlay";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
   ModuleLayoutToolbar,
 } from "@/components/ui/module-layout";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSessions, useMessages, useSendMessage } from "@/shared/hooks/messaging/use-messaging";
+import { useMessages, useSendMessage, useSessions } from "@/shared/hooks/messaging/use-messaging";
 import { cn } from "@/shared/lib/utils";
 import type { SessionType } from "@/types";
 import type { ChatSession } from "@/types/messaging/messaging.types";

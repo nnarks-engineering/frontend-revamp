@@ -1,4 +1,4 @@
-import { FileText, Receipt, ScrollText, FileBarChart, FileSearch, Files } from "lucide-react";
+import { FileBarChart, FileSearch, Files, FileText, Receipt, ScrollText } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
 import type { DocumentCategory } from "@/types";

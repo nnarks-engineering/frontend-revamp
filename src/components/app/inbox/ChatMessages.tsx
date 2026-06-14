@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-
 import { ArrowDown, ArrowUp, ChevronLeft, Paperclip } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import type { ChatSession, Message } from "@/types/messaging/messaging.types";
@@ -52,7 +51,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [scrollToBottom]);
 
   return (
     <div className="bg-card relative flex min-h-0 flex-1 flex-col">

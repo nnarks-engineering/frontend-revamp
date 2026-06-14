@@ -7,11 +7,11 @@ import type {
   AgentUserRead,
   Company,
   CompanyCreate,
+  CompanyInvitationRead,
   CompanyMember,
   CompanyMemberInvite,
   CompanyMemberUpdate,
   CompanyUpdate,
-  CompanyInvitationRead,
 } from "@/types/company/company.types";
 
 export type {
@@ -21,11 +21,11 @@ export type {
   AgentUserRead,
   Company,
   CompanyCreate,
+  CompanyInvitationRead, 
   CompanyMember,
   CompanyMemberInvite,
   CompanyMemberUpdate,
-  CompanyUpdate,
-  CompanyInvitationRead
+  CompanyUpdate
 };
 
 export async function createCompany(data: CompanyCreate): Promise<Company> {

@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
+import { useState } from "react";
 
-import { PageHeader, FilterTabs } from "@/components/app/shared";
+import { FilterTabs, PageHeader } from "@/components/app/shared";
 import { Button } from "@/components/ui/button";
 import { MOCK_ARTICLES } from "@/data/mock/advisory";
 

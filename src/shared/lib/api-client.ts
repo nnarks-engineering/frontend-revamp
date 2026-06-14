@@ -20,11 +20,11 @@ import axios, {
 } from "axios";
 
 import {
+  type AuthTokenPair,
   clearTokens,
   getAccessToken,
   getRefreshToken,
   storeTokens,
-  type AuthTokenPair,
 } from "./auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "./constants";
 

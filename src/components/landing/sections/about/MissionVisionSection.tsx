@@ -21,7 +21,7 @@ export default function MissionVisionSection() {
       className=" py-20 md:py-32 "
       contentClassName="max-w-7xl mx-auto px-6"
     >
-    <p className="text-4xl font-bold font-millik mb-8">{t("landing:aboutMission.title") + ' & ' + t("landing:aboutMission.visionTitle")}</p>
+    <p className="text-4xl font-bold font-millik mb-8">{`${t("landing:aboutMission.title")} & ${t("landing:aboutMission.visionTitle")}`}</p>
       <div className="grid z-10 relative grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Mission Card */}
         <MissionVisionCard

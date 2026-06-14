@@ -59,7 +59,7 @@ export function getVisibleTopLevelItems(): NavItem[] {
 // ─── Route helpers ────────────────────────────────────────────────────────────
 
 export function isUnder(pathname: string, base: string): boolean {
-  return pathname === base || pathname.startsWith(base + "/");
+  return pathname === base || pathname.startsWith(`${base}/`);
 }
 
 export function isOwnedBy(pathname: string, item: NavItem): boolean {

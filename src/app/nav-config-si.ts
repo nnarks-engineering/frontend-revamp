@@ -65,7 +65,7 @@ export function canAccessPath(pathname: string): boolean {
 
   function traverse(items: NavItem[]) {
     for (const item of items) {
-      if (pathname === item.to || pathname.startsWith(item.to + "/")) {
+      if (pathname === item.to || pathname.startsWith(`${item.to}/`)) {
         if (item.to.length > maxMatchLength) {
           maxMatchLength = item.to.length;
           matchedItem = item;
@@ -80,7 +80,7 @@ export function canAccessPath(pathname: string): boolean {
   traverse(allItems);
 
   const match = matchedItem as NavItem | null;
-  if (match && match.userTypes) {
+  if (match?.userTypes) {
     return hasUserTypeAccess(match.userTypes);
   }
   
@@ -90,7 +90,7 @@ export function canAccessPath(pathname: string): boolean {
 }
 
 export function isUnder(pathname: string, base: string): boolean {
-  return pathname === base || pathname.startsWith(base + "/");
+  return pathname === base || pathname.startsWith(`${base}/`);
 }
 
 export function isOwnedBy(pathname: string, item: NavItem): boolean {

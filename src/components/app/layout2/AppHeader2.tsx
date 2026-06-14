@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-
 import { Link } from "@tanstack/react-router";
-import { Bell,Search, Menu } from "lucide-react";
+import { Bell,Menu, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-
+import LynnLogo from "@/assets/lynn-ai.svg?react";
 import { GlobalSearch } from "@/components/app/header/GlobalSearch";
 import { InvitationsDrawer } from "@/components/app/header/InvitationsDrawer";
 import { SidebarUserMenu } from "@/components/app/sidebar/SidebarUserMenu";
 import { useMyInvitations } from "@/shared/hooks/company/use-company-members";
 import { getStoredUserType, UserType } from "@/shared/lib/auth";
-import LynnLogo from "@/assets/lynn-ai.svg?react";
 
 
 

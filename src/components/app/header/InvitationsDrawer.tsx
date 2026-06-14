@@ -1,12 +1,12 @@
+import { Building2, Check, ChevronDown, ChevronUp, Loader2, Mail, X } from "lucide-react";
 import { useState } from "react";
-
-import { Building2, Check, X, ChevronDown, ChevronUp, Loader2, Mail } from "lucide-react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
-import { useMyInvitations, useAcceptCompanyInvitation, useRejectCompanyInvitation } from "@/shared/hooks/company/use-company-members";
+import { useAcceptCompanyInvitation, useMyInvitations, useRejectCompanyInvitation } from "@/shared/hooks/company/use-company-members";
+
 interface InvitationsDrawerProps {
   open: boolean;
   onClose: () => void;

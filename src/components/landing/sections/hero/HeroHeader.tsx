@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 import Logo from '@/assets/nnarks-logo.svg?react'
-import { navigationStructure, DesktopDropdown } from '@/components/landing/nav/NavBar'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { DesktopDropdown, navigationStructure } from '@/components/landing/nav/NavBar'
 import { cn } from '@/shared/lib/utils'
 
 export function HeroHeader() {

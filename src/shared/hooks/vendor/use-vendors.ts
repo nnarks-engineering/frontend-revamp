@@ -3,7 +3,7 @@
  * Currently returns mock data; swap `queryFn` once the API is wired up.
  */
 
-import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 
 import type { VendorServiceCategory } from "@/types";
 import type { VendorItem } from "@/types/vendor/vendor.types";

@@ -1,7 +1,6 @@
-import type {ReactNode } from "react";
-
 import { motion } from "framer-motion";
 import { ArrowRight, type LucideIcon } from "lucide-react";
+import type {ReactNode } from "react";
 
 import { cn } from "@/shared/lib/utils";
 

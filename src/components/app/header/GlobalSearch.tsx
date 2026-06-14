@@ -1,11 +1,10 @@
-import * as React from "react";
-
 import { useNavigate } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
+import * as React from "react";
 
 import { getAllSearchableItems } from "@/app/nav-config";
 import { SearchHighlight } from "@/components/ui/search-highlight";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/shared/lib/utils";
 
 

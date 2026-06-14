@@ -43,7 +43,7 @@ export function useRightPanel(
         if (openOnMount && window.innerWidth >= 1024) open();
         return () => clearContent();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [openOnMount, open, clearContent]);
 
     return { isOpen, toggle, open, close };
 }

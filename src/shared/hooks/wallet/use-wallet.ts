@@ -1,10 +1,10 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
-  getWallet,
-  listTransactions,
-  initiateDeposit,
   confirmDeposit,
+  getWallet,
+  initiateDeposit,
+  listTransactions,
 } from "@/shared/api/wallet/wallet";
 import { isAuthenticated } from "@/shared/lib/auth";
 import { QUERY_KEYS } from "@/shared/lib/constants";

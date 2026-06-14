@@ -1,4 +1,4 @@
-import { Plus, Trash2, ShieldCheck, Mail, Clock } from "lucide-react";
+import { Clock, Mail, Plus, ShieldCheck, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

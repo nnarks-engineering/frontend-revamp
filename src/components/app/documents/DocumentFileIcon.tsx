@@ -1,4 +1,4 @@
-import { FileImage, FileVideo, FileAudio, Sheet, FileType2, File } from "lucide-react";
+import { File, FileAudio, FileImage, FileType2, FileVideo, Sheet } from "lucide-react";
 
 import ExcelSvg from "@/assets/svg/excel.svg?react";
 import PdfSvg from "@/assets/svg/pdf.svg?react";
@@ -22,7 +22,6 @@ function getFileTypeMeta(fileType: DocumentFileType) {
       return { color: "text-emerald-600 bg-emerald-50", label: "XLS", Icon: Sheet };
     case DocumentFileType.word:
       return { color: "text-blue-700 bg-blue-50", label: "DOC", Icon: FileType2 };
-    case DocumentFileType.text:
     default:
       return { color: "text-slate-600 bg-slate-50", label: "TXT", Icon: File };
   }

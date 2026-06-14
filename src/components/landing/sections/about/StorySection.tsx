@@ -1,8 +1,7 @@
-import { useCallback } from "react";
-
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 // Story Images

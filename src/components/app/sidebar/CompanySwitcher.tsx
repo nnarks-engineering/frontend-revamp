@@ -1,13 +1,13 @@
 import { ArrowLeftRight, Building2, Plus } from "lucide-react";
 
 import {
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
-  DropdownMenuPortal,
-  DropdownMenuLabel,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { getInitials } from "@/shared/lib/initials";

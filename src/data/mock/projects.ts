@@ -2,8 +2,9 @@
  * Mock project data using backend-aligned types.
  * Replace these with API calls when integrating the backend.
  */
-import { Industry, ProjectType } from "@/types/projects";
+
 import type { ProjectDashboardResponse } from "@/types/projects";
+import { Industry, ProjectType } from "@/types/projects";
 
 export const MOCK_PROJECTS: ProjectDashboardResponse[] = [
   {

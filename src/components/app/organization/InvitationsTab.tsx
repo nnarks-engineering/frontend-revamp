@@ -1,6 +1,5 @@
-import { useState } from "react";
-
 import { RefreshCw, Trash2 } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { EmptyState, Pagination } from "@/components/app/shared";
@@ -31,7 +30,7 @@ function formatDate(dateStr: string) {
     .replace(/ (\d{4})$/, ", $1");
 }
 
-function statusVariant(status: CompanyMemberStatus): string {
+function _statusVariant(status: CompanyMemberStatus): string {
   const map: Record<CompanyMemberStatus, string> = {
     active: "active",
     pending: "pending",

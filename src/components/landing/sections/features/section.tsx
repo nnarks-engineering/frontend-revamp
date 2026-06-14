@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import {
-  Building2,
   BarChart3,
-  Wallet,
-  Users,
-  ShieldCheck,
+  Building2,
   Eye,
+  ShieldCheck,
+  Users,
+  Wallet,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 

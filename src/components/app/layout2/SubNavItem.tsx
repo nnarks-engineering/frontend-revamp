@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 import type {NavItem } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";

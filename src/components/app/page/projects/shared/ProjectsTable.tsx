@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { Pagination, EmptyState } from "@/components/app/shared";
+import { EmptyState, } from "@/components/app/shared";
 import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,

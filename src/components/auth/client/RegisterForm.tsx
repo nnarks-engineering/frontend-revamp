@@ -1,8 +1,7 @@
-import * as React from "react"
-
 import { useForm } from "@tanstack/react-form"
 import { Link, useNavigate } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
+import * as React from "react"
 import { toast } from "sonner"
 import { z } from "zod"
 

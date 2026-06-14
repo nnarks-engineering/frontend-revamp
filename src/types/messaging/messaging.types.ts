@@ -2,9 +2,9 @@
  * Messaging types — mirrors backend ChatSessionRead, MessageRead, etc.
  */
 import type {
-  SessionType,
   MemberType,
   MessageRole,
+  SessionType,
 } from "./messaging.enums";
 
 export interface ChatSession {

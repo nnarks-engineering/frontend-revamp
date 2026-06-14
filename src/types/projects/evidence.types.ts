@@ -1,6 +1,6 @@
 import type { DocumentFileType } from "../shared/shared.enums";
 
-import type { ProjectReviewStatus, ProjectReviewerType } from "./project.enums";
+import type { ProjectReviewerType, ProjectReviewStatus } from "./project.enums";
 
 // ── Payloads ─────────────────────────────────────────────────────────────────
 

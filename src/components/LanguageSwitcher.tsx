@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { Check, ChevronsUpDown, Languages } from "lucide-react";
+import * as React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";

@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { createFileRoute } from "@tanstack/react-router";
+import * as React from "react";
 
 
 import { OnboardingNav } from "@/components/onboarding/OnboardingNav";
@@ -15,11 +14,11 @@ import {
     useSubmitVendorProfile,
 } from "@/shared/hooks/onboarding/use-onboarding";
 import { requireOnboarding } from "@/shared/middleware"
-import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types";
 import type {
     PersonalInfoFormValues,
     VendorProfileFormValues,
 } from "@/types";
+import { VENDOR_ONBOARDING_STEPS, VENDOR_TOTAL_STEPS } from "@/types";
 
 
 // ── Route definition ──────────────────────────────────────────────────

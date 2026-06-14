@@ -3,10 +3,10 @@ import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 import {
+  type PersonalInfoPayload,
   skipVendorProfile,
   submitPersonalInfo,
   submitVendorProfile,
-  type PersonalInfoPayload,
   type VendorProfilePayload,
 } from "@/shared/api/onboarding/onboarding";
 import { QUERY_KEYS } from "@/shared/lib/constants";

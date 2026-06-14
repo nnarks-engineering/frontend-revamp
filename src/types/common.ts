@@ -1,7 +1,7 @@
 /**
  * Common API utility types shared across domains.
  */
-import type { ReactNode, ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 
 export interface PaginatedResponse<T> {
   items: T[];

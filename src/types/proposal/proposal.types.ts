@@ -2,9 +2,9 @@
  * Proposal types — mirrors backend ProposalRead, ProposalVoteRead schemas.
  */
 import type {
+  ProposalAction,
   ProposalStatus,
   ProposalSubjectType,
-  ProposalAction,
   VoteChoice,
 } from "./proposal.enums";
 

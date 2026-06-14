@@ -1,7 +1,6 @@
-import { useRef } from "react";
-
 import DottedMap from "dotted-map";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 interface MapProps {
   dots?: Array<{

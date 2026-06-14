@@ -1,11 +1,9 @@
+import { Crown, ShieldCheck, Users, UserX } from "lucide-react";
 import { useState } from "react";
-
-import { ShieldCheck, UserX, Crown, Users} from "lucide-react";
 import { toast } from "sonner";
 
 import NoUsersSvg from "@/assets/svg/no-users.svg?react";
 import { EmptyState, Pagination } from "@/components/app/shared";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { StatusBadge } from "@/components/ui/status-badge";
 import {
   Table,
   TableBody,
@@ -141,7 +140,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
                 );
               }
               return pageItems.map((member) => {
-                const role = ROLE_META[member.role] ?? ROLE_META.member;
+                const _role = ROLE_META[member.role] ?? ROLE_META.member;
                 return (
                   <TableRow key={member.id}>
                     <TableCell>

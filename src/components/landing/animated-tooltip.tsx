@@ -1,12 +1,11 @@
-import { useRef, useState } from "react";
-
 import {
-  motion,
-  useTransform,
   AnimatePresence,
+  motion,
   useMotionValue,
   useSpring,
+  useTransform,
 } from "motion/react";
+import { useRef, useState } from "react";
 
 interface TooltipItem {
   id: number | string;

@@ -1,10 +1,10 @@
 
 
 import {
+    type UseQueryOptions,
     useMutation,
     useQuery,
     useQueryClient,
-    type UseQueryOptions,
 } from "@tanstack/react-query";
 
 import {
@@ -29,16 +29,16 @@ import type {
 } from "@/types/common";
 import type {
     AcceptInvitationPayload,
-    InviteMemberPayload,
-    MilestoneResponse,
-    MilestoneCreatePayload,
-    MilestoneUpdatePayload,
-    ProjectResponse,
-    ProjectCreatePayload,
-    ProjectDashboardResponse,
-    ProjectUpdatePayload,
     EvidenceResponse,
     EvidenceSubmitPayload,
+    InviteMemberPayload,
+    MilestoneCreatePayload,
+    MilestoneResponse,
+    MilestoneUpdatePayload,
+    ProjectCreatePayload,
+    ProjectDashboardResponse,
+    ProjectResponse,
+    ProjectUpdatePayload,
     ReviewResponse,
     ReviewSubmitPayload,
 } from "@/types/projects";
@@ -81,7 +81,7 @@ export function useCreateProject() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: QUERY_KEYS.projects });
         },
-        onError: (e) => { console.error("Error creating project", e); }
+        onError: (_e) => { }
     });
 }
 

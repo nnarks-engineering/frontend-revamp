@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next'
 import WorldMap from "@/components/ui/world-map"
 
 import AssetsSvg from './AssetsSvg'
-import HeroIllustration from './hero-illustration'
 import HeroCharacters from "./Herocharacters"
 import { HeroHeader } from './HeroHeader'
+import HeroIllustration from './hero-illustration'
 
 
 export function HeroSection() {

@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 import { ArrowRight } from "lucide-react";
 import {
   motion,
@@ -7,6 +5,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 const flags = [

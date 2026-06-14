@@ -1,7 +1,6 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
-
+import { createContext, type ReactNode, useContext, useState } from "react";
+import type { CreateProjectContextValue, CreateProjectState } from "@/types/projects";
 import { Industry, ProjectType } from "@/types/projects";
-import type { CreateProjectState, CreateProjectContextValue } from "@/types/projects";
 
 const initialState: CreateProjectState = {
   title: "",

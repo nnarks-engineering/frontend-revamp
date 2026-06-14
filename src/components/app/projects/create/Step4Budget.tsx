@@ -1,4 +1,4 @@
-import { Info, Plus, Trash2, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Info, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,12 +11,10 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/shared/lib/utils";
-import type { FormMilestone } from "@/types/projects";
-
-import { Hint } from "../../shared/hint";
-
-import { useCreateProjectForm } from "./CreateProjectContext";
 import { Currency } from "@/types";
+import type { FormMilestone } from "@/types/projects";
+import { Hint } from "../../shared/hint";
+import { useCreateProjectForm } from "./CreateProjectContext";
 
 
 

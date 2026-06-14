@@ -1,8 +1,7 @@
-import { useState, useId, useEffect, useRef } from "react";
-
 import { Link } from "@tanstack/react-router";
-import { X, ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { SectionHeader } from "@/components/ui/section-header";
@@ -11,7 +10,7 @@ import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 import { Section } from "../../Section";
 
 import { StructureCard } from "./card";
-import { structureData, type StructureItem } from "./locals";
+import { type StructureItem, structureData } from "./locals";
 
 
 

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageHeader } from "@/components/app/shared";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { MOCK_TRUST_CIRCLES } from "@/data/mock/trust-circles";
 
 export const Route = createFileRoute("/_app/circles/")({

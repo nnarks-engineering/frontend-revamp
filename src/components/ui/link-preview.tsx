@@ -1,5 +1,3 @@
-import React from "react";
-
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import {
   AnimatePresence,
@@ -8,6 +6,7 @@ import {
   useSpring,
 } from "motion/react";
 import { encode } from "qss";
+import React from "react";
 
 import { cn } from "@/shared/lib/utils";
 

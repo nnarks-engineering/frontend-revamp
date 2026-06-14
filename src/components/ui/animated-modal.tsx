@@ -1,14 +1,14 @@
 "use client";
+
+import { AnimatePresence, motion } from "motion/react";
 import {
- type ReactNode,
   createContext,
+ type ReactNode,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react";
-
-import { AnimatePresence, motion } from "motion/react";
 
 import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 import { cn } from "@/shared/lib/utils";

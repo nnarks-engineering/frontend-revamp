@@ -15,7 +15,7 @@ export * from "./projects";
 export * from "./proposal";
 export * from "./schedule";
 export * from "./service";
+export * from "./shared/shared.enums";
 export * from "./user";
 export * from "./vendor";
 export * from "./wallet";
-export * from "./shared/shared.enums";

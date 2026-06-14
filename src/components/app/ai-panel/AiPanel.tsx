@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from "react";
-
 import {
-  Sparkles,
-  X,
-  Send,
   Bot,
   Loader2,
+  Send,
+  Sparkles,
+  X,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 
@@ -48,7 +47,7 @@ export function AiPanel({ isOpen, onClose }: AiPanelProps) {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isThinking]);
+  }, []);
 
   const sendMessage = (content: string) => {
     if (!content.trim()) return;

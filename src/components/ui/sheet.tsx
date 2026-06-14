@@ -1,8 +1,7 @@
-import * as React from "react";
-
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
+import * as React from "react";
 
 import RoundingLine from "@/assets/svg/rounding-line.svg?react";
 import { cn } from "@/shared/lib/utils";
@@ -149,10 +148,10 @@ SheetDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Sheet,
-  SheetTrigger,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
+  SheetTrigger,
 };

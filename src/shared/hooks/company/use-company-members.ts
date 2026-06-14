@@ -1,15 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
+  acceptCompanyInvitation,
+  getInvitationDetails,
   inviteCompanyMember,
   listCompanyMembers,
-  removeCompanyMember,
-  updateCompanyMember,
-  resendCompanyInvitation,
-  getInvitationDetails,
-  rejectCompanyInvitation,
   listMyInvitations,
-  acceptCompanyInvitation,
+  rejectCompanyInvitation,
+  removeCompanyMember,
+  resendCompanyInvitation,
+  updateCompanyMember,
 } from "@/shared/api/company/companies";
 import { QUERY_KEYS } from "@/shared/lib/constants";
 import type { CompanyMember, CompanyMemberInvite, CompanyMemberUpdate } from "@/types/company/company.types";
@@ -33,8 +33,7 @@ export function useInviteCompanyMember(companyId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.companyMembers(companyId) });
     },
-    onError:(error)=>{
-      console.error("Error inviting member:", error);
+    onError:(_error)=>{
     }
   });
 }

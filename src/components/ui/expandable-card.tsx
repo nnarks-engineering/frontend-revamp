@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { useOutsideClick } from "@/shared/hooks/core/use-outside-click";
 

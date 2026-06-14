@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 import { useRouterState } from "@tanstack/react-router";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { useState } from "react";
 
-import { resolvePageTitle, type NavItem } from "@/app/nav-config-si";
+import { type NavItem, resolvePageTitle } from "@/app/nav-config-si";
 import { cn } from "@/shared/lib/utils";
 
 import { SubNavItem } from "./SubNavItem";

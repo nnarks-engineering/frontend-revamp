@@ -28,8 +28,7 @@ const PersonasSection = () => {
   ];
 
   return (
-    <>
-      <Section id="personas" className="py-24 relative overflow-hidden bg-white dark:bg-background" maxWidth="8xl">
+    <Section id="personas" className="py-24 relative overflow-hidden bg-white dark:bg-background" maxWidth="8xl">
         <DrawingCoilsSvg
           className="absolute inset-0 w-full h-full text-secondary/30 pointer-events-none"
           preserveAspectRatio="xMidYMid slice"
@@ -76,8 +75,6 @@ const PersonasSection = () => {
           ))}
         </div>
       </Section>
-
-    </>
   );
 };
 

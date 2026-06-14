@@ -13,7 +13,7 @@ import { getMyProfile } from "@/shared/api/user/users";
 import type { AuthTokenPair } from "@/types";
 import { UserType } from "@/types/shared/shared.enums";
 
-import { STORAGE_KEYS, QUERY_KEYS } from "./constants";
+import { QUERY_KEYS, STORAGE_KEYS } from "./constants";
 
 
 export type { AuthTokenPair };

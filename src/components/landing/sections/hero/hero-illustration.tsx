@@ -162,7 +162,7 @@ const HeroIllustration = () => {
       clearTimeout(t);
       ro.disconnect();
     };
-  }, []);
+  }, [computeLines]);
 
   const { dashLen } = CONFIG.lines;
 

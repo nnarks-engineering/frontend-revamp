@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-
 import { createFileRoute } from '@tanstack/react-router';
-import { Bot, Loader2, Send, Sparkles, History } from "lucide-react";
+import { Bot, History, Loader2, Send, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { useRightPanel } from "@/shared/hooks/core/use-right-panel";
 import { cn } from "@/shared/lib/utils";
@@ -39,7 +38,7 @@ function AiChatPage() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isThinking]);
+  }, []);
 
   const sendMessage = (content: string) => {
     if (!content.trim()) return;

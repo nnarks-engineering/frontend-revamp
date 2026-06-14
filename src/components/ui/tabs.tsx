@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState, createContext, useContext } from "react";
-import type * as React from "react";
-
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import type * as React from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 
@@ -114,5 +113,5 @@ function TabsContent({
   );
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsContent, TabsList, TabsTrigger };
 

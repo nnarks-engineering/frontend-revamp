@@ -1,10 +1,9 @@
-import * as React from "react";
-
 import { Loader2 } from "lucide-react";
+import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useCurrentProfile, useUpdateProfile } from "@/shared/hooks/auth/use-auth";
 
 

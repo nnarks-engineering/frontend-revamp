@@ -1,18 +1,17 @@
-import { useState } from "react";
-
 import { useNavigate } from "@tanstack/react-router";
-import { Plus, Search, ListFilter } from "lucide-react";
+import { ListFilter, Plus, Search } from "lucide-react";
+import { useState } from "react";
 
 import RoundingLine from "@/assets/svg/rounding-line2.svg?react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   ModuleLayout,
+  ModuleLayoutDescription,
   ModuleLayoutHeader,
+  ModuleLayoutHeaderActions,
   ModuleLayoutHeaderContent,
   ModuleLayoutTitle,
-  ModuleLayoutDescription,
-  ModuleLayoutHeaderActions,
   ModuleLayoutToolbar,
   ModuleLayoutToolbarCenter,
   ModuleLayoutToolbarRight,
@@ -21,7 +20,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useProjects } from "@/shared/hooks/project/use-projects";
 import type { ProjectListTab } from "@/types/project-list";
 
-import { PROJECT_TABS, PROJECTS_PAGE_SIZE, CREATE_PROJECT_ROUTE } from "./constants";
+import { CREATE_PROJECT_ROUTE, PROJECT_TABS, PROJECTS_PAGE_SIZE } from "./constants";
 import { useProjectTabCounts, useProjectTabFilter } from "./hooks/use-project-tab-filter";
 import { ProjectsTable } from "./ProjectsTable";
 

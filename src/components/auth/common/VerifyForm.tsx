@@ -1,7 +1,6 @@
-import * as React from "react"
-
 import { Link } from "@tanstack/react-router"
 import { ArrowRight } from "lucide-react"
+import * as React from "react"
 import { useTranslation } from "react-i18next"
 
 import { AuthHeader } from "../shared/AuthHeader"
@@ -40,8 +39,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       setIsSuccess(true)
-    } catch (error) {
-      console.error("Verification failed:", error)
+    } catch (_error) {
     } finally {
       setIsSubmitting(false)
     }

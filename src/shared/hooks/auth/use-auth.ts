@@ -24,9 +24,9 @@ import {
 } from "@/shared/api/auth/auth";
 import { getMe, getMyProfile, updateMyProfile } from "@/shared/api/user/users";
 import {
+  checkOnboardingComplete,
   clearStoredUserType,
   isAuthenticated,
-  checkOnboardingComplete,
   setStoredUserType,
 } from "@/shared/lib/auth";
 import { QUERY_KEYS, STORAGE_KEYS } from "@/shared/lib/constants";
@@ -36,8 +36,8 @@ import type {
   AuthPasswordSignupRequest,
   AuthPasswordSignupVerifyRequest, ProfileRead, ProfileUpdate, UserRead
 } from "@/types";
-import { UserType as UserTypeEnum } from "@/types/shared/shared.enums";
 import type { UserType } from "@/types/shared/shared.enums";
+import { UserType as UserTypeEnum } from "@/types/shared/shared.enums";
 
 // ═══════════════════════════════════════════════════════════════════
 // Queries
@@ -82,8 +82,7 @@ export function useUpdateProfile() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.currentProfile });
     },
-    onError: (error) => {
-      console.error("Error updating profile:", error);
+    onError: (_error) => {
     }
   });
 }
