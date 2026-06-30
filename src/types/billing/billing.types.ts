@@ -1,5 +1,4 @@
-export type BillingProvider = "paystack" | "stripe";
-export type SubscriptionStatus = "active" | "canceled" | "past_due" | "incomplete" | "trialing";
+import { BillingProvider, SubscriptionStatus } from "./billing.enums";
 
 export interface CheckoutRequest {
     company_id: string;
