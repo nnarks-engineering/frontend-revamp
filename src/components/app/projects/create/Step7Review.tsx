@@ -94,7 +94,7 @@ setIsSuccess(true);
       <ModuleLayout className="w-full rounded-none">
         <ModuleLayoutHeader variant="primary" className="rounded-none">
           <RoundingLine
-            className="absolute -top-3 right-0 scale-x-[-1] text-primary/10 pointer-events-none"
+            className="absolute -top-3 right-0  scale-x-[-1] text-primary/10 pointer-events-none"
             aria-hidden
           />
           <div className="absolute -right-12 -top-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
@@ -123,7 +123,7 @@ setIsSuccess(true);
 
         <div className="@sm:p-4 @md:p-6">
           <div className="flex flex-col items-center justify-center text-center py-12 gap-6 animate-in zoom-in-95 duration-500">
-            <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+            <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900 text-emerald-600 rounded-full flex items-center justify-center">
               <CheckCircle2 className="w-10 h-10" />
             </div>
             <div className="space-y-1">
