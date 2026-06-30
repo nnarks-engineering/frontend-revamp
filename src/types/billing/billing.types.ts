@@ -1,4 +1,4 @@
-import { BillingProvider, SubscriptionStatus } from "./billing.enums";
+import type { BillingProvider, SubscriptionStatus } from "./billing.enums";
 
 export interface CheckoutRequest {
     company_id: string;
