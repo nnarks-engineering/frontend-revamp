@@ -30,7 +30,7 @@ export const COMPANY_ENDPOINTS = {
   MY_COMPANIES: "/companies/me",
   MY_INVITATIONS: "/companies/invitations/me",
   ACCEPT_INVITATION: "/companies/invitations/accept",
-  REJECT_INVITATION: "/companies/invitations/reject",
+  REJECT_INVITATION: "/companies/invitations/decline",
   DETAIL: (id: string) => `/companies/${id}`,
   MEMBERS: (id: string) => `/companies/${id}/members`,
   MEMBER_DETAIL: (id: string, memberId: string) =>
@@ -61,6 +61,12 @@ export const WALLET_ENDPOINTS = {
   CONFIRM_DEPOSIT: (orderId: string) => `/wallet/deposit/${orderId}/confirm`,
   TRANSFER: "/wallet/transfer",
   TRANSACTIONS: "/wallet/transactions",
+} as const;
+
+// ── Audit endpoints ──────────────────────────────────────────────────
+export const AUDIT_ENDPOINTS = {
+  LIST: "/audit",
+  DETAIL: (id: string) => `/audit/${id}`,
 } as const;
 
 // ── Proposal endpoints ───────────────────────────────────────────────
@@ -136,6 +142,7 @@ export const QUERY_KEYS = {
   myCompanies: ["companies", "me"] as const,
   company: (id: string) => ["companies", id] as const,
   companyMembers: (id: string) => ["companies", id, "members"] as const,
+  companyAgent: (id: string) => ["companies", id, "agent"] as const,
   services: ["services"] as const,
   service: (id: string) => ["services", id] as const,
   kyc: (companyId: string) => ["kyc", companyId] as const,
@@ -144,6 +151,8 @@ export const QUERY_KEYS = {
   walletTransactions: (companyId: string) => ["wallet", companyId, "transactions"] as const,
   proposals: ["proposals"] as const,
   proposal: (id: string) => ["proposals", id] as const,
+  auditEvents: ["audit", "events"] as const,
+  auditEvent: (id: string) => ["audit", "events", id] as const,
   sessions: ["sessions"] as const,
   session: (id: string) => ["sessions", id] as const,
   messages: (sessionId: string) => ["sessions", sessionId, "messages"] as const,

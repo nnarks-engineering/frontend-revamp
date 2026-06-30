@@ -63,7 +63,7 @@ export interface CompanyMember {
     status: CompanyMemberStatus;
     invite_token: string | null;
     invited_at: string;
-    invite_expires_at: string | null;
+    invite_expires_at: string;
     joined_at: string | null;
     first_name: string | null;
     last_name: string | null;
@@ -79,7 +79,6 @@ export interface CompanyInvitationRead {
     company_avatar_url: string | null;
     role: CompanyRole;
     email: string;
-    invite_token?: string;
     invited_at: string;
 }
 
