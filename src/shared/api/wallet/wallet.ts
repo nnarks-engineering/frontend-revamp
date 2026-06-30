@@ -2,7 +2,7 @@ import { api } from "@/shared/lib/api-client";
 import { WALLET_ENDPOINTS } from "@/shared/lib/constants";
 import type { Currency } from "@/types";
 import type { PageParams, PaginatedResponse } from "@/types/common";
-import type { PaymentOrder, Wallet, WalletTransaction } from "@/types/wallet/wallet.types";
+import type { DepositRequest, PaymentOrder, TransferRequest, Wallet, WalletTransaction } from "@/types/wallet/wallet.types";
 
 
 export async function createWallet(
@@ -27,15 +27,9 @@ export async function getWallet(
 }
 
 export async function initiateDeposit(
-  company_id: string,
-  amount: number,
-  currency?: Currency,
+  data: DepositRequest,
 ): Promise<PaymentOrder> {
-  const res = await api.post<PaymentOrder>(WALLET_ENDPOINTS.DEPOSIT, {
-    company_id,
-    amount,
-    ...(currency && { currency }),
-  });
+  const res = await api.post<PaymentOrder>(WALLET_ENDPOINTS.DEPOSIT, data);
   return res.data;
 }
 
@@ -45,19 +39,9 @@ export async function confirmDeposit(orderId: string): Promise<Wallet> {
 }
 
 export async function transfer(
-  company_id: string,
-  from_wallet_id: string,
-  to_wallet_id: string,
-  amount: number,
-  reference: string,
+  data: TransferRequest,
 ): Promise<void> {
-  await api.post(WALLET_ENDPOINTS.TRANSFER, {
-    company_id,
-    from_wallet_id,
-    to_wallet_id,
-    amount,
-    reference,
-  });
+  await api.post(WALLET_ENDPOINTS.TRANSFER, data);
 }
 
 export async function listTransactions(

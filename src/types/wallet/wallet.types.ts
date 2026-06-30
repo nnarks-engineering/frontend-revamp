@@ -38,12 +38,14 @@ export interface PaymentOrder {
   status: TxStatus;
 }
 
-export interface DepositPayload {
+export interface DepositRequest {
+  company_id: string;
   amount: number;
   currency?: Currency;
 }
 
-export interface TransferPayload {
+export interface TransferRequest {
+  company_id: string;
   from_wallet_id: string;
   to_wallet_id: string;
   amount: number;

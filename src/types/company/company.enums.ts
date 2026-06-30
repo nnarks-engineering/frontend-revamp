@@ -45,3 +45,22 @@ export const CompanyPermission = {
   agent_manage: "agent_manage",
 } as const;
 export type CompanyPermission = (typeof CompanyPermission)[keyof typeof CompanyPermission];
+
+export const AgentTool = {
+  WEB_SEARCH: "web_search",
+  MEMORY_READ: "memory_read",
+  MEMORY_WRITE: "memory_write",
+  MEMORY_DELETE: "memory_delete",
+  PROJECT_ACCESS: "project_access",
+  HANDOFF_TO_HUMAN: "handoff_to_human",
+  JOIN_SESSION: "join_session",
+  SEARCH_USERS: "search_users",
+} as const;
+export type AgentTool = (typeof AgentTool)[keyof typeof AgentTool];
+
+export const LLMModelStatus = {
+  ACTIVE: "active",
+  DEPRECATED: "deprecated",
+  REMOVED: "removed",
+} as const;
+export type LLMModelStatus = (typeof LLMModelStatus)[keyof typeof LLMModelStatus];

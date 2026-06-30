@@ -1,4 +1,4 @@
-import { Crown, ShieldCheck, Users, UserX } from "lucide-react";
+import { UserX } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -32,13 +32,13 @@ import { CompanyMemberStatus } from "@/types";
 
 const PAGE_SIZE = 10;
 
-const ROLE_META: Record<CompanyRole, { label: string; icon: React.ReactNode; color: string }> = {
-  owner: { label: "Owner", icon: <Crown className="w-3.5 h-3.5" />, color: "text-amber-600" },
-  admin: { label: "Admin", icon: <ShieldCheck className="w-3.5 h-3.5" />, color: "text-primary" },
-  member: { label: "Member", icon: <Users className="w-3.5 h-3.5" />, color: "text-foreground/70" },
-  viewer: { label: "Viewer", icon: <Users className="w-3.5 h-3.5" />, color: "text-muted-foreground" },
-  agent: { label: "Agent", icon: <ShieldCheck className="w-3.5 h-3.5" />, color: "text-violet-600" },
-};
+// const ROLE_META: Record<CompanyRole, { label: string; icon: React.ReactNode; color: string }> = {
+//   owner: { label: "Owner", icon: <Crown className="w-3.5 h-3.5" />, color: "text-amber-600" },
+//   admin: { label: "Admin", icon: <ShieldCheck className="w-3.5 h-3.5" />, color: "text-primary" },
+//   member: { label: "Member", icon: <Users className="w-3.5 h-3.5" />, color: "text-foreground/70" },
+//   viewer: { label: "Viewer", icon: <Users className="w-3.5 h-3.5" />, color: "text-muted-foreground" },
+//   agent: { label: "Agent", icon: <ShieldCheck className="w-3.5 h-3.5" />, color: "text-violet-600" },
+// };
 
 function getInitials(name: string) {
   return (name.split("@")[0] ?? "").slice(0, 2).toUpperCase();

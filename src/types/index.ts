@@ -19,3 +19,4 @@ export * from "./shared/shared.enums";
 export * from "./user";
 export * from "./vendor";
 export * from "./wallet";
+export * from "./audit";

@@ -2,6 +2,7 @@
  * User & Profile types — mirrors backend UserRead, ProfileRead schemas.
  */
 
+import type { AgentTool } from "../company";
 import type { SessionType } from "../messaging";
 
 export interface User {
@@ -50,11 +51,11 @@ export interface UsernameAvailability {
 // ── Agent settings ────────────────────────────────────────────────────
 
 export interface ToolSettings {
-  dm: string[];
-  ai_dm: string[];
-  group: string[];
-  project: string[];
-  proposal: string[];
+  dm: AgentTool[];
+  ai_dm: AgentTool[];
+  group: AgentTool[];
+  project: AgentTool[];
+  proposal: AgentTool[];
 }
 
 export interface AgentSettingsRead {
@@ -64,5 +65,5 @@ export interface AgentSettingsRead {
 }
 
 export interface AgentSettingsUpdate {
-  tools?: Partial<Record<Lowercase<SessionType>, string[]>>;
+  tools?: Partial<Record<Lowercase<SessionType>, AgentTool[]>>;
 }

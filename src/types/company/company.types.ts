@@ -5,9 +5,11 @@ import type { KycTier } from "../kyc";
 import type { SessionType } from "../messaging";
 
 import type {
+    AgentTool,
     CompanyMemberStatus,
     CompanyPermission,
     CompanyRole,
+    LLMModelStatus,
     PartnershipTier,
 } from "./company.enums";
 
@@ -94,7 +96,7 @@ export interface CompanyMemberUpdate {
 
 /* ── Agent schemas ── */
 export interface ToolOverride {
-    tool: string;
+    tool: AgentTool;
     session_type: SessionType;
     action: "allow" | "deny";
 }
@@ -107,7 +109,7 @@ export interface AgentConfigRead {
     llm_model: {
         value: string;
         label: string;
-        status: string;
+        status: LLMModelStatus;
     } | null;
     tool_overrides: ToolOverride[];
     is_active: boolean;
