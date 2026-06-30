@@ -19,7 +19,6 @@ import {
   useRemoveCompanyMember,
   useResendCompanyInvitation,
 } from "@/shared/hooks/company/use-company-members";
-import type { CompanyMemberStatus } from "@/types";
 
 
 const PAGE_SIZE = 10;
@@ -28,16 +27,6 @@ function formatDate(dateStr: string) {
   return new Date(dateStr)
     .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
     .replace(/ (\d{4})$/, ", $1");
-}
-
-function _statusVariant(status: CompanyMemberStatus): string {
-  const map: Record<CompanyMemberStatus, string> = {
-    active: "active",
-    pending: "pending",
-    removed: "cancelled",
-    left: "ended",
-  };
-  return map[status] ?? "default";
 }
 
 interface InvitationsTabProps {

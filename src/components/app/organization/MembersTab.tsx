@@ -140,7 +140,7 @@ export function MembersTab({ companyId, search, page, onPageChange }: MembersTab
                 );
               }
               return pageItems.map((member) => {
-                const _role = ROLE_META[member.role] ?? ROLE_META.member;
+                // const _role = ROLE_META[member.role] ?? ROLE_META.member;
                 return (
                   <TableRow key={member.id}>
                     <TableCell>
