@@ -1,5 +1,5 @@
 import { useForm } from "@tanstack/react-form"
-import { Link, useNavigate } from "@tanstack/react-router"
+import { Link, useNavigate, useSearch } from "@tanstack/react-router"
 import { ArrowRight, KeyRound, Mail } from "lucide-react"
 import * as React from "react"
 import { toast } from "sonner"
@@ -82,13 +82,15 @@ function MagicLinkForm() {
   const navigate = useNavigate()
   const sendMagicLink = useSendMagicLink()
 
+  const { returnTo } = useSearch({ strict: false }) as { returnTo?: string }
+
   const form = useForm({
     defaultValues: { email: "" },
     validators: { onChange: magicSchema },
     onSubmit: async ({ value }) => {
       try {
-        await sendMagicLink.mutateAsync({ email: value.email })
-        navigate({ to: "/vendor/verify", search: { email: value.email } })
+        await sendMagicLink.mutateAsync({ email: value.email, return_to: returnTo })
+        navigate({ to: "/vendor/verify", search: { email: value.email, returnTo } })
       } catch (error) {
         toast.error(getApiError(error))
       }
@@ -142,13 +144,15 @@ function PasswordForm() {
   const requestSignup = useRequestPasswordSignup()
   const navigate = useNavigate()
 
+  const { returnTo } = useSearch({ strict: false }) as { returnTo?: string }
+
   const form = useForm({
     defaultValues: { email: "", password: "", confirmPassword: "" },
     validators: { onChange: passwordSchema },
     onSubmit: async ({ value }) => {
       try {
-        await requestSignup.mutateAsync({ email: value.email, password: value.password })
-        navigate({ to: "/vendor/verify", search: { email: value.email, flow: "signup" } })
+        await requestSignup.mutateAsync({ email: value.email, password: value.password, return_to: returnTo })
+        navigate({ to: "/vendor/verify", search: { email: value.email, flow: "signup", returnTo } })
       } catch (error) {
         toast.error(getApiError(error))
       }

@@ -8,6 +8,7 @@ const searchSchema = z.object({
   token: z.string().optional(),
   flow: z.enum(["magic", "signup"]).optional(),
   name: z.string().optional(),
+  returnTo: z.string().optional(),
 })
 
 export const Route = createFileRoute("/_auth/verify")({

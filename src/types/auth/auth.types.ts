@@ -12,6 +12,7 @@ export interface AuthTokenPair {
 
 export interface AuthMagicLinkRequest {
     email: string;
+    return_to?: string;
 }
 
 export interface AuthMagicVerifyRequest {
@@ -22,10 +23,17 @@ export interface AuthMagicVerifyRequest {
 export interface AuthPasswordSignupRequest {
     email: string;
     password: string;
+    return_to?: string;
 }
 
 export interface AuthPasswordSignupVerifyRequest {
-    code: string;
+    code?: string;
+    token?: string;
+}
+
+export interface AuthLogoutRequest {
+    access_token: string;
+    refresh_token: string;
 }
 
 export interface AuthMagicLoginResponse {

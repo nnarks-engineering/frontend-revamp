@@ -1,11 +1,11 @@
 
-
 import axios from "axios";
 
 import { api } from "@/shared/lib/api-client";
-import { clearTokens, getAccessToken, storeTokens } from "@/shared/lib/auth";
+import { clearTokens, getAccessToken, getRefreshToken, storeTokens } from "@/shared/lib/auth";
 import { API_BASE_URL, AUTH_ENDPOINTS } from "@/shared/lib/constants";
 import type {
+  AuthLogoutRequest,
   AuthMagicLinkRequest,
   AuthMagicLoginResponse,
   AuthMagicVerifyRequest,
@@ -15,9 +15,13 @@ import type {
 } from "@/types";
 
 export type {
-  AuthMagicLinkRequest, AuthMagicLoginResponse, AuthMagicVerifyRequest,
+  AuthLogoutRequest,
+  AuthMagicLinkRequest,
+  AuthMagicLoginResponse,
+  AuthMagicVerifyRequest,
   AuthPasswordSignupRequest,
-  AuthPasswordSignupVerifyRequest, AuthTokenPair
+  AuthPasswordSignupVerifyRequest,
+  AuthTokenPair,
 };
 
 
@@ -81,11 +85,16 @@ export async function refreshTokens(refreshToken: string): Promise<AuthTokenPair
 }
 
 export async function logout(): Promise<void> {
-  const token = getAccessToken();
-  if (token) {
+  const accessToken = getAccessToken();
+  const refreshToken = getRefreshToken();
+  if (accessToken && refreshToken) {
     try {
-      await api.post(AUTH_ENDPOINTS.LOGOUT, null, {
-        headers: { Authorization: `Bearer ${token}` },
+      const body: AuthLogoutRequest = {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      };
+      await api.post(AUTH_ENDPOINTS.LOGOUT, body, {
+        headers: { Authorization: `Bearer ${accessToken}` },
       });
     } catch {
       // Server-side blacklist failed — still clear locally
