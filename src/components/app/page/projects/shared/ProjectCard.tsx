@@ -31,7 +31,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <Card className="gap-2 @container border-0 @md:p-4 border-border/40 hover:border-primary/40 transition-colors bg-background-space">
         <CardContent className="">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-4 gap-x-6">
-            <DetailField
+            {/* <DetailField
               label="Project Name"
               value={<span className="font-semibold text-foreground">{project.title}</span>}
             />
@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <DetailField
               label="Industry"
               value={<span className="capitalize">{project.industry.toLowerCase().replace(/_/g, " ")}</span>}
-            />
+            /> */}
             <DetailField
               label="Budget"
               value={<span className="font-medium text-foreground">{formatMoney(Number(project.total_budget), project.currency)}</span>}
