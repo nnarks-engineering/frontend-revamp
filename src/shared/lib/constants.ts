@@ -63,6 +63,13 @@ export const WALLET_ENDPOINTS = {
   TRANSACTIONS: "/wallet/transactions",
 } as const;
 
+// ── Billing endpoints ────────────────────────────────────────────────
+export const BILLING_ENDPOINTS = {
+  CHECKOUT: "/billing/checkout",
+  CANCEL: "/billing/cancel",
+  SUBSCRIPTION: (companyId: string) => `/billing/subscription/${companyId}`,
+} as const;
+
 // ── Audit endpoints ──────────────────────────────────────────────────
 export const AUDIT_ENDPOINTS = {
   LIST: "/audit",
@@ -109,20 +116,20 @@ export const AGENT_ENDPOINTS = {
   UPDATE_CONFIG: "/agents/config",
 } as const;
 
-// ── Project endpoints ────────────────────────────────────────────────
+// ── Project (Deals) endpoints ──────────────────────────────────────────
 export const PROJECT_ENDPOINTS = {
-  LIST: "/projects",
-  DETAIL: (id: string) => `/projects/${id}`,
-  MILESTONES: (id: string) => `/projects/${id}/milestones`,
+  LIST: "/deals",
+  DETAIL: (id: string) => `/deals/${id}`,
+  MILESTONES: (id: string) => `/deals/${id}/milestones`,
   MILESTONE_DETAIL: (projectId: string, milestoneId: string) =>
-    `/projects/${projectId}/milestones/${milestoneId}`,
+    `/deals/${projectId}/milestones/${milestoneId}`,
   MILESTONE_EVIDENCE: (projectId: string, milestoneId: string) =>
-    `/projects/${projectId}/milestones/${milestoneId}/evidence`,
+    `/deals/${projectId}/milestones/${milestoneId}/evidence`,
   MILESTONE_REVIEWS: (projectId: string, milestoneId: string) =>
-    `/projects/${projectId}/milestones/${milestoneId}/reviews`,
-  INVITE_MEMBER: (id: string) => `/projects/${id}/members/invite`,
-  AI_PLAN: (id: string) => `/projects/${id}/ai-plan`,
-  ACCEPT_INVITATION: "/projects/invitations/accept",
+    `/deals/${projectId}/milestones/${milestoneId}/reviews`,
+  INVITE_MEMBER: (id: string) => `/deals/${id}/members/invite`,
+  AI_PLAN: (id: string) => `/deals/${id}/ai-plan`,
+  ACCEPT_INVITATION: "/deals/invitations/accept",
 } as const;
 
 // ── Storage keys ─────────────────────────────────────────────────────
@@ -147,6 +154,7 @@ export const QUERY_KEYS = {
   service: (id: string) => ["services", id] as const,
   kyc: (companyId: string) => ["kyc", companyId] as const,
   kycDocuments: (companyId: string) => ["kyc", companyId, "documents"] as const,
+  billingSubscription: (companyId: string) => ["billing", "subscription", companyId] as const,
   wallet: (companyId: string) => ["wallet", companyId] as const,
   walletTransactions: (companyId: string) => ["wallet", companyId, "transactions"] as const,
   proposals: ["proposals"] as const,
