@@ -1,6 +1,6 @@
 import type { Currency } from "../shared/shared.enums";
 
-import type { Industry, ProjectStatus, ProjectType } from "./project.enums";
+import type { Industry, ProjectPreset, ProjectStatus, SupervisionLevel } from "./project.enums";
 
 // ── Shared sub-objects ───────────────────────────────────────────────────────
 
@@ -29,8 +29,9 @@ export interface ProjectBase {
   title: string;
   description: string;
   industry: Industry;
-  project_type: ProjectType;
   status: ProjectStatus;
+  preset: ProjectPreset;
+  supervision_level: SupervisionLevel;
   location_address: AddressResponse;
   location_coordinates: Coordinates | null;
   start_date: string;

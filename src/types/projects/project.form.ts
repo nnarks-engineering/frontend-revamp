@@ -2,7 +2,7 @@ import type { Currencies } from "@/shared/constants/common";
 
 import type { DurationUnit } from "../shared/shared.enums";
 
-import type { Industry, ProjectType } from "./project.enums";
+import type { Industry, ProjectPreset, SupervisionLevel } from "./project.enums";
 
 export interface FormPartner {
   id: string;
@@ -49,7 +49,7 @@ export interface CreateProjectState {
   location_coordinates: ProjectFormCoordinates;
 
   // Step 3: Category
-  projectType: ProjectType;
+  preset: ProjectPreset;
   industry: Industry;
   servicesNeeded: string[];
   additionalNotes: string;
@@ -60,8 +60,10 @@ export interface CreateProjectState {
 
   // Step 5: Partners & Supervision
   partnerEmails: FormPartner[];
+  partnerCompanies: string[];
   partnerSelection: ProjectPartnerSelection;
   supervisionRequired: boolean;
+  supervisionLevel: SupervisionLevel;
 
   // Step 6: Timeline
   startDate: string;

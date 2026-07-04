@@ -92,7 +92,7 @@ function AppLayout2Inner() {
           </div>
 
           {/* Page content */}
-          <div className="flex-1 overflow-auto min-w-0">
+          <div className="flex-1 overflow-auto min-w-0 @container">
             <LocationBanner />
             <Outlet />
           </div>

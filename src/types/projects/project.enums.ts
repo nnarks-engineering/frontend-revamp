@@ -11,12 +11,20 @@ export const Industry = {
 } as const;
 export type Industry = (typeof Industry)[keyof typeof Industry];
 
-// ── ProjectType ──────────────────────────────────────────────────────────────
-export const ProjectType = {
-  individual: "individual",
-  partnered: "partnered",
+// ── ProjectPreset ─────────────────────────────────────────────────────────────
+export const ProjectPreset = {
+  start_a_project: "start_a_project",
 } as const;
-export type ProjectType = (typeof ProjectType)[keyof typeof ProjectType];
+export type ProjectPreset = (typeof ProjectPreset)[keyof typeof ProjectPreset];
+
+// ── SupervisionLevel ────────────────────────────────────────────────────────
+export const SupervisionLevel = {
+  unsupervised: "unsupervised",
+  basic: "basic",
+  enhanced: "enhanced",
+  full: "full",
+} as const;
+export type SupervisionLevel = (typeof SupervisionLevel)[keyof typeof SupervisionLevel];
 
 // ── ProjectStatus ────────────────────────────────────────────────────────────
 export const ProjectStatus = {

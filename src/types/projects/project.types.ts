@@ -3,7 +3,7 @@ import type { Currency } from "../shared/shared.enums";
 import type { MemberResponse } from "./member.types";
 import type { MilestoneResponse } from "./milestone.types";
 import type { AddressBase, Coordinates, ProjectBase } from "./project.base";
-import type { Industry, ProjectStatus, ProjectType } from "./project.enums";
+import type { Industry, ProjectPreset, ProjectStatus, SupervisionLevel } from "./project.enums";
 import type { ProjectWalletResponse } from "./wallet.types";
 
 // ── Payloads (sent TO the API) ───────────────────────────────────────────────
@@ -13,7 +13,8 @@ export interface ProjectCreatePayload {
   title: string;
   description: string;
   industry: Industry;
-  project_type: ProjectType;
+  preset: ProjectPreset;
+  supervision_level?: SupervisionLevel | null;
   location_address: AddressBase;
   location_coordinates?: Coordinates;
   start_date: string;

@@ -1,6 +1,6 @@
 import { createContext, type ReactNode, useContext, useState } from "react";
 import type { CreateProjectContextValue, CreateProjectState } from "@/types/projects";
-import { Industry, ProjectType } from "@/types/projects";
+import { Industry, ProjectPreset, SupervisionLevel } from "@/types/projects";
 
 const initialState: CreateProjectState = {
   title: "",
@@ -19,15 +19,17 @@ const initialState: CreateProjectState = {
     lng: null,
   },
   industry: Industry.agriculture,
-  projectType: ProjectType.individual,
+  preset: ProjectPreset.start_a_project,
   servicesNeeded: [],
   additionalNotes: "",
   totalBudget: 0,
   currency: "ghs",
   milestones: [],
   partnerEmails: [],
+  partnerCompanies: [],
   partnerSelection: "later",
   supervisionRequired: true,
+  supervisionLevel: SupervisionLevel.basic,
   startDate: "",
   estimatedDuration: "",
   durationUnit: "months",

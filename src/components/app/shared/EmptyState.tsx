@@ -1,11 +1,10 @@
-import type { LucideIcon } from "lucide-react";
 import type React from "react";
 
 import NoDataSvg from "@/assets/svg/no-data.svg?react";
 import { cn } from "@/shared/lib/utils";
 
 interface EmptyStateProps {
-  icon?: LucideIcon;
+  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   svgIcon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   title: string;
   description: string;
@@ -27,7 +26,7 @@ export function EmptyState({ icon: Icon, svgIcon: SvgIcon, title, description, a
           </div>
         </div>
       ) : SvgIcon ? (
-        <SvgIcon className={cn("w-48 h-auto mb-6 text-primary", svgClassName)} />
+        <SvgIcon className={cn("h-32 w-auto mb-6 text-primary", svgClassName)} />
       ) : (
         <NoDataSvg className={cn("w-48 h-auto mb-6 text-primary", svgClassName)} />
       )}

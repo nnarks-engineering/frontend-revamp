@@ -18,7 +18,7 @@ import {
 import { useCurrentCompany } from "@/shared/hooks/company/use-current-company";
 import { useCreateProject } from "@/shared/hooks/project/use-projects";
 import { cn } from "@/shared/lib/utils";
-import  {ProjectType } from "@/types/projects";
+
 
 import { useCreateProjectForm } from "./CreateProjectContext";
 
@@ -51,7 +51,7 @@ if (!validCompanyId) return toast.error("you are not a member of this organizati
     state.description,
     `Services Needed: ${state.servicesNeeded.join(", ")}`,
     `Additional Notes: ${state.additionalNotes}`,
-    `Supervision Required: ${state.supervisionRequired ? "Yes" : "No"}`,
+    `Supervision Level: ${state.supervisionLevel}`,
     `Partner Setup: ${state.partnerSelection}`,
   ].join("\n");
 
@@ -60,7 +60,8 @@ const payload = {
   title: state.title,
   description: combinedDescription,
   industry: state.industry,
-  project_type: state.projectType,
+  preset: state.preset,
+  supervision_level: state.supervisionLevel,
   location_address: state.location_address,           // ← object now
   location_coordinates: {                             // ← new field
     lat: state.location_coordinates.lat ?? 0,
@@ -234,15 +235,11 @@ setIsSuccess(true);
 
         {/* ── Category & Scope ── */}
         <ReviewSection title="Category & Scope"  goto={3}>
-          <DetailField label="Project Type" value={state.projectType} />
+          <DetailField label="Project Preset" value={state.preset.replace(/_/g, " ")} className="capitalize" />
           <DetailField
             label="Additional Notes"
             value={state.additionalNotes}
             containerClassName="@md:col-span-2"
-          />
-          <DetailField
-            label="Structure"
-            value={state.projectType}
           />
 
          <DetailField
@@ -287,20 +284,20 @@ setIsSuccess(true);
           />
           <DetailField
             label="Supervision"
-            value={
-              state.supervisionRequired ? "Nnarks Certified Supervisor" : "None"
-            }
+            value={state.supervisionLevel.replace(/_/g, " ")}
+            className="capitalize"
           />
         </ReviewSection>
 
         {/* ── Partners ── */}
-        {state.projectType === ProjectType.partnered && (
+        {state.partnerSelection !== "later" && (
           <ReviewSection title="Partners" goto={6}>
             <DetailField label="Partner Setup" value={state.partnerSelection} />
-            {state.partnerEmails.length > 0 && (
+            
+            {state.partnerSelection === "invite" && state.partnerEmails.length > 0 && (
               <DetailField
                 label="Invited Emails"
-                className="md:col-span-2"
+                containerClassName="md:col-span-2"
                 value={
                   <div className="flex flex-wrap gap-2 mt-1">
                     {state.partnerEmails.map((p) => (
@@ -309,6 +306,25 @@ setIsSuccess(true);
                         className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium"
                       >
                         {p.email}
+                      </span>
+                    ))}
+                  </div>
+                }
+              />
+            )}
+            
+            {state.partnerSelection === "verified" && state.partnerCompanies.length > 0 && (
+              <DetailField
+                label="Selected Companies"
+                containerClassName="md:col-span-2"
+                value={
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {state.partnerCompanies.map((c) => (
+                      <span
+                        key={c}
+                        className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium"
+                      >
+                        {c}
                       </span>
                     ))}
                   </div>

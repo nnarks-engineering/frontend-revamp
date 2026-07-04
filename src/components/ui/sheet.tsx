@@ -55,7 +55,7 @@ const SheetContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed z-50 bg-background-space shadow-2xl border-border/50",
+          "fixed z-50 bg-background-space shadow-2xl border-border/50 flex flex-col h-full p-0",
           "transition ease-out data-[state=open]:animate-in data-[state=closed]:animate-out duration-300",
           sideClasses[side],
           className,
@@ -68,6 +68,33 @@ const SheetContent = React.forwardRef<
   );
 });
 SheetContent.displayName = DialogPrimitive.Content.displayName;
+
+const SheetBody = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex-1 overflow-y-auto p-6 space-y-6", className)}
+    {...props}
+  />
+));
+SheetBody.displayName = "SheetBody";
+
+const SheetFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "px-6 py-4 border-t border-border flex items-center justify-end gap-3 bg-muted/20 shrink-0",
+      className
+    )}
+    {...props}
+  />
+));
+SheetFooter.displayName = "SheetFooter";
 
 const sheetHeaderVariants = cva(
   "relative overflow-hidden shrink-0 px-6 pt-6 pb-5 border-b",
@@ -154,4 +181,6 @@ export {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetBody,
+  SheetFooter,
 };

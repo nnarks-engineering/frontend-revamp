@@ -14,7 +14,7 @@ interface ImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'sr
 }
 
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, alt, fallback, fullName, className, width, height, ...props }, ref) => {
+  ({ src, alt, fallback, fullName, className, width=36, height=36, ...props }, ref) => {
     const [error, setError] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 

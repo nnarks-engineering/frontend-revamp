@@ -8,12 +8,7 @@ import { Label } from "@/components/ui/label";
 import { MultiSelectCombobox } from "@/components/ui/multi-select-combobox";
 import { Textarea } from "@/components/ui/textarea";
 import { INDUSTRY_OPTIONS, SERVICE_OPTIONS } from "@/shared/constants/project";
-import {type Industry, ProjectType } from "@/types/projects";
-
-import { Hint } from "../../shared/hint";
-
 import { useCreateProjectForm } from "./CreateProjectContext";
-import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
 
 
 
@@ -21,7 +16,7 @@ import { ProjectTypeButton } from "./step3category/ProjectTypeButton";
 export function Step3Category() {
   const { state, updateState, nextStep, prevStep } = useCreateProjectForm();
 
-  const isFormValid = state.projectType !== undefined && state.servicesNeeded.length > 0;
+  const isFormValid = state.servicesNeeded.length > 0;
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -33,31 +28,6 @@ export function Step3Category() {
           Tell us about the structure and scope of this project.
         </p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Solo Project Card */}
-
-        <ProjectTypeButton
-          icon={SingleMan}
-          title="Solo Project"
-          description="I am funding and managing this project independently."
-          selected={state.projectType === ProjectType.individual}
-          onClick={() => updateState({ projectType: ProjectType.individual })}
-        />
-
-        <ProjectTypeButton
-          icon={HandShake}
-          title="Partnered Project"
-          description="This project is co-managed with one or more partners."
-          selected={state.projectType === ProjectType.partnered}
-          onClick={() => updateState({ projectType: ProjectType.partnered })}
-        />
-
-      </div>
-
-      {state.projectType === ProjectType.partnered && (
-       <Hint icon={Info} description="You can add partner emails later in the setup process, or invite them from the project dashboard." />
-      )}
 
       <div className="space-y-6 border-border/50">
         <Combobox
